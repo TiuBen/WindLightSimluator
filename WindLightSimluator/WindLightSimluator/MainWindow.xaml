@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindLightSimluator"
         mc:Ignorable="d"
+        xmlns:comp="clr-namespace:WindLightSimluator.Components"
         Title="MainWindow" Height="1080" Width="1920">
     <Grid>
 
@@ -19,78 +20,101 @@
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF2296FB">
                         <TextBlock Text="dddd"/>
                     </StackPanel>
-                    <TabControl Grid.Row="1" TabStripPlacement="Left">
-                        <TabItem  Margin="0" >
-                            <TabItem.Header>
-                                <Border CornerRadius="10" Width="60" Height="60" >
-                                    <Border.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
-                                            <GradientStop Color="#FFEBF9FD" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Grid  Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+
+                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     <TextBlock Text="圆角示例" />
 
-                                        <TextBlock Text="圆角示例" />
-                                    </StackPanel>
-                                </Border>
-                            </TabItem.Header>
+                                    <TextBlock Text="圆角示例" />
+                                </StackPanel>
+                            </Border>
+                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="圆角示例" />
 
-                        </TabItem>
-                        <TabItem  Margin="0" >
-                            <TabItem.Header>
-                                <Border CornerRadius="10" Width="60" Height="60" >
-                                    <Border.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
-                                            <GradientStop Color="#FFEBF9FD" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                        <TextBlock Text="圆角示例" />
+                                    <TextBlock Text="圆角示例" />
+                                </StackPanel>
+                            </Border>
+                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="圆角示例" />
 
-                                        <TextBlock Text="圆角示例" />
-                                    </StackPanel>
-                                </Border>
-                            </TabItem.Header>
-                        </TabItem>
-                        <TabItem  Margin="0" >
-                            <TabItem.Header>
-                                <Border CornerRadius="10" Width="60" Height="60" >
-                                    <Border.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
-                                            <GradientStop Color="#FFEBF9FD" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                        <TextBlock Text="圆角示例" />
+                                    <TextBlock Text="圆角示例" />
+                                </StackPanel>
+                            </Border>
+                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="圆角示例" />
 
-                                        <TextBlock Text="圆角示例" />
-                                    </StackPanel>
-                                </Border>
-                            </TabItem.Header>
-                        </TabItem>
-                        <TabItem  Margin="0" >
-                            <TabItem.Header>
-                                <Border CornerRadius="10" Width="60" Height="60" >
-                                    <Border.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
-                                            <GradientStop Color="#FFEBF9FD" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                        <TextBlock Text="圆角示例" />
+                                    <TextBlock Text="圆角示例" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
 
-                                        <TextBlock Text="圆角示例" />
-                                    </StackPanel>
-                                </Border>
-                            </TabItem.Header>
-                        </TabItem>
+                        <Grid Grid.Column="1" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="180"/>
+                                <RowDefinition Height="120"/>
+                            </Grid.RowDefinitions>
+                            <comp:Runway  Grid.Row="0" LabelText="dddd" TextContent="ddddd==========="/>
+                            <comp:Runway  Grid.Row="0" Grid.Column="1"/>
+                            <comp:Runway  Grid.Row="0" Grid.Column="2"/>
 
-                    </TabControl>
+                            <comp:WindIndicator Grid.Row="1" />
+
+                            <comp:WindSpeedGrid  Grid.Row="3"/>
+                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1"/>
+                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="2"/>
+
+                            <comp:RvrVis Grid.Row="4"/>
+                            <comp:RvrVis Grid.Row="4" Grid.Column="1"/>
+                            <comp:RvrVis Grid.Row="4" Grid.Column="2"/>
+
+                            <comp:Metar Grid.Row="5" Grid.ColumnSpan="3"/>
+                            <comp:Metar Grid.Row="6" Grid.ColumnSpan="3"/>
+                        </Grid>
+
+                    </Grid>
 
                 </Grid>
 

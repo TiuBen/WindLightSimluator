@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
-21865065403
+71192254445
 
-7-361771649
+121061074928
 194178300874
-MainWindow.xaml;WindDirectionSpeedControl.xaml;
+Components\Metar.xaml;Components\Runway.xaml;Components\RvrVis.xaml;Components\WindDirectionSpeedControl.xaml;Components\WindIndicator.xaml;Components\WindSpeedGrid.xaml;MainWindow.xaml;
 
-True
+False
 

@@ -7,15 +7,45 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="WindDirectionSpeedControl.xaml.cs">
+    <Compile Update="Components\Metar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\Runway.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\RvrVis.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\WindIndicator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\WindSpeedGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\WindDirectionSpeedControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Components\Metar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\Runway.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\RvrVis.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\WindIndicator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\WindSpeedGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WindDirectionSpeedControl.xaml">
+    <Page Update="Components\WindDirectionSpeedControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
