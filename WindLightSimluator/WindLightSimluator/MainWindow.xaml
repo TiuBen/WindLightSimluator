@@ -1,0 +1,201 @@
+﻿<Window x:Class="WindLightSimluator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WindLightSimluator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920">
+    <Grid>
+
+
+        <TabControl>
+            <TabItem Header="气象自观模拟">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF2296FB">
+                        <TextBlock Text="dddd"/>
+                    </StackPanel>
+                    <TabControl Grid.Row="1" TabStripPlacement="Left">
+                        <TabItem  Margin="0" >
+                            <TabItem.Header>
+                                <Border CornerRadius="10" Width="60" Height="60" >
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                            <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="圆角示例" />
+
+                                        <TextBlock Text="圆角示例" />
+                                    </StackPanel>
+                                </Border>
+                            </TabItem.Header>
+
+                        </TabItem>
+                        <TabItem  Margin="0" >
+                            <TabItem.Header>
+                                <Border CornerRadius="10" Width="60" Height="60" >
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                            <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                        <TextBlock Text="圆角示例" />
+
+                                        <TextBlock Text="圆角示例" />
+                                    </StackPanel>
+                                </Border>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem  Margin="0" >
+                            <TabItem.Header>
+                                <Border CornerRadius="10" Width="60" Height="60" >
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                            <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                        <TextBlock Text="圆角示例" />
+
+                                        <TextBlock Text="圆角示例" />
+                                    </StackPanel>
+                                </Border>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem  Margin="0" >
+                            <TabItem.Header>
+                                <Border CornerRadius="10" Width="60" Height="60" >
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                            <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                        <TextBlock Text="圆角示例" />
+
+                                        <TextBlock Text="圆角示例" />
+                                    </StackPanel>
+                                </Border>
+                            </TabItem.Header>
+                        </TabItem>
+
+                    </TabControl>
+
+                </Grid>
+
+
+            </TabItem>
+
+            <TabItem Header="灯光ADB系统模拟">
+                <StackPanel Margin="10">
+                    <TextBlock Text="设置页面" FontSize="20"/>
+                    <Button Content="保存" Width="100" Margin="5"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="RVR旋钮模拟">
+                <TextBlock Text="版本 1.0" Margin="10"/>
+            </TabItem>
+            <TabItem Header="关于">
+                <TextBlock Text="版本 1.0" Margin="10"/>
+            </TabItem>
+        </TabControl>
+
+        <ItemsControl d:IsHidden="True">
+            <!-- 生成 0~350，每隔 10 度 -->
+
+            <!-- 放到画布中心 -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="{x:Type FrameworkElement}">
+                    <Setter Property="Canvas.Left" Value="200"/>
+                    <Setter Property="Canvas.Top"  Value="200"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+
+        </ItemsControl>
+        <ItemsControl d:IsHidden="True">
+            <!-- 生成 0~350，每隔 10 度 -->
+            <ItemsControl.ItemsSource>
+                <x:Array
+                  xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:Double}">
+                    <sys:Double>0</sys:Double>
+                    <sys:Double>15</sys:Double>
+                    <sys:Double>30</sys:Double>
+                    <sys:Double>45</sys:Double>
+                    <sys:Double>60</sys:Double>
+                    <sys:Double>75</sys:Double>
+                    <sys:Double>90</sys:Double>
+                    <sys:Double>105</sys:Double>
+                    <sys:Double>120</sys:Double>
+                    <sys:Double>135</sys:Double>
+                    <sys:Double>150</sys:Double>
+                    <sys:Double>165</sys:Double>
+                    <sys:Double>180</sys:Double>
+                    <sys:Double>195</sys:Double>
+                    <sys:Double>210</sys:Double>
+                    <sys:Double>225</sys:Double>
+                    <sys:Double>240</sys:Double>
+                    <sys:Double>255</sys:Double>
+                    <sys:Double>270</sys:Double>
+                    <sys:Double>285</sys:Double>
+                    <sys:Double>300</sys:Double>
+                    <sys:Double>315</sys:Double>
+                    <sys:Double>330</sys:Double>
+                    <sys:Double>345</sys:Double>
+                </x:Array>
+            </ItemsControl.ItemsSource>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Polygon Points="0,0 16,0 14,12 2,12"
+                    Fill="Blue" Opacity="0.9"
+                    Width="16" Height="12"
+                    RenderTransformOrigin="0.5,14">
+
+                        <Polygon.RenderTransform>
+                            <TransformGroup>
+                                <!-- 旋转角度绑定 -->
+                                <RotateTransform Angle="{Binding}"/>
+
+                                <!-- 向外平移（半径=150 可改） -->
+                                <TranslateTransform X="-8" Y="-162"/>
+                            </TransformGroup>
+                        </Polygon.RenderTransform>
+
+                    </Polygon>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <!-- 放到画布中心 -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="{x:Type FrameworkElement}">
+                    <Setter Property="Canvas.Left" Value="200"/>
+                    <Setter Property="Canvas.Top"  Value="200"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+
+        </ItemsControl>
+    </Grid>
+</Window>
