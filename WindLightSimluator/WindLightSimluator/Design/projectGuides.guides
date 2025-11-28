@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ProjectGuidesConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ProjectItemGuides>
+    <ProjectItemGuide TargetFile="Components\WindPanel.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Top" Position="400" />
+            <Guide Alignment="Left" Position="400" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+  </ProjectItemGuides>
+</ProjectGuidesConfiguration>

@@ -90,7 +90,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="180"/>
@@ -100,10 +100,21 @@
                             <comp:Runway  Grid.Row="0" Grid.Column="1"/>
                             <comp:Runway  Grid.Row="0" Grid.Column="2"/>
 
-                            <comp:WindIndicator Grid.Row="1" />
+                            <!--三个风向风速的指数盘-->
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                                <comp:WindPanel  />
+                            </Viewbox>
+                            <Viewbox Grid.Row="1" Grid.Column="1" >
+                                <comp:WindPanel  />
+                            </Viewbox>
+                            <Viewbox Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
+                                <comp:WindPanel  />
+                            </Viewbox>
+
+                            <comp:Qnh Grid.Column="1" Grid.Row="3"/>
 
                             <comp:WindSpeedGrid  Grid.Row="3"/>
-                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1"/>
+                            <comp:WindSpeedGrid  Grid.Row="2" Grid.Column="1"/>
                             <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="2"/>
 
                             <comp:RvrVis Grid.Row="4"/>

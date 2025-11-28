@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>36段小圆弧生成工具</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 80px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 14px;
+            white-space: pre;
+            max-height: 600px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>36段小圆弧生成工具 (WPF PathFigure)</h2>
+
+    <label>圆心 X: <input id="cx"
+            type="number"
+            value="100"></label>
+    <label>圆心 Y: <input id="cy"
+            type="number"
+            value="100"></label>
+    <label>半径 R: <input id="r"
+            type="number"
+            value="50"></label>
+    <label>每段间隔度数: <input id="gap"
+            type="number"
+            value="5"></label>
+    <label>小圆弧角度长度: <input id="arcDeg"
+            type="number"
+            value="5"></label>
+
+    <button onclick="generate()">生成36段PathFigure</button>
+
+    <div id="output"></div>
+
+    <script>
+        function generate() {
+            const cx = parseFloat(document.getElementById("cx").value);
+            const cy = parseFloat(document.getElementById("cy").value);
+            const r = parseFloat(document.getElementById("r").value);
+            const gap = parseFloat(document.getElementById("gap").value);
+            const arcDeg = parseFloat(document.getElementById("arcDeg").value);
+
+            let output = "";
+
+            // 每个小圆弧的中心角度
+            for (let i = 0; i < 36; i++) {
+                // 中心角度
+                let centerAngle = i * (arcDeg + gap);
+                // 起始角度 = 中心 - 半圆弧
+                let startDeg = centerAngle - arcDeg / 2;
+                let endDeg = centerAngle + arcDeg / 2;
+
+                // 转为0°在正上方，顺时针坐标系
+                const radStart = (startDeg - 90) * Math.PI / 180;
+                const radEnd = (endDeg - 90) * Math.PI / 180;
+
+                const sx = cx + r * Math.cos(radStart);
+                const sy = cy + r * Math.sin(radStart);
+                const ex = cx + r * Math.cos(radEnd);
+                const ey = cy + r * Math.sin(radEnd);
+
+                // 判断顺时针角度差
+                let delta = (endDeg - startDeg + 360) % 360;
+                const isLargeArc = delta > 180;
+
+                output += `<PathFigure StartPoint="${sx.toFixed(2)}, ${sy.toFixed(2)}">
+    <ArcSegment Point="${ex.toFixed(2)}, ${ey.toFixed(2)}"
+                Size="${r},${r}"
+                SweepDirection="Clockwise"
+                IsLargeArc="${isLargeArc}"/>
+</PathFigure>\n\n`;
+            }
+
+            document.getElementById("output").textContent = output;
+        }
+    </script>
+
+</body>
+
+</html>

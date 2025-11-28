@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\
 WindLightSimluator
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
-71192254445
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
+9-1939718019
 
-10-1077161624
-194178300874
-Components\Metar.xaml;Components\Runway.xaml;Components\RvrVis.xaml;Components\WindDirectionSpeedControl.xaml;Components\WindIndicator.xaml;Components\WindSpeedGrid.xaml;MainWindow.xaml;
+121229638014
+194-1617825143
+Components\Metar.xaml;Components\Qnh.xaml;Components\Runway.xaml;Components\RvrVis.xaml;Components\WindDirectionSpeedControl.xaml;Components\WindIndicator.xaml;Components\WindPanel.xaml;Components\WindSpeedGrid.xaml;MainWindow.xaml;
 
 False
 

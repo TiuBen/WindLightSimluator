@@ -225,6 +225,51 @@
             </ItemsControl.ItemContainerStyle>
 
         </ItemsControl>
+            <Rectangle Height="560" Canvas.Left="373" Canvas.Top="120" Width="54" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Fill="Black" d:IsHidden="True">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="11.8"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+
+            <Path Fill="White" Canvas.Left="373" Canvas.Top="130" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,2.8" Panel.ZIndex="100" d:IsHidden="True" >
+                <Path.Data>
+                    <GeometryGroup>
+                        <RectangleGeometry Rect="7.5,0,8,100" />
+                        <RectangleGeometry Rect="23,0,8,100" />
+                        <RectangleGeometry Rect="38.5,0,8,100" />
+                    </GeometryGroup>
+                </Path.Data>
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="11.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <Path Fill="White" Canvas.Left="373" Canvas.Top="570" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,-1.7" Panel.ZIndex="100" d:IsHidden="True" >
+                <Path.Data>
+                    <GeometryGroup>
+                        <RectangleGeometry Rect="7.5,0,8,100" />
+                        <RectangleGeometry Rect="23,0,8,100" />
+                        <RectangleGeometry Rect="38.5,0,8,100" />
+                    </GeometryGroup>
+                </Path.Data>
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="11.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
         </Canvas>
 
     </Grid>

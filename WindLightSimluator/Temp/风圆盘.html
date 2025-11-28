@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>WPF Arc Calculator</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 16px;
+            white-space: pre;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>WPF Arc 坐标计算工具（顺时针，0° 在正上方）</h2>
+
+    <label>圆心 X: <input id="cx"
+            type="number"
+            value="100"></label>
+    <label>圆心 Y: <input id="cy"
+            type="number"
+            value="100"></label>
+    <label>半径 R: <input id="r"
+            type="number"
+            value="50"></label>
+    <label>起始角度（度）: <input id="start"
+            type="number"
+            value="0"></label>
+    <label>结束角度（度）: <input id="end"
+            type="number"
+            value="90"></label>
+
+    <button onclick="calc()">计算</button>
+
+    <div id="output"></div>
+
+    <script>
+        function calc() {
+            const cx = parseFloat(document.getElementById("cx").value);
+            const cy = parseFloat(document.getElementById("cy").value);
+            const r = parseFloat(document.getElementById("r").value);
+            let startDeg = parseFloat(document.getElementById("start").value) % 360;
+            let endDeg = parseFloat(document.getElementById("end").value) % 360;
+
+            if (startDeg < 0) startDeg += 360;
+            if (endDeg < 0) endDeg += 360;
+
+            // 0° 在正上 → 数学坐标系 -90°
+            const radStart = (startDeg - 90) * Math.PI / 180;
+            const radEnd = (endDeg - 90) * Math.PI / 180;
+
+            const sx = cx + r * Math.cos(radStart);
+            const sy = cy + r * Math.sin(radStart);
+            const ex = cx + r * Math.cos(radEnd);
+            const ey = cy + r * Math.sin(radEnd);
+
+            // 计算顺时针角度差
+            let delta = (endDeg - startDeg + 360) % 360;
+            const isLargeArc = delta > 180;
+
+            const output = `
+StartPoint = "${sx.toFixed(2)}, ${sy.toFixed(2)}"
+ArcSegment Point = "${ex.toFixed(2)}, ${ey.toFixed(2)}"
+IsLargeArc = ${isLargeArc}
+
+<PathFigure StartPoint="${sx.toFixed(2)}, ${sy.toFixed(2)}">
+    <ArcSegment Point="${ex.toFixed(2)}, ${ey.toFixed(2)}"
+                Size="${r},${r}"
+                SweepDirection="Clockwise"
+                IsLargeArc="${isLargeArc}"/>
+</PathFigure>
+    `;
+
+            document.getElementById("output").textContent = output;
+        }
+    </script>
+
+</body>
+
+</html>

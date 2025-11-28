@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Rect Generator</title>
+<style>
+    body { font-family: Arial; padding: 20px; max-width: 800px; }
+    label { display: block; margin-top: 10px; }
+    input { padding: 5px; width: 120px; }
+    button { margin-top: 12px; padding: 8px 14px; }
+    textarea { width: 100%; height: 260px; margin-top: 12px; font-family: Consolas; }
+    canvas { border:1px solid #ccc; margin-top:15px; }
+</style>
+</head>
+
+<body>
+<h2>RectangleGeometry 生成器 (x,y,x+W,y+H)</h2>
+
+<label>大矩形宽度 W:</label>
+<input id="bigW" type="number" value="54">
+
+<label>大矩形高度 H:</label>
+<input id="bigH" type="number" value="100">
+
+<label>小矩形宽度 w:</label>
+<input id="smallW" type="number" value="8">
+
+<label>小矩形数量 n:</label>
+<input id="count" type="number" value="4">
+
+<br>
+<button onclick="generate()">生成</button>
+<button onclick="copyText()">复制</button>
+
+<textarea id="output" readonly></textarea>
+
+<canvas id="preview" width="820" height="200"></canvas>
+
+
+<script>
+function generate() {
+    const W = parseFloat(bigW.value);
+    const H = parseFloat(bigH.value);
+    const w = parseFloat(smallW.value);
+    const n = parseInt(count.value);
+
+    if (n*w > W) {
+        alert("小矩形总宽度超过大矩形宽度！");
+        return;
+    }
+
+    const gap = (W - n * w) / (n + 1);
+
+    let txt = "";
+    let rects = [];
+
+    for (let i = 0; i < n; i++) {
+        const x = gap + i * (w + gap);
+        const y = 0;
+        const x2 = w;
+        const y2 = H;
+
+        txt += `<RectangleGeometry Rect="${x},${y},${x2},${y2}" />\n`;
+        rects.push({x, y, x2, y2});
+    }
+
+    output.value = txt;
+
+    drawPreview(W, H, rects);
+}
+
+function drawPreview(W, H, rects) {
+    const canvas = document.getElementById("preview");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    const scale = 1;
+    const offsetX = 50;
+    const offsetY = 40;
+
+    // 大矩形
+    ctx.strokeStyle = "black";
+    ctx.strokeRect(offsetX, offsetY, W * scale, H * scale);
+
+    // 小矩形
+    ctx.fillStyle = "skyblue";
+    rects.forEach(r => {
+        ctx.fillRect(
+            offsetX + r.x * scale,
+            offsetY + r.y * scale,
+            (r.x2 - r.x) * scale,
+            (r.y2 - r.y) * scale
+        );
+        ctx.strokeRect(
+            offsetX + r.x * scale,
+            offsetY + r.y * scale,
+            (r.x2 - r.x) * scale,
+            (r.y2 - r.y) * scale
+        );
+    });
+}
+
+function copyText() {
+    output.select();
+    document.execCommand("copy");
+    alert("已复制！");
+}
+</script>
+
+</body>
+</html>

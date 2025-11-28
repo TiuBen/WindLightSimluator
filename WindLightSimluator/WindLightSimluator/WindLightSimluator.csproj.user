@@ -10,6 +10,9 @@
     <Compile Update="Components\Metar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Components\Qnh.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Components\Runway.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Components\WindIndicator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\WindPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Components\WindSpeedGrid.xaml.cs">
@@ -30,6 +36,9 @@
     <Page Update="Components\Metar.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Components\Qnh.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\Runway.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -37,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\WindIndicator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\WindPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\WindSpeedGrid.xaml">

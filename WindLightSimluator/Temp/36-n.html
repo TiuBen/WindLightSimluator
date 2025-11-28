@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>36段小圆弧生成工具</title>
+<style>
+body { font-family: Arial; padding:20px; }
+label { display:block; margin-top:10px; }
+input { width:80px; }
+#output { margin-top:20px; font-size:14px; white-space:pre; max-height:400px; overflow:auto; padding:10px; border:1px solid #ccc; }
+button { margin-top:10px; }
+</style>
+</head>
+<body>
+<h2>36段小圆弧生成工具 (WPF PathFigure)</h2>
+
+<label>圆心 X: <input id="cx" type="number" value="100"></label>
+<label>圆心 Y: <input id="cy" type="number" value="100"></label>
+<label>半径 R: <input id="r" type="number" value="50"></label>
+<label>每段之间的间隔角度（gap）: <input id="gap" type="number" value="5"></label>
+<label>每个小圆弧的角度长度（arc）: <input id="arcDeg" type="number" value="5"></label>
+
+<button onclick="generate()">生成 36 段 PathFigure</button>
+<button onclick="copyText()">复制全部</button>
+
+<div id="output"></div>
+
+<script>
+function generate() {
+    const cx = parseFloat(document.getElementById("cx").value);
+    const cy = parseFloat(document.getElementById("cy").value);
+    const r  = parseFloat(document.getElementById("r").value);
+    const gap = parseFloat(document.getElementById("gap").value);
+    const arcDeg = parseFloat(document.getElementById("arcDeg").value);
+
+    let output = "";
+
+    for(let i=0; i<36; i++){
+        let center = i * (arcDeg + gap);
+        let startDeg = center - arcDeg/2;
+        let endDeg   = center + arcDeg/2;
+
+        const radStart = (startDeg - 90) * Math.PI / 180;
+        const radEnd   = (endDeg - 90) * Math.PI / 180;
+
+        const sx = cx + r * Math.cos(radStart);
+        const sy = cy + r * Math.sin(radStart);
+        const ex = cx + r * Math.cos(radEnd);
+        const ey = cy + r * Math.sin(radEnd);
+
+        let delta = (endDeg - startDeg + 360) % 360;
+        const isLargeArc = delta > 180;
+
+        output += `<PathFigure StartPoint="${sx.toFixed(2)}, ${sy.toFixed(2)}">
+    <ArcSegment Point="${ex.toFixed(2)}, ${ey.toFixed(2)}"
+                Size="${r},${r}"
+                SweepDirection="Clockwise"
+                IsLargeArc="${isLargeArc}"/>
+</PathFigure>\n\n`;
+    }
+
+    document.getElementById("output").textContent = output;
+}
+
+function copyText() {
+    const text = document.getElementById("output").textContent;
+
+    navigator.clipboard.writeText(text).then(() => {
+        alert("已复制到剪贴板！");
+    }).catch(err => {
+        alert("复制失败：" + err);
+    });
+}
+</script>
+
+</body>
+</html>
