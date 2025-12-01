@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindLightSimluator.Components"
+             xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
              mc:Ignorable="d" 
              >
     <UserControl.Resources>
@@ -13,6 +14,8 @@
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="32"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="#7b83a5"/>
+
         </Style>
         <Style TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -20,34 +23,26 @@
             <Setter Property="FontSize" Value="32"/>
             <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="#7b83a5"/>
 
         </Style>
-        <Style TargetType="Border">
-            <Setter Property="Background" Value="White"/>
+        <Style TargetType="base:BorderText">
+            <Setter Property="BackgroundColor" Value="#f1f2f6"/>
+            <Setter Property="MainTextFontSize" Value="48"/>
         </Style>
 
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Border Grid.Column="0" Grid.Row="0"  Background="#FFDBDFE9" Margin="2,1" >
-            <Label Content="RVR1A"/>
-        </Border>
 
-        <Border Grid.Column="0" Grid.Row="1" Background="#FFDBDFE9" Margin="2,1">
-            <Label Content="VIS1A"/>
-        </Border>
-        <Border Grid.Column="1" Grid.Row="0" Margin="2,1" >
-            <TextBlock Text="RVR1A"/>
-        </Border>
-        <Border Grid.Column="1" Grid.Row="1" Margin="2,1" >
-            <TextBlock Text="VIS1A"/>
-        </Border>
-    </Grid>
+            <UniformGrid Columns="2">
+                
+                <Border Grid.Column="0" Grid.Row="0"  Background="#FFDBDFE9" Margin="0 0 0 1" >
+                    <Label Content="RVR1A"/>
+                </Border>
+                <base:BorderText MainText="1500" SubText="m" Grid.Column="1" Grid.Row="0" Margin="0 0 0 1" />
+
+                <Border Grid.Column="0" Grid.Row="1" Background="#FFDBDFE9" Margin="0 1 0 0">
+                    <Label Content="VIS1A" />
+                </Border>
+                <base:BorderText MainText="10000" SubText="m" Grid.Column="1" Grid.Row="1"  Margin="0 1 0 0" />
+            </UniformGrid>
 </UserControl>

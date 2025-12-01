@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindLightSimluator.Components"
+             xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
              mc:Ignorable="d" 
+             d:Width="300"
             >
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -18,13 +20,16 @@
             <Setter Property="FontSize" Value="60"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
+        <!-- 定义高度到字体大小的转换器 -->
+        <local:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="QNH"  Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBlock Text="1031.4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Text="QNH"    HorizontalAlignment="Center" VerticalAlignment="Center"  
+                       FontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource  HeightToFontSizeConverter}, ConverterParameter=0.8}"/>
+        <base:BorderText Grid.Column="1" MainText="1032.5" MainTextFontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ConverterParameter=0.8}" SubText="hPa" />
     </Grid>
 </UserControl>

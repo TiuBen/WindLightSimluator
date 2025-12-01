@@ -14,10 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 
 
 namespace WindLightSimluator.Components

@@ -7,6 +7,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Components\Base\BorderText.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\Light.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Components\Metar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -16,7 +22,13 @@
     <Compile Update="Components\Runway.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Components\RunwayStatus .xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Components\RvrVis.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\WeatherCondition.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Components\WindIndicator.xaml.cs">
@@ -33,6 +45,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Components\Base\BorderText.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\Light.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\Metar.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -42,7 +60,13 @@
     <Page Update="Components\Runway.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Components\RunwayStatus .xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\RvrVis.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\WeatherCondition.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\WindIndicator.xaml">

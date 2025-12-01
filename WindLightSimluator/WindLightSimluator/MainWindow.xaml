@@ -6,12 +6,26 @@
         xmlns:local="clr-namespace:WindLightSimluator"
         mc:Ignorable="d"
         xmlns:comp="clr-namespace:WindLightSimluator.Components"
+        d:Width="1920" d:Height="1080"
         Title="MainWindow" Height="1080" Width="1920">
+    <Window.Resources>
+        <Style TargetType="Grid" >
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <!--<Setter Property="UseLayoutRounding" Value="True"/>-->
+        </Style>
+        <Style TargetType="UniformGrid" >
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <!--<Setter Property="UseLayoutRounding" Value="True"/>-->
+        </Style>
+
+    </Window.Resources>
+
     <Grid>
 
 
         <TabControl>
             <TabItem Header="气象自观模拟">
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
@@ -80,50 +94,61 @@
                                 </StackPanel>
                             </Border>
                         </StackPanel>
+                        <Grid Grid.Column="1" ShowGridLines="True" >
 
-                        <Grid Grid.Column="1" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="3*"/>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="180"/>
-                                <RowDefinition Height="120"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <comp:Runway  Grid.Row="0" LabelText="dddd" TextContent="ddddd==========="/>
-                            <comp:Runway  Grid.Row="0" Grid.Column="1"/>
-                            <comp:Runway  Grid.Row="0" Grid.Column="2"/>
+                            <!--第一行-->
+
+                            <comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L" StatusText="NOT IN USE"/>
+                            <comp:RunwayStatus  Grid.Column="1" RunwayNumber="MD1" StatusText="" />
+                            <comp:RunwayStatus  Grid.Column="2" RunwayNumber="dddd" StatusText="ddddd==========="/>
 
                             <!--三个风向风速的指数盘-->
-                            <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                            <Viewbox Grid.Row="1" Grid.RowSpan="3">
                                 <comp:WindPanel  />
                             </Viewbox>
-                            <Viewbox Grid.Row="1" Grid.Column="1" >
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" >
                                 <comp:WindPanel  />
                             </Viewbox>
-                            <Viewbox Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
+                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1"/>
+                            <Viewbox Grid.Row="1" Grid.Column="2" Grid.RowSpan="3">
                                 <comp:WindPanel  />
                             </Viewbox>
 
-                            <comp:Qnh Grid.Column="1" Grid.Row="3"/>
+                            <!--第3行 风速-->
 
-                            <comp:WindSpeedGrid  Grid.Row="3"/>
-                            <comp:WindSpeedGrid  Grid.Row="2" Grid.Column="1"/>
-                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="2"/>
+                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6ddd" CrossWindAVG2Text="3"/>
+                            <comp:Qnh  Grid.Row="4" Grid.Column="1"/>
+                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="2"/>
 
-                            <comp:RvrVis Grid.Row="4"/>
-                            <comp:RvrVis Grid.Row="4" Grid.Column="1"/>
-                            <comp:RvrVis Grid.Row="4" Grid.Column="2"/>
+                            <!--第4行-->
+                            <comp:RvrVis Grid.Row="5"/>
+                            <comp:RvrVis Grid.Row="5" Grid.Column="1"/>
+                            <comp:RvrVis Grid.Row="5" Grid.Column="2"/>
 
-                            <comp:Metar Grid.Row="5" Grid.ColumnSpan="3"/>
-                            <comp:Metar Grid.Row="6" Grid.ColumnSpan="3"/>
+                            <!--第五行-->
+                            <comp:WeatherCondition Grid.Row="6" Grid.Column="0"/>
+                            <comp:Light Grid.Row="6" Grid.Column="1"/>
+                            <comp:WeatherCondition Grid.Row="6" Grid.Column="2"/>
+
+                            <!--第六行-->
+                            <comp:Metar Grid.Row="7" Grid.ColumnSpan="3"/>
                         </Grid>
+
 
                     </Grid>
 
@@ -233,4 +258,5 @@
 
         </ItemsControl>
     </Grid>
+
 </Window>

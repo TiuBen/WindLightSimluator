@@ -1,0 +1,274 @@
+﻿<UserControl x:Class="WindLightSimluator.Components.WeatherCondition"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WindLightSimluator.Components"
+             xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
+             mc:Ignorable="d" 
+            >
+    <UserControl.Resources>
+        <!--<Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="28"/>
+        </Style>-->
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <Style TargetType="UniformGrid">
+            <Setter Property="Background" Value="#FFDBDFE9"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#FFDBDFE9"/>
+        </Style>
+        <Style TargetType="base:BorderText">
+            <!--<Setter Property="BackgroundColor" Value="#FFF1F2F6"/>-->
+            <Setter Property="BackgroundColor" Value="Red"/>
+            <Setter Property="BorderColor" Value="#FFF1F2F6"/>
+            <Setter Property="MainTextFontSize" Value="16"/>
+            
+            <Setter Property="FontWeight" Value="DemiBold"/>
+
+        </Style>
+    </UserControl.Resources>
+
+        <!--<UniformGrid Columns="5" >
+            <Label Content="Cloud 1st layer"  />
+            <Label Content="VVIS"   />
+            <Label Content="Rain 1h"/>
+            <Label Content="Rain 24h" />
+            <Label Content="STEMP" Grid.Row="0" Grid.Column="4"/>
+
+            <base:BorderText MainText="///" SubText="m" />
+            <base:BorderText MainText="///" SubText="m" />
+            <base:BorderText MainText="///" SubText="mm"/>
+            <base:BorderText MainText="///" SubText="mm"/>
+            <base:BorderText MainText="///" SubText="°C" />
+
+            <Label Content="T"/>
+            <Label Content="DP" />
+            <Label Content="RH" />
+            <Label Content="QFE" />
+            <Label Content="STATUS"/>
+
+            <base:BorderText MainText="///" SubText="°C" />
+            <base:BorderText MainText="///" SubText="°C" />
+            <base:BorderText MainText="///" SubText="%"/>
+            <base:BorderText MainText="///" SubText="hPa" />
+            <base:BorderText MainText="///" />
+       =0-niformGrid>-->
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+
+        <Label Content="Cloud 1st layer"  Grid.Row="0" Grid.Column="0" />
+        <base:BorderText MainText="///" SubText="m" Grid.Row="1"  Grid.Column="0"/>
+        <Label Content="T" Grid.Row="2"  Grid.Column="0"/>
+        <base:BorderText MainText="///" SubText="°C" Grid.Row="3"  Grid.Column="0"/>
+
+        <Label Content="    VVIS    " Grid.Row="0"  Grid.Column="1"/>
+        <base:BorderText MainText="///" SubText="m" Grid.Row="1"  Grid.Column="1" />
+        <Label Content="DP" Grid.Row="2"  Grid.Column="1"/>
+        <base:BorderText MainText="///" SubText="°C" Grid.Row="3"  Grid.Column="1"/>
+
+        <Label Content="Rain 1h" Grid.Row="0"  Grid.Column="2"/>
+        <base:BorderText MainText="///" SubText="mm" Grid.Row="1" Grid.Column="2"/>
+        <Label Content="RH" Grid.Row="2"  Grid.Column="2"/>
+        <base:BorderText MainText="///" SubText="%" Grid.Row="3"  Grid.Column="2"/>
+
+        <Label Content="Rain 24h" Grid.Row="0"  Grid.Column="3"/>
+        <base:BorderText MainText="///" SubText="mm" Grid.Row="1"  Grid.Column="3"/>
+        <Label Content="QFE" Grid.Row="2" Grid.Column="3"/>
+        <base:BorderText MainText="///" SubText="%" Grid.Row="3" Grid.Column="3"/>
+
+        <Label Content="STEMP" Grid.Row="0" Grid.Column="4"/>
+        <base:BorderText MainText="///" SubText="m" Grid.Row="1"  Grid.Column="4"/>
+        <Label Content="STATUS" Grid.Row="2"  Grid.Column="4"/>
+        <base:BorderText MainText="///"  Grid.Row="3"  Grid.Column="4"/>
+    </Grid>
+
+
+
+    <!--<UniformGrid Columns="5" Background="Transparent" >
+
+        <Viewbox>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Cloud 1st layer"  Grid.Row="0"/>
+                <base:BorderText MainText="///" SubText="m" Grid.Row="1"/>
+                <Label Content="T" Grid.Row="2"/>
+                <base:BorderText MainText="///" SubText="°C" Grid.Row="3"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="        VVIS       " Grid.Row="0"/>
+                <base:BorderText MainText="///" SubText="m" Grid.Row="1" />
+                <Label Content="DP" Grid.Row="2"/>
+                <base:BorderText MainText="///" SubText="°C" Grid.Row="3"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="   Rain 1h    " Grid.Row="0"/>
+                <base:BorderText MainText="///" SubText="mm" Grid.Row="1"/>
+                <Label Content="RH" Grid.Row="2"/>
+                <base:BorderText MainText="///" SubText="%" Grid.Row="3"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox>
+            <Grid Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="  Rain 24h   " Grid.Row="0"/>
+                <base:BorderText MainText="///" SubText="mm" Grid.Row="1"/>
+                <Label Content="QFE" Grid.Row="2"/>
+                <base:BorderText MainText="///" SubText="%" Grid.Row="3"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox>
+            <Grid Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="STEMP" Grid.Row="0"/>
+                <base:BorderText MainText="///" SubText="m" Grid.Row="1"/>
+                <Label Content="STATUS" Grid.Row="2"/>
+                <base:BorderText MainText="///"  Grid.Row="3"/>
+            </Grid>
+        </Viewbox>
+
+    </UniformGrid>-->
+
+</UserControl>
+<!--<Grid Margin="2">
+    -->
+<!--<Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>-->
+<!--
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Cloud 1st layer"  Grid.Row="0"/>
+            <base:BorderText MainText="///" SubText="m" Grid.Row="1"/>
+            <Label Content="T" Grid.Row="2"/>
+            <base:BorderText MainText="///" SubText="°C" Grid.Row="3"/>
+            -->
+<!--<Label Content="Cloud 1st layer"  />
+                <base:BorderText MainText="///" SubText="m" />
+                <Label Content="T" />
+                <base:BorderText MainText="///" SubText="°C" />-->
+<!--
+        </Grid>
+    </Viewbox>
+    -->
+<!--<Label Content="Cloud 1st layer"  Grid.Row="0"/>
+            <base:BorderText MainText="///" SubText="m" Grid.Row="1"/>
+            <Label Content="T" Grid.Row="2"/>
+            <base:BorderText MainText="///" SubText="°C" Grid.Row="3"/>-->
+<!--
+</Grid>
+<Grid Margin="2">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Label Content="VVIS" Grid.Row="0"/>
+    <base:BorderText MainText="///" SubText="m" Grid.Row="1" />
+    <Label Content="DP" Grid.Row="2"/>
+    <base:BorderText MainText="///" SubText="°C" Grid.Row="3"/>
+</Grid>
+<Grid Margin="2">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Label Content="Rain 1h" Grid.Row="0"/>
+    <base:BorderText MainText="///" SubText="mm" Grid.Row="1"/>
+    <Label Content="RH" Grid.Row="2"/>
+    <base:BorderText MainText="///" SubText="%" Grid.Row="3"/>
+</Grid>
+<Grid Margin="2">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Label Content="Rain 24h" Grid.Row="0"/>
+    <base:BorderText MainText="///" SubText="mm" Grid.Row="1"/>
+    <Label Content="QFE" Grid.Row="2"/>
+    <base:BorderText MainText="///" SubText="%" Grid.Row="3"/>
+</Grid>
+<Grid Margin="2">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Label Content="STEMP" Grid.Row="0"/>
+    <base:BorderText MainText="///" SubText="m" Grid.Row="1"/>
+    <Label Content="STATUS" Grid.Row="2"/>
+    <base:BorderText MainText="///"  Grid.Row="3"/>
+</Grid>-->
