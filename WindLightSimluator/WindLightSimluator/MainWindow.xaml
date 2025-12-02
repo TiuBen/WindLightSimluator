@@ -124,16 +124,16 @@
                             <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" >
                                 <comp:WindPanel  />
                             </Viewbox>
-                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1"/>
+                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
                             <Viewbox Grid.Row="1" Grid.Column="2" Grid.RowSpan="3">
                                 <comp:WindPanel  />
                             </Viewbox>
 
                             <!--第3行 风速-->
 
-                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6ddd" CrossWindAVG2Text="3"/>
+                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
                             <comp:Qnh  Grid.Row="4" Grid.Column="1"/>
-                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="2"/>
+                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="2" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="+3.7"/>
 
                             <!--第4行-->
                             <comp:RvrVis Grid.Row="5"/>

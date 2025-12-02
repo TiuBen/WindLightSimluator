@@ -78,30 +78,35 @@
              xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
              mc:Ignorable="d"
              x:Name="root"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"  >
 
     <UserControl.Resources>
         <!-- 字体自动缩放，倍率 0.8，可改 -->
-        <conv:WindSpeedFontSizeConverter x:Key="AutoFont" Scale="0.15"/>
+        <conv:WindSpeedFontSizeConverter x:Key="MainFontSize" Scale="0.6"/>
+        <conv:WindSpeedFontSizeConverter x:Key="SubFontSize" Scale="0.2"/>
+        <conv:WindSpeedFontSizeConverter x:Key="AutoFont2" Scale="0.45"/>
+        <conv:WindSpeedFontSizeConverter x:Key="AutoFont3" Scale="0.25"/>
+        <conv:WindSpeedFontSizeConverter x:Key="TextInGrid" Scale="0.4"/>
 
         <Style TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="FontSize" >
                 <Setter.Value>
                     <Binding Path="ActualHeight"
                          RelativeSource="{RelativeSource AncestorType=Grid}"
-                         Converter="{StaticResource AutoFont}" />
+                         Converter="{StaticResource TextInGrid}" />
                 </Setter.Value>
             </Setter>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-            <Setter Property="Margin" Value="0" />
+            <!--<Setter Property="Margin" Value="0" />-->
+            <!--<Setter Property="Foreground" Value="#7b83a5" />-->
             <Setter Property="Foreground" Value="#7b83a5" />
             <!--<Setter Property="Background" Value="#FFDBDFE9" />-->
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Margin" Value="4 2 4 2"/>
+            <!--<Setter Property="Margin" Value="4 2 4 2"/>-->
         </Style>
         <!--<Style TargetType="Border">
             <Setter Property="BorderBrush" Value="White"/>
@@ -121,18 +126,40 @@
                 <Setter.Value>
                     <Binding Path="ActualHeight"
                          RelativeSource="{RelativeSource AncestorType=Grid}"
-                         Converter="{StaticResource AutoFont}" />
+                         Converter="{StaticResource MainFontSize}" />
                 </Setter.Value>
             </Setter>
+            <Setter Property="SubTextFontSize">
+                <Setter.Value>
+                    <Binding Path="ActualHeight"
+                         RelativeSource="{RelativeSource AncestorType=Grid}"
+                         Converter="{StaticResource SubFontSize}" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BackgroundColor"  Value="Transparent"/>
+            <Setter Property="Margin" Value="1"/>
         </Style>
+
+        <Style x:Key="GridMargin" TargetType="Grid">
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+        <Style x:Key="LabelGridDayBg" TargetType="Grid" BasedOn="{StaticResource GridMargin}">
+            <Setter Property="Background" Value="#FFDBDFE9"/>
+        </Style>
+        <Style x:Key="LabelGridNightBg" TargetType="Grid">
+            <Setter Property="Background" Value="Red"/>
+        </Style>
+
     </UserControl.Resources>
 
     <!--<Grid Background="#FFDBDFE9">-->
-    <base:CustomGrid Background="#FFDBDFE9"  GridLineBrush="Red"  GridLineThickness="4" ShowGridLines="True">
+    <!--在这里面 所有的深色 都 被 grid 包裹-->
+
+    <base:CustomGrid Background="Transparent"   GridLineBrush="Transparent"  GridLineThickness="2" ShowGridLines="True">
         <base:CustomGrid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*"  />
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -145,76 +172,109 @@
         </base:CustomGrid.RowDefinitions>
 
         <!-- ▬▬▬▬▬▬▬▬▬▬▬ 第一列 Label ▬▬▬▬▬▬▬▬▬▬▬ -->
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="Head Wind" />
-        <TextBlock Grid.Column="0" Grid.Row="2" Text="Cross Wind" />
+        <Grid  Style="{StaticResource LabelGridDayBg}" Grid.Column="0" Grid.Row="0" />
+        <Grid  Style="{StaticResource LabelGridDayBg}"  Grid.Column="0" Grid.Row="1"  >
+            <TextBlock   Text="Head Wind"  Padding=" 9 6 9 6"/>
+        </Grid>
+        <Grid  Style="{StaticResource LabelGridDayBg}"   Grid.Column="0" Grid.Row="2"    >
+            <TextBlock Text="Cross Wind" Padding=" 9 6 9 6"/>
+        </Grid>
 
-        <!-- ▬▬▬▬▬▬▬▬▬▬▬ AVG2 ▬▬▬▬▬▬▬▬▬▬▬ -->
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="AVG2"/>
-        <!--<base:BorderText Grid.Column="1" Grid.Row="1" MainText="-4.5"  SubText="mps" />-->
-        <Border Grid.Column="1" Grid.Row="1" Background="Transparent" Padding="2" Margin="2">
-            <Grid>
-                
-            <TextBlock Text="{Binding HeadWindAVG2Text, ElementName=root}"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                       FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
-                <TextBlock Text="sss"/>
-            </Grid>
-        </Border>
+        <!-- ▬▬▬▬▬▬▬▬▬▬▬ 第2列 AVG2 ▬▬▬▬▬▬▬▬▬▬▬ -->
+        <Grid  Style="{StaticResource LabelGridDayBg}"  Grid.Column="1" Grid.Row="0"  >
+            <TextBlock  Text="AVG2"  Padding=" 0 0 0 0"  />
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" >
+            <base:BorderText 
+                         MainText="{Binding HeadWindAVG2Text, ElementName=root}"
+                         SubText="mps"  
+                         BorderThicknessValue="2"
+                         Margin="1"
+                />
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2" >
+            <base:BorderText  
+                       MainText="{Binding CrossWindAVG2Text, ElementName=root}"
+                       SubText="mps"  
+                       BorderThicknessValue="2"  />
+        </Grid>
 
-        <!-- CrossWind AVG2 -->
-        <TextBlock Grid.Column="1" Grid.Row="2"
-                   Text="{Binding CrossWindAVG2Text, ElementName=root}"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
+        <!-- ▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬ -->
+        <Grid Grid.Row="0" Grid.Column="2"  />
+        <Grid Grid.Row="1" Grid.Column="2"  />
+        <Grid Grid.Row="2" Grid.Column="2"   />
 
-        <!-- ▬▬▬▬▬▬▬▬▬▬▬ 第二列 WD / WS ▬▬▬▬▬▬▬▬▬▬▬ -->
-        <TextBlock Grid.Column="3" Grid.Row="1"
-                   Text="WD"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
 
-        <TextBlock Grid.Column="3" Grid.Row="2"
-                   Text="WS"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第4列 WD / WS ▬▬▬▬▬▬▬▬▬▬▬-->
 
-        <!-- ▬▬▬▬▬▬▬▬▬▬▬ MNM2 AVG2 MAX2 标题 ▬▬▬▬▬▬▬▬▬▬▬ -->
-        <TextBlock Grid.Column="4" Grid.Row="0"
-                   Text="MNM2"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
+        <Grid  Style="{StaticResource LabelGridDayBg}" Grid.Column="3" Grid.Row="0" />
+        <Grid  Style="{StaticResource LabelGridDayBg}"  Grid.Column="3" Grid.Row="1"  >
+            <TextBlock   Text="WD"  Padding=" 9 6 9 6"/>
+        </Grid>
+        <Grid  Style="{StaticResource LabelGridDayBg}"   Grid.Column="3" Grid.Row="2"    >
+            <TextBlock Text="WS" Padding=" 9 6 9 6"/>
+        </Grid>
+       
 
-        <TextBlock Grid.Column="5" Grid.Row="0"
-                   Text="AVG2"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第5列 MNM2  ▬▬▬▬▬▬▬▬▬▬▬-->
+        <Grid  Style="{StaticResource LabelGridDayBg}"  Grid.Column="4" Grid.Row="0"  >
+            <TextBlock   Text="MNM2"  Padding=" 9 6 9 6"/>
+        </Grid>
+        <Grid Grid.Column="4" Grid.Row="1" >
+            <base:BorderText  
+                       MainText="{Binding WD_NNM2Text, ElementName=root}"
+                       SubText="mps"  
+                       BorderThicknessValue="2"  />
+        </Grid>
+        <Grid Grid.Column="4" Grid.Row="2" >
+            <base:BorderText  
+                       MainText="{Binding WS_NNM2Text, ElementName=root}"
+                       
+                       SubText="mps"  
+                       
+                       BorderThicknessValue="2"  />
+        </Grid>
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬-->
+        <Grid  Style="{StaticResource LabelGridDayBg}"  Grid.Column="5" Grid.Row="0"  >
+            <TextBlock   Text="AVG2"  Padding=" 9 6 9 6"/>
+        </Grid>
+        <Grid Grid.Column="5" Grid.Row="1" >
+            <base:BorderText  
+                       MainText="{Binding WD_AVG2Text, ElementName=root}"
+                       
+                       SubText="mps"  
+                       
+                       BorderThicknessValue="2"  />
+        </Grid>
+        <Grid Grid.Column="5" Grid.Row="2" >
+            <base:BorderText  
+                       MainText="{Binding WS_AVG2Text, ElementName=root}"
+                       
+                       SubText="mps"  
+                       
+                       BorderThicknessValue="2"  />
+        </Grid>
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬-->
+        <Grid  Style="{StaticResource LabelGridDayBg}"  Grid.Column="6" Grid.Row="0"  >
+            <TextBlock   Text="MAX2"  Padding=" 9 2 9 6"/>
+        </Grid>
+        <Grid Grid.Column="6" Grid.Row="1"   >
+            <base:BorderText  
+                       MainText="{Binding WD_MAX2Text, ElementName=root}"
+                       
+                       SubText="mps"  
+                       
+                       BorderThicknessValue="2"  />
+        </Grid>
+        <Grid Grid.Column="6" Grid.Row="2" >
+            <base:BorderText  
+                       MainText="{Binding WS_MAX2Text, ElementName=root}"
+                       SubText="mps"  
+                       BorderThicknessValue="2"  
+                       BackgroundColor="Transparent"
+                />
+        </Grid>
 
-        <TextBlock Grid.Column="6" Grid.Row="0"
-                   Text="MAX2"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
-
-        <!-- ▬▬▬▬▬▬▬▬▬▬▬ MNM2 ▬▬▬▬▬▬▬▬▬▬▬ -->
-        <TextBlock Grid.Column="4" Grid.Row="1"
-                   Text="{Binding WD_NNM2Text, ElementName=root}"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
-
-        <TextBlock Grid.Column="4" Grid.Row="2"
-                   Text="{Binding WS_NNM2Text, ElementName=root}"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
-
-        <!-- ▬▬▬▬▬▬▬▬▬▬▬ AVG2 ▬▬▬▬▬▬▬▬▬▬▬ -->
-        <TextBlock Grid.Column="5" Grid.Row="1"
-                   Text="{Binding WD_AVG2Text, ElementName=root}"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
-
-        <TextBlock Grid.Column="5" Grid.Row="2"
-                   Text="{Binding WS_AVG2Text, ElementName=root}"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
-
-        <!-- ▬▬▬▬▬▬▬▬▬▬▬ MAX2 ▬▬▬▬▬▬▬▬▬▬▬ -->
-        <TextBlock Grid.Column="6" Grid.Row="1"
-                   Text="{Binding WD_MAX2Text, ElementName=root}"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
-
-        <TextBlock Grid.Column="6" Grid.Row="2"
-                   Text="{Binding WS_MAX2Text, ElementName=root}"
-                   FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource AutoFont}}"/>
 
     </base:CustomGrid>
 </UserControl>

@@ -16,5 +16,5 @@ C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\Wind
 194-1617825143
 Components\Base\BorderText.xaml;Components\Light.xaml;Components\Metar.xaml;Components\Qnh.xaml;Components\Runway.xaml;Components\RunwayStatus .xaml;Components\RvrVis.xaml;Components\WeatherCondition.xaml;Components\WindDirectionSpeedControl.xaml;Components\WindIndicator.xaml;Components\WindPanel.xaml;Components\WindSpeedGrid.xaml;MainWindow.xaml;
 
-False
+True
 

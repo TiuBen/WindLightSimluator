@@ -32,7 +32,7 @@ namespace WindLightSimluator.Components.Base
             set => SetValue(MainTextProperty, value);
         }
         public static readonly DependencyProperty MainTextProperty =
-            DependencyProperty.Register(nameof(MainText), typeof(string), typeof(BorderText));
+            DependencyProperty.Register(nameof(MainText), typeof(string), typeof(BorderText),new PropertyMetadata("///"));
 
         // 主文字字体
         public double MainTextFontSize

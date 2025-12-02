@@ -12,8 +12,9 @@
     <Border BorderBrush="{Binding BorderColor, ElementName=root}"
             BorderThickness="{Binding BorderThicknessValue, ElementName=root}"
             Background="{Binding  BackgroundColor,ElementName=root}"
-          
+
             >
+            <!--Margin="{Binding BorderThicknessValue, ElementName=root}"-->
 
         <!-- 主文字（可选：注释掉 Viewbox 可以取消自适应） -->
         <!--<Viewbox Stretch="Uniform"
@@ -25,16 +26,21 @@
 
         <!-- 主文字(非自适应) -->
         <Grid   >
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>-->
 
-            <TextBlock Text="{Binding MainText, ElementName=root}"
+            <TextBlock   Text="{Binding MainText, ElementName=root}"
                        FontSize="{Binding MainTextFontSize, ElementName=root}"
-                       HorizontalAlignment="Stretch"
+                       HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        TextAlignment="Center"
+                         Margin="30 0 "
                        />
 
             <!-- 右下角小字 -->
-            <TextBlock Text="{Binding SubText, ElementName=root}"
+            <TextBlock  Text="{Binding SubText, ElementName=root}"
                        FontSize="{Binding SubTextFontSize, ElementName=root}"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Bottom"

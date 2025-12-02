@@ -23,13 +23,17 @@
         <!-- 定义高度到字体大小的转换器 -->
         <local:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
     </UserControl.Resources>
-    <Grid Name="MainGrid">
+    <Grid Name="MainGrid" Background="Aqua">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
             <TextBlock Text="QNH"    HorizontalAlignment="Center" VerticalAlignment="Center"  
                        FontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource  HeightToFontSizeConverter}, ConverterParameter=0.8}"/>
-        <base:BorderText Grid.Column="1" MainText="1032.5" MainTextFontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ConverterParameter=0.8}" SubText="hPa" />
+        <base:BorderText Grid.Column="1" 
+                         MainText="1032.5" 
+                         Margin="0"
+                         MainTextFontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ConverterParameter=0.8}" 
+                         SubText="hPa" />
     </Grid>
 </UserControl>

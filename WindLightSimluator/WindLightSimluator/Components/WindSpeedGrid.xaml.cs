@@ -24,7 +24,7 @@ namespace WindLightSimluator.Components
 
         // 依赖属性示例
         public static readonly DependencyProperty HeadWindAVG2TextProperty =
-            DependencyProperty.Register(nameof(HeadWindAVG2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(HeadWindAVG2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata("///"));
 
         public string HeadWindAVG2Text
         {
@@ -33,7 +33,7 @@ namespace WindLightSimluator.Components
         }
 
         public static readonly DependencyProperty CrossWindAVG2TextProperty =
-            DependencyProperty.Register(nameof(CrossWindAVG2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(CrossWindAVG2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata("///"));
 
         public string CrossWindAVG2Text
         {
@@ -41,17 +41,20 @@ namespace WindLightSimluator.Components
             set => SetValue(CrossWindAVG2TextProperty, value);
         }
 
+        //wd mnm2
         public static readonly DependencyProperty WD_NNM2TextProperty =
-            DependencyProperty.Register(nameof(WD_NNM2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(WD_NNM2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata("///"));
 
         public string WD_NNM2Text
         {
             get => (string)GetValue(WD_NNM2TextProperty);
             set => SetValue(WD_NNM2TextProperty, value);
         }
+        //wd mnm2
+
 
         public static readonly DependencyProperty WS_NNM2TextProperty =
-            DependencyProperty.Register(nameof(WS_NNM2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(WS_NNM2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata("///"));
 
         public string WS_NNM2Text
         {
@@ -60,7 +63,7 @@ namespace WindLightSimluator.Components
         }
 
         public static readonly DependencyProperty WD_AVG2TextProperty =
-            DependencyProperty.Register(nameof(WD_AVG2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(WD_AVG2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata("///"));
 
         public string WD_AVG2Text
         {
@@ -69,7 +72,7 @@ namespace WindLightSimluator.Components
         }
 
         public static readonly DependencyProperty WS_AVG2TextProperty =
-            DependencyProperty.Register(nameof(WS_AVG2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(WS_AVG2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata("///"));
 
         public string WS_AVG2Text
         {
@@ -78,7 +81,7 @@ namespace WindLightSimluator.Components
         }
 
         public static readonly DependencyProperty WD_MAX2TextProperty =
-            DependencyProperty.Register(nameof(WD_MAX2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(WD_MAX2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata("///"));
 
         public string WD_MAX2Text
         {
@@ -87,7 +90,7 @@ namespace WindLightSimluator.Components
         }
 
         public static readonly DependencyProperty WS_MAX2TextProperty =
-            DependencyProperty.Register(nameof(WS_MAX2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(WS_MAX2Text), typeof(string), typeof(WindSpeedGrid), new PropertyMetadata("///"));
 
         public string WS_MAX2Text
         {
