@@ -13,6 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="DarkTheme.xaml" />
+    <Page Remove="LightTheme.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="DarkTheme.xaml" />
+    <Resource Include="LightTheme.xaml" />
     <Resource Include="屏幕截图 2025-11-24 214001.png" />
   </ItemGroup>
 

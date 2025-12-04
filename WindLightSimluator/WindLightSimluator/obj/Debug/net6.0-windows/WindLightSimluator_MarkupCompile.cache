@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
-132012062365
+14-1688692662
 
-18641494973
+19-813992605
 194-1617825143
-Components\Base\BorderText.xaml;Components\Light.xaml;Components\Metar.xaml;Components\Qnh.xaml;Components\Runway.xaml;Components\RunwayStatus .xaml;Components\RvrVis.xaml;Components\WeatherCondition.xaml;Components\WindDirectionSpeedControl.xaml;Components\WindIndicator.xaml;Components\WindPanel.xaml;Components\WindSpeedGrid.xaml;MainWindow.xaml;
+Components\Base\BorderText.xaml;Components\Light.xaml;Components\Metar.xaml;Components\Qnh.xaml;Components\Runway.xaml;Components\RunwayStatus .xaml;Components\RvrVis.xaml;Components\TopBar.xaml;Components\WeatherCondition.xaml;Components\WindDirectionSpeedControl.xaml;Components\WindIndicator.xaml;Components\WindPanel.xaml;Components\WindSpeedGrid.xaml;MainWindow.xaml;
 
 False
 

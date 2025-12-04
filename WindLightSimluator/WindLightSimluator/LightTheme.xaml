@@ -1,0 +1,59 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="MainBgColor">#ffff</Color>
+    <Color x:Key="PrimaryTextColor"></Color>
+    <Color x:Key="SecondaryTextBrush"></Color>
+    <Color x:Key="TertiaryTextBrush"></Color>
+    <Color x:Key="PrimaryTextBgColor"></Color>
+    <Color x:Key="SecondaryTextBgBrush"></Color>
+    <Color x:Key="TertiaryTextBgBrush"></Color>
+    <Color x:Key="WindSmallArcOuterColor"></Color>
+    <Color x:Key="WindSmallArcInnerColor"></Color>
+
+    <Color x:Key="RunwayLabelInUseBgColor">#0095ff</Color>
+    <Color x:Key="RunwayLabelNotInUseTextColor">#456c92</Color>
+    <Color x:Key="RunwayLabelIndicatorBgColor">#d53700</Color>
+
+
+    <!--顶端栏-->
+    <SolidColorBrush x:Key="TopBarBg"   Color="#5297FF"/>
+    <!--侧栏 包括整个 主界面-->
+    <SolidColorBrush x:Key="MainBarBg"   Color="#FFFFFF"/>
+
+    <!--Wind360-->
+    
+
+    <!-- ===== 字体颜色 ===== -->
+    <SolidColorBrush x:Key="PrimaryFontBrush"   Color="#1A1A1A"/>
+    <!-- 主文字：深黑灰 -->
+    <SolidColorBrush x:Key="SecondaryFontBrush" Color="#4A4A4A"/>
+    <!-- 次文字：中灰 -->
+    <SolidColorBrush x:Key="TertiaryFontBrush"  Color="#7A7A7A"/>
+    <!-- 弱提示灰 -->
+    <SolidColorBrush x:Key="DisabledFontBrush"  Color="#B5B5B5"/>
+
+    <!-- ===== 背景色 ===== -->
+    <SolidColorBrush x:Key="PrimaryBackgroundBrush" Color="#F2F6FA"/>
+    <!--<SolidColorBrush x:Key="PrimaryBackgroundBrush" Color="Blue"/>-->
+    <!-- 整体亮灰 -->
+    <SolidColorBrush x:Key="CardBackgroundBrush"    Color="#FFFFFF"/>
+    <!-- 白色 panel -->
+    <SolidColorBrush x:Key="SectionBackgroundBrush" Color="#E5EBF2"/>
+
+    <!-- ===== 分割 / 边线 ===== -->
+    <SolidColorBrush x:Key="BorderBrush"  Color="#C9D4E0"/>
+    <!-- 边界 -->
+    <SolidColorBrush x:Key="DividerBrush" Color="#DDE4ED"/>
+    <!-- 分隔线 -->
+
+    <!-- ===== 强调色 ===== -->
+    <SolidColorBrush x:Key="AccentBrush"   Color="#296FD8"/>
+    <!-- 蓝色高亮按钮 -->
+    <SolidColorBrush x:Key="WarningBrush"  Color="#FF8A38"/>
+    <!-- 橙色 Landing/Takeoff -->
+    <SolidColorBrush x:Key="HighlightBrush" Color="#5297FF"/>
+
+
+
+
+</ResourceDictionary>

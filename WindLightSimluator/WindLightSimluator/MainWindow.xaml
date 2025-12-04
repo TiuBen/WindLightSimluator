@@ -31,15 +31,13 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF2296FB">
-                        <TextBlock Text="dddd"/>
-                    </StackPanel>
+                    <comp:TopBar Grid.Row="0"/>
                     <Grid  Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
+                        <StackPanel Grid.Column="0" Background="{DynamicResource MainBarBg}">
 
                             <Border CornerRadius="10" Width="60" Height="60" Margin="2">
                                 <Border.Background>
@@ -93,8 +91,9 @@
                                     <TextBlock Text="圆角示例" />
                                 </StackPanel>
                             </Border>
+                            <Button Content="换色" x:Name="SwitchThemeButtton" Click="SwitchThemeButtton_Click"/>
                         </StackPanel>
-                        <Grid Grid.Column="1" ShowGridLines="True" >
+                        <Grid Grid.Column="1"  Background="{DynamicResource SectionBackgroundBrush}" >
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -113,14 +112,17 @@
                             </Grid.RowDefinitions>
                             <!--第一行-->
 
-                            <comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L" StatusText="NOT IN USE"/>
+                            <comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L" StatusText="NOT IN USE" Margin="4"/>
                             <comp:RunwayStatus  Grid.Column="1" RunwayNumber="MD1" StatusText="" />
                             <comp:RunwayStatus  Grid.Column="2" RunwayNumber="dddd" StatusText="ddddd==========="/>
 
                             <!--三个风向风速的指数盘-->
-                            <Viewbox Grid.Row="1" Grid.RowSpan="3">
-                                <comp:WindPanel  />
-                            </Viewbox>
+                            <Grid Grid.Row="1" Grid.RowSpan="3"   Margin="4"  Background="{DynamicResource PrimaryBackgroundBrush}">
+                                <Viewbox >
+                                    <comp:WindPanel Background="Moccasin"/>
+                                </Viewbox>
+                            </Grid>
+                           
                             <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" >
                                 <comp:WindPanel  />
                             </Viewbox>
@@ -171,92 +173,7 @@
             </TabItem>
         </TabControl>
 
-        <ItemsControl d:IsHidden="True">
-            <!-- 生成 0~350，每隔 10 度 -->
-
-            <!-- 放到画布中心 -->
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-            <ItemsControl.ItemContainerStyle>
-                <Style TargetType="{x:Type FrameworkElement}">
-                    <Setter Property="Canvas.Left" Value="200"/>
-                    <Setter Property="Canvas.Top"  Value="200"/>
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-
-        </ItemsControl>
-        <ItemsControl d:IsHidden="True">
-            <!-- 生成 0~350，每隔 10 度 -->
-            <ItemsControl.ItemsSource>
-                <x:Array
-                  xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:Double}">
-                    <sys:Double>0</sys:Double>
-                    <sys:Double>15</sys:Double>
-                    <sys:Double>30</sys:Double>
-                    <sys:Double>45</sys:Double>
-                    <sys:Double>60</sys:Double>
-                    <sys:Double>75</sys:Double>
-                    <sys:Double>90</sys:Double>
-                    <sys:Double>105</sys:Double>
-                    <sys:Double>120</sys:Double>
-                    <sys:Double>135</sys:Double>
-                    <sys:Double>150</sys:Double>
-                    <sys:Double>165</sys:Double>
-                    <sys:Double>180</sys:Double>
-                    <sys:Double>195</sys:Double>
-                    <sys:Double>210</sys:Double>
-                    <sys:Double>225</sys:Double>
-                    <sys:Double>240</sys:Double>
-                    <sys:Double>255</sys:Double>
-                    <sys:Double>270</sys:Double>
-                    <sys:Double>285</sys:Double>
-                    <sys:Double>300</sys:Double>
-                    <sys:Double>315</sys:Double>
-                    <sys:Double>330</sys:Double>
-                    <sys:Double>345</sys:Double>
-                </x:Array>
-            </ItemsControl.ItemsSource>
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Polygon Points="0,0 16,0 14,12 2,12"
-                    Fill="Blue" Opacity="0.9"
-                    Width="16" Height="12"
-                    RenderTransformOrigin="0.5,14">
-
-                        <Polygon.RenderTransform>
-                            <TransformGroup>
-                                <!-- 旋转角度绑定 -->
-                                <RotateTransform Angle="{Binding}"/>
-
-                                <!-- 向外平移（半径=150 可改） -->
-                                <TranslateTransform X="-8" Y="-162"/>
-                            </TransformGroup>
-                        </Polygon.RenderTransform>
-
-                    </Polygon>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-
-            <!-- 放到画布中心 -->
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-            <ItemsControl.ItemContainerStyle>
-                <Style TargetType="{x:Type FrameworkElement}">
-                    <Setter Property="Canvas.Left" Value="200"/>
-                    <Setter Property="Canvas.Top"  Value="200"/>
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-
-        </ItemsControl>
+    
     </Grid>
 
 </Window>

@@ -28,6 +28,9 @@
     <Compile Update="Components\RvrVis.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Components\TopBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Components\WeatherCondition.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -66,6 +69,9 @@
     <Page Update="Components\RvrVis.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Components\TopBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\WeatherCondition.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -78,6 +84,12 @@
     <Page Update="Components\WindSpeedGrid.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Resource Update="DarkTheme.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Update="LightTheme.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

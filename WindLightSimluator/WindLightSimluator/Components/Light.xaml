@@ -28,7 +28,8 @@
             <Setter Property="BorderColor" Value="White"/>
         </Style>
     </UserControl.Resources>
-    <UniformGrid Columns="3" Background="#c8e2f7">
+    <!--<UniformGrid Columns="3" Background="#c8e2f7">-->
+        <UniformGrid Columns="3" Background="{DynamicResource PrimaryBackgroundBrush}">
         <Border BorderThickness="2" BorderBrush="White">
             <Grid>
                 <Grid.RowDefinitions>

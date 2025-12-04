@@ -78,3 +78,6 @@ C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\Wind
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\WindLightSimluator.csproj.CoreCompileInputs.cache
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\WindLightSimluator.genruntimeconfig.cache
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\ref\WindLightSimluator.dll
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\App.baml
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\TopBar.g.cs
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\TopBar.baml

@@ -24,6 +24,30 @@ namespace WindLightSimluator
 
         }
 
-      
+
+        private void SwitchTheme(bool isDark)
+        {
+            Application.Current.Resources.MergedDictionaries.Clear();
+
+            if (isDark)
+            {
+                Application.Current.Resources.MergedDictionaries.Add(
+                    new ResourceDictionary()
+                    { Source = new Uri("DarkTheme.xaml", UriKind.Relative) }
+                );
+            }
+            else
+            {
+                Application.Current.Resources.MergedDictionaries.Add(
+                    new ResourceDictionary()
+                    { Source = new Uri("LightTheme.xaml", UriKind.Relative) }
+                );
+            }
+        }
+
+        private void SwitchThemeButtton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

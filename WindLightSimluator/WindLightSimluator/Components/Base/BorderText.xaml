@@ -36,7 +36,7 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        TextAlignment="Center"
-                         Margin="30 0 "
+                         Margin="20 0 "
                        />
 
             <!-- 右下角小字 -->
