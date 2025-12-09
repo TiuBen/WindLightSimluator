@@ -141,7 +141,7 @@ namespace WindLightSimluator.Components.Base
 
             // 主文字颜色
             // 你要不要也绑定文字颜色？下面是示例
-            mainTextBlock.Foreground = TryFindResource(textKey) as Brush ?? Brushes.Blue;
+            MainText.Foreground = TryFindResource(textKey) as Brush ?? Brushes.Blue;
 
             // 如果不 active，则淡化
             if (!IsActive)

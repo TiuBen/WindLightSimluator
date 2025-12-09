@@ -48,6 +48,9 @@
     <Page Update="Components\Base\BorderText.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Components\Base\StateBrushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\Light.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>-->
 
-            <TextBlock   Text="{Binding MainText, ElementName=root}"
+            <TextBlock x:Name="mainTextBlock"  Text="{Binding MainText, ElementName=root}"
                        FontSize="{Binding MainTextFontSize, ElementName=root}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
