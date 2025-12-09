@@ -19,10 +19,7 @@
     <Compile Update="Components\Qnh.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Components\Runway.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\RunwayStatus .xaml.cs">
+    <Compile Update="Components\RunwayStatus.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Components\RvrVis.xaml.cs">
@@ -60,10 +57,7 @@
     <Page Update="Components\Qnh.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\Runway.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Components\RunwayStatus .xaml">
+    <Page Update="Components\RunwayStatus.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\RvrVis.xaml">

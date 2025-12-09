@@ -1,0 +1,188 @@
+<Window x:Class="WindLightSimluator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WindLightSimluator"
+        mc:Ignorable="d"
+        xmlns:comp="clr-namespace:WindLightSimluator.Components"
+        d:Width="1920" d:Height="1080"
+        Title="MainWindow" Height="1080" Width="1920">
+    <Window.Resources>
+        <Style TargetType="Grid" >
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <!--<Setter Property="UseLayoutRounding" Value="True"/>-->
+        </Style>
+        <Style TargetType="UniformGrid" >
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <!--<Setter Property="UseLayoutRounding" Value="True"/>-->
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+
+
+        <TabControl>
+            <TabItem Header="气象自观模拟">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <comp:TopBar Grid.Row="0"/>
+                    <Grid  Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Background="{DynamicResource MainBarBg}">
+
+                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="圆角示例" />
+
+                                    <TextBlock Text="圆角示例" />
+                                </StackPanel>
+                            </Border>
+                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="圆角示例" />
+
+                                    <TextBlock Text="圆角示例" />
+                                </StackPanel>
+                            </Border>
+                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="圆角示例" />
+
+                                    <TextBlock Text="圆角示例" />
+                                </StackPanel>
+                            </Border>
+                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
+                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="圆角示例" />
+
+                                    <TextBlock Text="圆角示例" />
+                                </StackPanel>
+                            </Border>
+                            <Button Content="换色" x:Name="SwitchThemeButtton" Click="SwitchThemeButtton_Click"/>
+                        </StackPanel>
+                        <Grid Grid.Column="1"  Background="{DynamicResource SectionBackgroundBrush}" >
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <!--第一行-->
+
+                            <!--<comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L" StatusText="NOT IN USE" RunwayState="InUse" Margin="4"/>
+                            <comp:RunwayStatus  Grid.Column="1" RunwayNumber="MD1" StatusText="" RunwayState="NotInUse" />
+                            <comp:RunwayStatus  Grid.Column="2" RunwayNumber="dddd" StatusText="ddddd===========" RunwayState="NotInUse"/>-->
+                            <comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L"  RunwayState="InUse" Margin="4"/>
+                            <comp:RunwayStatus  Grid.Column="1" RunwayNumber="MD1"  RunwayState="Empty" />
+                            <comp:RunwayStatus  Grid.Column="2" RunwayNumber="19R" RunwayState="NotInUse"/>
+
+                            <!--三个风向风速的指数盘-->
+                            <Grid Grid.Row="1" Grid.RowSpan="3"   Margin="4"  Background="{DynamicResource Wind360PrimaryBg}">
+                                <Viewbox >
+                                    <comp:WindPanel Background="Transparent"/>
+                                </Viewbox>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"   Margin="4"  Background="{DynamicResource Wind360SecondaryBg}">
+                                <Viewbox >
+                                    <comp:WindPanel  />
+                                </Viewbox>
+                            </Grid>
+
+                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7" />
+
+                            <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"   Margin="4"  Background="{DynamicResource Wind360SecondaryBg}">
+                                <Viewbox >
+                                    <comp:WindPanel  />
+                                </Viewbox>
+                            </Grid>
+
+                         
+                            <!--第3行 风速-->
+
+                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
+                            <comp:Qnh  Grid.Row="4" Grid.Column="1"/>
+                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="2" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="+3.7"/>
+
+                            <!--第4行-->
+                            <comp:RvrVis Grid.Row="5"/>
+                            <comp:RvrVis Grid.Row="5" Grid.Column="1"/>
+                            <comp:RvrVis Grid.Row="5" Grid.Column="2"/>
+
+                            <!--第五行-->
+                            <comp:WeatherCondition Grid.Row="6" Grid.Column="0"/>
+                            <comp:Light Grid.Row="6" Grid.Column="1"/>
+                            <comp:WeatherCondition Grid.Row="6" Grid.Column="2"/>
+
+                            <!--第六行-->
+                            <comp:Metar Grid.Row="7" Grid.ColumnSpan="3"/>
+                        </Grid>
+
+
+                    </Grid>
+
+                </Grid>
+
+
+            </TabItem>
+
+            <TabItem Header="灯光ADB系统模拟">
+                <StackPanel Margin="10">
+                    <TextBlock Text="设置页面" FontSize="20"/>
+                    <Button Content="保存" Width="100" Margin="5"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="RVR旋钮模拟">
+                <TextBlock Text="版本 1.0" Margin="10"/>
+            </TabItem>
+            <TabItem Header="关于">
+                <TextBlock Text="版本 1.0" Margin="10"/>
+            </TabItem>
+        </TabControl>
+
+
+    </Grid>
+
+</Window>

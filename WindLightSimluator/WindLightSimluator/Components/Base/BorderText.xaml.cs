@@ -18,7 +18,7 @@ namespace WindLightSimluator.Components.Base
     /// <summary>
     /// BorderText.xaml 的交互逻辑
     /// </summary>
-    public partial class BorderText : UserControl
+    public partial class BorderText : UserControl,IStateAware
     {
         public BorderText()
         {
@@ -89,6 +89,70 @@ namespace WindLightSimluator.Components.Base
         }
         public static readonly DependencyProperty BackgroundColorProperty =
             DependencyProperty.Register(nameof(BackgroundColor), typeof(Brush), typeof(BorderText), new PropertyMetadata(Brushes.AliceBlue));
+
+
+
+        #region 
+        //变色部分逻辑
+        public bool IsActive
+        {
+            get => (bool)GetValue(IsActiveProperty);
+            set => SetValue(IsActiveProperty, value);
+        }
+        public static readonly DependencyProperty IsActiveProperty =
+            DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(BorderText),
+                new PropertyMetadata(true, OnStateChanged));
+
+        public string Theme
+        {
+            get => (string)GetValue(ThemeProperty);
+            set => SetValue(ThemeProperty, value);
+        }
+        public static readonly DependencyProperty ThemeProperty =
+            DependencyProperty.Register(nameof(Theme), typeof(string), typeof(BorderText),
+                new PropertyMetadata("Day", OnStateChanged));
+
+        public string Mode
+        {
+            get => (string)GetValue(ModeProperty);
+            set => SetValue(ModeProperty, value);
+        }
+        public static readonly DependencyProperty ModeProperty =
+            DependencyProperty.Register(nameof(Mode), typeof(string), typeof(BorderText),
+                new PropertyMetadata("Normal", OnStateChanged));
+
+        private static void OnStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is BorderText bt)
+            {
+                bt.ApplyState();
+            }
+        }
+
+        private void ApplyState()
+        {
+            // 例如："Day_Normal_Bg"
+            string bgKey = $"{Theme}_{Mode}_Bg";
+            string borderKey = $"{Theme}_{Mode}_Border";
+            string textKey = $"{Theme}_{Mode}_Text";
+
+            BackgroundColor = TryFindResource(bgKey) as Brush ?? Brushes.Yellow;
+            BorderColor = TryFindResource(borderKey) as Brush ?? Brushes.Red;
+
+            // 主文字颜色
+            // 你要不要也绑定文字颜色？下面是示例
+            mainTextBlock.Foreground = TryFindResource(textKey) as Brush ?? Brushes.Blue;
+
+            // 如果不 active，则淡化
+            if (!IsActive)
+            {
+                BackgroundColor = Brushes.Gray;
+                BorderColor = Brushes.DarkGray;
+                mainTextBlock.Foreground = Brushes.LightGray;
+            }
+        }
+
+        #endregion
 
     }
 }

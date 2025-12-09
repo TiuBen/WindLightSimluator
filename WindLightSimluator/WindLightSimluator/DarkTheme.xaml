@@ -6,8 +6,27 @@
     <SolidColorBrush x:Key="TopBarBg"   Color="#002C5C"/>
    <!--侧栏 包括整个 主界面-->
     <SolidColorBrush x:Key="MainBarBg"   Color="#002C5C"/>
+    <!--RunwayStatus-->
+    <SolidColorBrush x:Key="RwyTextBg_InUse"   Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="RwyCapsuleBg_InUse"   Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="RwyTextColor_InUse"   Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="RwyTextBg_NotInUse"   Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="RwyCapsuleBg_NotInUse"   Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="RwyTextColor_NotInUse"   Color="#FFFFFF"/>
 
 
+
+    <!--Wind360-->
+    <SolidColorBrush x:Key="Wind360PrimaryBg"   Color="#1760c7"/>
+    <SolidColorBrush x:Key="Wind360SecondaryBg"   Color="#0047ab"/>
+
+    
+    
+    
+    
+    
+    
+    
 
     <!-- ===== 字体颜色 ===== -->
     <SolidColorBrush x:Key="PrimaryFontBrush"   Color="#FFFFFF"/>
