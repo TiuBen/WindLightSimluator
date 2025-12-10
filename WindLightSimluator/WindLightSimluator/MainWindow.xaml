@@ -116,7 +116,11 @@
                                         </Viewbox>
                                     </Grid>
                                     <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
-                                    <comp:RvrVis Grid.Row="5"/>
+                                    <!--第一列RVR-->
+                                    <!--<Border Grid.Row="5" BorderBrush="Red" BorderThickness="2">-->
+
+                                    <comp:RvrVis RvrValue="800" VisValue="1000" Grid.Row="5" />
+                                    <!--</Border>-->
                                     <comp:WeatherCondition Grid.Row="6" Grid.Column="0"/>
 
                                 </Grid>
@@ -138,7 +142,7 @@
                                     </Grid>
                                     <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7" />
                                     <comp:Qnh  Grid.Row="4" Grid.Column="1"/>
-                                    <comp:RvrVis Grid.Row="5" Grid.Column="1"/>
+                                    <comp:RvrVis RvrValue="200" VisValue="3000" Grid.Row="5" Grid.Column="1"/>
                                     <comp:Light Grid.Row="6" Grid.Column="1"/>
 
                                 </Grid>
@@ -160,7 +164,7 @@
                                         </Viewbox>
                                     </Grid>
                                     <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="2" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="+3.7"/>
-                                    <comp:RvrVis Grid.Row="5" Grid.Column="2"/>
+                                    <comp:RvrVis RvrValue="1500" VisValue="3000" Grid.Row="5" Grid.Column="2"/>
                                     <comp:WeatherCondition Grid.Row="6" Grid.Column="2"/>
 
                                 </Grid>
@@ -172,71 +176,7 @@
 
 
 
-                        <Grid Grid.Column="1"  Background="{DynamicResource SectionBackgroundBrush}" Visibility="Hidden" >
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="3*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <!--第一行-->
-
-                          
-                            <comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L"  RunwayState="InUse" Margin="4"/>
-                            <comp:RunwayStatus  Grid.Column="1" RunwayNumber="MD1"  RunwayState="Empty" />
-                            <comp:RunwayStatus  Grid.Column="2" RunwayNumber="19R" RunwayState="NotInUse"/>
-
-                            <!--三个风向风速的指数盘-->
-                            <Grid Grid.Row="1" Grid.RowSpan="3"   Margin="4"  Background="{DynamicResource Wind360PrimaryBg}">
-                                <Viewbox >
-                                    <comp:WindPanel Background="Transparent"/>
-                                </Viewbox>
-                            </Grid>
-                            <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"   Margin="4"  Background="{DynamicResource Wind360SecondaryBg}">
-                                <Viewbox >
-                                    <comp:WindPanel  />
-                                </Viewbox>
-                            </Grid>
-
-                            <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7" />
-
-                            <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"   Margin="4"  Background="{DynamicResource Wind360SecondaryBg}">
-                                <Viewbox >
-                                    <comp:WindPanel  />
-                                </Viewbox>
-                            </Grid>
-
-                         
-                            <!--第3行 风速-->
-
-                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
-                            <comp:Qnh  Grid.Row="4" Grid.Column="1"/>
-                            <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="2" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="+3.7"/>
-
-                            <!--第4行-->
-                            <comp:RvrVis Grid.Row="5"/>
-                            <comp:RvrVis Grid.Row="5" Grid.Column="1"/>
-                            <comp:RvrVis Grid.Row="5" Grid.Column="2"/>
-
-                            <!--第五行-->
-                            <comp:WeatherCondition Grid.Row="6" Grid.Column="0"/>
-                            <comp:Light Grid.Row="6" Grid.Column="1"/>
-                            <comp:WeatherCondition Grid.Row="6" Grid.Column="2"/>
-
-                            <!--第六行-->
-                            <comp:Metar Grid.Row="7" Grid.ColumnSpan="3"/>
-                        </Grid>
-
+                
 
                     </Grid>
 

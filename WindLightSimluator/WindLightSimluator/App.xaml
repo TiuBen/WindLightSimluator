@@ -8,6 +8,19 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="LightTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <!-- RVR 颜色绑定 -->
+            <SolidColorBrush x:Key="RvrColor_Low" Color="#AA00FF"/>
+            <!-- 紫色 -->
+            <SolidColorBrush x:Key="RvrColor_Mid" Color="#FF0000"/>
+            <!-- 红色 -->
+            <SolidColorBrush x:Key="RvrColor_High" Color="#000000"/>
+            <!-- VIS 一套类似规则 -->
+            <SolidColorBrush x:Key="VisColor_Low" Color="#AA00FF"/>
+            <!-- 紫色 -->
+            <SolidColorBrush x:Key="VisColor_Mid" Color="#FF0000"/>
+            <!-- 红色 -->
+            <SolidColorBrush x:Key="VisColor_High" Color="#000000"/>
         </ResourceDictionary>
+       
     </Application.Resources>
 </Application>
