@@ -15,6 +15,8 @@
 
         <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <!--主题颜色+是否被选中-->
+        <conv:TheameActiveColorConverter x:Key="TheameActiveColorConverter"/>
 
 
         <Style TargetType="TextBlock">

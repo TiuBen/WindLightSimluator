@@ -19,7 +19,7 @@ namespace WindLightSimluator.Components
     /// <summary>
     /// RvrVis.xaml 的交互逻辑
     /// </summary>
-    public partial class RvrVis : UserControl,IStateAware
+    public partial class RvrVis : UserControl, IStateAware
     {
         public RvrVis()
         {
@@ -80,34 +80,34 @@ namespace WindLightSimluator.Components
             //}
         }
 
-        private void ApplyState()
-        {
-            // 例如："Day_Normal_Bg"
-            string bgKey = $"{Theme}_{Mode}_Bg";
-            string borderKey = $"{Theme}_{Mode}_Border";
-            string textKey = $"{Theme}_{Mode}_Text";
+        //private void ApplyState()
+        //{
+        //    // 例如："Day_Normal_Bg"
+        //    string bgKey = $"{Theme}_{Mode}_Bg";
+        //    string borderKey = $"{Theme}_{Mode}_Border";
+        //    string textKey = $"{Theme}_{Mode}_Text";
 
-            //string mainTextColor = "{Theme}_{Mode}_mainTextColor";
+        //    //string mainTextColor = "{Theme}_{Mode}_mainTextColor";
 
 
 
-            BackgroundColor = TryFindResource(bgKey) as Brush ?? Brushes.Yellow;
-            BorderColor = TryFindResource(borderKey) as Brush ?? Brushes.Red;
+        //    BackgroundColor = TryFindResource(bgKey) as Brush ?? Brushes.Yellow;
+        //    BorderColor = TryFindResource(borderKey) as Brush ?? Brushes.Red;
 
-            // 主文字颜色
-            // 你要不要也绑定文字颜色？下面是示例
-            MainTextColor = TryFindResource(textKey) as Brush ?? Brushes.Blue;
-            SubTextColor = TryFindResource(textKey) as Brush ?? Brushes.Blue;
-            // 如果不 active，则淡化
-            if (!IsActive)
-            {
-                BackgroundColor = Brushes.Gray;
-                BorderColor = Brushes.DarkGray;
-                MainTextColor = Brushes.LightGray;
-                SubTextColor = Brushes.LightGray;
+        //    // 主文字颜色
+        //    // 你要不要也绑定文字颜色？下面是示例
+        //    MainTextColor = TryFindResource(textKey) as Brush ?? Brushes.Blue;
+        //    SubTextColor = TryFindResource(textKey) as Brush ?? Brushes.Blue;
+        //    // 如果不 active，则淡化
+        //    if (!IsActive)
+        //    {
+        //        BackgroundColor = Brushes.Gray;
+        //        BorderColor = Brushes.DarkGray;
+        //        MainTextColor = Brushes.LightGray;
+        //        SubTextColor = Brushes.LightGray;
 
-            }
-        }
+        //    }
+        //}
 
         #endregion
 
