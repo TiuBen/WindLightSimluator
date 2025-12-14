@@ -1,6 +1,6 @@
-﻿using System.Configuration;
-using System.Data;
+﻿using System.Text;
 using System.Windows;
+
 
 namespace WindLightSimluator
 {
@@ -9,6 +9,11 @@ namespace WindLightSimluator
     /// </summary>
     public partial class App : Application
     {
+      
+       
+
     }
+
+
 
 }

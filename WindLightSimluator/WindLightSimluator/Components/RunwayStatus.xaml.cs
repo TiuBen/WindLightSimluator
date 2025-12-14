@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindLightSimluator.Components.Base;
 
 namespace WindLightSimluator.Components
 {
@@ -39,7 +40,7 @@ namespace WindLightSimluator.Components
     /// <summary>
     /// RunwayNumber.xaml 的交互逻辑
     /// </summary>
-    public partial class RunwayStatus : UserControl
+    public partial class RunwayStatus : UserControl,IStateAware
     {
         public RunwayStatus()
         {
@@ -165,6 +166,45 @@ namespace WindLightSimluator.Components
         }
 
 
+        #region MyRegion
+       
+        //变色部分逻辑
+        public bool IsActive
+        {
+            get => (bool)GetValue(IsActiveProperty);
+            set => SetValue(IsActiveProperty, value);
+        }
+        public static readonly DependencyProperty IsActiveProperty =
+            DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(RunwayStatus),
+                new PropertyMetadata(true, OnStateChanged));
+
+        public string Theme
+        {
+            get => (string)GetValue(ThemeProperty);
+            set => SetValue(ThemeProperty, value);
+        }
+        public static readonly DependencyProperty ThemeProperty =
+            DependencyProperty.Register(nameof(Theme), typeof(string), typeof(RunwayStatus),
+                new PropertyMetadata("Light", OnStateChanged));
+
+        public string Mode
+        {
+            get => (string)GetValue(ModeProperty);
+            set => SetValue(ModeProperty, value);
+        }
+        public static readonly DependencyProperty ModeProperty =
+            DependencyProperty.Register(nameof(Mode), typeof(string), typeof(RunwayStatus),
+                new PropertyMetadata("Normal", OnStateChanged));
+
+        private static void OnStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            //if (d is BorderText bt)
+            //{
+            //    bt.ApplyState();
+            //}
+        }
+
+        #endregion
 
 
 

@@ -18,7 +18,7 @@ namespace WindLightSimluator.Components.Base
     /// <summary>
     /// BorderText.xaml 的交互逻辑
     /// </summary>
-    public partial class BorderText : UserControl, IStateAware
+    public partial class BorderText : UserControl
     {
         public BorderText()
         {
@@ -71,7 +71,7 @@ namespace WindLightSimluator.Components.Base
             set => SetValue(SubTextFontSizeProperty, value);
         }
         public static readonly DependencyProperty SubTextFontSizeProperty =
-            DependencyProperty.Register(nameof(SubTextFontSize), typeof(double), typeof(BorderText), new PropertyMetadata(12.0));
+            DependencyProperty.Register(nameof(SubTextFontSize), typeof(double), typeof(BorderText), new PropertyMetadata(10.0));
 
         public Brush SubTextColor
         {
@@ -115,32 +115,32 @@ namespace WindLightSimluator.Components.Base
 
         #region 
         //变色部分逻辑
-        public bool IsActive
-        {
-            get => (bool)GetValue(IsActiveProperty);
-            set => SetValue(IsActiveProperty, value);
-        }
-        public static readonly DependencyProperty IsActiveProperty =
-            DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(BorderText),
-                new PropertyMetadata(true, OnStateChanged));
+        //public bool IsActive
+        //{
+        //    get => (bool)GetValue(IsActiveProperty);
+        //    set => SetValue(IsActiveProperty, value);
+        //}
+        //public static readonly DependencyProperty IsActiveProperty =
+        //    DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(BorderText),
+        //        new PropertyMetadata(true, OnStateChanged));
 
-        public string Theme
-        {
-            get => (string)GetValue(ThemeProperty);
-            set => SetValue(ThemeProperty, value);
-        }
-        public static readonly DependencyProperty ThemeProperty =
-            DependencyProperty.Register(nameof(Theme), typeof(string), typeof(BorderText),
-                new PropertyMetadata("Day", OnStateChanged));
+        //public string Theme
+        //{
+        //    get => (string)GetValue(ThemeProperty);
+        //    set => SetValue(ThemeProperty, value);
+        //}
+        //public static readonly DependencyProperty ThemeProperty =
+        //    DependencyProperty.Register(nameof(Theme), typeof(string), typeof(BorderText),
+        //        new PropertyMetadata("Day", OnStateChanged));
 
-        public string Mode
-        {
-            get => (string)GetValue(ModeProperty);
-            set => SetValue(ModeProperty, value);
-        }
-        public static readonly DependencyProperty ModeProperty =
-            DependencyProperty.Register(nameof(Mode), typeof(string), typeof(BorderText),
-                new PropertyMetadata("Normal", OnStateChanged));
+        //public string Mode
+        //{
+        //    get => (string)GetValue(ModeProperty);
+        //    set => SetValue(ModeProperty, value);
+        //}
+        //public static readonly DependencyProperty ModeProperty =
+        //    DependencyProperty.Register(nameof(Mode), typeof(string), typeof(BorderText),
+        //        new PropertyMetadata("Normal", OnStateChanged));
 
         private static void OnStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

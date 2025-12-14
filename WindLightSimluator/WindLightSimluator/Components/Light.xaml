@@ -3,68 +3,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              xmlns:local="clr-namespace:WindLightSimluator.Components"
-             mc:Ignorable="d" 
              xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
+             mc:Ignorable="d" 
             >
     <UserControl.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
-        </Style>
-        <Style TargetType="Label">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="32"/>
-            <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
+        <!--主题颜色+是否被选中-->
+        <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
+        <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
 
+        <Style TargetType="Border" >
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource QnhLabelBg}"/>
         </Style>
-        <Style TargetType="base:BorderText">
-            <Setter Property="BackgroundColor" Value="White"/>
-            <Setter Property="BorderColor" Value="White"/>
+        <!--字体大小-->
+        <Style TargetType="TextBlock" >
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
+            <Setter Property="Background" Value="{DynamicResource QnhLabelBg}"/>
+            <Setter Property="Foreground" Value="{DynamicResource QnhLabelTextColor}"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight,
+               RelativeSource={RelativeSource AncestorType=Border},
+              Converter={StaticResource  HeightToFontSizeConverter}, 
+              ConverterParameter=0.5}"/>
+        </Style>
+        <Style TargetType="base:BorderText" >
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="BorderThicknessValue" Value="2"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+           
         </Style>
     </UserControl.Resources>
-    <!--<UniformGrid Columns="3" Background="#c8e2f7">-->
-        <UniformGrid Columns="3" Background="{DynamicResource PrimaryBackgroundBrush}">
-        <Border BorderThickness="2" BorderBrush="White">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label  Grid.Row="0" Content="light" FontSize="28" />
-                <base:BorderText Grid.Row="1" MainText="///" />
-                <base:BorderText Grid.Row="2" MainText="///" SubText="%"/>
-            </Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Border  Grid.Row="0" Grid.RowSpan="2"  >
+            <TextBlock Text="light"/>
         </Border>
-        <Border Grid.Column="1" BorderThickness="2" BorderBrush="White">
-            <Grid  Margin="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Content="MANUAL PV"   Grid.Row="0"/>
-                <Label Content="MANUAL PW"  Grid.Row="1"/>
-            </Grid>
+        <base:BorderText Grid.Row="2" Grid.RowSpan="2" MainText="///" />
+        <base:BorderText Grid.Row="4"  Grid.RowSpan="2" MainText="///" SubText="%"/>
+
+        <Border  Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" >
+            <TextBlock Text="MANUAL PV"/>
+        </Border>
+        <Border  Grid.Row="3" Grid.RowSpan="3" Grid.Column="1" >
+            <TextBlock Text="MANUAL PW"/>
         </Border>
 
-        <Border Grid.Column="2" BorderThickness="2" BorderBrush="White">
-            <Grid >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <base:BorderText  MainText="///" SubText="m" BackgroundColor="White"/>
-                <base:BorderText Grid.Row="1" MainText="///" />
-            </Grid>
-        </Border>
+        <base:BorderText  Grid.Row="0" Grid.RowSpan="3" Grid.Column="2"  MainText="///" SubText="m"/>
+        <base:BorderText  Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" MainText="///" SubText="m" />
 
-    </UniformGrid>
+
+
+    </Grid>
 
 
 </UserControl>

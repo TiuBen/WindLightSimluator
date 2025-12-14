@@ -19,9 +19,7 @@ D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\WindLightSimluator.pdb
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\WindLightSimluator.genruntimeconfig.cache
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\ref\WindLightSimluator.dll
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\WindSpeedGrid.g.cs
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\WindSpeedGrid.baml
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\RvrVis.g.cs
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\RvrVis.baml
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\Metar.g.cs
@@ -94,3 +92,5 @@ D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\WeatherCondition.baml
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\WindPanel.baml
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\Base\StateBrushes.baml
+D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\HeadCrossWind.g.cs
+D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Components\HeadCrossWind.baml

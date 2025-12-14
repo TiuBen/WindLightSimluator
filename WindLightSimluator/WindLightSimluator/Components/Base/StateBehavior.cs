@@ -11,10 +11,21 @@ namespace WindLightSimluator.Components.Base
     public class StateBehavior
     {
         // Active
+        //public static readonly DependencyProperty IsActiveProperty =
+        //    DependencyProperty.RegisterAttached(
+        //    "IsActive", typeof(bool), typeof(StateBehavior),
+        //    new PropertyMetadata(false, OnStateChanged));
+
         public static readonly DependencyProperty IsActiveProperty =
-            DependencyProperty.RegisterAttached(
-            "IsActive", typeof(bool), typeof(StateBehavior),
-            new PropertyMetadata(false, OnStateChanged));
+         DependencyProperty.RegisterAttached(
+             "IsActive",
+             typeof(bool),
+             typeof(StateBehavior),
+             new FrameworkPropertyMetadata(
+                 false,
+                 FrameworkPropertyMetadataOptions.Inherits));
+
+
 
         // Theme
         public static readonly DependencyProperty ThemeProperty =

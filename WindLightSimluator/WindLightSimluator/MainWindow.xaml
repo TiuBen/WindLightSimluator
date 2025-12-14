@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WindLightSimluator"
         mc:Ignorable="d"
         xmlns:comp="clr-namespace:WindLightSimluator.Components"
+        xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
         d:Width="1920" d:Height="1080"
         Title="MainWindow" Height="1080" Width="1920">
     <Window.Resources>
@@ -17,7 +18,18 @@
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <!--<Setter Property="UseLayoutRounding" Value="True"/>-->
         </Style>
+        <Style x:Key="ActiveGridStyle" TargetType="Grid">
+            <!-- 默认背景（未激活） -->
+            <Setter Property="Background" Value="#ededed"/>
 
+            <Style.Triggers>
+                <Trigger
+            Property="base:StateBehavior.IsActive"
+            Value="True">
+                    <Setter Property="Background" Value="#f7f7f7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -98,8 +110,9 @@
                                 <RowDefinition Height="6*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <UniformGrid Grid.Column="1" Columns="3" >
-                                <Grid >
+                            <UniformGrid Grid.Column="1" Columns="3" Background="#e4e3e7">
+                                <!--第一列-->
+                                <Grid base:StateBehavior.IsActive="True" Margin="2" Style="{StaticResource ActiveGridStyle}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="3*"/>
@@ -109,14 +122,14 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L"  RunwayState="InUse" />
+                                    <comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L"  RunwayState="InUse" IsActive="{Binding}" Margin="01 1 0 2"/>
                                     <Grid Grid.Row="1" Grid.RowSpan="3"   Margin="4"  Background="{DynamicResource Wind360PrimaryBg}">
                                         <Viewbox >
                                             <comp:WindPanel Background="Transparent"/>
                                         </Viewbox>
                                     </Grid>
-                                    <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
-                                    <!--第一列RVR-->
+                                    <comp:HeadCrossWind  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
+                                    <!--RVR-->
                                     <!--<Border Grid.Row="5" BorderBrush="Red" BorderThickness="2">-->
 
                                     <comp:RvrVis RvrValue="800" VisValue="1000" Grid.Row="5" />
@@ -124,7 +137,8 @@
                                     <comp:WeatherCondition Grid.Row="6" Grid.Column="0"/>
 
                                 </Grid>
-                                <Grid >
+                                <!--第二列-->
+                                <Grid base:StateBehavior.IsActive="False" Margin="2" Style="{StaticResource ActiveGridStyle}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="3*"/>
@@ -140,13 +154,14 @@
                                             <comp:WindPanel  />
                                         </Viewbox>
                                     </Grid>
-                                    <comp:WindSpeedGrid  Grid.Row="3" Grid.Column="1" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7" />
+                                    <comp:HeadCrossWind  Grid.Row="3" Grid.Column="1" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7" />
                                     <comp:Qnh  Grid.Row="4" Grid.Column="1"/>
                                     <comp:RvrVis RvrValue="200" VisValue="3000" Grid.Row="5" Grid.Column="1"/>
                                     <comp:Light Grid.Row="6" Grid.Column="1"/>
 
                                 </Grid>
-                                <Grid >
+                                <!--第三列-->
+                                <Grid base:StateBehavior.IsActive="False" Margin="2" Style="{StaticResource ActiveGridStyle}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="3*"/>
@@ -163,7 +178,7 @@
                                             <comp:WindPanel  />
                                         </Viewbox>
                                     </Grid>
-                                    <comp:WindSpeedGrid  Grid.Row="4" Grid.Column="2" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="+3.7"/>
+                                    <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="+3.7"/>
                                     <comp:RvrVis RvrValue="1500" VisValue="3000" Grid.Row="5" Grid.Column="2"/>
                                     <comp:WeatherCondition Grid.Row="6" Grid.Column="2"/>
 

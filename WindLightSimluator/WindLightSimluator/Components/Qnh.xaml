@@ -5,35 +5,55 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindLightSimluator.Components"
              xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              mc:Ignorable="d" 
              d:Width="300"
             >
     <UserControl.Resources>
+        <!-- 定义高度到字体大小的转换器 -->
+        <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="FontSize" Value="60"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight,
+                    RelativeSource={RelativeSource AncestorType=Border},
+                    Converter={StaticResource  HeightToFontSizeConverter}, 
+                    ConverterParameter=0.6}"/>
         </Style>
-        <Style TargetType="Label">
-            <Setter Property="FontFamily" Value="Arial Black"/>
-            <Setter Property="FontSize" Value="60"/>
-            <Setter Property="Foreground" Value="Black"/>
-        </Style>
-        <!-- 定义高度到字体大小的转换器 -->
-        <local:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <!--<Style TargetType="base:BorderText">
+            <Setter Property="MainTextFontSize"  Value="{Binding ActualHeight,
+             RelativeSource={RelativeSource AncestorType=Grid},
+             Converter={StaticResource  HeightToFontSizeConverter}, 
+             ConverterParameter=0.2}"/>
+        </Style>-->
+
+
+
     </UserControl.Resources>
-    <Grid Name="MainGrid" Background="Aqua">
+    <Grid Name="MainGrid" Background="{DynamicResource QnhMainBg}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-            <TextBlock Text="QNH"    HorizontalAlignment="Center" VerticalAlignment="Center"  
-                       FontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource  HeightToFontSizeConverter}, ConverterParameter=0.8}"/>
+        <Border Background="{DynamicResource QnhLabelBg}">
+            <TextBlock Text="QNH"   
+                       Foreground="{DynamicResource QnhLabelTextColor}"/>
+        </Border>
         <base:BorderText Grid.Column="1" 
                          MainText="1032.5" 
                          Margin="0"
-                         MainTextFontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ConverterParameter=0.8}" 
-                         SubText="hPa" />
+                         SubText="hPa" 
+                         BackgroundColor="{DynamicResource QnhNumberBg}"
+                         MainTextColor="{DynamicResource QnhNumberTextColor}"
+                         BorderColor="{DynamicResource QnhNumberBg}"
+                         SubTextColor="{DynamicResource QnhNumberTextColor}"
+                         />
     </Grid>
 </UserControl>
+
+<!--MainTextFontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ConverterParameter=0.8}"--> 

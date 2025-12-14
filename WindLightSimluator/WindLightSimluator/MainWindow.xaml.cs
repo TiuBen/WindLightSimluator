@@ -8,6 +8,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using WindLightSimluator.ViewModels;
+
 
 namespace WindLightSimluator
 {
@@ -16,12 +19,16 @@ namespace WindLightSimluator
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private MainWindowViewModel _vm;
         public MainWindow()
         {
             InitializeComponent();
             //DrawArc(100, 100, 50, -20, 20); // 圆心(100,100)，半径50，从0度到180度
             //DrawArc(100, 100, 50, -20, 20); // 圆心(100,100)，半径50，从0度到180度
-
+            Debug.WriteLine("dddddddddddddddddddddddddddddddddddddddddddddddddd");
+            _vm = new MainWindowViewModel();
+            DataContext = _vm;
         }
 
 
@@ -51,7 +58,18 @@ namespace WindLightSimluator
         }
 
 
+        public string Theme
+        {
+            get => (string)GetValue(ThemeProperty);
+            set => SetValue(ThemeProperty, value);
+        }
 
+        public static readonly DependencyProperty ThemeProperty =
+            DependencyProperty.Register(
+                nameof(Theme),
+                typeof(string),
+                typeof(MainWindow),
+                new PropertyMetadata("Light"));
 
 
     }

@@ -37,7 +37,7 @@
     <Compile Update="Components\WindPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Components\WindSpeedGrid.xaml.cs">
+    <Compile Update="Components\HeadCrossWind.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Components\WindDirectionSpeedControl.xaml.cs">
@@ -78,7 +78,7 @@
     <Page Update="Components\WindPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\WindSpeedGrid.xaml">
+    <Page Update="Components\HeadCrossWind.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Resource Update="DarkTheme.xaml">

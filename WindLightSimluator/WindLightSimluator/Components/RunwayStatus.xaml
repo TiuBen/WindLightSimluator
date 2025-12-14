@@ -4,10 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindLightSimluator.Components"
+             xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              mc:Ignorable="d" 
              d:Height="80" d:Width="300"
             >
     <UserControl.Resources>
+        <!--字体大小-->
+        <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight,
+                    RelativeSource={RelativeSource AncestorType=Grid},
+                    Converter={StaticResource  HeightToFontSizeConverter}}"/>
+        </Style>
+        <!--字体大小-->
+        <!--主题颜色+是否被选中-->
+        <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
+
+
         <!-- converters 实例 -->
         <local:MultiplyConverter x:Key="Multiply2" Factor="2"/>
         <!-- Empty string -> Visibility.Collapsed -->
@@ -16,9 +35,9 @@
 
         <local:HalfConverter x:Key="Half"/>
     </UserControl.Resources>
-    <UserControl.Height>
+    <!--<UserControl.Height>
         <Binding Path="RunwayFontSize" RelativeSource="{RelativeSource Self}" Converter="{StaticResource Multiply2}"/>
-    </UserControl.Height>
+    </UserControl.Height>-->
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -27,40 +46,49 @@
         </Grid.ColumnDefinitions>
 
         <Grid>
-            
-        <!-- ===============================
+
+            <!-- ===============================
              左边倒直角梯形（100%自适应）
              =============================== -->
-        <Viewbox Stretch="Fill">
-            <Canvas Width="100" Height="100">
-                <!-- 标准化成 100x100 的比例路径 -->
-                    <Path Fill="{Binding  RwyTextBg,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                      Stroke="{Binding  RwyTextBg,RelativeSource={RelativeSource AncestorType=UserControl}}" StrokeThickness="1">
-                    <Path.Data>
-                        <!-- 倒直角梯形：左边直角，右下是钝角 -->
-                        <PathGeometry>
-                            <PathFigure StartPoint="0,0">
-                                <LineSegment Point="100,0"/>
-                                <!-- 右上 -->
-                                <LineSegment Point="80,100"/>
-                                <!-- 右下（钝角位置） -->
-                                <LineSegment Point="0,100"/>
-                                <!-- 左下 -->
-                            </PathFigure>
-                        </PathGeometry>
-                    </Path.Data>
-                </Path>
-            </Canvas>
-        </Viewbox>
+            <Viewbox Stretch="Fill">
+                <Canvas Width="100" Height="100">
+                    <!-- 标准化成 100x100 的比例路径 -->
+                    <Path >
+                        <Path.Data>
+                            <!-- 倒直角梯形：左边直角，右下是钝角 -->
+                            <PathGeometry>
+                                <PathFigure StartPoint="0,0">
+                                    <LineSegment Point="100,0"/>
+                                    <!-- 右上 -->
+                                    <LineSegment Point="80,100"/>
+                                    <!-- 右下（钝角位置） -->
+                                    <LineSegment Point="0,100"/>
+                                    <!-- 左下 -->
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                        <Path.Fill>
+                            <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="RwyStatusTextBg">
+                                <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
+                                <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                            </MultiBinding>
 
-        <TextBlock Text="{Binding RunwayNumber}"
-                       Foreground="{Binding  RwyTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       TextAlignment="Center"
-                       IsHitTestVisible="False"
-                       FontSize="{Binding RunwayFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+
+                        </Path.Fill>
+                    </Path>
+                </Canvas>
+            </Viewbox>
+
+            <TextBlock Text="{Binding RunwayNumber}">
+                <TextBlock.Foreground >
+                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="RwyStatusTextColor">
+                        <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
+                    </MultiBinding>
+                </TextBlock.Foreground>
+                
+            </TextBlock>
+
         </Grid>
 
         <!-- 右侧：胶囊形状态条 -->

@@ -39,7 +39,7 @@
                        Foreground="{Binding SubTextColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Bottom"
-                       Margin="0,0,4,2"
+                       Margin="0,0,2,2"
                       />
         </Grid>
 

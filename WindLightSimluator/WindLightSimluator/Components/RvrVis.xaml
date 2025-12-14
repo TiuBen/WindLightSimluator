@@ -16,7 +16,7 @@
         <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
         <!--主题颜色+是否被选中-->
-        <conv:TheameActiveColorConverter x:Key="TheameActiveColorConverter"/>
+        <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
 
 
         <Style TargetType="TextBlock">
@@ -28,15 +28,37 @@
                    RelativeSource={RelativeSource AncestorType=Border},
                    Converter={StaticResource  HeightToFontSizeConverter}}"/>
         </Style>
-      
+
 
     </UserControl.Resources>
 
-    <UniformGrid Columns="2" Background="SpringGreen">
+    <Grid  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
 
-        <Border Grid.Column="0" Grid.Row="0"  Background="#FFDBDFE9" Margin="0 0 0 1" >
-            <TextBlock Text="RVR1A"  />
+<!--RVR-->
+        <Border Grid.Column="0" Grid.Row="0"   Margin="0 0 0 1" >
+            <Border.Background>
+                <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="LabelBg">
+                    <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
+                </MultiBinding>
+            </Border.Background>
+            <TextBlock Text="RVR1A">
+                <TextBlock.Foreground>
+                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="LabelTextColor">
+                        <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
+                    </MultiBinding>
+                </TextBlock.Foreground>
+            </TextBlock>
         </Border>
         <base:BorderText  
                           MainText="{Binding RvrValue, RelativeSource={RelativeSource AncestorType=local:RvrVis}}"  
@@ -46,17 +68,32 @@
                           SubText="m" 
                           Grid.Column="1" Grid.Row="0" Margin="0 0 0 1" />
 
-        <Border Grid.Column="0" Grid.Row="1" Background="#FFDBDFE9" Margin="0 1 0 0">
-            <TextBlock Text="VIS1A" />
+       
+<!--VIS-->
+        <Border Grid.Column="0" Grid.Row="1"  Margin="0 1 0 0">
+            <Border.Background>
+                <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="LabelBg">
+                    <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
+                </MultiBinding>
+            </Border.Background>
+            <TextBlock Text="VIS1A" >
+                <TextBlock.Foreground>
+                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="LabelTextColor">
+                        <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
+                    </MultiBinding>
+                </TextBlock.Foreground>
+            </TextBlock>
         </Border>
         <base:BorderText   
                             MainText="{Binding VisValue, RelativeSource={RelativeSource AncestorType=local:RvrVis}}" 
                             BorderColor="{Binding VisValue, 
-                                RelativeSource={RelativeSource AncestorType=local:RvrVis}, 
-                                Converter={StaticResource VisConverter}}"
+                            RelativeSource={RelativeSource AncestorType=local:RvrVis}, 
+                            Converter={StaticResource VisConverter}}"
                             SubText="m" 
                             Grid.Column="1" Grid.Row="1"  Margin="0 1 0 0" />
-    </UniformGrid>
+    </Grid>
 </UserControl>
 
 
