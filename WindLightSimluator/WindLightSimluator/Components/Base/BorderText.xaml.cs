@@ -100,6 +100,47 @@ namespace WindLightSimluator.Components.Base
         public static readonly DependencyProperty BorderThicknessValueProperty =
             DependencyProperty.Register(nameof(BorderThicknessValue), typeof(Thickness), typeof(BorderText), new PropertyMetadata(new Thickness(4)));
 
+        // 控制是否显示边框
+        public bool IsBorderVisible
+        {
+            get => (bool)GetValue(IsBorderVisibleProperty);
+            set => SetValue(IsBorderVisibleProperty, value);
+        }
+        public static readonly DependencyProperty IsBorderVisibleProperty =
+            DependencyProperty.Register(nameof(IsBorderVisible), typeof(bool), typeof(BorderText), new PropertyMetadata(true, OnIsBorderVisibleChanged));
+
+        // 边框圆角（胶囊效果）
+        public CornerRadius BorderCornerRadius
+        {
+            get => (CornerRadius)GetValue(BorderCornerRadiusProperty);
+            set => SetValue(BorderCornerRadiusProperty, value);
+        }
+        public static readonly DependencyProperty BorderCornerRadiusProperty =
+            DependencyProperty.Register(nameof(BorderCornerRadius), typeof(CornerRadius), typeof(BorderText), new PropertyMetadata(new CornerRadius(20)));
+
+
+        // 控制边框显示时的逻辑
+        private static void OnIsBorderVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (BorderText)d;
+            bool isVisible = (bool)e.NewValue;
+
+            // 控制边框的显示与圆角
+            if (isVisible)
+            {
+                control.BorderCornerRadius = new CornerRadius(20); // 胶囊形状
+                control.mainBorder.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                control.BorderCornerRadius = new CornerRadius(0); // 普通矩形
+                control.BorderThicknessValue =new Thickness(0);
+            }
+        }
+
+
+
+
         // ===== 背景颜色 =====
         public Brush BackgroundColor
         {

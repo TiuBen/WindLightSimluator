@@ -17,10 +17,10 @@
     <Border x:Name="mainBorder" BorderBrush="{Binding BorderColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
             BorderThickness="{Binding BorderThicknessValue,  RelativeSource={RelativeSource AncestorType=UserControl}}"
             Background="{Binding  BackgroundColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
-
+            VerticalAlignment="Center"
             >
       
-        <Grid   >
+        <Grid  HorizontalAlignment="Stretch"  VerticalAlignment="Center" >
   
             <TextBlock 
                        x:Name="mainTextBlock"
@@ -30,7 +30,7 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        TextAlignment="Center"
-                       Margin="20 0 "
+                       Margin="20 0 20 0 "
                        />
 
             <!-- 右下角小字 -->

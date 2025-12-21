@@ -1,25 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\",
+  "WorkspaceRootPath": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\headcrosswind.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\topbar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\topbar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\base\\capsuleborder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\base\\capsuleborder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\light.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\light.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\headcrosswind.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\headcrosswind.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\headcrosswind.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\headcrosswind.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\qnh.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\qnh.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\rvrvis.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\rvrvis.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\rvrvis.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\qnh.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\qnh.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\base\\bordertext.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\base\\bordertext.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\base\\bordertext.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\base\\bordertext.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|c:\\users\\picasso\\source\\repos\\tiuben\\windlightsimluator\\windlightsimluator\\windlightsimluator\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -30,31 +50,117 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HeadCrossWind.xaml.cs",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\HeadCrossWind.xaml.cs",
-              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\HeadCrossWind.xaml.cs",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\HeadCrossWind.xaml.cs",
-              "RelativeToolTip": "WindLightSimluator\\Components\\HeadCrossWind.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T14:24:32.091Z",
+              "DocumentIndex": 0,
+              "Title": "TopBar.xaml",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\TopBar.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\TopBar.xaml",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\TopBar.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Components\\TopBar.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-21T05:36:00.448Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "CapsuleBorder.cs",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Base\\CapsuleBorder.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\Base\\CapsuleBorder.cs",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Base\\CapsuleBorder.cs",
+              "RelativeToolTip": "WindLightSimluator\\Components\\Base\\CapsuleBorder.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAswGoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-21T04:30:28.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Light.xaml",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Light.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\Light.xaml",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Light.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Components\\Light.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-21T02:46:31.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "HeadCrossWind.xaml",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\HeadCrossWind.xaml",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\HeadCrossWind.xaml",
               "RelativeDocumentMoniker": "WindLightSimluator\\Components\\HeadCrossWind.xaml",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\HeadCrossWind.xaml",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\HeadCrossWind.xaml",
               "RelativeToolTip": "WindLightSimluator\\Components\\HeadCrossWind.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-14T14:16:13.434Z",
+              "WhenOpened": "2025-12-21T02:33:12.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Qnh.xaml",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Qnh.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\Qnh.xaml",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Qnh.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Components\\Qnh.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-21T02:32:33.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BorderText.xaml",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Base\\BorderText.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\Base\\BorderText.xaml",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Base\\BorderText.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Components\\Base\\BorderText.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-21T02:28:04.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BorderText.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Base\\BorderText.xaml.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\Base\\BorderText.xaml.cs",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Base\\BorderText.xaml.cs",
+              "RelativeToolTip": "WindLightSimluator\\Components\\Base\\BorderText.xaml.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAmwIgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-20T15:36:45.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\MainWindow.xaml.cs",
+              "RelativeToolTip": "WindLightSimluator\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-20T12:46:00.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LightTheme.xaml",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\LightTheme.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\LightTheme.xaml",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\LightTheme.xaml",
+              "RelativeToolTip": "WindLightSimluator\\LightTheme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-20T03:31:51.173Z",
               "EditorCaption": ""
             }
           ]
@@ -62,56 +168,32 @@
       ]
     },
     {
-      "Orientation": 1,
+      "Orientation": 0,
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
-        "Id": "e10b23ff-44e6-4c17-8146-b1bdf2f81952",
-        "Display": 1,
-        "X": 76,
-        "Y": 106,
-        "Width": 1662,
-        "Height": 2566,
+        "Id": "b7ca80ba-5ad0-4792-8cae-f4ecb748597d",
+        "Display": 0,
+        "X": 183,
+        "Y": 902,
+        "Width": 1857,
+        "Height": 1731,
         "WindowState": 0
       },
       "DocumentGroups": [
         {
-          "DockedHeight": 156,
+          "DockedWidth": 200,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Qnh.xaml",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Qnh.xaml",
-              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\Qnh.xaml",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Qnh.xaml",
-              "RelativeToolTip": "WindLightSimluator\\Components\\Qnh.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-14T15:02:29.398Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "RvrVis.xaml",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\RvrVis.xaml",
+              "DocumentMoniker": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\RvrVis.xaml",
               "RelativeDocumentMoniker": "WindLightSimluator\\Components\\RvrVis.xaml",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\RvrVis.xaml",
+              "ToolTip": "C:\\Users\\Picasso\\source\\repos\\TiuBen\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\RvrVis.xaml",
               "RelativeToolTip": "WindLightSimluator\\Components\\RvrVis.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-14T08:24:32.118Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LightTheme.xaml",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\LightTheme.xaml",
-              "RelativeDocumentMoniker": "WindLightSimluator\\LightTheme.xaml",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\LightTheme.xaml",
-              "RelativeToolTip": "WindLightSimluator\\LightTheme.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-13T16:19:56.863Z",
+              "WhenOpened": "2025-12-21T02:33:39.886Z",
               "EditorCaption": ""
             }
           ]

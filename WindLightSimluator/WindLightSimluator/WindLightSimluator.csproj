@@ -9,10 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\Base\CapsuleBorder.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="屏幕截图 2025-11-24 214001.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Components\Base\CapsuleBorder.xaml" />
     <Page Remove="DarkTheme.xaml" />
     <Page Remove="LightTheme.xaml" />
   </ItemGroup>

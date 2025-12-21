@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\
+C:\Users\Picasso\source\repos\TiuBen\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\
 WindLightSimluator
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Users\Picasso\source\repos\TiuBen\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
 141612541089
 
-25-1556310327
-194178300874
+27-907991572
+194-184838738
 Components\Base\BorderText.xaml;Components\Base\StateBrushes.xaml;Components\HeadCrossWind.xaml;Components\Light.xaml;Components\Metar.xaml;Components\Qnh.xaml;Components\RunwayStatus.xaml;Components\RvrVis.xaml;Components\TopBar.xaml;Components\WeatherCondition.xaml;Components\WindDirectionSpeedControl.xaml;Components\WindIndicator.xaml;Components\WindPanel.xaml;MainWindow.xaml;
 
 False

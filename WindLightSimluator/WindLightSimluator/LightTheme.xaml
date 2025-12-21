@@ -17,6 +17,11 @@
 
     <!--顶端栏-->
     <SolidColorBrush x:Key="TopBarBg"   Color="#5297FF"/>
+    <SolidColorBrush x:Key="TopBarLabelBg"   Color="#ededed"/>
+    <SolidColorBrush x:Key="TopBarLabelTextColor"   Color="#5297FF"/>
+    <SolidColorBrush x:Key="TopBarTextColor"   Color="#FFFFFF"/>
+    
+    
     <!--侧栏 包括整个 主界面-->
     <SolidColorBrush x:Key="MainBarBg"   Color="#FFFFFF"/>
     <!--RunwayStatus-->
