@@ -8,7 +8,8 @@
         xmlns:comp="clr-namespace:WindLightSimluator.Components"
         xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
         d:Width="1920" d:Height="1080"
-        Title="MainWindow" Height="1080" Width="1920">
+        Width="1920" Height="1080"
+        Title="MainWindow" >
     <Window.Resources>
         <Style TargetType="Grid" >
             <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -20,12 +21,24 @@
         </Style>
         <Style x:Key="ActiveGridStyle" TargetType="Grid">
             <!-- 默认背景（未激活） -->
-            <Setter Property="Background" Value="#ededed"/>
+            <Setter Property="Background" Value="{StaticResource MainContainerBg}"/>
 
             <Style.Triggers>
                 <Trigger
             Property="base:StateBehavior.IsActive"
             Value="True">
+                    <Setter Property="Background" Value="#f7f7f7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="test" TargetType="comp:WindPanel">
+            <!-- 默认背景（未激活） -->
+            <Setter Property="Background" Value="{StaticResource MainContainerBg}"/>
+
+            <Style.Triggers>
+                <Trigger
+     Property="base:StateBehavior.IsActive"
+     Value="True">
                     <Setter Property="Background" Value="#f7f7f7"/>
                 </Trigger>
             </Style.Triggers>
@@ -40,8 +53,8 @@
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="1*" MinHeight="90" />
+                        <RowDefinition Height="11*" />
                     </Grid.RowDefinitions>
                     <comp:TopBar Grid.Row="0"  />
                     <Grid  Grid.Row="1" >
@@ -105,14 +118,14 @@
                             </Border>
                             <Button Content="换色" x:Name="SwitchThemeButtton" Click="SwitchThemeButtton_Click"/>
                         </StackPanel>
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="1"  Margin=" 0 4" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="6*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <UniformGrid Grid.Column="1" Columns="3" Background="#e4e3e7">
+                            <UniformGrid Grid.Column="1" Columns="3" Background="{StaticResource MainContainerBg}" >
                                 <!--第一列-->
-                                <Grid base:StateBehavior.IsActive="True" Margin="2" Style="{StaticResource ActiveGridStyle}">
+                                <Grid base:StateBehavior.IsActive="True" Margin="4 0" MouseDown="Grid_MouseDown" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="3*"/>
@@ -122,13 +135,17 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <comp:RunwayStatus  Grid.Row="0" RunwayNumber="01L"  RunwayState="InUse" IsActive="{Binding}" Margin="01 1 0 2"/>
-                                    <Grid Grid.Row="1" Grid.RowSpan="3"   Margin="4"  Background="{DynamicResource Wind360PrimaryBg}">
+                                    <comp:RunwayStatus   Grid.Row="0" RunwayNumber="01L"  RunwayState="InUse" IsActive="{Binding}" Margin="0 0 0 2"/>
+                                    <Viewbox Grid.Row="1" Grid.RowSpan="3" Margin="0 0 0 2">
+                                        <comp:WindPanel  Style="{StaticResource test}"/>
+                                    </Viewbox>
+                                    <!--<Grid Grid.Row="1" Grid.RowSpan="3"   Background="{DynamicResource Wind360PrimaryBg}" Margin="0 2 0 4">-->
+                                    <!--<Grid Grid.Row="1" Grid.RowSpan="3"   Style="{StaticResource ActiveGridStyle}" Margin="0 2 0 4">
                                         <Viewbox >
                                             <comp:WindPanel Background="Transparent"/>
                                         </Viewbox>
-                                    </Grid>
-                                    <comp:HeadCrossWind  Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
+                                    </Grid>-->
+                                    <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"/>
                                     <!--RVR-->
                                     <!--<Border Grid.Row="5" BorderBrush="Red" BorderThickness="2">-->
 
@@ -138,7 +155,7 @@
 
                                 </Grid>
                                 <!--第二列-->
-                                <Grid base:StateBehavior.IsActive="False" Margin="2" Style="{StaticResource ActiveGridStyle}">
+                                <Grid base:StateBehavior.IsActive="False" Margin="2 4 2 4" Style="{StaticResource ActiveGridStyle}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="3*"/>
@@ -161,7 +178,7 @@
 
                                 </Grid>
                                 <!--第三列-->
-                                <Grid base:StateBehavior.IsActive="False" Margin="2" Style="{StaticResource ActiveGridStyle}">
+                                <Grid base:StateBehavior.IsActive="False" Margin="2 4 4 4" Style="{StaticResource ActiveGridStyle}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="3*"/>
@@ -218,3 +235,6 @@
     </Grid>
 
 </Window>
+
+
+<!--Style="{StaticResource ActiveGridStyle}"--> 

@@ -38,7 +38,7 @@
     <!--<UserControl.Height>
         <Binding Path="RunwayFontSize" RelativeSource="{RelativeSource Self}" Converter="{StaticResource Multiply2}"/>
     </UserControl.Height>-->
-    <Grid Background="Transparent">
+    <Grid Background="{StaticResource RwyStatusBg}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>

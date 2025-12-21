@@ -15,17 +15,57 @@
     <Color x:Key="RunwayLabelIndicatorBgColor">#d53700</Color>
 
 
+    <!-- 主背景 / 面板灰 -->
+    <Color x:Key="Bg_Gray_Main">#A3A7B1</Color>
+    <Color x:Key="Bg_Gray_Light">#DCE0E9</Color>
+    <Color x:Key="Bg_Gray_Lighter">#F1F2F6</Color>
+    <Color x:Key="Bg_Gray_Dark">#7F869C</Color>
+
+    <!-- 纯白 / 高亮 -->
+    <Color x:Key="White_Main">#FFFFFF</Color>
+    <Color x:Key="White_Off">#F9FAFA</Color>
+
+    <!-- 蓝色系（主界面核心色） -->
+    <Color x:Key="Blue_Primary">#3e9ae3</Color>
+    <Color x:Key="Blue_Deep">#166096</Color>
+    <Color x:Key="Blue_Mid">#5595CA</Color>
+    <Color x:Key="Blue_Light">#AABBD9</Color>
+    <Color x:Key="Blue_Lighter">#E0EEFD</Color>
+    <Color x:Key="Blue_Pale">#C8E3F8</Color>
+    <Color x:Key="Blue_Alt1">#7CABD4</Color>
+    <Color x:Key="Blue_Alt2">#5A75AB</Color>
+
+    <!-- 深色文字 / 刻度 -->
+    <Color x:Key="Text_Dark">#363939</Color>
+    <Color x:Key="Text_Darker">#080408</Color>
+    <Color x:Key="Text_Muted">#525B58</Color>
+
+    <!-- 橙色 / 警示 / 风向箭头 -->
+    <Color x:Key="Orange_Alert">#EC7439</Color>
+    <Color x:Key="Orange_Light">#ECB397</Color>
+
+    <!-- 中性灰 -->
+    <Color x:Key="Gray_Neutral">#D1D2D3</Color>
+
+
+
     <!--顶端栏-->
-    <SolidColorBrush x:Key="TopBarBg"   Color="#5297FF"/>
-    <SolidColorBrush x:Key="TopBarLabelBg"   Color="#ededed"/>
-    <SolidColorBrush x:Key="TopBarLabelTextColor"   Color="#5297FF"/>
-    <SolidColorBrush x:Key="TopBarTextColor"   Color="#FFFFFF"/>
-    
-    
+    <SolidColorBrush x:Key="TopBarBg"   Color="{StaticResource Blue_Primary}"/>
+    <SolidColorBrush x:Key="TopBarLabelBg"   Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="TopBarLabelTextColor"  Color="{StaticResource Blue_Primary}"/>
+    <SolidColorBrush x:Key="TopBarTextColor"   Color="{StaticResource White_Main}"/>
+    <!--最大的背景-->
+    <SolidColorBrush x:Key="MainContainerBg"   Color="{StaticResource Blue_Lighter}"/>
+    <!--Wind360-->
+    <SolidColorBrush x:Key="Wind360PrimaryBg"  Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="Wind360SecondaryBg"   Color="#ededed"/>
+
+
     <!--侧栏 包括整个 主界面-->
-    <SolidColorBrush x:Key="MainBarBg"   Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="MainBarBg"   Color="{StaticResource Blue_Mid}"/>
     <!--RunwayStatus-->
-    <SolidColorBrush x:Key="RwyStatusTextBg.Active"   Color="#5297FF"/>
+    <SolidColorBrush x:Key="RwyStatusBg"   Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="RwyStatusTextBg.Active"   Color="{StaticResource Blue_Mid}"/>
     <SolidColorBrush x:Key="RwyStatusTextColor.Active"   Color="White"/>
     <SolidColorBrush x:Key="RwyStatusTextBg.Inactive"   Color="#a3aed7"/>
     <SolidColorBrush x:Key="RwyStatusTextColor.Inactive"   Color="#7b83a5"/>
@@ -51,9 +91,7 @@
     <SolidColorBrush x:Key="MeterContentColor" Color="Black"/>
 
 
-    <!--Wind360-->
-    <SolidColorBrush x:Key="Wind360PrimaryBg"   Color="#f7f7f7"/>
-    <SolidColorBrush x:Key="Wind360SecondaryBg"   Color="#ededed"/>
+   
     
     <!--RvrVis-->
     <SolidColorBrush x:Key="RvrVisLabelBg" Color="#FFDBDFE9"/>

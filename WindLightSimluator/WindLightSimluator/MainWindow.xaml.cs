@@ -71,6 +71,9 @@ namespace WindLightSimluator
                 typeof(MainWindow),
                 new PropertyMetadata("Light"));
 
-
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Debug.WriteLine("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+        }
     }
 }
