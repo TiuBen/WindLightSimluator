@@ -20,9 +20,11 @@
     <Color x:Key="Bg_Gray_Light">#DCE0E9</Color>
     <Color x:Key="Bg_Gray_Lighter">#F1F2F6</Color>
     <Color x:Key="Bg_Gray_Dark">#7F869C</Color>
+    <Color x:Key="Bg_Gray_Dark1">#7b83a5</Color>
+    <Color x:Key="Bg_Gray_Dark2">#7F869C</Color>
 
     <!-- 纯白 / 高亮 -->
-    <Color x:Key="White_Main">#FFFFFF</Color>
+    <Color x:Key="White_Main">#FAFAFA</Color>
     <Color x:Key="White_Off">#F9FAFA</Color>
 
     <!-- 蓝色系（主界面核心色） -->
@@ -31,9 +33,11 @@
     <Color x:Key="Blue_Mid">#5595CA</Color>
     <Color x:Key="Blue_Light">#AABBD9</Color>
     <Color x:Key="Blue_Lighter">#E0EEFD</Color>
+    <Color x:Key="Blue_Lighter2">#b7d9ea</Color>
     <Color x:Key="Blue_Pale">#C8E3F8</Color>
     <Color x:Key="Blue_Alt1">#7CABD4</Color>
     <Color x:Key="Blue_Alt2">#5A75AB</Color>
+    <Color x:Key="Blue_Alt3">#265bc6</Color>
 
     <!-- 深色文字 / 刻度 -->
     <Color x:Key="Text_Dark">#363939</Color>
@@ -56,9 +60,36 @@
     <SolidColorBrush x:Key="TopBarTextColor"   Color="{StaticResource White_Main}"/>
     <!--最大的背景-->
     <SolidColorBrush x:Key="MainContainerBg"   Color="{StaticResource Blue_Lighter}"/>
-    <!--Wind360-->
-    <SolidColorBrush x:Key="Wind360PrimaryBg"  Color="{StaticResource White_Main}"/>
-    <SolidColorBrush x:Key="Wind360SecondaryBg"   Color="#ededed"/>
+    <!--WindPanel-->
+    <SolidColorBrush x:Key="WindPanelBg.Active"  Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="WindPanelBg.InActive"  Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="WindPanelTextColor.Active"  Color="{StaticResource Text_Darker}"/>
+    <SolidColorBrush x:Key="WindPanelTextColor.InActive"  Color="{StaticResource Bg_Gray_Main}"/>
+    <!--HeadCrossWind-->
+    <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.LabelBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Light}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.LabelTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.ValueTextBackgroundColor.Inactive" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.ValueTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
+
+    <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Active" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.LabelBackgroundColor.Active" Color="{StaticResource Blue_Lighter2}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.LabelTextColor.Active" Color="{StaticResource Blue_Alt3}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.ValueTextBackgroundColor.Active" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.ValueTextColor.Active" Color="{StaticResource Text_Dark}"/>
+
+    <!--QnhLight Metar-->
+    <SolidColorBrush x:Key="QnhLight.ContainerBackgroundColor" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="QnhLight.LabelBackgroundColor" Color="{StaticResource Blue_Lighter2}"/>
+    <SolidColorBrush x:Key="QnhLight.LabelTextColor" Color="{StaticResource Blue_Alt3}"/>
+    <SolidColorBrush x:Key="QnhLight.ValueTextBackgroundColor" Color="Transparent"/>
+    <SolidColorBrush x:Key="QnhLight.ValueTextColor" Color="{StaticResource Text_Dark}"/>
+
+
+
+
+
+
 
 
     <!--侧栏 包括整个 主界面-->
@@ -82,10 +113,10 @@
 
     
     <!--QNH-->
-    <SolidColorBrush x:Key="QnhLabelBg" Color="#b7d9ea"/>
+    <!--<SolidColorBrush x:Key="QnhLabelBg" Color="#b7d9ea"/>
     <SolidColorBrush x:Key="QnhLabelTextColor" Color="#265bc6"/>
     <SolidColorBrush x:Key="QnhNumberBg" Color="White"/>
-    <SolidColorBrush x:Key="QnhNumberTextColor" Color="Black"/>
+    <SolidColorBrush x:Key="QnhNumberTextColor" Color="Black"/>-->
     <!--METAR-->
     <SolidColorBrush x:Key="MeterLabelColor" Color="#265bc6"/>
     <SolidColorBrush x:Key="MeterContentColor" Color="Black"/>

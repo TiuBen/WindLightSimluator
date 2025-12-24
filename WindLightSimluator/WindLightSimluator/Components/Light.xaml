@@ -10,20 +10,18 @@
             >
     <UserControl.Resources>
         <!--主题颜色+是否被选中-->
-        <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
 
         <Style TargetType="Border" >
-            <Setter Property="Margin" Value="1"/>
-            <Setter Property="Background" Value="{DynamicResource QnhLabelBg}"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Background" Value="{DynamicResource QnhLight.LabelBackgroundColor}"/>
         </Style>
         <!--字体大小-->
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Padding" Value="10 0 10 0"/>
-            <Setter Property="Background" Value="{DynamicResource QnhLabelBg}"/>
-            <Setter Property="Foreground" Value="{DynamicResource QnhLabelTextColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource QnhLight.LabelTextColor}"/>
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                RelativeSource={RelativeSource AncestorType=Border},
               Converter={StaticResource  HeightToFontSizeConverter}, 
@@ -33,39 +31,65 @@
             <Setter Property="Margin" Value="0"/>
             <Setter Property="BorderThicknessValue" Value="2"/>
             <Setter Property="BackgroundColor" Value="Transparent"/>
-           
+            <Setter Property="MainTextColor" Value="{DynamicResource QnhLight.ValueTextColor}" />
+            <Setter Property="SubTextColor" Value="{DynamicResource QnhLight.ValueTextColor}" />
+
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="0" Background="{StaticResource QnhLight.ContainerBackgroundColor}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+     
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border  Grid.Row="0"  >
+                <TextBlock Text="light"/>
+            </Border>
+            <base:BorderText Grid.Row="2"  MainText="///" />
+            <base:BorderText Grid.Row="4"  MainText="///" SubText="%"/>
 
-        <Border  Grid.Row="0" Grid.RowSpan="2"  >
-            <TextBlock Text="light"/>
-        </Border>
-        <base:BorderText Grid.Row="2" Grid.RowSpan="2" MainText="///" />
-        <base:BorderText Grid.Row="4"  Grid.RowSpan="2" MainText="///" SubText="%"/>
 
-        <Border  Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" >
-            <TextBlock Text="MANUAL PV"/>
-        </Border>
-        <Border  Grid.Row="3" Grid.RowSpan="3" Grid.Column="1" >
-            <TextBlock Text="MANUAL PW"/>
-        </Border>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border  Grid.Row="0"  >
+                <TextBlock Text="MANUAL PV"/>
+            </Border>
+            <Border  Grid.Row="2"  >
+                <TextBlock Text="MANUAL PW"/>
+            </Border>
 
-        <base:BorderText  Grid.Row="0" Grid.RowSpan="3" Grid.Column="2"  MainText="///" SubText="m"/>
-        <base:BorderText  Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" MainText="///" SubText="m" />
+
+        </Grid>
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <base:BorderText  Grid.Row="0"  MainText="///" SubText="m"/>
+            <base:BorderText  Grid.Row="2"  MainText="///" SubText="m" />
+
+        </Grid>
+
+
+
+       
 
 
 

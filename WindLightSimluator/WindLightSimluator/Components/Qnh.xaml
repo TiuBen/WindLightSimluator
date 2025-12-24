@@ -25,35 +25,26 @@
                     Converter={StaticResource  HeightToFontSizeConverter}, 
                     ConverterParameter=0.6}"/>
         </Style>
-        <!--<Style TargetType="base:BorderText">
-            <Setter Property="MainTextFontSize"  Value="{Binding ActualHeight,
-             RelativeSource={RelativeSource AncestorType=Grid},
-             Converter={StaticResource  HeightToFontSizeConverter}, 
-             ConverterParameter=0.2}"/>
-        </Style>-->
-
-
 
     </UserControl.Resources>
-    <Grid Name="MainGrid" Background="{DynamicResource QnhMainBg}">
+    <Grid Background="{StaticResource QnhLight.ContainerBackgroundColor}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Background="{DynamicResource QnhLabelBg}">
+        <Border Background="{StaticResource QnhLight.LabelBackgroundColor}">
             <TextBlock Text="QNH"   
-                       Foreground="{DynamicResource QnhLabelTextColor}"/>
+                       Foreground="{StaticResource QnhLight.LabelTextColor}"/>
         </Border>
         <base:BorderText Grid.Column="1" 
                          MainText="1032.5" 
                          Margin="0"
-                         SubText="hPa" 
-                         BackgroundColor="{DynamicResource QnhNumberBg}"
-                         MainTextColor="{DynamicResource QnhNumberTextColor}"
+                         SubText="hPa  " 
+                         BackgroundColor="Transparent"
                          BorderColor="{DynamicResource QnhNumberBg}"
-                         SubTextColor="{DynamicResource QnhNumberTextColor}"
+                         MainTextColor="{DynamicResource QnhLight.ValueTextColor}"
+                         SubTextColor="{DynamicResource QnhLight.ValueTextColor}"
                          />
     </Grid>
 </UserControl>
 
-<!--MainTextFontSize="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ConverterParameter=0.8}"--> 

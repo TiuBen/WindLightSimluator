@@ -14,14 +14,24 @@
 
     </UserControl.Resources>
 
-    <Border x:Name="mainBorder" BorderBrush="{Binding BorderColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
+    <Border x:Name="mainBorder" 
+            BorderBrush="{Binding BorderColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
             BorderThickness="{Binding BorderThicknessValue,  RelativeSource={RelativeSource AncestorType=UserControl}}"
             Background="{Binding  BackgroundColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
-            VerticalAlignment="Center"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Margin="0"
             >
       
         <Grid  HorizontalAlignment="Stretch"  VerticalAlignment="Center" >
-  
+            <!-- 右下角小字 -->
+            <TextBlock  Text="{Binding SubText, RelativeSource={RelativeSource AncestorType=UserControl}}"
+             FontSize="{Binding SubTextFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+             Foreground="{Binding SubTextColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
+             HorizontalAlignment="Right"
+             VerticalAlignment="Bottom"
+             Margin="0,0,0,0"
+            />
             <TextBlock 
                        x:Name="mainTextBlock"
                        Text="{Binding MainText, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -33,14 +43,7 @@
                        Margin="20 0 20 0 "
                        />
 
-            <!-- 右下角小字 -->
-            <TextBlock  Text="{Binding SubText, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       FontSize="{Binding SubTextFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       Foreground="{Binding SubTextColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Bottom"
-                       Margin="0,0,2,2"
-                      />
+          
         </Grid>
 
     </Border>

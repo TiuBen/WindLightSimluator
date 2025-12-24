@@ -1,16 +1,67 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\components\\metar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\components\\metar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 148,
-          "SelectedChildIndex": -1,
-          "Children": []
+          "DockedHeight": 87,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\MainWindow.xaml.cs",
+              "RelativeToolTip": "WindLightSimluator\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T15:32:08.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Metar.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Metar.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Components\\Metar.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Components\\Metar.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Components\\Metar.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-22T15:27:01.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\MainWindow.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\MainWindow.xaml",
+              "RelativeToolTip": "WindLightSimluator\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-22T15:11:50.317Z",
+              "EditorCaption": ""
+            }
+          ]
         }
       ]
     }

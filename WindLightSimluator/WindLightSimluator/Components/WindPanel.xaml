@@ -6,9 +6,20 @@
              xmlns:local="clr-namespace:WindLightSimluator.Components"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800">
-    <Grid >
-
-        <Viewbox Height="800"  Width="800"  Stretch="Uniform" >
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{Binding WindPanelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="{Binding WindPanelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </Style>
+        <Style TargetType="Ellipse">
+            <Setter Property="Fill" Value="{Binding WindPanelBackground,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{Binding WindPanelBackground,RelativeSource={RelativeSource  AncestorType=UserControl}}">
+        <!--<Grid Background="White">-->
+        <Viewbox   Stretch="Uniform" >
             <Canvas Width="800" Height="800" Background="Transparent">
 
                 <!-- Outer Arc Segments -->
@@ -737,7 +748,7 @@
 
                 <!--dddddd-->
 
-
+                <!--跑道形状-->
                 <Canvas Width="800" Height="800" Background="Transparent"  RenderTransformOrigin="0.5,0.5" d:IsLocked="True" >
                     <Canvas.RenderTransform>
                         <TransformGroup>
@@ -770,7 +781,7 @@
                     </Path>
                 </Canvas>
 
-                <Ellipse Width="240" Height="240" StrokeThickness="4" Stroke="#FF188AE2" Canvas.Left="280" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Fill="White" />
+                <Ellipse Width="240" Height="240" StrokeThickness="4" Stroke="#FF188AE2" Canvas.Left="280" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
                 <Line  StrokeThickness="4"  X1="284"  Y1="400" X2="516" Y2="400" Stroke="#FF188AE2"     />
                 <TextBlock Text="348" FontSize="80" FontFamily="Segoe UI Semibold" Canvas.Left="332.54" Canvas.Top="302.721" HorizontalAlignment="Center" VerticalAlignment="Top" />
                 <TextBlock Text="17.0" FontSize="70" FontFamily="Segoe UI Semibold" Canvas.Left="342.59" Canvas.Top="387.436" HorizontalAlignment="Center" VerticalAlignment="Top" />
@@ -787,6 +798,7 @@
                     </Polygon.RenderTransform>
 
                 </Polygon>
+                <!--角度标记-->
                 <Canvas>
                     <Label Content="36" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="375.014" Canvas.Top="-0.621" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <Label Content="03" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="567.499" Canvas.Top="49.555" HorizontalAlignment="Left" VerticalAlignment="Top" />

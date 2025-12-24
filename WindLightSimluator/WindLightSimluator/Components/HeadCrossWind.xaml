@@ -7,74 +7,45 @@
              xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
              mc:Ignorable="d"
              x:Name="root"
-             d:DesignHeight="450" d:DesignWidth="800"  >
+             d:DesignHeight="450" d:DesignWidth="1200"  >
 
     <UserControl.Resources>
 
         <!--主题颜色+是否被选中-->
-        <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
-
-        <Style TargetType="Border" >
-            <Setter Property="Margin" Value="1"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="HeadCrossWindLableBg">
-                        <Binding Path="(base:StateBehavior.IsActive)" RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
+        
+        <Style  TargetType="Border" >
+            <Setter Property="Margin" Value="0 0 2 2"/>
+            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Style>
-        <!--字体大小-->
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="Padding" Value="10 0 10 0"/>
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="HeadCrossWindLabelTextColor">
-                        <Binding Path="(base:StateBehavior.IsActive)" RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
-                     RelativeSource={RelativeSource AncestorType=Border},
+                    RelativeSource={RelativeSource AncestorType=Border},
                     Converter={StaticResource  HeightToFontSizeConverter}, 
-                    ConverterParameter=0.4}"/>
+                    ConverterParameter=0.45}"/>
         </Style>
         <Style TargetType="base:BorderText" >
-            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Margin" Value="0 0 2 2"/>
             <Setter Property="BorderThicknessValue" Value="2"/>
             <Setter Property="SubText" Value="mps"/>
             <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="MainTextColor" >
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="HeadCrossWindNumberTextColor">
-                        <Binding Path="(base:StateBehavior.IsActive)" RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="SubTextColor" >
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="HeadCrossWindNumberTextColor">
-                        <Binding Path="(base:StateBehavior.IsActive)" RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
         </Style>
+    
 
     </UserControl.Resources>
 
     <!--<Grid Background="#FFDBDFE9">-->
     <!--在这里面 所有的深色 都 被 grid 包裹-->
 
-    <base:CustomGrid Background="Transparent"   GridLineBrush="Transparent"  GridLineThickness="2" ShowGridLines="True">
-        <base:CustomGrid.ColumnDefinitions>
+    <Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=UserControl}}"   >
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*"  />
@@ -82,29 +53,29 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
-        </base:CustomGrid.ColumnDefinitions>
-        <base:CustomGrid.RowDefinitions>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-        </base:CustomGrid.RowDefinitions>
+        </Grid.RowDefinitions>
 
         <!-- ▬▬▬▬▬▬▬▬▬▬▬ 第一列 Label ▬▬▬▬▬▬▬▬▬▬▬ -->
         <Border  Grid.Column="0" Grid.Row="0" />
         <Border  Grid.Column="0" Grid.Row="1"  >
             <TextBlock   Text="Head Wind" />
         </Border>
-        <Border  Grid.Column="0" Grid.Row="2"    >
+        <Border  Grid.Column="0" Grid.Row="2" Margin="0 0 2 0" >
             <TextBlock Text="Cross Wind" />
         </Border>
 
         <!-- ▬▬▬▬▬▬▬▬▬▬▬ 第2列 AVG2 ▬▬▬▬▬▬▬▬▬▬▬ -->
-        <Border  Grid.Column="1" Grid.Row="0"  >
-            <TextBlock  Text="AVG2"  Padding=" 0 0 0 0"  />
+        <Border  Grid.Column="1" Grid.Row="0"   >
+            <TextBlock  Text="AVG2" />
         </Border>
         <base:BorderText Grid.Column="1" Grid.Row="1"
                          MainText="{Binding HeadWindAVG2Text, ElementName=root}"/>
-        <base:BorderText  Grid.Column="1" Grid.Row="2" 
+        <base:BorderText  Grid.Column="1" Grid.Row="2" Margin="0 0 2 0" 
                        MainText="{Binding CrossWindAVG2Text, ElementName=root}"/>
 
         <!-- ▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬ -->
@@ -118,7 +89,7 @@
         <Border   Grid.Column="3" Grid.Row="1"  >
             <TextBlock   Text="WD" />
         </Border>
-        <Border    Grid.Column="3" Grid.Row="2"    >
+        <Border    Grid.Column="3" Grid.Row="2"  Margin="0 0 2 0"  >
             <TextBlock Text="WS"/>
         </Border>
 
@@ -128,7 +99,7 @@
         </Border>
         <base:BorderText  Grid.Column="4" Grid.Row="1" 
                        MainText="{Binding WD_NNM2Text, ElementName=root}" />
-        <base:BorderText   Grid.Column="4" Grid.Row="2" 
+        <base:BorderText   Grid.Column="4" Grid.Row="2" Margin="0 0 2 0"
                        MainText="{Binding WS_NNM2Text, ElementName=root}" />
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border    Grid.Column="5" Grid.Row="0"  >
@@ -136,18 +107,18 @@
         </Border>
         <base:BorderText  Grid.Column="5" Grid.Row="1"
                        MainText="{Binding WD_AVG2Text, ElementName=root}" />
-        <base:BorderText  Grid.Column="5" Grid.Row="2"
+        <base:BorderText  Grid.Column="5" Grid.Row="2" Margin="0 0 2 0"
                        MainText="{Binding WS_AVG2Text, ElementName=root}" />
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬-->
-        <Border    Grid.Column="6" Grid.Row="0"  >
+        <Border    Grid.Column="6" Grid.Row="0" Margin="0 0 0 2" >
             <TextBlock   Text="MAX2"  Padding=" 9 2 9 6"/>
         </Border>
-        <base:BorderText  Grid.Column="6" Grid.Row="1"
+        <base:BorderText  Grid.Column="6" Grid.Row="1" Margin="0 0 0 2"
                        MainText="{Binding WD_MAX2Text, ElementName=root}" />
-        <base:BorderText  Grid.Column="6" Grid.Row="2"
+        <base:BorderText  Grid.Column="6" Grid.Row="2"  Margin="0 0 0 0"
                        MainText="{Binding WS_MAX2Text, ElementName=root}" />
 
 
-    </base:CustomGrid>
+    </Grid>
 </UserControl>
 

@@ -104,9 +104,85 @@ namespace WindLightSimluator.Components
         public void SetCrossWindAVG2(string value) => CrossWindAVG2Text = value;
         // 其他类似
 
+        #region
+        // 暴露颜色 
+        // 容器背景
+        public Brush ContainerBackgroundColor
+        {
+            get => (Brush)GetValue(ContainerBackgroundColorProperty);
+            set => SetValue(ContainerBackgroundColorProperty, value);
+        }
+
+        public static readonly DependencyProperty ContainerBackgroundColorProperty =
+            DependencyProperty.Register(
+                nameof(ContainerBackgroundColor),
+                typeof(Brush),
+                typeof(HeadCrossWind),
+                new PropertyMetadata(Brushes.Red));
+
+
+        // Label 背景
+        public Brush LabelBackgroundColor
+        {
+            get => (Brush)GetValue(LabelBackgroundColorProperty);
+            set => SetValue(LabelBackgroundColorProperty, value);
+        }
+
+        public static readonly DependencyProperty LabelBackgroundColorProperty =
+            DependencyProperty.Register(
+                nameof(LabelBackgroundColor),
+                typeof(Brush),
+                typeof(HeadCrossWind),
+                new PropertyMetadata(Brushes.Yellow));
+
+
+        // Label 文本颜色
+        public Brush LabelTextColor
+        {
+            get => (Brush)GetValue(LabelTextColorProperty);
+            set => SetValue(LabelTextColorProperty, value);
+        }
+
+        public static readonly DependencyProperty LabelTextColorProperty =
+            DependencyProperty.Register(
+                nameof(LabelTextColor),
+                typeof(Brush),
+                typeof(HeadCrossWind),
+                new PropertyMetadata(Brushes.Green));
+
+
+        // Value 文本背景
+        public Brush ValueTextBackgroundColor
+        {
+            get => (Brush)GetValue(ValueTextBackgroundColorProperty);
+            set => SetValue(ValueTextBackgroundColorProperty, value);
+        }
+
+        public static readonly DependencyProperty ValueTextBackgroundColorProperty =
+            DependencyProperty.Register(
+                nameof(ValueTextBackgroundColor),
+                typeof(Brush),
+                typeof(HeadCrossWind),
+                new PropertyMetadata(Brushes.Blue));
+
+
+        // Value 文本颜色
+        public Brush ValueTextColor
+        {
+            get => (Brush)GetValue(ValueTextColorProperty);
+            set => SetValue(ValueTextColorProperty, value);
+        }
+
+        public static readonly DependencyProperty ValueTextColorProperty =
+            DependencyProperty.Register(
+                nameof(ValueTextColor),
+                typeof(Brush),
+                typeof(HeadCrossWind),
+                new PropertyMetadata(Brushes.Pink));
 
 
 
+        #endregion
 
         //变色部分逻辑
         public bool IsActive

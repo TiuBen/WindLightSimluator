@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using WindLightSimluator.ViewModels;
+using WindLightSimluator.Components.Base;
 
 
 namespace WindLightSimluator
@@ -74,6 +75,15 @@ namespace WindLightSimluator
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Debug.WriteLine("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+            // 先全部关掉
+            StateBehavior.SetIsActive(Col1, false);
+            StateBehavior.SetIsActive(Col3, false);
+
+            // 再激活被点的那一列
+            if (sender is Grid grid)
+            {
+                StateBehavior.SetIsActive(grid, true);
+            }
         }
     }
 }

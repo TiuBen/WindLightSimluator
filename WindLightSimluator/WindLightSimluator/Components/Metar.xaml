@@ -37,32 +37,14 @@
                      ConverterParameter=0.1}"/>
         </Style>
     </UserControl.Resources>
-    <Grid  Background="{DynamicResource QnhMainBg}">
+    <Grid Background="{StaticResource QnhLight.ContainerBackgroundColor}" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Background="{DynamicResource QnhLabelBg }" Margin="2,1">
-            <TextBlock Text="METAR"  Foreground="{DynamicResource MeterLabelColor }"/>
+        <Border Grid.Column="0" Background="{StaticResource QnhLight.LabelBackgroundColor}" Margin="0">
+            <TextBlock Text="METAR"   Foreground="{StaticResource QnhLight.LabelTextColor}"/>
         </Border>
-        <Label Grid.Column="1"   Foreground="{DynamicResource MeterContentColor }" Content="METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG="/>
+        <Label Grid.Column="1"  Margin="0" Foreground="{DynamicResource QnhLight.ValueTextColor }" Content="METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG="/>
     </Grid>
 </UserControl>
-<!--<Style TargetType="TextBlock">
-    <Setter Property="HorizontalAlignment" Value="Left"/>
-    <Setter Property="VerticalAlignment" Value="Top"/>
-    <Setter Property="TextAlignment" Value="Center"/>
-    <Setter Property="FontSize" Value="16"/>
-    <Setter Property="FontWeight" Value="DemiBold"/>
-</Style>
-<Style TargetType="Label">
-    <Setter Property="HorizontalAlignment" Value="Center"/>
-    <Setter Property="VerticalAlignment" Value="Center"/>
-    <Setter Property="FontSize" Value="32"/>
-    <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
-    <Setter Property="FontWeight" Value="DemiBold"/>
-
-</Style>
-<Style TargetType="Border">
-    <Setter Property="Background" Value="White"/>
-</Style>-->

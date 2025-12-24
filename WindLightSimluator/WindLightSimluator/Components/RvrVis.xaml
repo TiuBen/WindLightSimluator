@@ -15,50 +15,46 @@
 
         <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
-        <!--主题颜色+是否被选中-->
-        <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
 
-
-        <Style TargetType="TextBlock">
+        <Style  TargetType="Border" >
+            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </Style>
+        <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
+            <Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
-                   RelativeSource={RelativeSource AncestorType=Border},
-                   Converter={StaticResource  HeightToFontSizeConverter}}"/>
+                     RelativeSource={RelativeSource AncestorType=Border},
+                     Converter={StaticResource  HeightToFontSizeConverter}}"/>
+        </Style>
+        <Style TargetType="base:BorderText" >
+            <Setter Property="BorderThicknessValue" Value="4"/>
+            <Setter Property="SubText" Value="mps"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
         </Style>
 
 
     </UserControl.Resources>
 
-    <Grid  >
+    <Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=UserControl}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="2"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
 
-<!--RVR-->
-        <Border Grid.Column="0" Grid.Row="0"   Margin="0 0 0 1" >
-            <Border.Background>
-                <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="LabelBg">
-                    <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                </MultiBinding>
-            </Border.Background>
-            <TextBlock Text="RVR1A">
-                <TextBlock.Foreground>
-                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="LabelTextColor">
-                        <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                    </MultiBinding>
-                </TextBlock.Foreground>
-            </TextBlock>
+        <!--RVR-->
+        <Border Grid.Column="0" Grid.Row="0"   >
+            <TextBlock Text="RVR1A" />
         </Border>
         <base:BorderText  
                           MainText="{Binding RvrValue, RelativeSource={RelativeSource AncestorType=local:RvrVis}}"  
@@ -66,25 +62,12 @@
                                  RelativeSource={RelativeSource AncestorType=local:RvrVis},
                                 Converter={StaticResource RvrColorConverter}}"
                           SubText="m" 
-                          Grid.Column="1" Grid.Row="0" Margin="0 0 0 1" />
+                          Grid.Column="1" Grid.Row="0"  />
 
-       
-<!--VIS-->
-        <Border Grid.Column="0" Grid.Row="1"  Margin="0 1 0 0">
-            <Border.Background>
-                <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="LabelBg">
-                    <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                </MultiBinding>
-            </Border.Background>
-            <TextBlock Text="VIS1A" >
-                <TextBlock.Foreground>
-                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="LabelTextColor">
-                        <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                    </MultiBinding>
-                </TextBlock.Foreground>
-            </TextBlock>
+
+        <!--VIS-->
+        <Border Grid.Column="0" Grid.Row="2"  >
+            <TextBlock Text="VIS1A" />
         </Border>
         <base:BorderText   
                             MainText="{Binding VisValue, RelativeSource={RelativeSource AncestorType=local:RvrVis}}" 
@@ -92,7 +75,7 @@
                             RelativeSource={RelativeSource AncestorType=local:RvrVis}, 
                             Converter={StaticResource VisConverter}}"
                             SubText="m" 
-                            Grid.Column="1" Grid.Row="1"  Margin="0 1 0 0" />
+                            Grid.Column="1" Grid.Row="2"  />
     </Grid>
 </UserControl>
 
