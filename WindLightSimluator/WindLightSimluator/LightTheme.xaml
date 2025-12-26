@@ -60,6 +60,20 @@
     <SolidColorBrush x:Key="TopBarTextColor"   Color="{StaticResource White_Main}"/>
     <!--最大的背景-->
     <SolidColorBrush x:Key="MainContainerBg"   Color="{StaticResource Blue_Lighter}"/>
+    <!--RunwayStatus-->
+    <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Light}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Inactive" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
+                            
+    <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Active" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Active" Color="{StaticResource Blue_Lighter2}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Active" Color="{StaticResource Blue_Alt3}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Active" Color="{StaticResource Orange_Alert}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Active" Color="{StaticResource Text_Dark}"/>
+
+
     <!--WindPanel-->
     <SolidColorBrush x:Key="WindPanelBg.Active"  Color="{StaticResource White_Main}"/>
     <SolidColorBrush x:Key="WindPanelBg.InActive"  Color="{StaticResource Bg_Gray_Lighter}"/>
@@ -100,18 +114,18 @@
     <SolidColorBrush x:Key="RwyStatusTextColor.Active"   Color="White"/>
     <SolidColorBrush x:Key="RwyStatusTextBg.Inactive"   Color="#a3aed7"/>
     <SolidColorBrush x:Key="RwyStatusTextColor.Inactive"   Color="#7b83a5"/>
-    
-    
-    
-    
-    
+
+
+
+
+
     <SolidColorBrush x:Key="RwyTextColor_InUse"   Color="White"/>
     <SolidColorBrush x:Key="RwyTextColor_NotInUse"   Color="#7b83a5"/>
 
     <SolidColorBrush x:Key="RwyCapsuleBg_InUse"   Color="#ff5d00"/>
     <SolidColorBrush x:Key="RwyCapsuleBg_NotInUse"   Color="#a3aed7"/>
 
-    
+
     <!--QNH-->
     <!--<SolidColorBrush x:Key="QnhLabelBg" Color="#b7d9ea"/>
     <SolidColorBrush x:Key="QnhLabelTextColor" Color="#265bc6"/>
@@ -122,8 +136,8 @@
     <SolidColorBrush x:Key="MeterContentColor" Color="Black"/>
 
 
-   
-    
+
+
     <!--RvrVis-->
     <SolidColorBrush x:Key="RvrVisLabelBg" Color="#FFDBDFE9"/>
     <SolidColorBrush x:Key="RvrVisTextColor" Color="#7b83a5"/>

@@ -12,48 +12,61 @@
     <UserControl.Resources>
         <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
-        <Style TargetType="TextBlock">
+        <Style  TargetType="Grid" >
+            <Setter Property="Margin" Value="0 0 0 0"/>
+        </Style>
+        <Style  TargetType="Border" >
+            <Setter Property="Margin" Value="0 0 2 2"/>
+            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </Style>
+        <Style x:Key="PathBgStyle" TargetType="Path" >
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Fill" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </Style>
+  
+
+        <Style x:Key="baseTextStyle" TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style x:Key="largeText" TargetType="TextBlock"  BasedOn="{StaticResource baseTextStyle}" >
+            <Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <Setter Property="FontSize"  Value="{Binding ActualHeight,
+                    RelativeSource={RelativeSource AncestorType=Border},
+                    Converter={StaticResource  HeightToFontSizeConverter}, 
+                    ConverterParameter=0.45}"/>
+        </Style>
+        <Style x:Key="smallText" TargetType="TextBlock" BasedOn="{StaticResource baseTextStyle}" >
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="Foreground" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                     RelativeSource={RelativeSource AncestorType=Grid},
-                    Converter={StaticResource  HeightToFontSizeConverter}}"/>
+                    Converter={StaticResource  HeightToFontSizeConverter}, 
+                    ConverterParameter=0.45}"/>
         </Style>
-        <!--字体大小-->
-        <!--主题颜色+是否被选中-->
-        <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
 
-
-        <!-- converters 实例 -->
-        <local:MultiplyConverter x:Key="Multiply2" Factor="2"/>
-        <!-- Empty string -> Visibility.Collapsed -->
-        <local:EmptyToCollapsedConverter x:Key="EmptyToCollapsed"/>
-        <!-- Corner = ActualHeight / 2 -->
-
-        <local:HalfConverter x:Key="Half"/>
     </UserControl.Resources>
-    <!--<UserControl.Height>
-        <Binding Path="RunwayFontSize" RelativeSource="{RelativeSource Self}" Converter="{StaticResource Multiply2}"/>
-    </UserControl.Height>-->
-    <Grid Background="{StaticResource RwyStatusBg}">
+
+    <Grid Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=UserControl}}"   >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid>
-
+        <Grid >
             <!-- ===============================
              左边倒直角梯形（100%自适应）
              =============================== -->
             <Viewbox Stretch="Fill">
-                <Canvas Width="100" Height="100">
+                <Canvas Width="100" Height="80">
                     <!-- 标准化成 100x100 的比例路径 -->
-                    <Path >
+                    <Path Style="{DynamicResource PathBgStyle}" >
                         <Path.Data>
                             <!-- 倒直角梯形：左边直角，右下是钝角 -->
                             <PathGeometry>
@@ -67,60 +80,29 @@
                                 </PathFigure>
                             </PathGeometry>
                         </Path.Data>
-                        <Path.Fill>
-                            <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="RwyStatusTextBg">
-                                <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
-                                <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}"/>
-                            </MultiBinding>
-
-
-                        </Path.Fill>
                     </Path>
                 </Canvas>
             </Viewbox>
-
-            <TextBlock Text="{Binding RunwayNumber}">
-                <TextBlock.Foreground >
-                    <MultiBinding Converter="{StaticResource ThemeActiveColorConverter}" ConverterParameter="RwyStatusTextColor">
-                        <Binding Path="(base:StateBehavior.IsActive)"   RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="Theme" RelativeSource="{RelativeSource AncestorType=Window}" />
-                    </MultiBinding>
-                </TextBlock.Foreground>
-                
-            </TextBlock>
-
+            <TextBlock Text="{Binding RunwayNumber}"  Style="{DynamicResource largeText}"/>
         </Grid>
 
         <!-- 右侧：胶囊形状态条 -->
         <Grid Grid.Column="2" Margin="0,0,20,0">
             <!-- 我们把 Border 的高度绑定到 UserControl 的 Height（可以用 Padding 调整内缩） -->
-            <Border x:Name="StatusBorder"
-                    Background="{Binding  RwyCapsuleBg,RelativeSource={RelativeSource AncestorType=UserControl}}"
+            <base:CapsuleBorder 
+                    x:Name="StatusBorder"
+                    Background="{Binding  ValueTextBackgroundColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch"
                     Padding="12,4"
                     SnapsToDevicePixels="True"
-                    Visibility="{Binding StatusText,
-                                     Converter={StaticResource EmptyToCollapsed}}"
                     >
-                <!-- CornerRadius = ActualHeight/2 保证两端半圆 -->
-                <Border.CornerRadius>
-                    <MultiBinding Converter="{StaticResource Half}">
-                        <!-- 取 Border 的 ActualHeight 作为输入 -->
-                        <Binding ElementName="StatusBorder" Path="ActualHeight"/>
-                    </MultiBinding>
-                </Border.CornerRadius>
+          
 
                 <!-- 内容区：居中显示状态文字 -->
-                <TextBlock Text="{Binding StatusText, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                           Foreground="White"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextTrimming="CharacterEllipsis"
-                           FontSize="{Binding RunwayFontSize, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Multiply2}, ConverterParameter=-0.6}"/>
+                <TextBlock Text="{Binding RunwayStatusText, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Style="{DynamicResource smallText}"/>
                 <!-- 说明：上面状态文字的 FontSize 我设置为 RunwayFontSize 的某个比例（可调），避免状态字太大 -->
-            </Border>
+            </base:CapsuleBorder>
         </Grid>
 
     </Grid>

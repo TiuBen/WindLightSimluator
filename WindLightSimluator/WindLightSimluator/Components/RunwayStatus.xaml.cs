@@ -19,9 +19,9 @@ namespace WindLightSimluator.Components
 {
     public enum RwyState
     {
-        InUse,
-        NotInUse,
-        Empty
+        Empty=0,
+        InUse=1,
+        NotInUse=2
     }
     public static class RwyStateExtensions
     {
@@ -40,16 +40,13 @@ namespace WindLightSimluator.Components
     /// <summary>
     /// RunwayNumber.xaml 的交互逻辑
     /// </summary>
-    public partial class RunwayStatus : UserControl,IStateAware
+    public partial class RunwayStatus : UserControl
     {
         public RunwayStatus()
         {
             InitializeComponent();
             this.DataContext = this;
-
-            this.Height = RunwayFontSize * 2;
-            UpdateStateColors();
-            UpdateStatusText();
+            UpdateRunwayStatusText();
 
         }
         // 跑道号
@@ -58,125 +55,164 @@ namespace WindLightSimluator.Components
             get => (string)GetValue(RunwayNumberProperty);
             set => SetValue(RunwayNumberProperty, value);
         }
-        public static readonly DependencyProperty RunwayNumberProperty =
-            DependencyProperty.Register(nameof(RunwayNumber), typeof(string), typeof(RunwayStatus), new PropertyMetadata("18R"));
-
-        // 状态文本
-        public string StatusText
-        {
-            get => (string)GetValue(StatusTextProperty);
-            private set => SetValue(StatusTextPropertyKey, value);
-        }
-        private static readonly DependencyPropertyKey StatusTextPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(StatusText), typeof(string), typeof(RunwayStatus), new PropertyMetadata(""));
-
-        public static readonly DependencyProperty StatusTextProperty =
-            StatusTextPropertyKey.DependencyProperty;
-
-        // 根据枚举更新 StatusText
-        private void UpdateStatusText()
-        {
-            StatusText = RunwayState.ToStatusText();
-        }
+        public static readonly DependencyProperty RunwayNumberProperty = DependencyProperty.Register(nameof(RunwayNumber), typeof(string), typeof(RunwayStatus), new PropertyMetadata("19R"));
 
 
-        // 跑道号字体大小（用于计算控件高度 = 字体高 * 2）
-        public double RunwayFontSize
-        {
-            get => (double)GetValue(RunwayFontSizeProperty);
-            set => SetValue(RunwayFontSizeProperty, value);
-        }
-        public static readonly DependencyProperty RunwayFontSizeProperty =
-            DependencyProperty.Register(nameof(RunwayFontSize), typeof(double), typeof(RunwayStatus), new PropertyMetadata(24.0, OnRunwayFontSizeChanged));
-
-        private static void OnRunwayFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is RunwayStatus ctrl)
-            {
-                // 当字体大小变化时，自动把 Height 设置为 RunwayFontSize * 2（额外保留最小值）
-                var size = (double)e.NewValue;
-                ctrl.Height = Math.Max(ctrl.MinHeight, size * 1.5);
-            }
-        }
 
         // ===============================
         // 状态属性：Active / InActive
+        // 是否激活（外部列选中）
         // ===============================
-        public RwyState RunwayState
-        {
-            get => (RwyState)GetValue(RunwayStateProperty);
-            set => SetValue(RunwayStateProperty, value);
-        }
-
-        public static readonly DependencyProperty RunwayStateProperty =
-            DependencyProperty.Register(nameof(RunwayState), typeof(RwyState), typeof(RunwayStatus),
-                new PropertyMetadata(RwyState.InUse, OnRwyStateChanged));
-
-        private static void OnRwyStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var ctrl = (RunwayStatus)d;
-            ctrl.UpdateStateColors();
-            ctrl.UpdateStatusText();
-        }
-
-        // ===============================
-        // 更新颜色
-        // ===============================
-        public Brush RwyTextBg
-        {
-            get => (Brush)GetValue(RwyTextBgProperty);
-            set => SetValue(RwyTextBgProperty, value);
-        }
-        public static readonly DependencyProperty RwyTextBgProperty =
-            DependencyProperty.Register(nameof(RwyTextBg), typeof(Brush), typeof(RunwayStatus), new PropertyMetadata(null));
-
-        public Brush RwyTextColor
-        {
-            get => (Brush)GetValue(RwyTextColorProperty);
-            set => SetValue(RwyTextColorProperty, value);
-        }
-        public static readonly DependencyProperty RwyTextColorProperty =
-            DependencyProperty.Register(nameof(RwyTextColor), typeof(Brush), typeof(RunwayStatus), new PropertyMetadata(null));
-
-
-        public Brush RwyCapsuleBg
-        {
-            get => (Brush)GetValue(RwyCapsuleBgProperty);
-            set => SetValue(RwyCapsuleBgProperty, value);
-        }
-        public static readonly DependencyProperty RwyCapsuleBgProperty =
-            DependencyProperty.Register(nameof(RwyCapsuleBg), typeof(Brush), typeof(RunwayStatus), new PropertyMetadata(null));
-
-        // ===============================
-        // 根据状态读取 ResourceDictionary 中的颜色
-        // ===============================
-        private void UpdateStateColors()
-        {
-            string state = RunwayState == RwyState.InUse ? "InUse" : "NotInUse";
-
-
-
-            string textBgKey = "RwyTextBg_" + state;
-            string textColorKey = "RwyTextColor_" + state;
-            string capsuleBgKey = "RwyCapsuleBg_" + state;
-
-            RwyTextBg = (Brush)TryFindResource(textBgKey) ?? Brushes.Yellow;
-            RwyTextColor = (Brush)TryFindResource(textColorKey) ?? Brushes.Blue;
-            RwyCapsuleBg = (Brush)TryFindResource(capsuleBgKey) ?? Brushes.Green;
-        }
-
-
-        #region MyRegion
-       
-        //变色部分逻辑
         public bool IsActive
         {
             get => (bool)GetValue(IsActiveProperty);
             set => SetValue(IsActiveProperty, value);
         }
+
         public static readonly DependencyProperty IsActiveProperty =
-            DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(RunwayStatus),
-                new PropertyMetadata(true, OnStateChanged));
+            DependencyProperty.Register(
+                nameof(IsActive),
+                typeof(bool),
+                typeof(RunwayStatus),
+                new PropertyMetadata(true, OnIsActiveChanged));
+
+        private static void OnIsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is RunwayStatus ctrl)
+            {
+                ctrl.UpdateRunwayStatusText();
+            }
+        }
+
+
+        // ===============================
+        // 内部业务状态（不暴露、不绑定）
+        // ===============================
+        private RwyState _state = RwyState.Empty;
+        // ===============================
+        // UI 用状态文本（只读）
+        // ===============================
+        public string RunwayStatusText
+        {
+            get => (string)GetValue(RunwayStatusTextProperty);
+            private set => SetValue(RunwayStatusTextPropertyKey, value);
+        }
+
+        private static readonly DependencyPropertyKey RunwayStatusTextPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                nameof(RunwayStatusText),
+                typeof(string),
+                typeof(RunwayStatus),
+                new PropertyMetadata(string.Empty));
+
+        public static readonly DependencyProperty RunwayStatusTextProperty =
+            RunwayStatusTextPropertyKey.DependencyProperty;
+
+        private void UpdateRunwayStatusText()
+        {
+            // 没有状态 → 不显示
+            if (_state == RwyState.Empty)
+            {
+                RunwayStatusText = string.Empty;
+                return;
+            }
+
+            // 激活时强制 NOT IN USE
+            RunwayStatusText = IsActive
+                ? RwyState.NotInUse.ToStatusText()
+                : RwyState.InUse.ToStatusText();
+        }
+
+
+
+
+        #region
+        // 暴露颜色 
+        // 容器背景
+        public Brush ContainerBackgroundColor
+        {
+            get => (Brush)GetValue(ContainerBackgroundColorProperty);
+            set => SetValue(ContainerBackgroundColorProperty, value);
+        }
+
+        public static readonly DependencyProperty ContainerBackgroundColorProperty =
+            DependencyProperty.Register(
+                nameof(ContainerBackgroundColor),
+                typeof(Brush),
+                typeof(RunwayStatus),
+                new PropertyMetadata(Brushes.Red));
+
+
+        // Label 背景
+        public Brush LabelBackgroundColor
+        {
+            get => (Brush)GetValue(LabelBackgroundColorProperty);
+            set => SetValue(LabelBackgroundColorProperty, value);
+        }
+
+        public static readonly DependencyProperty LabelBackgroundColorProperty =
+            DependencyProperty.Register(
+                nameof(LabelBackgroundColor),
+                typeof(Brush),
+                typeof(RunwayStatus),
+                new PropertyMetadata(Brushes.Yellow));
+
+
+        // Label 文本颜色
+        public Brush LabelTextColor
+        {
+            get => (Brush)GetValue(LabelTextColorProperty);
+            set => SetValue(LabelTextColorProperty, value);
+        }
+
+        public static readonly DependencyProperty LabelTextColorProperty =
+            DependencyProperty.Register(
+                nameof(LabelTextColor),
+                typeof(Brush),
+                typeof(RunwayStatus),
+                new PropertyMetadata(Brushes.Green));
+
+
+        // Value 文本背景
+        public Brush ValueTextBackgroundColor
+        {
+            get => (Brush)GetValue(ValueTextBackgroundColorProperty);
+            set => SetValue(ValueTextBackgroundColorProperty, value);
+        }
+
+        public static readonly DependencyProperty ValueTextBackgroundColorProperty =
+            DependencyProperty.Register(
+                nameof(ValueTextBackgroundColor),
+                typeof(Brush),
+                typeof(RunwayStatus),
+                new PropertyMetadata(Brushes.Transparent));
+
+
+        // Value 文本颜色
+        public Brush ValueTextColor
+        {
+            get => (Brush)GetValue(ValueTextColorProperty);
+            set => SetValue(ValueTextColorProperty, value);
+        }
+
+        public static readonly DependencyProperty ValueTextColorProperty =
+            DependencyProperty.Register(
+                nameof(ValueTextColor),
+                typeof(Brush),
+                typeof(RunwayStatus),
+                new PropertyMetadata(Brushes.Pink));
+
+
+
+        #endregion
+
+
+
+
+        #region MyRegion
+
+        //变色部分逻辑
+     
 
         public string Theme
         {
@@ -213,57 +249,9 @@ namespace WindLightSimluator.Components
 
     }
 
-    // Converter：把输入乘以 Factor（可设置）
-    public class MultiplyConverter : IValueConverter
-    {
-        public double Factor { get; set; } = 1.0;
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is double d)
-            {
-                double factor = Factor;
-                // 若传入 ConverterParameter（尝试解析为 double），支持覆盖或复杂表达
-                if (parameter is string pStr && double.TryParse(pStr, out var pVal))
-                    factor = pVal;
-                return d * factor;
-            }
-            return DependencyProperty.UnsetValue;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
-            throw new NotImplementedException();
-    }
 
 
-    public class EmptyToCollapsedConverter : IValueConverter
-    {
-        public object Convert(object value, Type t, object p, CultureInfo c)
-        {
-            string str = value as string;
-            return string.IsNullOrWhiteSpace(str) ? Visibility.Collapsed : Visibility.Visible;
-        }
 
-        public object ConvertBack(object value, Type t, object p, CultureInfo c) =>
-            throw new NotImplementedException();
-    }
 
-    // HalfConverter：把输入 / 2（这里只实现为 IMultiValueConverter 以便 XAML 中 MultiBinding 调用）
-    public class HalfConverter : IMultiValueConverter
-    {
-        // 取第一个 numeric 输入并除以 2
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (values?.Length > 0 && values[0] is double d)
-            {
-                // CornerRadius 需要四个同值，这里返回一个 CornerRadius 实例
-                var rad = d / 2.0;
-                return new CornerRadius(rad);
-            }
-            return new CornerRadius(0);
-        }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) =>
-            throw new NotImplementedException();
-    }
 }

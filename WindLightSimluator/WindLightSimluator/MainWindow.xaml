@@ -26,13 +26,31 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-        
+
+
+
         <Style x:Key="RunwayStatusStyle" TargetType="comp:RunwayStatus">
             <!-- 默认背景（未激活） -->
             <Setter Property="Margin" Value="0 0 0 4"/>
-        </Style>
+            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Inactive}"/>
+            <Setter Property="LabelBackgroundColor" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Inactive}"/>
+            <Setter Property="LabelTextColor" Value="{DynamicResource RunwayStatus.LabelTextColor.Inactive}"/>
+            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Inactive}"/>
+            <Setter Property="ValueTextColor" Value="{DynamicResource RunwayStatus.ValueTextColor.Inactive}"/>
+            <!-- 背景（激活） -->
+            <Style.Triggers>
+                <Trigger
+              Property="base:StateBehavior.IsActive"
+              Value="True">
+                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Active}"/>
+                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>
+                    <Setter Property="LabelTextColor" Value="{DynamicResource RunwayStatus.LabelTextColor.Active}"/>
+                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Active}"/>
+                    <Setter Property="ValueTextColor" Value="{DynamicResource RunwayStatus.ValueTextColor.Active}"/>
 
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="WindPanelStyle" TargetType="comp:WindPanel">
             <!-- 默认背景（未激活） -->
             <Setter Property="Margin" Value="0 0 0 2"/>
@@ -47,7 +65,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style x:Key="HeadCrossWindStyle" TargetType="comp:HeadCrossWind">
             <!-- 默认背景（未激活） -->
             <Setter Property="Margin" Value="0 0 0 2"/>
@@ -70,7 +88,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style x:Key="RvrVisStyle" TargetType="comp:RvrVis">
             <!-- 默认背景（未激活） -->
             <Setter Property="Margin" Value="0 0 0 4"/>
@@ -93,7 +111,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style x:Key="WeatherConditionStyle" TargetType="comp:WeatherCondition">
             <!-- 默认背景（未激活） -->
             <Setter Property="Margin" Value="0 0 0 4"/>
@@ -216,7 +234,7 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <comp:RunwayStatus   Grid.Row="0" RunwayNumber="01L" RunwayState="InUse" Style="{StaticResource RunwayStatusStyle}" IsActive="{Binding}" />
+                                    <comp:RunwayStatus   Grid.Row="0" RunwayNumber="01L"  Style="{StaticResource RunwayStatusStyle}" IsActive="{Binding}" />
                                     <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3"   Style="{StaticResource WindPanelStyle}" IsActive="{Binding}"/>
                                     <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"   Style="{StaticResource HeadCrossWindStyle}" IsActive="{Binding}"/>
                                     <comp:RvrVis RvrValue="800" VisValue="1000" Grid.Row="5"   Style="{StaticResource RvrVisStyle}" IsActive="{Binding}"/>
@@ -234,7 +252,7 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <comp:RunwayStatus   RunwayNumber="MD1" RunwayState="Empty" Style="{StaticResource RunwayStatusStyle}"  />
+                                    <comp:RunwayStatus   RunwayNumber="MD1" Style="{StaticResource RunwayStatusStyle}"  IsActive="{Binding}" />
                                     <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" IsActive="{Binding}"  Style="{StaticResource WindPanelStyle}"/>
                                     <comp:HeadCrossWind  Grid.Row="3" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"  Style="{StaticResource HeadCrossWindStyle}" IsActive="{Binding}"/>
                                     <comp:Qnh  Grid.Row="4" />
@@ -253,7 +271,9 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <comp:RunwayStatus  Grid.Column="2" RunwayNumber="19R" RunwayState="NotInUse" Style="{StaticResource RunwayStatusStyle}" />
+                                    <comp:RunwayStatus  Grid.Column="2" RunwayNumber="19R" Style="{StaticResource RunwayStatusStyle}"   IsActive="{Binding
+                                                            RelativeSource={RelativeSource AncestorType=Grid},
+                                                         Path=(base:StateBehavior.IsActive)}"/>
                                     <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="3" IsActive="{Binding}"  Style="{StaticResource WindPanelStyle}"/>
                                     <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="+3.7" Style="{StaticResource HeadCrossWindStyle}" IsActive="{Binding}"/>
                                     <comp:RvrVis RvrValue="1500" VisValue="3000" Grid.Row="5" Grid.Column="2" Style="{StaticResource RvrVisStyle}" IsActive="{Binding}"/>
