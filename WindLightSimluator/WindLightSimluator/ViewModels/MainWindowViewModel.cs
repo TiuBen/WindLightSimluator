@@ -5,29 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using WindLightSimluator.ViewModels.vm;
+using System.Collections.ObjectModel;
 
 namespace WindLightSimluator.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : ViewModelBase
     {
-        private bool _activeGridIsActive = true;
-        public bool ActiveGridIsActive
+        public RunwayViewModel WestRunway { get; }
+        public RunwayViewModel EastRunway { get; }
+
+
+        public MainWindowViewModel()
         {
-            get => _activeGridIsActive;
-            set { _activeGridIsActive = value; OnPropertyChanged(); }
+            WestRunway = new RunwayViewModel();
+            WestRunway.RunwayStart.Status.RunwayNumber = "01L";
+            WestRunway.RunwayMiddle.Status.RunwayNumber = "MID1";
+            WestRunway.RunwayEnd.Status.RunwayNumber = "19R";
+            EastRunway = new RunwayViewModel();
+            WestRunway.RunwayStart.Status.RunwayNumber = "01R";
+            WestRunway.RunwayMiddle.Status.RunwayNumber = "MID1";
+            WestRunway.RunwayEnd.Status.RunwayNumber = "19L";
         }
 
-        private bool _inactiveGridIsActive = false;
-        public bool InactiveGridIsActive
-        {
-            get => _inactiveGridIsActive;
-            set { _inactiveGridIsActive = value; OnPropertyChanged(); }
-        }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
     }
 }

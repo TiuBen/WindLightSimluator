@@ -3,138 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WindLightSimluator"
         mc:Ignorable="d"
-        xmlns:comp="clr-namespace:WindLightSimluator.Components"
-        xmlns:base="clr-namespace:WindLightSimluator.Components.Base"
+        xmlns:comp="clr-namespace:WindLightSimluator.Views.Components"
+        xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
+        xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
+        xmlns:view="clr-namespace:WindLightSimluator.Views"
         d:Width="1920" d:Height="1080"
         Width="1920" Height="1080"
         Title="MainWindow" >
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <Style TargetType="FrameworkElement" >
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="UseLayoutRounding" Value="True"/>
         </Style>
-        <Style x:Key="ActiveGridStyle" TargetType="Grid">
-            <!-- 默认背景（未激活） -->
-            <Setter Property="Background" Value="{StaticResource MainContainerBg}"/>
-            <Style.Triggers>
-                <Trigger
-                        Property="base:StateBehavior.IsActive"
-                        Value="True">
-                    <Setter Property="Background" Value="#f7f7f7"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-
-
-        <Style x:Key="RunwayStatusStyle" TargetType="comp:RunwayStatus">
-            <!-- 默认背景（未激活） -->
-            <Setter Property="Margin" Value="0 0 0 4"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource RunwayStatus.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource RunwayStatus.ValueTextColor.Inactive}"/>
-            <!-- 背景（激活） -->
-            <Style.Triggers>
-                <Trigger
-              Property="base:StateBehavior.IsActive"
-              Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource RunwayStatus.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource RunwayStatus.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="WindPanelStyle" TargetType="comp:WindPanel">
-            <!-- 默认背景（未激活） -->
-            <Setter Property="Margin" Value="0 0 0 2"/>
-            <Setter Property="WindPanelBackground" Value="{DynamicResource WindPanelBg.InActive}"/>
-            <Setter Property="WindPanelTextColor" Value="{DynamicResource WindPanelTextColor.InActive}" />
-            <Style.Triggers>
-                <Trigger
-                     Property="base:StateBehavior.IsActive"
-                     Value="True">
-                    <Setter Property="WindPanelBackground" Value="{DynamicResource WindPanelBg.Active}"/>
-                    <Setter Property="WindPanelTextColor" Value="{DynamicResource WindPanelTextColor.Active}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="HeadCrossWindStyle" TargetType="comp:HeadCrossWind">
-            <!-- 默认背景（未激活） -->
-            <Setter Property="Margin" Value="0 0 0 2"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
-            <!-- 背景（激活） -->
-            <Style.Triggers>
-                <Trigger
-                          Property="base:StateBehavior.IsActive"
-                          Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="RvrVisStyle" TargetType="comp:RvrVis">
-            <!-- 默认背景（未激活） -->
-            <Setter Property="Margin" Value="0 0 0 4"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
-            <!-- 背景（激活） -->
-            <Style.Triggers>
-                <Trigger
-                    Property="base:StateBehavior.IsActive"
-                    Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="WeatherConditionStyle" TargetType="comp:WeatherCondition">
-            <!-- 默认背景（未激活） -->
-            <Setter Property="Margin" Value="0 0 0 4"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
-            <!-- 背景（激活） -->
-            <Style.Triggers>
-                <Trigger
-              Property="base:StateBehavior.IsActive"
-              Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
+  
     </Window.Resources>
 
     <Grid>
@@ -148,7 +33,7 @@
                         <RowDefinition Height="1*" MinHeight="90" />
                         <RowDefinition Height="11*" />
                     </Grid.RowDefinitions>
-                    <comp:TopBar Grid.Row="0"  />
+                    <view:TopBar Grid.Row="0"  />
                     <Grid  Grid.Row="1" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -210,79 +95,16 @@
                             </Border>
                             <Button Content="换色" x:Name="SwitchThemeButtton" Click="SwitchThemeButtton_Click"/>
                         </StackPanel>
+                        <!--一条跑道 的 三段-->
                         <Grid Grid.Column="1"  Margin="4"  >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="6*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Grid  Background="{StaticResource MainContainerBg}" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="4"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="4"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <!--第一列-->
-                                <Grid base:StateBehavior.IsActive="True" x:Name="Col1" MouseDown="Grid_MouseDown" >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="3*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <comp:RunwayStatus   Grid.Row="0" RunwayNumber="01L"  Style="{StaticResource RunwayStatusStyle}" IsActive="{Binding}" />
-                                    <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3"   Style="{StaticResource WindPanelStyle}" IsActive="{Binding}"/>
-                                    <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"   Style="{StaticResource HeadCrossWindStyle}" IsActive="{Binding}"/>
-                                    <comp:RvrVis RvrValue="800" VisValue="1000" Grid.Row="5"   Style="{StaticResource RvrVisStyle}" IsActive="{Binding}"/>
-                                    <comp:WeatherCondition Grid.Row="6" Grid.Column="0"  Style="{StaticResource WeatherConditionStyle}" IsActive="{Binding}"/>
+                            <view:RunwayView DataContext="{Binding WestRunway}"/>
 
-                                </Grid>
-                                <!--第二列-->
-                                <Grid base:StateBehavior.IsActive="False" Grid.Column="2">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="3*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <comp:RunwayStatus   RunwayNumber="MD1" Style="{StaticResource RunwayStatusStyle}"  IsActive="{Binding}" />
-                                    <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" IsActive="{Binding}"  Style="{StaticResource WindPanelStyle}"/>
-                                    <comp:HeadCrossWind  Grid.Row="3" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="3.7"  Style="{StaticResource HeadCrossWindStyle}" IsActive="{Binding}"/>
-                                    <comp:Qnh  Grid.Row="4" />
-                                    <comp:RvrVis RvrValue="200" VisValue="3000" Grid.Row="5" Style="{StaticResource RvrVisStyle}" IsActive="{Binding}"/>
-                                    <comp:Light Grid.Row="6" />
 
-                                </Grid>
-                                <!--第三列-->
-                                <Grid base:StateBehavior.IsActive="False" x:Name="Col3"  Grid.Column="4" MouseDown="Grid_MouseDown">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="3*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <comp:RunwayStatus  Grid.Column="2" RunwayNumber="19R" Style="{StaticResource RunwayStatusStyle}"   IsActive="{Binding
-                                                            RelativeSource={RelativeSource AncestorType=Grid},
-                                                         Path=(base:StateBehavior.IsActive)}"/>
-                                    <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="3" IsActive="{Binding}"  Style="{StaticResource WindPanelStyle}"/>
-                                    <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" HeadWindAVG2Text="-6.5" CrossWindAVG2Text="+3.7" Style="{StaticResource HeadCrossWindStyle}" IsActive="{Binding}"/>
-                                    <comp:RvrVis RvrValue="1500" VisValue="3000" Grid.Row="5" Grid.Column="2" Style="{StaticResource RvrVisStyle}" IsActive="{Binding}"/>
-                                    <comp:WeatherCondition Grid.Row="6" Grid.Column="2" Style="{StaticResource WeatherConditionStyle}" IsActive="{Binding}"/>
-
-                                </Grid>
-
-                            </Grid>
-                            <comp:Metar Grid.Row="7"  Grid.ColumnSpan="3"/>
+                            <!--<comp:Metar Grid.Row="7"  Grid.ColumnSpan="3"/>-->
                         </Grid>
 
 
@@ -317,4 +139,125 @@
 </Window>
 
 
-<!--Style="{StaticResource ActiveGridStyle}"--> 
+<!--Style="{StaticResource ActiveGridStyle}"-->
+
+<!--<Style x:Key="ActiveGridStyle" TargetType="Grid">
+    --><!-- 默认背景（未激活） --><!--
+    <Setter Property="Background" Value="{StaticResource MainContainerBg}"/>
+    <Style.Triggers>
+        <Trigger
+                        Property="base:StateBehavior.IsActive"
+                        Value="True">
+            <Setter Property="Background" Value="#f7f7f7"/>
+        </Trigger>
+    </Style.Triggers>
+</Style>
+
+
+
+
+<Style x:Key="RunwayStatusStyle" TargetType="comp:RunwayStatus">
+    --><!-- 默认背景（未激活） --><!--
+    <Setter Property="Margin" Value="0 0 0 4"/>
+    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Inactive}"/>
+    <Setter Property="LabelBackgroundColor" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Inactive}"/>
+    <Setter Property="LabelTextColor" Value="{DynamicResource RunwayStatus.LabelTextColor.Inactive}"/>
+    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Inactive}"/>
+    <Setter Property="ValueTextColor" Value="{DynamicResource RunwayStatus.ValueTextColor.Inactive}"/>
+    --><!-- 背景（激活） --><!--
+    <Style.Triggers>
+        <Trigger
+              Property="base:StateBehavior.IsActive"
+              Value="True">
+            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Active}"/>
+            <Setter Property="LabelBackgroundColor" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>
+            <Setter Property="LabelTextColor" Value="{DynamicResource RunwayStatus.LabelTextColor.Active}"/>
+            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Active}"/>
+            <Setter Property="ValueTextColor" Value="{DynamicResource RunwayStatus.ValueTextColor.Active}"/>
+
+        </Trigger>
+    </Style.Triggers>
+</Style>
+<Style x:Key="WindPanelStyle" TargetType="comp:WindPanel">
+    --><!-- 默认背景（未激活） --><!--
+    <Setter Property="Margin" Value="0 0 0 2"/>
+    <Setter Property="WindPanelBackground" Value="{DynamicResource WindPanelBg.InActive}"/>
+    <Setter Property="WindPanelTextColor" Value="{DynamicResource WindPanelTextColor.InActive}" />
+    <Style.Triggers>
+        <Trigger
+                     Property="base:StateBehavior.IsActive"
+                     Value="True">
+            <Setter Property="WindPanelBackground" Value="{DynamicResource WindPanelBg.Active}"/>
+            <Setter Property="WindPanelTextColor" Value="{DynamicResource WindPanelTextColor.Active}"/>
+        </Trigger>
+    </Style.Triggers>
+</Style>
+
+<Style x:Key="HeadCrossWindStyle" TargetType="comp:HeadCrossWind">
+    --><!-- 默认背景（未激活） --><!--
+    <Setter Property="Margin" Value="0 0 0 2"/>
+    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
+    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
+    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
+    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
+    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
+    --><!-- 背景（激活） --><!--
+    <Style.Triggers>
+        <Trigger
+                          Property="base:StateBehavior.IsActive"
+                          Value="True">
+            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
+            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
+            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
+            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+
+        </Trigger>
+    </Style.Triggers>
+</Style>
+
+<Style x:Key="RvrVisStyle" TargetType="comp:RvrVis">
+    --><!-- 默认背景（未激活） --><!--
+    <Setter Property="Margin" Value="0 0 0 4"/>
+    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
+    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
+    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
+    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
+    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
+    --><!-- 背景（激活） --><!--
+    <Style.Triggers>
+        <Trigger
+                    Property="base:StateBehavior.IsActive"
+                    Value="True">
+            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
+            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
+            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
+            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+
+        </Trigger>
+    </Style.Triggers>
+</Style>
+
+<Style x:Key="WeatherConditionStyle" TargetType="comp:WeatherCondition">
+    --><!-- 默认背景（未激活） --><!--
+    <Setter Property="Margin" Value="0 0 0 4"/>
+    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
+    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
+    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
+    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
+    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
+    --><!-- 背景（激活） --><!--
+    <Style.Triggers>
+        <Trigger
+              Property="base:StateBehavior.IsActive"
+              Value="True">
+            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
+            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
+            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
+            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+
+        </Trigger>
+    </Style.Triggers>
+</Style>-->

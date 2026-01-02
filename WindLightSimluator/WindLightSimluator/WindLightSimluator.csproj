@@ -9,7 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Components\Base\CapsuleBorder.xaml.cs" />
+    <Compile Remove="Components\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <None Remove="Components\**" />
+    <Page Remove="Components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Components\Base\CapsuleBorder.xaml.cs" />
+    <Compile Remove="Views\Components\Base\CustomGrid.cs" />
+    <Compile Remove="Views\Components\WindDirectionSpeedControl.xaml.cs" />
+    <Compile Remove="Views\Components\WindIndicator.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,9 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Remove="Components\Base\CapsuleBorder.xaml" />
     <Page Remove="DarkTheme.xaml" />
     <Page Remove="LightTheme.xaml" />
+    <Page Remove="Views\Components\Base\CapsuleBorder.xaml" />
+    <Page Remove="Views\Components\WindDirectionSpeedControl.xaml" />
+    <Page Remove="Views\Components\WindIndicator.xaml" />
   </ItemGroup>
 
   <ItemGroup>

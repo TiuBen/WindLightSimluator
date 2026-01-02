@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="WindLightSimluator.Views.Metar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
+             xmlns:local="clr-namespace:WindLightSimluator.Views"
+             mc:Ignorable="d" 
+            >
+    <UserControl.Resources>
+        <!-- 定义高度到字体大小的转换器 -->
+        <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+            <Setter Property="FontSize" Value="60"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight,
+               RelativeSource={RelativeSource AncestorType=Border},
+               Converter={StaticResource  HeightToFontSizeConverter}, 
+               ConverterParameter=0.3}"/>
+            <Setter Property="Margin" Value="12" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Microsoft Yahei UI"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight,
+                     RelativeSource={RelativeSource AncestorType=Grid},
+                     Converter={StaticResource  HeightToFontSizeConverter}, 
+                     ConverterParameter=0.1}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource QnhLight.ContainerBackgroundColor}" Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Background="{StaticResource QnhLight.LabelBackgroundColor}" Margin="0">
+            <TextBlock Text="METAR"   Foreground="{StaticResource QnhLight.LabelTextColor}"/>
+        </Border>
+        <Label Grid.Column="1"  Margin="0" Foreground="{DynamicResource QnhLight.ValueTextColor }" Content="METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG="/>
+    </Grid>
+</UserControl>

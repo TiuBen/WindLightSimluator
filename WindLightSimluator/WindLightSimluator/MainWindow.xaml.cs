@@ -10,7 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using WindLightSimluator.ViewModels;
-using WindLightSimluator.Components.Base;
+using WindLightSimluator.Views.Components.Base;
 
 
 namespace WindLightSimluator
@@ -28,8 +28,8 @@ namespace WindLightSimluator
             //DrawArc(100, 100, 50, -20, 20); // 圆心(100,100)，半径50，从0度到180度
             //DrawArc(100, 100, 50, -20, 20); // 圆心(100,100)，半径50，从0度到180度
             Debug.WriteLine("dddddddddddddddddddddddddddddddddddddddddddddddddd");
-            _vm = new MainWindowViewModel();
-            DataContext = _vm;
+            //_vm = new WindLightSimluator.ViewModels.MainWindowViewModel();
+            //DataContext = _vm;
         }
 
 
@@ -75,15 +75,15 @@ namespace WindLightSimluator
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Debug.WriteLine("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-            // 先全部关掉
-            StateBehavior.SetIsActive(Col1, false);
-            StateBehavior.SetIsActive(Col3, false);
+            //// 先全部关掉
+            //StateBehavior.SetIsActive(Col1, false);
+            //StateBehavior.SetIsActive(Col3, false);
 
-            // 再激活被点的那一列
-            if (sender is Grid grid)
-            {
-                StateBehavior.SetIsActive(grid, true);
-            }
+            //// 再激活被点的那一列
+            //if (sender is Grid grid)
+            //{
+            //    StateBehavior.SetIsActive(grid, true);
+            //}
         }
     }
 }

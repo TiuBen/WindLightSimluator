@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="WindLightSimluator.Views.Components.RvrVis"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WindLightSimluator.Views.Components"
+             xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
+             mc:Ignorable="d" 
+             >
+    <UserControl.Resources>
+        <!--<conv:RvrColorConverter x:Key="RvrColorConverter"/>
+        <conv:VisConverter x:Key="VisConverter"/>
+
+        --><!--字体大小--><!--
+        <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+
+        <Style  TargetType="Border" >
+            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RvrVis}}"/>
+        </Style>
+        <Style TargetType="TextBlock" >
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
+            <Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=local:RvrVis}}" />
+            <Setter Property="FontSize"  Value="{Binding ActualHeight,
+                     RelativeSource={RelativeSource AncestorType=Border},
+                     Converter={StaticResource  HeightToFontSizeConverter}}"/>
+        </Style>
+        <Style TargetType="base:BorderText" >
+            <Setter Property="BorderThicknessValue" Value="4"/>
+            <Setter Property="SubText" Value="mps"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:RvrVis}}" />
+            <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:RvrVis}}" />
+        </Style>
+        --><!--RvrVisStyle--><!--
+        <Style  TargetType="local:RvrVis">
+            --><!-- 默认背景（未激活） --><!--
+            <Setter Property="Margin" Value="0 0 0 4"/>
+            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
+            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
+            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
+            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
+            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
+            --><!-- 背景（激活） --><!--
+            <Style.Triggers>
+                <Trigger
+                    Property="IsActive"
+                    Value="True">
+                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
+                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
+                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
+                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>-->
+
+    </UserControl.Resources>
+
+    <Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=UserControl}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <!--RVR-->
+        <Border Grid.Column="0" Grid.Row="0"   >
+            <TextBlock Text="RVR1A" />
+        </Border>
+        <base:BorderText  
+                          MainText="{Binding RvrValue, RelativeSource={RelativeSource AncestorType=local:RvrVis}}"  
+                          BorderColor="{Binding RvrValue, 
+                                 RelativeSource={RelativeSource AncestorType=local:RvrVis},
+                                Converter={StaticResource RvrColorConverter}}"
+                          SubText="m" 
+                          Grid.Column="1" Grid.Row="0"  />
+
+
+        <!--VIS-->
+        <Border Grid.Column="0" Grid.Row="2"  >
+            <TextBlock Text="VIS1A" />
+        </Border>
+        <base:BorderText   
+                            MainText="{Binding VisValue, RelativeSource={RelativeSource AncestorType=local:RvrVis}}" 
+                            BorderColor="{Binding VisValue, 
+                            RelativeSource={RelativeSource AncestorType=local:RvrVis}, 
+                            Converter={StaticResource VisConverter}}"
+                            SubText="m" 
+                            Grid.Column="1" Grid.Row="2"  />
+    </Grid>
+</UserControl>
+
+

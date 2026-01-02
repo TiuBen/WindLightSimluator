@@ -7,78 +7,42 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Components\Base\BorderText.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\Light.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\Metar.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\Qnh.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\RunwayStatus.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\RvrVis.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\TopBar.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\WeatherCondition.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\WindIndicator.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\WindPanel.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\HeadCrossWind.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Components\WindDirectionSpeedControl.xaml.cs">
+    <Compile Update="Views\RunwayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Components\Base\BorderText.xaml">
+    <Page Update="Views\Components\Base\StateBrushes.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\Base\StateBrushes.xaml">
+    <Page Update="Views\Components\HeadCrossWind.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\Light.xaml">
+    <Page Update="Views\Components\RunwayStatus.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\Metar.xaml">
+    <Page Update="Views\Components\RvrVis.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\Qnh.xaml">
+    <Page Update="Views\Components\WeatherCondition.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\RunwayStatus.xaml">
+    <Page Update="Views\Components\WindPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\RvrVis.xaml">
+    <Page Update="Views\Light.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\TopBar.xaml">
+    <Page Update="Views\Metar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\WeatherCondition.xaml">
+    <Page Update="Views\Qnh.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\WindIndicator.xaml">
+    <Page Update="Views\RunwayView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\WindPanel.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Components\HeadCrossWind.xaml">
+    <Page Update="Views\TopBar.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Resource Update="DarkTheme.xaml">
@@ -88,9 +52,6 @@
       <SubType>Designer</SubType>
     </Resource>
     <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Components\WindDirectionSpeedControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

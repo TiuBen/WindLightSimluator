@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="WindLightSimluator.Views.Light"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
+             xmlns:local="clr-namespace:WindLightSimluator.Views.Components" 
+             xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
+             mc:Ignorable="d" 
+            >
+    <UserControl.Resources>
+        <!--主题颜色+是否被选中-->
+        <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+
+        <Style TargetType="Border" >
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Background" Value="{DynamicResource QnhLight.LabelBackgroundColor}"/>
+        </Style>
+        <!--字体大小-->
+        <Style TargetType="TextBlock" >
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
+            <Setter Property="Foreground" Value="{DynamicResource QnhLight.LabelTextColor}"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight,
+               RelativeSource={RelativeSource AncestorType=Border},
+              Converter={StaticResource  HeightToFontSizeConverter}, 
+              ConverterParameter=0.5}"/>
+        </Style>
+        <Style TargetType="base:BorderText" >
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="BorderThicknessValue" Value="2"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="MainTextColor" Value="{DynamicResource QnhLight.ValueTextColor}" />
+            <Setter Property="SubTextColor" Value="{DynamicResource QnhLight.ValueTextColor}" />
+
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="0" Background="{StaticResource QnhLight.ContainerBackgroundColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+     
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border  Grid.Row="0"  >
+                <TextBlock Text="light"/>
+            </Border>
+            <base:BorderText Grid.Row="2"  MainText="///" />
+            <base:BorderText Grid.Row="4"  MainText="///" SubText="%"/>
+
+
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border  Grid.Row="0"  >
+                <TextBlock Text="MANUAL PV"/>
+            </Border>
+            <Border  Grid.Row="2"  >
+                <TextBlock Text="MANUAL PW"/>
+            </Border>
+
+
+        </Grid>
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <base:BorderText  Grid.Row="0"  MainText="///" SubText="m"/>
+            <base:BorderText  Grid.Row="2"  MainText="///" SubText="m" />
+
+        </Grid>
+
+
+
+       
+
+
+
+    </Grid>
+
+
+</UserControl>
