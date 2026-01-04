@@ -14,12 +14,11 @@
     <UserControl.Resources>
 
         <!--主题颜色+是否被选中-->
-        <!--<conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
         
         <Style  TargetType="Border" >
             <Setter Property="Margin" Value="0 0 2 2"/>
-            --><!--<Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}"/>--><!--
-            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}"/>
         </Style>
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -39,30 +38,8 @@
             <Setter Property="BackgroundColor" Value="Transparent"/>
             <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />
             <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />
-        </Style>-->
-        <!--HeadCrossWindStyle-->
-        <!--<Style  TargetType="local:HeadCrossWind">
-            --><!-- 默认背景（未激活） --><!--
-            <Setter Property="Margin" Value="0 0 0 2"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
-            --><!-- 背景（激活） --><!--
-            <Style.Triggers>
-                <Trigger
-                          Property="IsActive"
-                          Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>
-        </Style>-->
+        </Style>
+     
 
     </UserControl.Resources>
 
@@ -85,7 +62,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- ▬▬▬▬▬▬▬▬▬▬▬ 第一列 Label ▬▬▬▬▬▬▬▬▬▬▬ --><!--
+         <!--▬▬▬▬▬▬▬▬▬▬▬ 第一列 Label ▬▬▬▬▬▬▬▬▬▬▬--> 
         <Border  Grid.Column="0" Grid.Row="0" />
         <Border  Grid.Column="0" Grid.Row="1"  >
             <TextBlock   Text="Head Wind" />
@@ -94,21 +71,21 @@
             <TextBlock Text="Cross Wind" />
         </Border>
 
-        --><!-- ▬▬▬▬▬▬▬▬▬▬▬ 第2列 AVG2 ▬▬▬▬▬▬▬▬▬▬▬ --><!--
+         <!--▬▬▬▬▬▬▬▬▬▬▬ 第2列 AVG2 ▬▬▬▬▬▬▬▬▬▬▬--> 
         <Border  Grid.Column="1" Grid.Row="0"   >
             <TextBlock  Text="AVG2" />
         </Border>
         <base:BorderText Grid.Column="1" Grid.Row="1"
-                         MainText="{Binding HeadWindAVG2Text, ElementName=root}"/>
+                         MainText="{Binding Avg2HeadWindSpeed}" SubText="mps"/>
         <base:BorderText  Grid.Column="1" Grid.Row="2" Margin="0 0 2 0" 
-                       MainText="{Binding CrossWindAVG2Text, ElementName=root}"/>
+                       MainText="{Binding Avg2CrossWindSpeed}" SubText="mps"/>
 
-        --><!-- ▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬ --><!--
+         <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬--> 
         <Border Background="Transparent" Grid.Row="0" Grid.Column="2"  />
         <Border Background="Transparent" Grid.Row="1" Grid.Column="2"  />
         <Border Background="Transparent" Grid.Row="2" Grid.Column="2"   />
 
-        --><!--▬▬▬▬▬▬▬▬▬▬▬ 第4列 WD / WS ▬▬▬▬▬▬▬▬▬▬▬--><!--
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第4列 WD / WS ▬▬▬▬▬▬▬▬▬▬▬-->
 
         <Border  Grid.Column="3" Grid.Row="0" />
         <Border   Grid.Column="3" Grid.Row="1"  >
@@ -118,30 +95,30 @@
             <TextBlock Text="WS"/>
         </Border>
 
-        --><!--▬▬▬▬▬▬▬▬▬▬▬ 第5列 MNM2  ▬▬▬▬▬▬▬▬▬▬▬--><!--
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第5列 MNM2  ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border    Grid.Column="4" Grid.Row="0"  >
             <TextBlock   Text="MNM2" />
         </Border>
         <base:BorderText  Grid.Column="4" Grid.Row="1" 
-                       MainText="{Binding WD_NNM2Text, ElementName=root}" />
+                       MainText="{Binding Min2WindDir}" SubText="°" />
         <base:BorderText   Grid.Column="4" Grid.Row="2" Margin="0 0 2 0"
-                       MainText="{Binding WS_NNM2Text, ElementName=root}" />
-        --><!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬--><!--
+                       MainText="{Binding Min2WindSpeed}" SubText="mps" />
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border    Grid.Column="5" Grid.Row="0"  >
             <TextBlock   Text="AVG2" />
         </Border>
         <base:BorderText  Grid.Column="5" Grid.Row="1"
-                       MainText="{Binding WD_AVG2Text, ElementName=root}" />
+                       MainText="{Binding Avg2WindDir}" SubText="°" />
         <base:BorderText  Grid.Column="5" Grid.Row="2" Margin="0 0 2 0"
-                       MainText="{Binding WS_AVG2Text, ElementName=root}" />
-        --><!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬--><!--
+                       MainText="{Binding Avg2WindSpeed}" SubText="mps" />
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border    Grid.Column="6" Grid.Row="0" Margin="0 0 0 2" >
             <TextBlock   Text="MAX2"  Padding=" 9 2 9 6"/>
         </Border>
         <base:BorderText  Grid.Column="6" Grid.Row="1" Margin="0 0 0 2"
-                       MainText="{Binding WD_MAX2Text, ElementName=root}" />
+                       MainText="{Binding Max2WindDir}" SubText="°" />
         <base:BorderText  Grid.Column="6" Grid.Row="2"  Margin="0 0 0 0"
-                       MainText="{Binding WS_MAX2Text, ElementName=root}" />-->
+                       MainText="{Binding Max2WindSpeed}" SubText="mps" />
 
 
     </Grid>

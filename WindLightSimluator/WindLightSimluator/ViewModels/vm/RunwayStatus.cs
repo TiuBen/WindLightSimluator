@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindLightSimluator.ViewModels;
+using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels.vm
 {
@@ -11,7 +12,7 @@ namespace WindLightSimluator.ViewModels.vm
 
     public class RunwayStatusViewModel : ViewModelBase
     {
-        private readonly RunwayColumnViewModel _part;
+        private readonly RunwayPartViewModel _part;
 
         private string _runwayNumber;
         public string RunwayNumber
@@ -50,7 +51,7 @@ namespace WindLightSimluator.ViewModels.vm
 
         }
 
-        public RunwayStatusViewModel(RunwayColumnViewModel part, String rwyNumber)
+        public RunwayStatusViewModel(RunwayPartViewModel part, String rwyNumber)
         {
             _part = part;
             _runwayNumber = rwyNumber;

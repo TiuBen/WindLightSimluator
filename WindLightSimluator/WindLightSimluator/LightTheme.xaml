@@ -14,7 +14,7 @@
     <Color x:Key="RunwayLabelNotInUseTextColor">#456c92</Color>
     <Color x:Key="RunwayLabelIndicatorBgColor">#d53700</Color>
 
-
+    
     <!-- 主背景 / 面板灰 -->
     <Color x:Key="Bg_Gray_Main">#A3A7B1</Color>
     <Color x:Key="Bg_Gray_Light">#DCE0E9</Color>
@@ -28,6 +28,7 @@
     <Color x:Key="White_Off">#F9FAFA</Color>
 
     <!-- 蓝色系（主界面核心色） -->
+    <Color x:Key="Blue_DarkPrimary">#0061a7</Color>
     <Color x:Key="Blue_Primary">#3e9ae3</Color>
     <Color x:Key="Blue_Deep">#166096</Color>
     <Color x:Key="Blue_Mid">#5595CA</Color>
@@ -47,10 +48,10 @@
     <!-- 橙色 / 警示 / 风向箭头 -->
     <Color x:Key="Orange_Alert">#EC7439</Color>
     <Color x:Key="Orange_Light">#ECB397</Color>
+    <Color x:Key="Orange_XXXXX">#FF9800</Color>
 
     <!-- 中性灰 -->
     <Color x:Key="Gray_Neutral">#D1D2D3</Color>
-
 
 
     <!--顶端栏-->
@@ -66,7 +67,7 @@
     <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Inactive" Color="{StaticResource White_Main}"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
-                            
+
     <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Active" Color="{StaticResource White_Main}"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Active" Color="{StaticResource Blue_Lighter2}"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Active" Color="{StaticResource Blue_Alt3}"/>
@@ -75,6 +76,15 @@
 
 
     <!--WindPanel-->
+    <SolidColorBrush x:Key="WindPanelArcDirectedHeadColor.Active" Color="#EC7439"/>
+    <SolidColorBrush x:Key="WindPanelArcRangeColor.Active" Color="{StaticResource Blue_DarkPrimary}"/>
+    <SolidColorBrush x:Key="WindPanelArcDirectedHeadColor.InActive" Color="#ECB397"/>
+    <SolidColorBrush x:Key="WindPanelArcRangeColor.InActive" Color="#ECB397"/>
+    <SolidColorBrush x:Key="WindPanelArcColor.Active" Color="#D1D2D3"/>
+    <SolidColorBrush x:Key="WindPanelArcColor.InActive" Color="#DCE0E9"/>
+
+
+
     <SolidColorBrush x:Key="WindPanelBg.Active"  Color="{StaticResource White_Main}"/>
     <SolidColorBrush x:Key="WindPanelBg.InActive"  Color="{StaticResource Bg_Gray_Lighter}"/>
     <SolidColorBrush x:Key="WindPanelTextColor.Active"  Color="{StaticResource Text_Darker}"/>

@@ -42,68 +42,68 @@ namespace WindLightSimluator.Model
                 Time = now,
                 CurrentWQT = _samples.LastOrDefault(),
 
-                WindDirRange2Min = CalculateAngleRange(samples2Min),
-                WindDirRange5Min = CalculateAngleRange(samples5Min),
+                //WindDirRange2Min = CalculateAngleRange(samples2Min),
+                //WindDirRange5Min = CalculateAngleRange(samples5Min),
 
-                AvgWindSpeed2Min = CalculateAverageWindSpeed(samples2Min)
+                //AvgWindSpeed2Min = CalculateAverageWindSpeed(samples2Min)
         };
         }
 
 
-        private static WindDirRange CalculateAngleRange(IEnumerable<WTQ> samples)
-        {
-            if (samples == null)
-                return new WindDirRange(0, 0);
+        //private static WindDirRange CalculateAngleRange(IEnumerable<WTQ> samples)
+        //{
+        //    if (samples == null)
+        //        return new WindDirRange(0, 0);
 
-            var angles = samples
-                .Select(s => s.WindDir)
-                .Distinct()
-                .OrderBy(a => a)
-                .ToList();
+        //    var angles = samples
+        //        .Select(s => s.WindDir)
+        //        .Distinct()
+        //        .OrderBy(a => a)
+        //        .ToList();
 
-            if (angles.Count == 0)
-                return new WindDirRange(0, 0);
+        //    if (angles.Count == 0)
+        //        return new WindDirRange(0, 0);
 
-            if (angles.Count == 1)
-                return new WindDirRange(angles[0], angles[0]);
+        //    if (angles.Count == 1)
+        //        return new WindDirRange(angles[0], angles[0]);
 
-            // 最大空隙法（圆形角度）
-            int count = angles.Count;
-            int splitIndex = 0;
-            int maxGap = -1;
+        //    // 最大空隙法（圆形角度）
+        //    int count = angles.Count;
+        //    int splitIndex = 0;
+        //    int maxGap = -1;
 
-            for (int i = 0; i < count; i++)
-            {
-                int current = angles[i];
-                int next = angles[(i + 1) % count];
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        int current = angles[i];
+        //        int next = angles[(i + 1) % count];
 
-                int gap = (i == count - 1)
-                    ? (angles[0] + 360) - current
-                    : next - current;
+        //        int gap = (i == count - 1)
+        //            ? (angles[0] + 360) - current
+        //            : next - current;
 
-                if (gap > maxGap)
-                {
-                    maxGap = gap;
-                    splitIndex = (i + 1) % count;
-                }
-            }
+        //        if (gap > maxGap)
+        //        {
+        //            maxGap = gap;
+        //            splitIndex = (i + 1) % count;
+        //        }
+        //    }
 
-            var start = angles[splitIndex];
-            var end = angles[(splitIndex - 1 + count) % count];
+        //    var start = angles[splitIndex];
+        //    var end = angles[(splitIndex - 1 + count) % count];
 
-            return new WindDirRange((short)start, (short)end);
-        }
+        //    return new WindDirRange((short)start, (short)end);
+        //}
 
 
-        private static float CalculateAverageWindSpeed(IEnumerable<WTQ> samples)
-        {
-            var list = samples as IList<WTQ> ?? samples.ToList();
+        //private static float CalculateAverageWindSpeed(IEnumerable<WTQ> samples)
+        //{
+        //    var list = samples as IList<WTQ> ?? samples.ToList();
 
-            if (list.Count == 0)
-                return 0.8f;
+        //    if (list.Count == 0)
+        //        return 0.8f;
 
-            return (float)list.Average(s => s.WindSpeed);
-        }
+        //    return (float)list.Average(s => s.WindSpeed);
+        //}
     }
 
   

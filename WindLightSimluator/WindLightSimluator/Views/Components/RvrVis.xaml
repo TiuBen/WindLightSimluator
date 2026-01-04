@@ -10,10 +10,10 @@
              mc:Ignorable="d" 
              >
     <UserControl.Resources>
-        <!--<conv:RvrColorConverter x:Key="RvrColorConverter"/>
+        <conv:RvrColorConverter x:Key="RvrColorConverter"/>
         <conv:VisConverter x:Key="VisConverter"/>
 
-        --><!--字体大小--><!--
+        <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
 
         <Style  TargetType="Border" >
@@ -36,33 +36,9 @@
             <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:RvrVis}}" />
             <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:RvrVis}}" />
         </Style>
-        --><!--RvrVisStyle--><!--
-        <Style  TargetType="local:RvrVis">
-            --><!-- 默认背景（未激活） --><!--
-            <Setter Property="Margin" Value="0 0 0 4"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
-            --><!-- 背景（激活） --><!--
-            <Style.Triggers>
-                <Trigger
-                    Property="IsActive"
-                    Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>
-        </Style>-->
-
     </UserControl.Resources>
 
-    <Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=UserControl}}">
+    <Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=local:RvrVis}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -78,11 +54,8 @@
         <Border Grid.Column="0" Grid.Row="0"   >
             <TextBlock Text="RVR1A" />
         </Border>
-        <base:BorderText  
-                          MainText="{Binding RvrValue, RelativeSource={RelativeSource AncestorType=local:RvrVis}}"  
-                          BorderColor="{Binding RvrValue, 
-                                 RelativeSource={RelativeSource AncestorType=local:RvrVis},
-                                Converter={StaticResource RvrColorConverter}}"
+        <base:BorderText  MainText="{Binding RvrValue}"  
+                          BorderColor="{Binding RvrValue, Converter={StaticResource RvrColorConverter}}"
                           SubText="m" 
                           Grid.Column="1" Grid.Row="0"  />
 
@@ -91,11 +64,8 @@
         <Border Grid.Column="0" Grid.Row="2"  >
             <TextBlock Text="VIS1A" />
         </Border>
-        <base:BorderText   
-                            MainText="{Binding VisValue, RelativeSource={RelativeSource AncestorType=local:RvrVis}}" 
-                            BorderColor="{Binding VisValue, 
-                            RelativeSource={RelativeSource AncestorType=local:RvrVis}, 
-                            Converter={StaticResource VisConverter}}"
+        <base:BorderText    MainText="{Binding VisValue}"
+                            BorderColor="{Binding VisValue, Converter={StaticResource VisConverter}}"
                             SubText="m" 
                             Grid.Column="1" Grid.Row="2"  />
     </Grid>

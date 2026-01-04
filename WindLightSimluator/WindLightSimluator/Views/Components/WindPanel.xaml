@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindLightSimluator.Views.Components"
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800">
     <UserControl.Resources>
+        <conv:WindSectorStateToBrushConverter x:Key="WindPanelSegmentColorConverter"/>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{Binding WindPanelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Style>
@@ -16,6 +18,33 @@
         <Style TargetType="Ellipse">
             <Setter Property="Fill" Value="{Binding WindPanelBackground,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Style>
+        <Style x:Key="OuterStyle" TargetType="Path" >
+            <Setter Property="StrokeThickness" Value="28"/>
+            <Setter Property="Stroke">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                        <Binding Path="DataContext.IsActive" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="DataContext.RangeArcIndex" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                        <Binding Path="DataContext.DirectedArcIndex" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="InnerStyle" TargetType="Path" >
+            <Setter Property="StrokeThickness" Value="22"/>
+            <Setter Property="Stroke">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                        <Binding Path="DataContext.IsActive" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="DataContext.RangeArcIndex" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                        <Binding Path="DataContext.DirectedArcIndex" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </UserControl.Resources>
     <Grid Background="{Binding WindPanelBackground,RelativeSource={RelativeSource  AncestorType=UserControl}}">
         <!--<Grid Background="White">-->
@@ -23,7 +52,7 @@
             <Canvas Width="800" Height="800" Background="Transparent">
 
                 <!-- Outer Arc Segments -->
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="0" Style="{StaticResource  OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="376.28,60.83">
@@ -33,7 +62,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="1" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="435.54,61.86">
@@ -43,7 +72,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="2" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="493.72,73.17">
@@ -53,7 +82,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="3" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="549.05,94.41">
@@ -63,7 +92,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="4" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="599.85,124.93">
@@ -73,7 +102,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="5" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="644.58,163.82">
@@ -83,7 +112,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="6" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="681.87,209.87">
@@ -93,7 +122,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="7" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="710.61,261.71">
@@ -103,7 +132,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="8" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="729.90,317.75">
@@ -113,7 +142,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="9" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="739.17,376.28">
@@ -123,7 +152,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="10" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="738.14,435.54">
@@ -133,7 +162,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="11" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="726.83,493.72">
@@ -143,7 +172,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="12" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="705.59,549.05">
@@ -153,7 +182,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="13" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="675.07,599.85">
@@ -163,7 +192,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="14" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="636.18,644.58">
@@ -173,7 +202,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="15" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="590.13,681.87">
@@ -183,7 +212,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="16" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="538.29,710.61">
@@ -193,7 +222,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="17" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="482.25,729.90">
@@ -203,7 +232,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="18" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="423.72,739.17">
@@ -213,7 +242,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="19" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="364.46,738.14">
@@ -223,7 +252,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="20" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="306.28,726.83">
@@ -233,7 +262,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="21" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="250.95,705.59">
@@ -243,7 +272,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="22" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="200.15,675.07">
@@ -253,7 +282,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="23" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="155.42,636.18">
@@ -263,7 +292,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="24" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="118.13,590.13">
@@ -273,7 +302,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="25" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="89.39,538.29">
@@ -283,7 +312,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="26" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="70.10,482.25">
@@ -293,7 +322,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="27" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="60.83,423.72">
@@ -303,7 +332,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="28" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="61.86,364.46">
@@ -313,7 +342,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="29" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="73.17,306.28">
@@ -323,7 +352,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="30" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="94.41,250.95">
@@ -333,7 +362,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="31" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="124.93,200.15">
@@ -343,7 +372,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="32" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="163.82,155.42">
@@ -353,7 +382,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="33" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="209.87,118.13">
@@ -363,7 +392,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="34" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="261.71,89.39">
@@ -373,7 +402,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Stroke="#FFB5BFBF" StrokeThickness="28" >
+                <Path Tag="35" Style="{StaticResource OuterStyle}" >
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="317.75,70.10">
@@ -384,7 +413,7 @@
                 </Path>
 
                 <!-- Inner Arc Segments -->
-                <Path x:Name="InnerPath1" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="0" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="378.38,90.76">
@@ -394,7 +423,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath2" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="1" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="432.40,91.70">
@@ -404,7 +433,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath3" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="2" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="485.45,102.01">
@@ -414,7 +443,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath4" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="3" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="535.90,121.37">
@@ -424,7 +453,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath5" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="4" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="582.21,149.20">
@@ -434,7 +463,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath6" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="5" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="623.00,184.66">
@@ -444,7 +473,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath7" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="6" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="657.00,226.65">
@@ -454,7 +483,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath8" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="7" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="683.20,273.91">
@@ -464,7 +493,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath9" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="8" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="700.79,325.00">
@@ -474,7 +503,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath10" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="9" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="709.24,378.38">
@@ -484,7 +513,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath11" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="10" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="708.30,432.40">
@@ -494,7 +523,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath12" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="11" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="697.99,485.45">
@@ -504,7 +533,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath13" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="12" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="678.63,535.90">
@@ -514,7 +543,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath14" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="13" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="650.80,582.21">
@@ -524,7 +553,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath15" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="14" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="615.34,623.00">
@@ -534,7 +563,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath16" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="15" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="573.35,657.00">
@@ -544,7 +573,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath17" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="16" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="526.09,683.20">
@@ -554,7 +583,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath18" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="17" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="475.00,700.79">
@@ -564,7 +593,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath19" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="18" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="421.62,709.24">
@@ -574,7 +603,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath20" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="19" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="367.60,708.30">
@@ -584,7 +613,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath21" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="20" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="314.55,697.99">
@@ -594,7 +623,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath22" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="21" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="264.10,678.63">
@@ -604,7 +633,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath23" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="22" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="217.79,650.80">
@@ -614,7 +643,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath24" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="23" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="177.00,615.34">
@@ -624,7 +653,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath25" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="24" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="143.00,573.35">
@@ -634,7 +663,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath26" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="25" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="116.80,526.09">
@@ -644,7 +673,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath27" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="26" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="99.21,475.00">
@@ -654,7 +683,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath28" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="27" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="90.76,421.62">
@@ -664,7 +693,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath29" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="28" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="91.70,367.60">
@@ -674,7 +703,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath30" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="29" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="102.01,314.55">
@@ -684,7 +713,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath31" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="30" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="121.37,264.10">
@@ -694,7 +723,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath32" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="31" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="149.20,217.79">
@@ -704,7 +733,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath33" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="32" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="184.66,177.00">
@@ -714,7 +743,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath34" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="33" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="226.65,143.00">
@@ -724,7 +753,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath35" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="34" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="273.91,116.80">
@@ -734,7 +763,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path x:Name="InnerPath36" Stroke="#FFB5BFBF" StrokeThickness="23">
+                <Path Tag="35" Style="{StaticResource  InnerStyle}">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="325.00,99.21">

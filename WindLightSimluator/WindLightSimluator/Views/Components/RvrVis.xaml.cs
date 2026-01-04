@@ -26,21 +26,21 @@ namespace WindLightSimluator.Views.Components
             InitializeComponent();
         }
 
-        public int RvrValue
-        {
-            get => (int)GetValue(RvrValueProperty);
-            set => SetValue(RvrValueProperty, value);
-        }
-        public static readonly DependencyProperty RvrValueProperty =
-            DependencyProperty.Register(nameof(RvrValue), typeof(int), typeof(RvrVis), new PropertyMetadata(550));
+        //public int RvrValue
+        //{
+        //    get => (int)GetValue(RvrValueProperty);
+        //    set => SetValue(RvrValueProperty, value);
+        //}
+        //public static readonly DependencyProperty RvrValueProperty =
+        //    DependencyProperty.Register(nameof(RvrValue), typeof(int), typeof(RvrVis), new PropertyMetadata(550));
 
-        public int VisValue
-        {
-            get => (int)GetValue(VisValueProperty);
-            set => SetValue(VisValueProperty, value);
-        }
-        public static readonly DependencyProperty VisValueProperty =
-            DependencyProperty.Register(nameof(VisValue), typeof(int), typeof(RvrVis), new PropertyMetadata(1000));
+        //public int VisValue
+        //{
+        //    get => (int)GetValue(VisValueProperty);
+        //    set => SetValue(VisValueProperty, value);
+        //}
+        //public static readonly DependencyProperty VisValueProperty =
+        //    DependencyProperty.Register(nameof(VisValue), typeof(int), typeof(RvrVis), new PropertyMetadata(1000));
 
 
 

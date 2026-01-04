@@ -9,21 +9,21 @@
              mc:Ignorable="d" 
             >
     <UserControl.Resources>
-        <!--主题颜色+是否被选中--><!--
+        <!--主题颜色+是否被选中-->
         <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
-        --><!--字体大小--><!--
+        <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
 
         <Style  TargetType="Border" >
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:WeatherCondition}}"/>
         </Style>
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="Padding" Value="10 0 10 0"/>
-            <Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=local:WeatherCondition}}" />
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                RelativeSource={RelativeSource AncestorType=Border},
                Converter={StaticResource  HeightToFontSizeConverter}}"/>
@@ -33,36 +33,11 @@
             <Setter Property="BorderThicknessValue" Value="0"/>
             <Setter Property="SubText" Value="mps"/>
             <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
-            <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:WeatherCondition}}" />
+            <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:WeatherCondition}}" />
         </Style>
-
-        --><!--WeatherConditionStyle--><!--
-        <Style  TargetType="local:WeatherCondition">
-            --><!-- 默认背景（未激活） --><!--
-            <Setter Property="Margin" Value="0 0 0 4"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
-            --><!-- 背景（激活） --><!--
-            <Style.Triggers>
-                <Trigger
-              Property="IsActive"
-              Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>
-        </Style>-->
-
     </UserControl.Resources>
-    <Grid Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=UserControl}}"   >
+    <Grid Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=local:WeatherCondition}}"   >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3"/>
@@ -88,47 +63,48 @@
         <Border   Grid.Row="0" Grid.Column="0" >
             <TextBlock Text="Cloud 1st layer"/>
         </Border>
-        <base:BorderText MainText="///" SubText="m" Grid.Row="2" Grid.Column="0"/>
+        <base:BorderText MainText="{Binding CloudFirstLayer}" SubText="m" Grid.Row="2" Grid.Column="0"/>
         <Border Grid.Row="4" Grid.Column="0">
             <TextBlock Text="T"/>
         </Border>
-        <base:BorderText MainText="///" SubText="°C" Grid.Row="6" Grid.Column="0"/>
+        <base:BorderText MainText="{Binding Temperature}" SubText="°C" Grid.Row="6" Grid.Column="0"/>
+
         <!--第二列-->
         <Border Grid.Row="0" Grid.Column="2">
             <TextBlock Text="    VVIS    "/>
         </Border>
-        <base:BorderText MainText="///" SubText="m" Grid.Row="2" Grid.Column="2"/>
+        <base:BorderText MainText="{Binding VVIS}" SubText="m" Grid.Row="2" Grid.Column="2"/>
         <Border Grid.Row="4" Grid.Column="2">
             <TextBlock Text="DP"/>
         </Border>
-        <base:BorderText MainText="///" SubText="°C" Grid.Row="6" Grid.Column="2"/>
+        <base:BorderText MainText="{Binding DewPoint}" SubText="°C" Grid.Row="6" Grid.Column="2"/>
         <!--第三列-->
         <Border Grid.Row="0" Grid.Column="4">
             <TextBlock Text="Rain 1h"/>
         </Border>
-        <base:BorderText MainText="///" SubText="mm" Grid.Row="2" Grid.Column="4"/>
+        <base:BorderText MainText="{Binding Rain1h}" SubText="mm" Grid.Row="2" Grid.Column="4"/>
         <Border Grid.Row="4" Grid.Column="4">
             <TextBlock Text="RH"/>
         </Border>
-        <base:BorderText MainText="///" SubText="%" Grid.Row="6" Grid.Column="4"/>
+        <base:BorderText MainText="{Binding RelativeHumidity}" SubText="%" Grid.Row="6" Grid.Column="4"/>
         <!--第四列-->
         <Border Grid.Row="0" Grid.Column="6">
             <TextBlock Text="Rain 24h"/>
         </Border>
-        <base:BorderText MainText="///" SubText="mm" Grid.Row="2" Grid.Column="6"/>
+        <base:BorderText MainText="{Binding Rain24h}" SubText="mm" Grid.Row="2" Grid.Column="6"/>
         <Border Grid.Row="4" Grid.Column="6">
             <TextBlock Text="QFE"/>
         </Border>
-        <base:BorderText MainText="///" SubText="%" Grid.Row="6" Grid.Column="6"/>
+        <base:BorderText MainText="{Binding QFE}" SubText="hPa" Grid.Row="6" Grid.Column="6"/>
         <!--第五列-->
         <Border Grid.Row="0" Grid.Column="8">
             <TextBlock Text="STEMP"/>
         </Border>
-        <base:BorderText MainText="///" SubText="m" Grid.Row="2" Grid.Column="8"/>
+        <base:BorderText MainText="{Binding STEMP}" SubText="°C" Grid.Row="2" Grid.Column="8"/>
         <Border Grid.Row="4" Grid.Column="8">
             <TextBlock Text="STATUS"/>
         </Border>
-        <base:BorderText MainText="///"  Grid.Row="6"  Grid.Column="8"/>
+        <base:BorderText MainText="{Binding Status}" SubText="" Grid.Row="6" Grid.Column="8"/>
     </Grid>
 
 

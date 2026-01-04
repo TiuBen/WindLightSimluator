@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using WindLightSimluator.ViewModels.vm;
 using System.Collections.ObjectModel;
+using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels
 {

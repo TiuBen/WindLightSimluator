@@ -19,7 +19,7 @@ namespace WindLightSimluator.Views.Components
     /// <summary>
     /// WindPanel.xaml 的交互逻辑
     /// </summary>
-    public partial class WindPanel : UserControl,IStateAware
+    public partial class WindPanel : UserControl
     {
         public WindPanel()
         {
