@@ -41,7 +41,7 @@
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                     RelativeSource={RelativeSource AncestorType=Grid},
                     Converter={StaticResource  HeightToFontSizeConverter}, 
-                    ConverterParameter=0.45}"/>
+                    ConverterParameter=0.5}"/>
         </Style>
         <Style x:Key="smallText" TargetType="TextBlock" BasedOn="{StaticResource baseTextStyle}" >
             <Setter Property="FontWeight" Value="Bold"/>
@@ -50,7 +50,7 @@
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                     RelativeSource={RelativeSource AncestorType=Grid},
                     Converter={StaticResource  HeightToFontSizeConverter}, 
-                    ConverterParameter=0.2}"/>
+                    ConverterParameter=0.3}"/>
         </Style>
     </UserControl.Resources>
 
@@ -94,10 +94,11 @@
                     x:Name="StatusBorder"
                     Background="{Binding ValueTextBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"
                     VerticalAlignment="Center"
+                    Visibility="{Binding IsActive,Converter={StaticResource TrueOnlyToVisibility} }" 
                     HorizontalAlignment="Stretch"
                     >
                 <!-- 内容区：居中显示状态文字 -->
-                <TextBlock Text="{Binding RunwayStatusText}" Style="{DynamicResource smallText}" Margin="5"/>
+                <TextBlock Text="{Binding RunwayStatusText}" Style="{DynamicResource smallText}" Margin="10 5 10 5"/>
                 <!-- 说明：上面状态文字的 FontSize 我设置为 RunwayFontSize 的某个比例（可调），避免状态字太大 -->
             </base:CapsuleBorder>
         </Grid>

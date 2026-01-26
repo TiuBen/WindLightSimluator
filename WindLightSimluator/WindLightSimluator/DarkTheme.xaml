@@ -15,35 +15,28 @@
     <SolidColorBrush x:Key="RwyTextColor_NotInUse"   Color="#FFFFFF"/>
 
 
-
     <!--Wind360-->
     <SolidColorBrush x:Key="Wind360PrimaryBg"   Color="#1760c7"/>
     <SolidColorBrush x:Key="Wind360SecondaryBg"   Color="#0047ab"/>
 
     
-    
-    
-    
-    
-    
-    
 
-    <!-- ===== 字体颜色 ===== -->
+     <!--===== 字体颜色 =====--> 
     <SolidColorBrush x:Key="PrimaryFontBrush"   Color="#FFFFFF"/>
-    <!-- 主文字：白 -->
+     <!--主文字：白--> 
     <SolidColorBrush x:Key="SecondaryFontBrush" Color="#AFC8FF"/>
-    <!-- 次文字：淡蓝 -->
+     <!--次文字：淡蓝--> 
     <SolidColorBrush x:Key="TertiaryFontBrush"  Color="#6F8EBB"/>
-    <!-- 弱提示：暗蓝灰 -->
+     <!--弱提示：暗蓝灰--> 
     <SolidColorBrush x:Key="DisabledFontBrush"  Color="#4A5B7A"/>
 
-    <!-- ===== 背景色 ===== -->
+     <!--===== 背景色 =====--> 
     <SolidColorBrush x:Key="PrimaryBackgroundBrush" Color="#001224"/>
-    <!-- 整体屏幕深蓝 -->
+     <!--整体屏幕深蓝--> 
     <SolidColorBrush x:Key="CardBackgroundBrush"    Color="#002C5C"/>
-    <!-- 单个 runways block -->
-    <SolidColorBrush x:Key="SectionBackgroundBrush" Color="#003A6F"/>
-    <!-- METAR 区 / 信息区 -->
+     <!--单个 runways block--> 
+    <!--<SolidColorBrush x:Key="SectionBackgroundBrush" Color="#003A6F"/>-->
+     <!--METAR 区 / 信息区--> 
 
     <!-- ===== 分割 / 边线 ===== -->
     <SolidColorBrush x:Key="BorderBrush"  Color="#1F3B5F"/>
@@ -56,5 +49,97 @@
     <!-- 橙色 Landing/Takeoff -->
     <SolidColorBrush x:Key="HighlightBrush" Color="#3F8CFA"/>
     <!-- 按钮 hover  -->
+
+    <!-- 主背景 / 面板灰 -->
+    <Color x:Key="Bg_Gray_Main">#A3A7B1</Color>
+    <Color x:Key="Bg_Gray_Light">#DCE0E9</Color>
+    <Color x:Key="Bg_Gray_Lighter">#F1F2F6</Color>
+    <Color x:Key="Bg_Gray_Dark">#7F869C</Color>
+    <Color x:Key="Bg_Gray_Dark1">#7b83a5</Color>
+    <Color x:Key="Bg_Gray_Dark2">#7F869C</Color>
+    <Color x:Key="Bg_Gray_Dark3">#aab8db</Color>
+    <Color x:Key="Bg_Blue_Dark1">#1F3B5F</Color>
+
+    <!-- 纯白 / 高亮 -->
+    <Color x:Key="White_Main">#FAFAFA</Color>
+    <Color x:Key="White_Off">#F9FAFA</Color>
+
+    <!-- 蓝色系（主界面核心色） -->
+    <Color x:Key="Blue_DarkPrimary">#0061a7</Color>
+    <Color x:Key="Blue_Primary">#3e9ae3</Color>
+    <Color x:Key="Blue_Deep">#166096</Color>
+    <Color x:Key="Blue_Mid">#5595CA</Color>
+    <Color x:Key="Blue_Light">#AABBD9</Color>
+    <Color x:Key="Blue_Lighter">#E0EEFD</Color>
+    <Color x:Key="Blue_Lighter2">#b7d9ea</Color>
+    <Color x:Key="Blue_Pale">#C8E3F8</Color>
+    <Color x:Key="Blue_Alt1">#7CABD4</Color>
+    <Color x:Key="Blue_Alt2">#5A75AB</Color>
+    <Color x:Key="Blue_Alt3">#265bc6</Color>
+
+    <!-- 深色文字 / 刻度 -->
+    <Color x:Key="Text_Darker">#080408</Color>
+    <Color x:Key="Text_Muted">#525B58</Color>
+
+    <!-- 橙色 / 警示 / 风向箭头 -->
+    <Color x:Key="Orange_Alert">#EC7439</Color>
+    <Color x:Key="Orange_Light">#ECB397</Color>
+    <Color x:Key="Orange_XXXXX">#FF9800</Color>
+
+    <!-- 中性灰 -->
+    <Color x:Key="Gray_Neutral">#D1D2D3</Color>
+
+
+
+
+
+
+    <!--RunwayStatus-->
+    <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Inactive" Color="{StaticResource Bg_Blue_Dark1}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark3}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Dark3}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Inactive" Color="{StaticResource White_Main}"/>
+
+    <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Active" Color="{StaticResource Bg_Blue_Dark1}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Active" Color="{StaticResource Blue_Primary}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Active" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Active" Color="{StaticResource Orange_Alert}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Active" Color="{StaticResource White_Main}"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </ResourceDictionary>

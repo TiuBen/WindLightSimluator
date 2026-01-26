@@ -47,32 +47,7 @@ namespace WindLightSimluator.Views.Components
                 typeof(bool?),
                 typeof(RunwayStatus),
                 new PropertyMetadata(null));
-                //new PropertyMetadata(true, OnIsActiveChanged));
-
-        //private static void OnIsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    if (d is RunwayStatus ctrl)
-        //    {
-        //        ctrl.UpdateRunwayStatusText();
-        //    }
-        //}
-
-
-
-
-        // 工具方法：向上找父级
-        //private static T? FindAncestor<T>(DependencyObject current) where T : DependencyObject
-        //{
-        //    while (current != null)
-        //    {
-        //        if (current is T target)
-        //            return target;
-
-        //        current = VisualTreeHelper.GetParent(current);
-        //    }
-        //    return null;
-        //}
-
+  
 
         #region
         // 暴露颜色 

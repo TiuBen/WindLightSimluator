@@ -24,14 +24,10 @@ namespace WindLightSimluator.ViewModels.vm
             }
         }
 
-        public bool IsActive
+        public bool? IsActive
         {
             get {
-                if (_part.IsActive==true)
-                {
-                    return true;
-                }
-                return false;
+                return _part.IsActive;
             }
         
         }

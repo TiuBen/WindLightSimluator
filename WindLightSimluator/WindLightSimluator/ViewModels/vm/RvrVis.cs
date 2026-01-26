@@ -8,7 +8,7 @@ using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels.vm
 {
-   public class RvrVisViewModel : ViewModelBase
+    public class RvrVisViewModel : ViewModelBase
     {
         private readonly RunwayPartViewModel _runwayColumnViewModel;
 
@@ -17,7 +17,24 @@ namespace WindLightSimluator.ViewModels.vm
             _runwayColumnViewModel = runwayColumnViewModel;
         }
 
-        public int RvrValue { get; set; } = 2000;
+        private int _rvr = 2000;
+        public string RvrValue
+        {
+            get {
+                if (_rvr >= 2000)
+                {
+                    return $"P2000";
+                }
+                else
+                {
+                    return _rvr.ToString();
+                }
+
+            }
+            set { _rvr=value; }
+        }
+
+
         public int VisValue { get; set; } = 2000;
 
     }

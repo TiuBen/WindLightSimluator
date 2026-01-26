@@ -7,7 +7,11 @@ using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels.vm
 {
-    class MetarViewModel : ViewModelBase
+    public class MetarViewModel : ViewModelBase
     {
+        public string  Metar { get; set; }  
+        public bool isNew { get; set; }
+
+
     }
 }

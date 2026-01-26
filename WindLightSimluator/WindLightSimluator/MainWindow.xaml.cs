@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using WindLightSimluator.ViewModels;
 using WindLightSimluator.Views.Components.Base;
-
+using System.Diagnostics;
 
 namespace WindLightSimluator
 {
@@ -33,9 +33,13 @@ namespace WindLightSimluator
         }
 
 
-        private void SwitchTheme(bool isDark)
+        private bool isDark=false;
+      
+        private void SwitchThemeButtton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Resources.MergedDictionaries.Clear();
+            Debug.WriteLine($"Switch theme {isDark}");
+
+             Application.Current.Resources.MergedDictionaries.Clear();
 
             if (isDark)
             {
@@ -43,6 +47,7 @@ namespace WindLightSimluator
                     new ResourceDictionary()
                     { Source = new Uri("DarkTheme.xaml", UriKind.Relative) }
                 );
+                
             }
             else
             {
@@ -51,39 +56,14 @@ namespace WindLightSimluator
                     { Source = new Uri("LightTheme.xaml", UriKind.Relative) }
                 );
             }
-        }
 
-        private void SwitchThemeButtton_Click(object sender, RoutedEventArgs e)
-        {
-
+           isDark= !isDark;
         }
 
 
-        public string Theme
-        {
-            get => (string)GetValue(ThemeProperty);
-            set => SetValue(ThemeProperty, value);
-        }
+        private TimeSpan exerciseDuration;
 
-        public static readonly DependencyProperty ThemeProperty =
-            DependencyProperty.Register(
-                nameof(Theme),
-                typeof(string),
-                typeof(MainWindow),
-                new PropertyMetadata("Light"));
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Debug.WriteLine("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-            //// 先全部关掉
-            //StateBehavior.SetIsActive(Col1, false);
-            //StateBehavior.SetIsActive(Col3, false);
 
-            //// 再激活被点的那一列
-            //if (sender is Grid grid)
-            //{
-            //    StateBehavior.SetIsActive(grid, true);
-            //}
-        }
     }
 }

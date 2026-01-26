@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
+using System.Diagnostics;
 
 namespace WindLightSimluator.Converters
 {
@@ -13,6 +14,7 @@ namespace WindLightSimluator.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            Debug.WriteLine(value);
             if (value==null)
             {
                 return Visibility.Collapsed;

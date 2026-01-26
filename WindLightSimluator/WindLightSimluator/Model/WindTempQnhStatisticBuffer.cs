@@ -15,9 +15,9 @@ namespace WindLightSimluator.Model
         private readonly TimeSpan _window5Min = TimeSpan.FromMinutes(5);
         private readonly TimeSpan _window2Min = TimeSpan.FromMinutes(2);
 
-        private readonly List<WTQ> _samples = new();
+        private readonly List<WTQR> _samples = new();
 
-        public void AddSample(WTQ sample)
+        public void AddSample(WTQR sample)
         {
             _samples.Add(sample);
 
@@ -50,7 +50,7 @@ namespace WindLightSimluator.Model
         }
 
 
-        //private static WindDirRange CalculateAngleRange(IEnumerable<WTQ> samples)
+        //private static WindDirRange CalculateAngleRange(IEnumerable<WTQR> samples)
         //{
         //    if (samples == null)
         //        return new WindDirRange(0, 0);
@@ -95,9 +95,9 @@ namespace WindLightSimluator.Model
         //}
 
 
-        //private static float CalculateAverageWindSpeed(IEnumerable<WTQ> samples)
+        //private static float CalculateAverageWindSpeed(IEnumerable<WTQR> samples)
         //{
-        //    var list = samples as IList<WTQ> ?? samples.ToList();
+        //    var list = samples as IList<WTQR> ?? samples.ToList();
 
         //    if (list.Count == 0)
         //        return 0.8f;

@@ -145,7 +145,7 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <comp:RunwayStatus    DataContext="{Binding Status}" IsActive="{Binding IsActive,Converter={StaticResource TrueOnlyToBool} }"/>
+            <comp:RunwayStatus    DataContext="{Binding Status}" IsActive="{Binding IsActive,Converter={StaticResource TrueOnlyToBool} }"  />
             <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3" DataContext="{Binding Wind}" />
             <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding HeadCrossWind}" IsActive="True"/>
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding RvrVis}"   IsActive="True"/>
@@ -163,7 +163,7 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <comp:RunwayStatus     DataContext="{Binding Status}" IsActive="{x:Null}"/>
+            <comp:RunwayStatus     DataContext="{Binding Status}" />
             <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding Wind}" IsActive="False"/>
             <comp:HeadCrossWind  Grid.Row="3" DataContext="{Binding HeadCrossWind}"  IsActive="False"/>
             <local:Qnh  Grid.Row="4" />

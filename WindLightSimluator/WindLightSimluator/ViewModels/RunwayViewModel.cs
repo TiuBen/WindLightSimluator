@@ -17,17 +17,25 @@ namespace WindLightSimluator.ViewModels
 
       
 
-        internal void OnColumnSelected(RunwayPartViewModel selected)
+        internal void OnPartChanged(RunwayPartViewModel selected)
         {
             // 中间列不参与
             //if (!selected.IsSelectable)
             //    return;
 
-            //RunwayStart.State = RunwayColumnState.Normal;
-            //RunwayEnd.State = RunwayColumnState.Normal;
+            if (selected ==RunwayStart)
+            {
+                RunwayStart.IsActive = true;
+                RunwayEnd.IsActive = false;
+            }
+            if (selected==RunwayEnd)
+            {
+                RunwayEnd.IsActive = true;
+                RunwayStart.IsActive = false;
+            }
+            
 
 
-            //selected.State = RunwayColumnState.Selected;
         }
         public RunwayViewModel()
         {
