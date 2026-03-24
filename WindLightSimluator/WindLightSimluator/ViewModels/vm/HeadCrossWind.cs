@@ -43,7 +43,7 @@ namespace WindLightSimluator.ViewModels.vm
         // ===== UI 直接绑定的属性 =====
 
 
-        public string Avg2HeadWindSpeed { get; set; } = '12';
+        public string Avg2HeadWindSpeed { get; set; } = "12";
         public string Avg2CrossWindSpeed { get; set; } = "R4.5";
         public string Min2WindDir { get; set; } = "90";
         public string Min2WindSpeed { get; set; } = "0.2f";

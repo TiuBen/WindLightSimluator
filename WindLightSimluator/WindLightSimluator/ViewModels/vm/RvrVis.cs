@@ -20,7 +20,8 @@ namespace WindLightSimluator.ViewModels.vm
         private int _rvr = 2000;
         public string RvrValue
         {
-            get {
+            get
+            {
                 if (_rvr >= 2000)
                 {
                     return $"P2000";
@@ -31,11 +32,31 @@ namespace WindLightSimluator.ViewModels.vm
                 }
 
             }
-            set { _rvr=value; }
+            set
+            {   // 支持int赋值（通过字符串）
+                if (int.TryParse(value, out int intValue))
+                {
+                    _rvr = intValue >= 0 ? intValue : 0;
+                }
+                else if (value?.StartsWith("P", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    _rvr = 2000;
+                }
+                else
+                {
+                    _rvr = 0;
+                }
+            }
+        }
+
+        private int _vis = 2000;
+        public int VisValue
+        {
+            get { return _vis; }
+            set { _vis = value; }
         }
 
 
-        public int VisValue { get; set; } = 2000;
 
     }
 }

@@ -6,11 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using WindLightSimluator.Converters;
+using WindLightSimluator.ViewModels.Base;
+using WindLightSimluator.ViewModels;
 
 namespace WindLightSimluator.Model
 {
     public class Wind
     {
+        
         private float _windSpeed;
         private short _windDir;
         private short _runwayDir;
@@ -99,51 +102,110 @@ namespace WindLightSimluator.Model
 
     }
 
+    public class RvrVis
+    {
+        private int _rvr = 2000;
+        public string RvrValue
+        {
+            get
+            {
+                if (_rvr >= 2000)
+                {
+                    return $"P2000";
+                }
+                else
+                {
+                    return _rvr.ToString();
+                }
+
+            }
+            set
+            {   // 支持int赋值（通过字符串）
+                if (int.TryParse(value, out int intValue))
+                {
+                    _rvr = intValue >= 0 ? intValue : 0;
+                }
+                else if (value?.StartsWith("P", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    _rvr = 2000;
+                }
+                else
+                {
+                    _rvr = 0;
+                }
+            }
+        }
+
+        private int _vis = 2000;
+        public int VisValue
+        {
+            get { return _vis; }
+            set { _vis = value; }
+        }
+
+    }
+
+    public class Tempture
+    {
+        public float Temperature { get; init; }
+        public float Duepoint { get; init; }
+        public float SurfaceTemperature { get; init; }
+    }
+
+    public class WeatherCondition 
+    {
+
+        public string CloudFirstLayer { get; set; } = "NCD";
+
+        public string Temperature { get; set; } = "14.4";
+
+        public string VVIS { get; set; } = "";
+
+        public string DewPoint { get; set; } = "1.4";
+
+        public string Rain1h { get; set; } = "0.0";
+
+        public string RelativeHumidity { get; set; } = "32";
+
+        public string Rain24h { get; set; } = "0.0";
+
+        public string QFE { get; set; } = "1017.2";
+
+        public string STEMP { get; set; } = "22.2";
+
+        public string Status { get; set; } = "Dry";
+
+    }
     public class WTQR
     {
         public DateTime Time { get; init; }
 
         public float Qnh { get; init; }
-
         public float Qfe { get; init; }
 
-        public int RvrStart { get; init; }
-        public int RvrMiddle { get; init; }
-        public int RvrEnd { get; init; }
+        public Wind RvrStartWind { get; init; }
+        public Wind RvrMiddleWind { get; init; }
+        public Wind RvrEndWind { get; init; }
+
+        public RvrVis RvrStartRvrVis { get; init; }
+        public RvrVis RvrMiddleRvrVis { get; init; }
+        public RvrVis RvrEndRvrVis { get; init; }
+
+        public Tempture RvrStartTempture { get; init; }
+        public Tempture RvrMiddleTempture { get; init; }
+        public Tempture RvrEndRvrTempture { get; init; }
+
+        public WeatherCondition RvrStartWeatherCondition { get; init; }
+        public WeatherCondition RvrMiddleWeatherCondition { get; init; }
+        public WeatherCondition RvrEndWeatherCondition { get; init; }
+
 
         public int visibility { get; init; }
         public int ceilingBase { get; init; }
 
-        public float Temperature { get; init; }
-        public float Duepoint { get; init; }
-        public float SurfaceTemperature { get; init; }
+      
 
-        public Wind Wind { get; init; }
     }
-
-    public readonly struct WindDirRange
-    {
-        public Int16 Start { get; }
-        public Int16 End { get; }
-
-        /// <summary>
-        /// 是否跨 0°（例如 350°–10°）
-        /// </summary>
-        public bool IsWrapped => Start > End;
-
-        public WindDirRange(Int16 start, Int16 end)
-        {
-            Start = start;
-            End = end;
-        }
-
-        public override string ToString()
-            => IsWrapped
-                ? $"{Start:0}° → 360° → {End:0}°"
-                : $"{Start:0}° → {End:0}°";
-    }
-
-
 
 
     /// <summary> 最终给 UI / 外部用的结构</summary>
@@ -155,29 +217,7 @@ namespace WindLightSimluator.Model
         public Wind Avg2Wind { get; init; }
         public Wind Min2Wind { get; init; }
         public Wind Max2Wind { get; init; }
-
-
-
-        /// <summary>2 分钟风向范围（最小角 - 最大角）</summary>
-        public WindDirRange WindDirRange2Min { get; init; }
-        public int AvgWindDir2Min { get; }
-
-        /// <summary>5 分钟风向范围,用在风盘上</summary>
-        public WindDirRange WindDirRange5Min { get; init; }
-
-        /// <summary>
-        /// 两分钟内的最小平均风速
-        /// </summary>
-        public float MinAvgWindSpeed2Min { get; }
-        /// <summary>
-        /// 两分钟内的最大平均风速
-        /// </summary>
-        public float MaxAvgWindSpeed2Min { get; }
-
-        /// <summary>2 分钟平均风速</summary>
-        public float AvgWindSpeed2Min { get; init; }
-
-        /// <summary>生成时间</summary>
+        
         public DateTime Time { get; init; }
     }
 }

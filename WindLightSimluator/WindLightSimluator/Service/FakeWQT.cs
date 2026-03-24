@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindLightSimluator.Model;
+using WindLightSimluator.ViewModels;
 
 
 namespace WindLightSimluator.Service
 {
 
 
-    public static class FakeWQTProvider
+    public static  class FakeWQTProvider
     {
         public static ObservableCollection<WTQR> Generate(DateTime startTime, TimeSpan duration, int intervalSeconds)
         {
@@ -133,6 +134,28 @@ namespace WindLightSimluator.Service
 
             return list;
         }
+
+
+        public static RunwayViewModel BuildRunwayViewModel(short runwaydir)
+        {
+            return new RunwayViewModel(1, 015, "01L", 195, "19R");
+        }
+
+        public static void FakeRunwayData(RunwayViewModel runway)
+        {
+            //runway.RunwayStart = new RunwayPartViewModel(runway, RunwayPartEnum.Start);
+            //runway.RunwayStart.HeadCrossWind = new HeadCrossWindViewModel(runway);
+            //runway.RunwayStart.Wind.RangeArcIndex = new HashSet<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+        }
+
+
+        public static List<WTQR> Generate( )
+        {
+           
+            return new List<WTQR> { };
+
+        }
+      
     }
 }
 
