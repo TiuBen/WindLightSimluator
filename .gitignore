@@ -61,3 +61,11 @@ WindLightSimluator/WindLightSimluator/obj/project.assets.json
 WindLightSimluator/WindLightSimluator/obj/project.nuget.cache
 WindLightSimluator/WindLightSimluator/obj/WindLightSimluator.csproj.nuget.dgspec.json
 WindLightSimluator/WindLightSimluator/obj/WindLightSimluator.csproj.nuget.g.props
+WindLightSimluator/WindLightSimluator/obj
+WindLightSimluator/WindLightSimluator/bin
+WindLightSimluator/WindLightSimluator/.vs/
+WindLightSimluator/WindLightSimluator/.vs
+/WindLightSimluator/.vs/WindLightSimluator
+/WindLightSimluator/.vs/WindLightSimluator
+/WindLightSimluator/.vs
+*.vsidx
