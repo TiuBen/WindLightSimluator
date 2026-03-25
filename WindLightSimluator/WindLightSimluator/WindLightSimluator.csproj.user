@@ -10,6 +10,9 @@
     <Compile Update="Views\RunwayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\WeatherEditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Components\Base\StateBrushes.xaml">
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\TopBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WeatherEditor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Resource Update="DarkTheme.xaml">

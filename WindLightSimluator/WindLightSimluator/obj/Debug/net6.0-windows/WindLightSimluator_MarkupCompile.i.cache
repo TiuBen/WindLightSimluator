@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
-132136619113
+14-1232506157
 
-461301456202
+49-1524380750
 194178300874
-MainWindow.xaml;Views\Components\Base\BorderText.xaml;Views\Components\Base\StateBrushes.xaml;Views\Components\HeadCrossWind.xaml;Views\Components\RunwayStatus.xaml;Views\Components\RvrVis.xaml;Views\Components\WeatherCondition.xaml;Views\Components\WindPanel.xaml;Views\Light.xaml;Views\Metar.xaml;Views\Qnh.xaml;Views\RunwayView.xaml;Views\TopBar.xaml;
+MainWindow.xaml;Views\Components\Base\BorderText.xaml;Views\Components\Base\StateBrushes.xaml;Views\Components\HeadCrossWind.xaml;Views\Components\RunwayStatus.xaml;Views\Components\RvrVis.xaml;Views\Components\WeatherCondition.xaml;Views\Components\WindPanel.xaml;Views\Light.xaml;Views\Metar.xaml;Views\Qnh.xaml;Views\RunwayView.xaml;Views\TopBar.xaml;Views\WeatherEditor.xaml;
 
 False
 

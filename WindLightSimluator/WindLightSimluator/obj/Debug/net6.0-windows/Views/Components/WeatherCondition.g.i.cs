@@ -55,7 +55,7 @@ namespace WindLightSimluator.Views.Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WindLightSimluator;V1.0.0.0;component/views/components/weathercondition.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WindLightSimluator;component/views/components/weathercondition.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Components\WeatherCondition.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
