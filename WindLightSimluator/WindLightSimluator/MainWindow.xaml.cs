@@ -21,7 +21,7 @@ namespace WindLightSimluator
     public partial class MainWindow : Window
     {
 
-        private MainWindowViewModel _vm;
+        private AirportViewModel _vm;
         public MainWindow()
         {
             InitializeComponent();

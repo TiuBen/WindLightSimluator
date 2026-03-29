@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\Components\GridPointEditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\RunwayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -16,6 +19,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Components\Base\StateBrushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Components\GridPointEditor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Components\HeadCrossWind.xaml">

@@ -10,10 +10,10 @@ namespace WindLightSimluator.Model
     {
         public DateTime Time { get; set; }
 
-        public double? WindDirection { get; set; }
-        public double? WindSpeed { get; set; }
-        public double? Temperature { get; set; }
-        public double? QNH { get; set; }
-        public double? QFE { get; set; }
+        public double? WindDirection { get; set; } = 180;
+        public double? WindSpeed { get; set; } = 1;
+        public double? Temperature { get; set; } = 24;
+        public double? QNH { get; set; } = 1013;
+        public double? QFE { get; set; } = 1011;
     }
 }

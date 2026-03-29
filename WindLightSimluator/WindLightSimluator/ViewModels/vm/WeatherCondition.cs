@@ -8,33 +8,78 @@ using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels.vm
 {
-   public class WeatherConditionViewModel : ViewModelBase
+    public class WeatherConditionViewModel : ViewModelBase
     {
-        private readonly RunwayPartViewModel _runwayColumnViewModel;
-        public WeatherConditionViewModel(RunwayPartViewModel runwayColumnViewModel)
+        private string _cloudFirstLayer = "NCD";
+        public string CloudFirstLayer
         {
-            _runwayColumnViewModel = runwayColumnViewModel;
+            get => _cloudFirstLayer;
+            set => SetProperty(ref _cloudFirstLayer, value);
         }
 
-        public string CloudFirstLayer { get; set; } = "NCD";
+        private double _temperature = 25.4;
+        public double Temperature
+        {
+            get => _temperature;
+            set => SetProperty(ref _temperature, value);
+        }
 
-        public string Temperature { get; set; } = "14.4";
+        private double _surfaceTemperature = 22.2;
+        public double SurfaceTemperature
+        {
+            get => _surfaceTemperature;
+            set => SetProperty(ref _surfaceTemperature, value);
+        }
 
-        public string VVIS { get; set; } = "";
+        private double _duepoint = 1.4;
+        public double Duepoint
+        {
+            get => _duepoint;
+            set => SetProperty(ref _duepoint, value);
+        }
 
-        public string DewPoint { get; set; } = "1.4";
+        private int _vvis;
+        public int VVIS
+        {
+            get => _vvis;
+            set => SetProperty(ref _vvis, value);
+        }
 
-        public string Rain1h { get; set; } = "0.0";
+        private double _rain1h = 0.0;
+        public double Rain1h
+        {
+            get => _rain1h;
+            set => SetProperty(ref _rain1h, value);
+        }
 
-        public string RelativeHumidity { get; set; } = "32";
+        private double _relativeHumidity = 32;
+        public double RelativeHumidity
+        {
+            get => _relativeHumidity;
+            set => SetProperty(ref _relativeHumidity, value);
+        }
 
-        public string Rain24h { get; set; } = "0.0";
+        private double _rain24h = 0.0;
+        public double Rain24h
+        {
+            get => _rain24h;
+            set => SetProperty(ref _rain24h, value);
+        }
 
-        public string QFE { get; set; } = "1017.2";
+        private double _qfe = 1017.2;
+        public double QFE
+        {
+            get => _qfe;
+            set => SetProperty(ref _qfe, value);
+        }
 
-        public string STEMP { get; set; }= "22.2";
+        private string _status = "Dry";
+        public string Status
+        {
+            get => _status;
+            set => SetProperty(ref _status, value);
+        }
 
-        public string Status { get; set; } = "Dry";
 
     }
 }

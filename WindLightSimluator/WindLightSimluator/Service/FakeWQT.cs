@@ -113,22 +113,7 @@ namespace WindLightSimluator.Service
                     Qnh = qnh,
                     Qfe = qfe,
 
-                    RvrStart = rvrStart,
-                    RvrMiddle = rvrMiddle,
-                    RvrEnd = rvrEnd,
-
-                    visibility = visibility,
-                    ceilingBase = ceiling,
-
-                    Temperature = temperature,
-                    Duepoint = dewPoint,
-                    SurfaceTemperature = surfaceTemp,
-
-                    Wind = new Wind
-                    {
-                        WindSpeed = windSpeed,
-                        WindDir = windDir
-                    }
+                  
                 });
             }
 
@@ -145,7 +130,7 @@ namespace WindLightSimluator.Service
         {
             //runway.RunwayStart = new RunwayPartViewModel(runway, RunwayPartEnum.Start);
             //runway.RunwayStart.HeadCrossWind = new HeadCrossWindViewModel(runway);
-            //runway.RunwayStart.Wind.RangeArcIndex = new HashSet<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+            //runway.RunwayStart.WindViewModel.RangeArcIndex = new HashSet<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
         }
 
 

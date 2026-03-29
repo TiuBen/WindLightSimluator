@@ -23,14 +23,18 @@ namespace WindLightSimluator.ViewModels
             }
         }
 
+        public DateTime StartTime { get; set; } = DateTime.Now.Date;
+        public DateTime EndTime { get; set; } = DateTime.Now.Date.AddHours(2);
+
+
         public List<string> FieldList => new()
-    {
+        {
         "WindDirection",
         "WindSpeed",
         "Temperature",
         "QNH",
         "QFE"
-    };
+        };
 
         public string Unit => SelectedField switch
         {
