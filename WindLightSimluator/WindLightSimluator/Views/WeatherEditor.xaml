@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
              xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1980" Loaded="UserControl_Loaded">
+             d:DesignHeight="1080" d:DesignWidth="1980">
     <UserControl.DataContext>
         <vm:EditableWeatherElementViewModel/>
     </UserControl.DataContext>
@@ -39,7 +39,7 @@
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" Margin="4" Content="选择数据库" Click="SelectDatabaseButton_Click" />
 
-                <ListBox Grid.Row="2" x:Name="CsvListBox" Margin="4 0 4 0" ItemsSource="{Binding Tables}" SelectedItem="{Binding SelectedTable}" SelectionChanged="ListBox_SelectionChanged" />
+                <ListBox Grid.Row="2" x:Name="CsvListBox" Margin="4 0 4 0" ItemsSource="{Binding Tables}" SelectedItem="{Binding SelectedTable}" />
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -73,7 +73,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBox  Text="{Binding NewTableName, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding SelectedTable, Converter={StaticResource NullToBoolConverter}}" MaxLength="15"  />
-                    <Button Grid.Column="1" IsEnabled="{Binding CanRename}"  >确定</Button>
+                    <Button Grid.Column="1" IsEnabled="{Binding CanRename}" Click="ChangeNameButton_Click" >确定</Button>
                 </Grid>
             </Grid>
             <!--编辑项目-->
@@ -97,7 +97,7 @@
         </Grid>
         <!-- 曲线编辑器 -->
         <comp:GridPointEditor  Grid.Column="1" 
-                               Points="{Binding SelectedFieldPoints }" 
+                               Points="{Binding SelectedFieldPoints}" 
                                FieldConfig="{Binding SelectedFieldConfig}" 
                                PointValueChanged="GridPointEditor_PointValueChanged"/>
     </Grid>

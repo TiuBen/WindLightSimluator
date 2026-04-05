@@ -17,12 +17,35 @@ namespace WindLightSimluator.Service
     {
         private static readonly DatabaseService _instance = new DatabaseService();
         public static DatabaseService Instance => _instance;
-
         private SqliteConnection _connection;
         private string _currentPath = "";
 
+        // 1. 定义默认路径：当前用户的 "文档" 目录 + 数据库文件名
+        // 结果类似于：C:\Users\HJW-AMD-PRP\Documents\MyAppData.db
+        // 这里改成你想要的数据库文件名
+        private readonly string _defaultDbPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "WeatherSimulator.db");
+
+
         // 私有构造函数，防止外部 new
-        private DatabaseService() { }
+        private DatabaseService()
+        {
+            LoadDefaultDatabase();
+        }
+        private void LoadDefaultDatabase()
+        {
+            try
+            {
+                if (!File.Exists(_defaultDbPath))
+                    return;
+                Connect(_defaultDbPath);
+
+                Debug.WriteLine($"✅ 已加载默认数据库: {_defaultDbPath}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ 默认数据库加载失败: {ex.Message}");
+            }
+        }
 
         // 1. 连接数据库
         public bool Connect(string path)
@@ -62,6 +85,8 @@ namespace WindLightSimluator.Service
                 return false;
             }
         }
+
+        public string CurrentPath => _currentPath;
 
         // 2. 通用查询方法 (返回数据表)
         // 这样你就不用每次都写 CreateCommand, ExecuteReader 了
@@ -180,10 +205,9 @@ namespace WindLightSimluator.Service
             }
         }
 
-
-        public void ReNameSelectedTable( string oldTableName,string newTableName)
+        public void ReNameSelectedTable(string oldTableName, string newTableName)
         {
-            
+
 
             // 2. 开启连接
             using (var connection = _connection) // 复用之前的连接
@@ -200,14 +224,14 @@ namespace WindLightSimluator.Service
                 {
                     Debug.WriteLine(ex.Message);
                 }
-                
+
 
 
                 Debug.WriteLine($"改表 '{newTableName}' 成功！");
             }
         }
 
-        public void SavePointsToSelectedTable(string tableName,string columnName, ObservableCollection<double> pointsValue)
+        public void SavePointsToSelectedTable(string tableName, string columnName, ObservableCollection<double> pointsValue)
         {   // 1. 开启事务（一次性写入，速度快）
             using (var transaction = _connection.BeginTransaction())
             {
@@ -246,43 +270,7 @@ namespace WindLightSimluator.Service
         }
 
 
-        // 4. 获取当前路径 (方便外面知道连的是哪个文件)
-        public string CurrentPath => _currentPath;
+     
     }
 }
 
-
-
-//_currentDbPath = path;
-//var vm = DataContext as EditableWeatherElementViewModel;
-//var _tableNames = vm.Tables;
-//try
-//{
-//    using (var connection = new SqliteConnection($"Data Source={path}"))
-//    {
-
-//        connection.Open();
-//        var command = connection.CreateCommand();
-//        command.CommandText = "SELECT name FROM sqlite_master WHERE type='table';";
-
-//        // 2. 执行查询并读取结果
-//        using (var reader = command.ExecuteReader())
-//        {
-//            _tableNames.Clear(); // 先清空旧数据
-
-//            while (reader.Read())
-//            {
-//                // reader.GetString(0) 获取第一列的数据，也就是表名
-//                string tableName = reader.GetString(0);
-//                Debug.WriteLine(tableName);
-
-//                // 过滤掉 SQLite 内部自动生成的表（如 sqlite_sequence）
-//                if (!tableName.StartsWith("sqlite_"))
-//                {
-//                    _tableNames.Add(tableName);
-//                }
-//            }
-//        }
-
-
-//    }

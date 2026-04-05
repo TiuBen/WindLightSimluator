@@ -65,8 +65,6 @@ namespace WindLightSimluator.ViewModels
                 {
                     // ✅ 切换 Points 数据源
                     SelectedFieldPoints = RawData[value];
-
-                    // ✅ 刷新依赖属性
                     OnPropertyChanged(nameof(SelectedFieldConfig));
                 }
             }
@@ -79,7 +77,6 @@ namespace WindLightSimluator.ViewModels
             set => SetProperty(ref _selectedFieldPoints, value);
         }
 
-
         public FieldConfig SelectedFieldConfig => FieldConfigs[SelectedField];
 
         private Dictionary<string, ObservableCollection<double>> RawData { get; } = new();
@@ -87,18 +84,23 @@ namespace WindLightSimluator.ViewModels
 
         public EditableWeatherElementViewModel()
         {
-
-
             // 初始化 RawData（120分钟）
             foreach (var key in FieldList)
             {
                 var config = FieldConfigs[key];
 
-                RawData[key] = new ObservableCollection<double>( Enumerable.Repeat(config.BaseValue, 120));
+                RawData[key] = new ObservableCollection<double>(Enumerable.Repeat(config.BaseValue, 120));
             }
 
             // 被选中项目的
             SelectedFieldPoints = RawData[SelectedField];
+
+            // 初始化数据库
+            var _path = _db.CurrentPath;
+            if (string.IsNullOrWhiteSpace(_path))
+                return;
+            _databaseFilePath = _path;
+            GetAllTableNames();
 
         }
         private bool _isModified;
@@ -114,7 +116,7 @@ namespace WindLightSimluator.ViewModels
             if (RawData.ContainsKey(SelectedField) && index >= 0 && index < SelectedFieldPoints.Count)
             {
                 SelectedFieldPoints[index] = newValue;
-                
+
                 // 可选：标记为已修改，用于保存提示
                 IsModified = true;
             }
@@ -122,18 +124,39 @@ namespace WindLightSimluator.ViewModels
 
 
 
-        //
-        public string DatabaseFilePath { get; set; }
-        // 数据相关部分
+        #region 数据库相关部分
         private readonly DatabaseService _db = DatabaseService.Instance;
 
+        private string _databaseFilePath;
+        public string DatabaseFilePath
+        {
+            get => _databaseFilePath;
+            set {
+                if (SetProperty(ref _databaseFilePath, value))
+                {
+                    OnDatabaseChanged();
+                }
+            }
+        }
+        private void OnDatabaseChanged()
+        {
+            if (string.IsNullOrWhiteSpace(DatabaseFilePath))
+                return;
 
-        private ObservableCollection<string> _tables=new ObservableCollection<string>();
+            if (!_db.Connect(DatabaseFilePath))
+                return;
+            GetAllTableNames();
+        }
+
+
+        // 所有表名称 也就是 所有练习的名称
+        private ObservableCollection<string> _tables = new ObservableCollection<string>();
         public ObservableCollection<string> Tables
         {
             get => _tables;
             set => SetProperty(ref _tables, value);
         }
+
 
         private string _selectedTable;
         public string SelectedTable
@@ -146,6 +169,13 @@ namespace WindLightSimluator.ViewModels
                     // 2. 当旧表名改变时，自动把新表名重置为旧表名的值
                     // 这样用户一选中表，输入框里默认就是这个名字
                     NewTableName = value;
+
+                    // 👉 可以在这里加载数据
+                    _ = LoadTableAsync(value);
+                    //LoadDataFromTable(value);
+                    //SelectedFieldPoints = RawData[SelectedField];
+                    //OnPropertyChanged(nameof(SelectedFieldPoints));
+
                 }
             }
         }
@@ -195,22 +225,20 @@ namespace WindLightSimluator.ViewModels
 
 
         // 2. 连接数据库的方法 (对应你之前的 GetAllTableNames)
-        public void GetAllTableNames(string path)
+        public void GetAllTableNames()
         {
-            if (_db.Connect(path))
+            // 连接成功后，自动刷新表名列表
+            Tables.Clear();
+            var tableNames = _db.GetTableNames();
+            foreach (var name in tableNames)
             {
-                // 连接成功后，自动刷新表名列表
-                Tables.Clear();
-                var tableNames = _db.GetTableNames();
-                foreach (var name in tableNames)
-                {
-                    Tables.Add(name);
-                }
-
+                Tables.Add(name);
             }
+            SelectedTable = Tables.FirstOrDefault();
         }
-        public void CreateNewTable(string path)
+        public void CreateNewTable()
         {
+            var path = DatabaseFilePath;
             _db.CreateCurrentTimeTable();
             if (_db.Connect(path))
             {
@@ -224,28 +252,46 @@ namespace WindLightSimluator.ViewModels
 
             }
         }
+        public void RenameTable()
+        {
+            if (string.IsNullOrWhiteSpace(SelectedTable) ||
+                string.IsNullOrWhiteSpace(NewTableName))
+                return;
 
+            _db.ReNameSelectedTable(SelectedTable, NewTableName);
+
+            GetAllTableNames();
+
+            SelectedTable = NewTableName;
+        }
 
 
         // 3. 查询数据的方法 (对应你未来的 LoadData)
-        public void LoadDataFromTable(string tableName)
+        private async Task LoadTableAsync(string tableName)
         {
-            Debug.WriteLine("LoadDataFromTable");
 
-            // 1. 使用 List<double> 而不是数组，因为它可以动态添加数据
-            var _rawData = new Dictionary<string, List<double>>();
+            // 用 Task.Run 异步读取数据，不阻塞 UI
+            var data = await Task.Run(() => LoadDataFromTable(tableName));
 
-            // 2. 初始化字典，给每个字段创建一个空的列表
+            // 切换回 UI 线程更新绑定
+            SelectedFieldPoints = new ObservableCollection<double>(data[SelectedField]);
+        }
+
+
+        public Dictionary<string, ObservableCollection<double>> LoadDataFromTable(string tableName)
+        {
+            if (string.IsNullOrEmpty(tableName)) return null;
+            var data = _db.Query($"SELECT * FROM \"{tableName}\"");
+            var rawData = new Dictionary<string, ObservableCollection<double>>();
+
+            // 初始化字典，给每个字段创建一个空的列表
             // 假设 FieldList 是你的字段名列表，如 ["WindSpeed", "Temperature"...]
             foreach (var key in FieldList)
             {
-                _rawData[key] = new List<double>();
+                rawData[key] = new ObservableCollection<double>();
             }
 
-            // 3. 查询数据
-            var data = _db.Query($"SELECT * FROM \"{tableName}\"");
-
-            // 4. 遍历每一行
+            // 遍历每一行
             foreach (DataRow row in data.Rows)
             {
                 foreach (string key in FieldList)
@@ -253,25 +299,66 @@ namespace WindLightSimluator.ViewModels
                     // ✅ 修正逻辑：先尝试解析，如果成功，把 val 加入列表
                     if (double.TryParse(row[key].ToString(), out double val))
                     {
-                        _rawData[key].Add(val);
+                        rawData[key].Add(val);
                     }
                     else
                     {
-                        _rawData[key].Add(0); // 如果解析失败，存个默认值 0
+                        rawData[key].Add(FieldConfigs[key].BaseValue); // 如果解析失败，存个默认值 0
                     }
                 }
-                // 调试用：打印第一列的值
-                Debug.WriteLine(row["WindSpeed"]);
             }
-
-            // 5. (可选) 如果你最终必须要是 double[] 数组，可以在这里转换
-            // var finalData = _rawData.ToDictionary(k => k.Key, v => v.Value.ToArray());
-
-
-
-            Debug.WriteLine("LoadDataFromTable");
-
+            return rawData;
         }
+
+
+
+        //public void LoadDataFromTable(string tableName)
+        //{
+        //    if (string.IsNullOrEmpty(tableName)) return;
+        //    Debug.WriteLine("LoadDataFromTable");
+        //    // 查询数据
+        //    var data = _db.Query($"SELECT * FROM \"{tableName}\"");
+
+        //    // 初始化字典，给每个字段创建一个空的列表
+        //    // 假设 FieldList 是你的字段名列表，如 ["WindSpeed", "Temperature"...]
+        //    foreach (var key in FieldList)
+        //    {
+        //        // 先清空原有数据
+        //        if (!RawData.ContainsKey(key))
+        //        {
+        //            RawData[key] = new ObservableCollection<double>();
+        //        }
+        //        else
+        //        {
+        //            RawData[key].Clear();
+        //        }
+        //    }
+
+        //    // 遍历每一行
+        //    foreach (DataRow row in data.Rows)
+        //    {
+        //        foreach (string key in FieldList)
+        //        {
+        //            // ✅ 修正逻辑：先尝试解析，如果成功，把 val 加入列表
+        //            if (double.TryParse(row[key].ToString(), out double val))
+        //            {
+        //                RawData[key].Add(val);
+        //            }
+        //            else
+        //            {
+        //                RawData[key].Add(FieldConfigs[key].BaseValue); // 如果解析失败，存个默认值 0
+        //            }
+        //        }
+        //    }
+        //    // ✅ 更新 SelectedFieldPoints
+        //    if (RawData.ContainsKey(SelectedField))
+        //    {
+        //        SelectedFieldPoints = RawData[SelectedField];
+        //    }
+        //    OnPropertyChanged(nameof(SelectedFieldPoints));
+
+        //    Debug.WriteLine("LoadDataFromTable");
+        //}
 
 
         public void SaveToDatabase()
@@ -279,7 +366,7 @@ namespace WindLightSimluator.ViewModels
             _db.SavePointsToSelectedTable(SelectedTable, SelectedField, SelectedFieldPoints);
         }
 
-
+        #endregion
     }
 
 }

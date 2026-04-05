@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Printing.IndexedProperties;
@@ -25,7 +26,6 @@ namespace WindLightSimluator.Views.Components
     /// </summary>
     public partial class GridPointEditor : UserControl
     {
-
         public GridPointEditor()
         {
             InitializeComponent();
@@ -38,41 +38,42 @@ namespace WindLightSimluator.Views.Components
             this.MouseDown += OnUserControlMouseDown;
         }
 
-        //private Point? currentMouse;
-
-        //public double[] Points
-        //{
-        //    get => (double[])GetValue(PointsProperty);
-        //    set => SetValue(PointsProperty, value);
-        //}
-        //public static readonly DependencyProperty PointsProperty = DependencyProperty.Register(nameof(Points), typeof(double[]), typeof(GridPointEditor), new PropertyMetadata(null, OnDataChanged));
-
         #region Points
 
         public ObservableCollection<double> Points
         {
             get => (ObservableCollection<double>)GetValue(PointsProperty);
-            set => SetValue(PointsProperty, value);
+            set {
+                Debug.WriteLine("Points Points Points");
+                SetValue(PointsProperty, value);
+            
+            }
         }
 
         public static readonly DependencyProperty PointsProperty =
             DependencyProperty.Register(nameof(Points),
                 typeof(ObservableCollection<double>),
                 typeof(GridPointEditor),
-                new PropertyMetadata(null, OnDataChanged));
+                new PropertyMetadata(null, OnPointsChanged));
 
-        //private static void OnPointsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    var control = (GridPointEditor)d;
+        private static void OnPointsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (GridPointEditor)d;
 
-        //    if (e.OldValue is ObservableCollection<double> oldCol)
-        //        oldCol.CollectionChanged -= control.OnCollectionChanged;
+            if (e.OldValue is ObservableCollection<double> oldCol)
+                oldCol.CollectionChanged -= control.OnPointsCollectionChanged;
 
-        //    if (e.NewValue is ObservableCollection<double> newCol)
-        //        newCol.CollectionChanged += control.OnCollectionChanged;
+            if (e.NewValue is ObservableCollection<double> newCol)
+                newCol.CollectionChanged += control.OnPointsCollectionChanged;
 
-        //    control.DrawAll();
-        //}
+            control.Redraw();
+        }
+
+        private void OnPointsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Redraw();
+        }
+
 
         #endregion
 
@@ -114,22 +115,12 @@ namespace WindLightSimluator.Views.Components
 
         static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Debug.WriteLine("OnDataChanged");
-            Debug.WriteLine(e);
-            string oldValue = e.OldValue as string;
-            string newValue = e.NewValue as string;
-            System.Diagnostics.Debug.WriteLine($"SelectedField 从 '{oldValue}' 变更为 '{newValue}'");
-            Debug.WriteLine("========OnDataChanged");
-
             (d as GridPointEditor)?.Redraw();
         }
 
-        private void Redraw()
+        public  void Redraw()
         {
-            Debug.WriteLine("re drawed");
-            Debug.WriteLine(SelectedField);
-            Debug.WriteLine("SelectedFieldConfig");
-            Debug.WriteLine(SelectedField.ToString());
+            //Debug.WriteLine($"re drawed {SelectedField}");
 
             var canvas = GridPointEditorCanvas;
             canvas.Children.Clear();
@@ -234,8 +225,8 @@ namespace WindLightSimluator.Views.Components
             double pixelsPerUnit = GRID_SIZE / FieldConfig.Step;
             double yMax = centerY - (FieldConfig.Max - FieldConfig.BaseValue) * pixelsPerUnit;
             double yMin = centerY - (FieldConfig.Min - FieldConfig.BaseValue) * pixelsPerUnit;
-            Debug.WriteLine(pixelsPerUnit);
-            Debug.WriteLine(yMax);
+            //Debug.WriteLine(pixelsPerUnit);
+            //Debug.WriteLine(yMax);
             // --- 绘制 Max 红线 ---
             canvas.Children.Add(new Line
             {
@@ -324,7 +315,6 @@ namespace WindLightSimluator.Views.Components
         //中间基准线
         private void DrawPoints(Canvas canvas, double w, double h)
         {
-            Debug.WriteLine("DrawPoints");
             if (Points == null || FieldConfig == null) return;
 
             double centerY = GRID_PADDING + h / 2;
