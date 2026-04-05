@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WindLightSimluator.Views.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Canvas x:Name="GridPointEditorCanvas" Background="LightGray" MouseMove="OnMouseMove" MouseDown="GridPointEditorCanvas_MouseDown">
+    <Canvas x:Name="GridPointEditorCanvas" Background="LightGray" >
             
     </Canvas>
 </UserControl>

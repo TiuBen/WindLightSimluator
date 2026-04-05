@@ -35,6 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.5" />
+    <PackageReference Include="WindowsAPICodePack" Version="8.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="DarkTheme.xaml" />
     <Resource Include="LightTheme.xaml" />
     <Resource Include="屏幕截图 2025-11-24 214001.png" />

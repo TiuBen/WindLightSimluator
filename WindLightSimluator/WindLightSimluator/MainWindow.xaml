@@ -12,7 +12,7 @@
         Width="1920" Height="1080"
         Title="MainWindow" >
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:AirportViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <Style TargetType="FrameworkElement" >
@@ -101,7 +101,7 @@
                                 <RowDefinition Height="6*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <view:RunwayView DataContext="{Binding WestRunway}"/>
+                            <view:RunwayView DataContext="{Binding FirstRunway}"/>
 
 
                             <!--<comp:Metar Grid.Row="7"  Grid.ColumnSpan="3"/>-->
@@ -130,6 +130,9 @@
             </TabItem>
             <TabItem Header="关于">
                 <TextBlock Text="版本 1.0" Margin="10"/>
+            </TabItem>
+            <TabItem Header="气象数据编辑器" IsSelected="True">
+                <view:WeatherEditor />
             </TabItem>
         </TabControl>
 

@@ -52,7 +52,7 @@ namespace WindLightSimluator.ViewModels.vm
             set => SetProperty(ref _rain1h, value);
         }
 
-        private double _relativeHumidity = 32;
+        private double _relativeHumidity = 20;
         public double RelativeHumidity
         {
             get => _relativeHumidity;

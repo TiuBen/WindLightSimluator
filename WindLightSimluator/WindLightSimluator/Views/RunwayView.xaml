@@ -135,7 +135,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!--第一列-->
-        <Grid DataContext="{Binding RunwayStart}" x:Name="Col1"  >
+        <Grid x:Name="Col1"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="5*"/>
@@ -145,15 +145,17 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <comp:RunwayStatus    DataContext="{Binding Status}" IsActive="{Binding IsActive,Converter={StaticResource TrueOnlyToBool} }"  />
-            <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3" DataContext="{Binding Wind}" />
-            <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding HeadCrossWind}" IsActive="True"/>
-            <comp:RvrVis  Grid.Row="5"  DataContext="{Binding RvrVis}"   IsActive="True"/>
-            <comp:WeatherCondition Grid.Row="6" DataContext="{Binding Weather}"  IsActive="True"/>
+            <comp:RunwayStatus   />
+            <!--DataContext="{Binding Status}" IsActive="{Binding IsActive,Converter={StaticResource TrueOnlyToBool} }"  />-->
+            <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3" />
+            <!--DataContext="{Binding Wind}" />-->
+            <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding StartPartWindStatistic}" IsActive="True"/>
+            <comp:RvrVis  Grid.Row="5"  DataContext="{Binding StartPartRvrVisViewModel}"   IsActive="True"/>
+            <comp:WeatherCondition Grid.Row="6" DataContext="{Binding StartPartWeatherConditionViewModel}"  IsActive="True"/>
 
         </Grid>
         <!--第二列-->
-        <Grid  DataContext="{Binding RunwayMiddle}" x:Name="Col2" Grid.Column="2">
+        <Grid  x:Name="Col2" Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="5*"/>
@@ -165,14 +167,14 @@
             </Grid.RowDefinitions>
             <comp:RunwayStatus     DataContext="{Binding Status}" />
             <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding Wind}" IsActive="False"/>
-            <comp:HeadCrossWind  Grid.Row="3" DataContext="{Binding HeadCrossWind}"  IsActive="False"/>
-            <local:Qnh  Grid.Row="4" />
-            <comp:RvrVis  Grid.Row="5"  DataContext="{Binding RvrVis}" IsActive="False"/>
-            <local:Light Grid.Row="6" />
+            <comp:HeadCrossWind  Grid.Row="3" DataContext="{Binding MiddlePartWindStatistic}"  IsActive="False"/>
+            <local:Qnh  Grid.Row="4" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}" />
+            <comp:RvrVis  Grid.Row="5"  DataContext="{Binding MiddlePartRvrVisViewModel}" IsActive="False"/>
+            <local:Light Grid.Row="6" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
 
         </Grid>
         <!--第三列-->
-        <Grid  DataContext="{Binding RunwayEnd}" x:Name="Col3"  Grid.Column="4" >
+        <Grid x:Name="Col3"  Grid.Column="4" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="5*"/>
@@ -184,9 +186,9 @@
             </Grid.RowDefinitions>
             <comp:RunwayStatus    DataContext="{Binding Status}" IsActive="False"/>
             <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="3" DataContext="{Binding Wind}"  IsActive="False"/>
-            <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" DataContext="{Binding HeadCrossWind}" IsActive="False"/>
-            <comp:RvrVis  Grid.Row="5"  DataContext="{Binding RvrVis}"   IsActive="False"/>
-            <comp:WeatherCondition Grid.Row="6" DataContext="{Binding Weather}"  IsActive="False"/>
+            <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" DataContext="{Binding EndPartPartWindStatistic}" IsActive="False"/>
+            <comp:RvrVis  Grid.Row="5"  DataContext="{Binding EndPartRvrVisViewModel}"   IsActive="False"/>
+            <comp:WeatherCondition Grid.Row="6" DataContext="{Binding StartPartWeatherConditionViewModel}"  IsActive="False"/>
 
 
         </Grid>

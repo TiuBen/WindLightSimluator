@@ -37,7 +37,7 @@
                        Foreground="{StaticResource QnhLight.LabelTextColor}"/>
         </Border>
         <base:BorderText Grid.Column="1" 
-                         MainText="1032.5" 
+                         MainText="{Binding Qnh}" 
                          Margin="0"
                          SubText="hPa  " 
                          BackgroundColor="Transparent"

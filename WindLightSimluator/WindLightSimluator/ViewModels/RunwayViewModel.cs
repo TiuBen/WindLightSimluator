@@ -60,10 +60,15 @@ namespace WindLightSimluator.ViewModels
         public WeatherConditionViewModel MiddlePartWeatherConditionViewModel { get; set; } = new();
         public WeatherConditionViewModel EndPartWeatherConditionViewModel { get; set; } = new();
 
+        // --- RvrVis子模块 ---
+        public RvrVisViewModel StartPartRvrVisViewModel { get; set; } = new();
+        public RvrVisViewModel MiddlePartRvrVisViewModel { get; set; } = new();
+        public RvrVisViewModel EndPartRvrVisViewModel { get; set; } = new();
+
         // --- 实时风子模块 ---
-        public WindViewModel StartPartWind { get; set; }
-        public WindViewModel MiddlePartWind { get; set; }
-        public WindViewModel EndPartWind { get; set; }
+        public WindViewModel  StartPartWindViewModel{ get; set; }
+        public WindViewModel MiddlePartWindViewModel { get; set; }
+        public WindViewModel EndPartWindViewModel { get; set; }
 
         // --- 风统计子模块 ---
         // 注意：统计模块需要传入跑道航向，此处在构造函数或初始化时赋值
@@ -84,9 +89,9 @@ namespace WindLightSimluator.ViewModels
             //_dataSource = data;
 
             // 初始化风
-            StartPartWind = new(0.4F, 110, startHeading);
-            MiddlePartWind = new(1.4F, 110, startHeading);
-            EndPartWind = new(1.4F, 110, startHeading);
+            StartPartWindViewModel = new(0.4F, 110, startHeading);
+            MiddlePartWindViewModel = new(1.4F, 110, startHeading);
+            EndPartWindViewModel = new(1.4F, 110, startHeading);
 
             // 初始化Wind 统计器，传入对应的跑道磁航向
             StartPartWindStatistic = new WindStatisticsViewModel((short)startHeading);

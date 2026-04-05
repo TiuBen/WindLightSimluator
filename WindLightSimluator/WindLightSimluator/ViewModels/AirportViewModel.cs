@@ -22,10 +22,11 @@ namespace WindLightSimluator.ViewModels
     public class AirportViewModel : ViewModelBase
     {
         private float _qnh = 1013.2f; // 默认值
-        private string _metar = "METAR ZHEC ...";
+        private string _metar = "METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG=";
         private string _light = "3";
+        private int _lightIntensity = 60;
         private string _mainPV = "8000";
-        private string _mainPW = "NOSIG";
+        private string _mainPW = "///";
 
 
 
@@ -54,6 +55,12 @@ namespace WindLightSimluator.ViewModels
             set => SetProperty(ref _light, value);
         }
 
+        public int LightIntensity
+        {
+            get => _lightIntensity;
+            set => SetProperty(ref _lightIntensity, value);
+        }
+
         public string MainPV
         {
             get => _mainPV;
@@ -68,6 +75,10 @@ namespace WindLightSimluator.ViewModels
 
 
         public ObservableCollection<RunwayViewModel> Runways { get; set; }
+        // 提供快捷属性供 UI 绑定
+        public RunwayViewModel FirstRunway => Runways.Count > 0 ? Runways[0] : null;
+        public RunwayViewModel SecondRunway => Runways.Count > 1 ? Runways[1] : null;
+
 
         private readonly List<WTQR>? _fakeWindData;
         private readonly DispatcherTimer _timer;
@@ -86,14 +97,18 @@ namespace WindLightSimluator.ViewModels
             Runways.Add(new RunwayViewModel(1, 15, "01L", 195, "19R"));
             Runways.Add(new RunwayViewModel(2, 15, "01R", 195, "19L"));
 
-            SimulationTime = DateTime.Now;
+            // 通知 UI 快捷属性已就绪
+            OnPropertyChanged(nameof(FirstRunway));
+            OnPropertyChanged(nameof(SecondRunway));
 
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(20)
-            };
-            _timer.Tick += OnTick;
-            _timer.Start();
+            //SimulationTime = DateTime.Now;
+
+            //_timer = new DispatcherTimer
+            //{
+            //    Interval = TimeSpan.FromSeconds(20)
+            //};
+            //_timer.Tick += OnTick;
+            //_timer.Start();
 
         }
         private void OnTick(object? sender, EventArgs e)

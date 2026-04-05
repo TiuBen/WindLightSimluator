@@ -10,12 +10,7 @@ namespace WindLightSimluator.ViewModels.vm
 {
     public class RvrVisViewModel : ViewModelBase
     {
-        //private readonly RunwayPartViewModel _runwayColumnViewModel;
-
-        //public RvrVisViewModel(RunwayPartViewModel runwayColumnViewModel)
-        //{
-        //    _runwayColumnViewModel = runwayColumnViewModel;
-        //}
+       
 
         private int _rvr = 2000;
         public string RvrValue

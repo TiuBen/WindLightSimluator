@@ -28,8 +28,8 @@ namespace WindLightSimluator
             //DrawArc(100, 100, 50, -20, 20); // 圆心(100,100)，半径50，从0度到180度
             //DrawArc(100, 100, 50, -20, 20); // 圆心(100,100)，半径50，从0度到180度
             Debug.WriteLine("dddddddddddddddddddddddddddddddddddddddddddddddddd");
-            //_vm = new WindLightSimluator.ViewModels.MainWindowViewModel();
-            //DataContext = _vm;
+            _vm = new WindLightSimluator.ViewModels.AirportViewModel();
+            this.DataContext = _vm;
         }
 
 

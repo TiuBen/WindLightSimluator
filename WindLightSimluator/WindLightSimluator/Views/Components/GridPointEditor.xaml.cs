@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Printing.IndexedProperties;
 using System.Text;
@@ -15,8 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WindLightSimluator.Model;
-
-
+using WindLightSimluator.ViewModels;
 
 namespace WindLightSimluator.Views.Components
 {
@@ -25,226 +25,599 @@ namespace WindLightSimluator.Views.Components
     /// </summary>
     public partial class GridPointEditor : UserControl
     {
-       
-
-        public ObservableCollection<EditableWeatherElement> Points
-        {
-            get => (ObservableCollection<EditableWeatherElement>)GetValue(PointsProperty);
-            set => SetValue(PointsProperty, value);
-        }
-
-        public static readonly DependencyProperty PointsProperty =DependencyProperty.Register(nameof(Points), typeof(ObservableCollection<EditableWeatherElement>),typeof(GridPointEditor), new PropertyMetadata(null, OnDataChanged));
-
-
-        public string SelectedField
-        {
-            get => (string)GetValue(SelectedFieldProperty);
-            set => SetValue(SelectedFieldProperty, value);
-        }
-        public static readonly DependencyProperty SelectedFieldProperty =DependencyProperty.Register(nameof(SelectedField), typeof(string),typeof(GridPointEditor), new PropertyMetadata("Temperature", OnDataChanged));
-
-
-        public DateTime StartTime
-        {
-            get => (DateTime)GetValue(StartTimeProperty);
-            set => SetValue(StartTimeProperty, value);
-        }
-
-        public static readonly DependencyProperty StartTimeProperty = DependencyProperty.Register(nameof(StartTime), typeof(DateTime),typeof(GridPointEditor), new PropertyMetadata(DateTime.Now));
-
-        public DateTime EndTime
-        {
-            get => (DateTime)GetValue(EndTimeProperty);
-            set => SetValue(EndTimeProperty, value);
-        }
-
-        public static readonly DependencyProperty EndTimeProperty =DependencyProperty.Register(nameof(EndTime), typeof(DateTime), typeof(GridPointEditor), new PropertyMetadata(DateTime.Now));
-
-        public double MinValue
-        {
-            get => (double)GetValue(MinValueProperty);
-            set => SetValue(MinValueProperty, value);
-        }
-
-        public static readonly DependencyProperty MinValueProperty =DependencyProperty.Register(nameof(MinValue), typeof(double),typeof(GridPointEditor), new PropertyMetadata(0.0));
-
-        public double MaxValue
-        {
-            get => (double)GetValue(MaxValueProperty);
-            set => SetValue(MaxValueProperty, value);
-        }
-
-        public static readonly DependencyProperty MaxValueProperty =DependencyProperty.Register(nameof(MaxValue), typeof(double),typeof(GridPointEditor), new PropertyMetadata(100.0));
-
-        private EditableWeatherElement? selectedEditableWeatherElement;
-        private bool isDragging = false;
-
 
         public GridPointEditor()
         {
             InitializeComponent();
             Loaded += (_, _) => Redraw();
             SizeChanged += (_, _) => Redraw();
+
+            // 添加键盘事件处理
+            this.Focusable = true;
+            this.KeyDown += OnKeyDown;
+            this.MouseDown += OnUserControlMouseDown;
         }
+
+        //private Point? currentMouse;
+
+        //public double[] Points
+        //{
+        //    get => (double[])GetValue(PointsProperty);
+        //    set => SetValue(PointsProperty, value);
+        //}
+        //public static readonly DependencyProperty PointsProperty = DependencyProperty.Register(nameof(Points), typeof(double[]), typeof(GridPointEditor), new PropertyMetadata(null, OnDataChanged));
+
+        #region Points
+
+        public ObservableCollection<double> Points
+        {
+            get => (ObservableCollection<double>)GetValue(PointsProperty);
+            set => SetValue(PointsProperty, value);
+        }
+
+        public static readonly DependencyProperty PointsProperty =
+            DependencyProperty.Register(nameof(Points),
+                typeof(ObservableCollection<double>),
+                typeof(GridPointEditor),
+                new PropertyMetadata(null, OnDataChanged));
+
+        //private static void OnPointsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //{
+        //    var control = (GridPointEditor)d;
+
+        //    if (e.OldValue is ObservableCollection<double> oldCol)
+        //        oldCol.CollectionChanged -= control.OnCollectionChanged;
+
+        //    if (e.NewValue is ObservableCollection<double> newCol)
+        //        newCol.CollectionChanged += control.OnCollectionChanged;
+
+        //    control.DrawAll();
+        //}
+
+        #endregion
+
+
+
+        // 选中的设置项 比如 风向 
+        public string SelectedField
+        {
+            get => (string)GetValue(SelectedFieldProperty);
+            set => SetValue(SelectedFieldProperty, value);
+        }
+        public static readonly DependencyProperty SelectedFieldProperty = DependencyProperty.Register(nameof(SelectedField), typeof(string), typeof(GridPointEditor), new PropertyMetadata("Temperature", OnDataChanged));
+
+        // 选中的设置项 的 基础信息 比如最大值 最小值 
+        public FieldConfig FieldConfig
+        {
+            get => (FieldConfig)GetValue(FieldConfigProperty);
+            set => SetValue(FieldConfigProperty, value);
+        }
+        public static readonly DependencyProperty FieldConfigProperty = DependencyProperty.Register(nameof(FieldConfig), typeof(FieldConfig), typeof(GridPointEditor), new PropertyMetadata(new FieldConfig(), OnDataChanged));
+
+
+
+
+
+        //有关draw的部分
+        // 网格的默认设置
+        //内边距
+        private const double GRID_PADDING = 50; //边距 
+        private const double GRID_SIZE = 20;
+        private const double GRID_TAIL = 10;
+        private const int POINT_COUNT = 120;
+
+        // 定义样式
+        private SolidColorBrush gridBrush = Brushes.Gray;// 浅灰色网格
+        private SolidColorBrush xAxisColor = Brushes.White;
+        private SolidColorBrush SubTextColor = Brushes.Blue;
+
 
         static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            Debug.WriteLine("OnDataChanged");
+            Debug.WriteLine(e);
+            string oldValue = e.OldValue as string;
+            string newValue = e.NewValue as string;
+            System.Diagnostics.Debug.WriteLine($"SelectedField 从 '{oldValue}' 变更为 '{newValue}'");
+            Debug.WriteLine("========OnDataChanged");
+
             (d as GridPointEditor)?.Redraw();
         }
 
         private void Redraw()
         {
+            Debug.WriteLine("re drawed");
+            Debug.WriteLine(SelectedField);
+            Debug.WriteLine("SelectedFieldConfig");
+            Debug.WriteLine(SelectedField.ToString());
+
             var canvas = GridPointEditorCanvas;
             canvas.Children.Clear();
 
-            double w = ActualWidth;
-            double h = ActualHeight;
+            double drawWidth = ActualWidth - GRID_PADDING - GRID_PADDING;
+            double drawHeight = ActualHeight - GRID_PADDING - GRID_PADDING;
 
-            DrawGrid(canvas, w, h);
-            DrawPoints(canvas, w, h);
+            //DrawCrosshair(canvas, drawWidth, drawHeight);
+            DrawCoordinateSystem(canvas, drawWidth, drawHeight);
+            DrawPoints(canvas, drawWidth, drawHeight);
+
+            // 如果有选中的点，显示数值提示
+            if (selectedIndex >= 0 && Points != null && selectedIndex < Points.Count)
+            {
+                DrawSelectedPointTooltip(canvas, drawWidth, drawHeight);
+            }
         }
 
-        private void DrawGrid(Canvas canvas, double w, double h)
+        private void DrawCoordinateSystem(Canvas canvas, double w, double h)
         {
-            double size = 10;
+            if (FieldConfig == null || FieldConfig.Step <= 0) return;
+            // 1. 基础参数计算
+            double totalMinutes = POINT_COUNT;
+            double range = FieldConfig.Max - FieldConfig.Min;
+            if (range <= 0) range = 1; // 防止除零
 
-            for (double x = 0; x < w; x += size)
+            // --- 绘制 Y 轴逻辑 (数值 & 横向网格线) ---
+            // 中心线（BaseValue）
+            double centerY = GRID_PADDING + h / 2;
+
+            for (int i = 0; i <= h / 2 / GRID_SIZE; i++)
             {
-                canvas.Children.Add(new Line
+
+                // 绘制横向网格线
+                // 向下 如果值小于最小值 就不画线了
+                if (FieldConfig.BaseValue - i * FieldConfig.Step >= FieldConfig.Min)
                 {
-                    X1 = x,
-                    X2 = x,
-                    Y1 = 0,
-                    Y2 = h,
-                    Stroke = Brushes.Gray,
-                    StrokeThickness = 0.3
-                });
+                    canvas.Children.Add(new Line
+                    {
+                        X1 = i % 5 == 0 ? (GRID_PADDING - GRID_TAIL * 3) : (GRID_PADDING - GRID_TAIL), //每5个格子 多出来一点
+                        X2 = GRID_PADDING + w,
+                        Y1 = centerY + i * GRID_SIZE,
+                        Y2 = centerY + i * GRID_SIZE,
+                        Stroke = i == 0 ? Brushes.Blue : (i % 5 == 0 ? Brushes.DarkBlue : gridBrush),// 如果是基准线则变蓝 每5个格子淡蓝色
+                        StrokeThickness = 0.3
+                    });
+
+                    // 绘制 Y 轴数值
+                    if (i % 5 == 0) // 每5个配个数值
+                    {
+                        var text = new TextBlock
+                        {
+                            Text = (FieldConfig.BaseValue - i * FieldConfig.Step).ToString(),
+                            Foreground = SubTextColor,
+                            FontSize = 10
+                        };
+                        Canvas.SetLeft(text, 5);
+                        Canvas.SetTop(text, centerY + i * GRID_SIZE - 7);
+                        canvas.Children.Add(text);
+
+
+                    }
+                }
+                if (FieldConfig.BaseValue + i * FieldConfig.Step <= FieldConfig.Max)
+                {
+                    // 向上的横线
+                    canvas.Children.Add(new Line
+                    {
+                        X1 = i % 5 == 0 ? GRID_PADDING - GRID_TAIL * 3 : GRID_PADDING + GRID_TAIL,
+                        X2 = GRID_PADDING + w,
+                        Y1 = centerY - i * GRID_SIZE,
+                        Y2 = centerY - i * GRID_SIZE,
+                        Stroke = i == 0 ? Brushes.Blue : (i % 5 == 0 ? Brushes.DarkBlue : gridBrush),// 如果是基准线则变蓝
+                        StrokeThickness = 0.3
+                    });
+
+                    // 绘制 Y 轴数值
+                    if (i % 5 == 0) // 每5个配个数值
+                    {
+
+
+                        var text2 = new TextBlock
+                        {
+                            Text = (FieldConfig.BaseValue + i * FieldConfig.Step).ToString(),
+                            Foreground = SubTextColor,
+                            FontSize = 10
+                        };
+                        Canvas.SetLeft(text2, 5);
+                        Canvas.SetTop(text2, centerY - i * GRID_SIZE - 7);
+                        canvas.Children.Add(text2);
+                    }
+                }
+
+
+
+
+
+
+
             }
 
-            for (double y = 0; y < h; y += size)
+            double pixelsPerUnit = GRID_SIZE / FieldConfig.Step;
+            double yMax = centerY - (FieldConfig.Max - FieldConfig.BaseValue) * pixelsPerUnit;
+            double yMin = centerY - (FieldConfig.Min - FieldConfig.BaseValue) * pixelsPerUnit;
+            Debug.WriteLine(pixelsPerUnit);
+            Debug.WriteLine(yMax);
+            // --- 绘制 Max 红线 ---
+            canvas.Children.Add(new Line
             {
+                X1 = GRID_PADDING - GRID_TAIL * 3,
+                X2 = GRID_PADDING + w,
+                Y1 = yMax,
+                Y2 = yMax,
+                Stroke = Brushes.Red,// 如果是基准线则变蓝 每5个格子淡蓝色
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection { 2, 2 }
+            });
+            var textMax = new TextBlock
+            {
+                Text = FieldConfig.Max.ToString(),
+                Foreground = Brushes.Red,
+                FontSize = 10
+            };
+            Canvas.SetLeft(textMax, 5);
+            Canvas.SetTop(textMax, yMax - 7);
+            canvas.Children.Add(textMax);
+            canvas.Children.Add(new Line
+            {
+                X1 = GRID_PADDING - GRID_TAIL * 3,
+                X2 = GRID_PADDING + w,
+                Y1 = yMin,
+                Y2 = yMin,
+                Stroke = Brushes.Red,// 如果是基准线则变蓝 每5个格子淡蓝色
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection { 2, 2 }
+            });
+            var textMin = new TextBlock
+            {
+                Text = FieldConfig.Min.ToString(),
+                Foreground = Brushes.Red,
+                FontSize = 10
+            };
+            Canvas.SetLeft(textMin, 5);
+            Canvas.SetTop(textMin, yMin - 7);
+            canvas.Children.Add(textMin);
+
+
+            // --- 绘制 X 轴逻辑 (时间 & 纵向网格线) ---
+            //// 假设每 5 分钟一个刻度，每 60 分钟一个大标签
+            for (int m = 0; m <= totalMinutes; m += 1)
+            {
+                // 绘制纵向网格线
                 canvas.Children.Add(new Line
                 {
-                    X1 = 0,
-                    X2 = w,
-                    Y1 = y,
-                    Y2 = y,
-                    Stroke = Brushes.Gray,
+                    X1 = GRID_PADDING + m * GRID_SIZE,
+                    X2 = GRID_PADDING + m * GRID_SIZE,
+                    Y1 = GRID_PADDING - GRID_TAIL,
+                    Y2 = GRID_PADDING + h + GRID_TAIL,
+                    Stroke = m % 5 == 0 ? Brushes.Blue : gridBrush,
                     StrokeThickness = 0.3
                 });
+
+                // 绘制 X 轴时间文字
+                if (m % 5 == 0) // 可以增加逻辑：如果是整点用不同颜色
+                {
+                    bool isHour = (m % 60 == 0);
+                    var text = new TextBlock
+                    {
+                        Text = isHour ? $"{m / 60}h" : m.ToString(),
+                        Foreground = isHour ? Brushes.Red : Brushes.Blue,
+                        FontSize = 12
+                    };
+
+                    text.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                    Canvas.SetLeft(text, GRID_PADDING + m * GRID_SIZE - text.DesiredSize.Width / 2);
+                    Canvas.SetTop(text, GRID_PADDING + h + 10);
+                    canvas.Children.Add(text);
+                }
             }
         }
 
+
+
+
+        private int selectedIndex = -1;
+        private bool isDragging = false;
+        private double dragStartY;
+        private double dragStartValue;
+        // 添加一个事件，当点被修改时触发
+        public event EventHandler<PointValueChangedEventArgs> PointValueChanged;
+
+        //中间基准线
         private void DrawPoints(Canvas canvas, double w, double h)
         {
-            if (Points == null) return;
+            Debug.WriteLine("DrawPoints");
+            if (Points == null || FieldConfig == null) return;
 
-            foreach (var p in Points)
+            double centerY = GRID_PADDING + h / 2;
+
+            for (int i = 0; i < Points.Count; i++)
             {
-                var val = GetValue(p);
-                if (val == null) continue;
 
-                double x = GetX(p.Time, w);
-                double y = GetY(val.Value, h);
+                double value = Points[i];
+                double x = GRID_PADDING + i * GRID_SIZE;
+                double y = centerY - (value - FieldConfig.BaseValue) * GRID_SIZE / FieldConfig.Step;
+
+                // 确保点在画布范围内（但允许稍微超出，因为用户可能需要看到边界）
+                y = Math.Max(GRID_PADDING - 10, Math.Min(GRID_PADDING + h + 10, y));
+
 
                 var e = new Ellipse
                 {
                     Width = 8,
                     Height = 8,
-                    Fill = p == selectedEditableWeatherElement ? Brushes.Red : Brushes.Orange
+                    Fill = (i == selectedIndex) ? Brushes.Red : Brushes.Orange,
+                    Stroke = (i == selectedIndex) ? Brushes.Yellow : Brushes.Transparent,
+                    StrokeThickness = 2,
+                    Tag = i,
+                    //Cursor = Cursors.Hand
                 };
 
-                Canvas.SetLeft(e, x - 4);
-                Canvas.SetTop(e, y - 4);
+                // 添加鼠标事件到每个点
+                e.MouseDown += OnPointMouseDown;
+                e.MouseMove += OnPointMouseMove;
+                e.MouseUp += OnPointMouseUp;
 
-                e.Tag = p;
+
+                Canvas.SetLeft(e, x - 3);
+                Canvas.SetTop(e, y - 3);
 
                 canvas.Children.Add(e);
             }
         }
-        private double GetX(DateTime time, double width)
-        {
-            double total = (EndTime - StartTime).TotalMinutes;
-            double cur = (time - StartTime).TotalMinutes;
-            return cur / total * width;
-        }
 
-        private double GetY(double value, double height)
+        private void DrawSelectedPointTooltip(Canvas canvas, double w, double h)
         {
-            double percent = (value - MinValue) / (MaxValue - MinValue);
-            return height * (1 - percent);
-        }
+            if (Points == null || selectedIndex < 0 || selectedIndex >= Points.Count) return;
 
-        private double GetValue(EditableWeatherElement p)
-        {
-            return SelectedField switch
+            double centerY = GRID_PADDING + h / 2;
+            double x = GRID_PADDING + selectedIndex * GRID_SIZE;
+            double y = centerY - (Points[selectedIndex] - FieldConfig.BaseValue) * GRID_SIZE / FieldConfig.Step;
+
+            // 创建提示框
+            var tooltip = new Border
             {
-                "Temperature" => p.Temperature ?? 0,
-                "WindSpeed" => p.WindSpeed ?? 0,
-                "WindDirection" => p.WindDirection ?? 0,
-                "QNH" => p.QNH ?? 0,
-                "QFE" => p.QFE ?? 0,
-                _ => 0
+                Background = new SolidColorBrush(Color.FromArgb(200, 50, 50, 50)),
+                BorderBrush = Brushes.White,
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(4),
+                Padding = new Thickness(8, 4, 8, 4)
             };
+
+            var text = new TextBlock
+            {
+                Text = $"索引: {selectedIndex}\n值: {Points[selectedIndex]:F2} {FieldConfig?.Unit ?? ""}",
+                Foreground = Brushes.White,
+                FontSize = 11,
+                FontWeight = FontWeights.Bold
+            };
+
+            tooltip.Child = text;
+
+            // 定位提示框
+            double tooltipX = x + 10;
+            double tooltipY = y - 30;
+
+            // 确保提示框不超出画布
+            tooltip.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            if (tooltipX + tooltip.DesiredSize.Width > ActualWidth - GRID_PADDING)
+                tooltipX = x - tooltip.DesiredSize.Width - 10;
+            if (tooltipY < GRID_PADDING)
+                tooltipY = y + 10;
+
+            Canvas.SetLeft(tooltip, tooltipX);
+            Canvas.SetTop(tooltip, tooltipY);
+            canvas.Children.Add(tooltip);
+
+            // 绘制十字线
+            var crosshairX = new Line
+            {
+                X1 = x,
+                X2 = x,
+                Y1 = GRID_PADDING,
+                Y2 = GRID_PADDING + h,
+                Stroke = Brushes.Yellow,
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection { 2, 2 }
+            };
+
+            var crosshairY = new Line
+            {
+                X1 = GRID_PADDING,
+                X2 = GRID_PADDING + w,
+                Y1 = y,
+                Y2 = y,
+                Stroke = Brushes.Yellow,
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection { 2, 2 }
+            };
+
+            canvas.Children.Add(crosshairX);
+            canvas.Children.Add(crosshairY);
         }
 
-        private void SetValue(EditableWeatherElement p, double value)
+
+        private double SnapToSubStep(double value)
         {
-            switch (SelectedField)
+            if (FieldConfig == null || FieldConfig.SubStep <= 0) return value;
+            return Math.Round(value / FieldConfig.SubStep) * FieldConfig.SubStep;
+        }
+
+        private void UpdatePointValue(int index, double newValue)
+        {
+            if (Points == null || index < 0 || index >= Points.Count) return;
+            if (FieldConfig == null) return;
+
+            // 吸附到步长
+            newValue = SnapToSubStep(newValue);
+
+            // 限制在最小最大值范围内
+            newValue = Math.Max(FieldConfig.Min, Math.Min(FieldConfig.Max, newValue));
+
+            if (Math.Abs(Points[index] - newValue) > 0.0001)
             {
-                case "Temperature": p.Temperature = value; break;
-                case "WindSpeed": p.WindSpeed = value; break;
-                case "WindDirection": p.WindDirection = value; break;
-                case "QNH": p.QNH = value; break;
-                case "QFE": p.QFE = value; break;
+                Points[index] = newValue;
+
+                // 触发事件通知外部
+                PointValueChanged?.Invoke(this, new PointValueChangedEventArgs(index, newValue));
+
+                // 重新绘制
+                Redraw();
             }
         }
 
+        #region 鼠标交互
 
-      
-
-        private void OnMouseMove(object sender, MouseEventArgs e)
+        private void OnPointMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!isDragging || selectedEditableWeatherElement == null) return;
+            var ellipse = sender as Ellipse;
+            if (ellipse?.Tag is int index)
+            {
+                selectedIndex = index;
+                isDragging = true;
+                dragStartY = e.GetPosition(GridPointEditorCanvas).Y;
+                dragStartValue = Points[index];
 
-            var pos = e.GetPosition(GridPointEditorCanvas);
+                ellipse.CaptureMouse();
+                Redraw();
+                e.Handled = true;
 
-            double snapY = Math.Round(pos.Y / 10) * 10;
-
-            double percent = 1 - snapY / ActualHeight;
-            double value = MinValue + percent * (MaxValue - MinValue);
-
-            SetValue(selectedEditableWeatherElement, value);
-
-            Redraw();
+                // 确保控件获得焦点以接收键盘事件
+                this.Focus();
+            }
         }
 
-        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        private void OnPointMouseMove(object sender, MouseEventArgs e)
         {
+            if (!isDragging || selectedIndex < 0 || Points == null || FieldConfig == null) return;
+
+            var ellipse = sender as Ellipse;
+            if (ellipse == null) return;
+
+            double currentY = e.GetPosition(GridPointEditorCanvas).Y;
+            double deltaY = dragStartY - currentY;
+
+            // 计算值的变化量
+            double valueChange = deltaY * FieldConfig.Step / GRID_SIZE;
+            double newValue = dragStartValue + valueChange;
+
+            UpdatePointValue(selectedIndex, newValue);
+        }
+
+        private void OnPointMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var ellipse = sender as Ellipse;
+            if (ellipse != null)
+            {
+                ellipse.ReleaseMouseCapture();
+            }
             isDragging = false;
         }
 
-        private void GridPointEditorCanvas_MouseDown(object sender, MouseButtonEventArgs e)
+        private void OnUserControlMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var pos = e.GetPosition(GridPointEditorCanvas);
-
-            foreach (UIElement child in GridPointEditorCanvas.Children)
+            // 点击空白区域取消选择
+            if (e.OriginalSource == GridPointEditorCanvas ||
+                (e.OriginalSource is FrameworkElement element && element.Parent == GridPointEditorCanvas))
             {
-                if (child is Ellipse el)
-                {
-                    double x = Canvas.GetLeft(el) + 4;
-                    double y = Canvas.GetTop(el) + 4;
-
-                    if (Math.Abs(pos.X - x) < 6 && Math.Abs(pos.Y - y) < 6)
-                    {
-                        selectedEditableWeatherElement = (EditableWeatherElement)el.Tag;
-                        isDragging = true;
-                        break;
-                    }
-                }
+                selectedIndex = -1;
+                Redraw();
+                this.Focus();
             }
+        }
 
-            Redraw();
+        #endregion
+
+        #region 键盘交互
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (selectedIndex < 0 || Points == null || FieldConfig == null) return;
+
+            double step = FieldConfig.SubStep > 0 ? FieldConfig.SubStep : FieldConfig.Step;
+
+            switch (e.Key)
+            {
+                case Key.Up:
+                    // 上键：增加数值
+                    UpdatePointValue(selectedIndex, Points[selectedIndex] + step);
+                    e.Handled = true;
+                    break;
+
+                case Key.Down:
+                    // 下键：减少数值
+                    UpdatePointValue(selectedIndex, Points[selectedIndex] - step);
+                    e.Handled = true;
+                    break;
+
+                case Key.Left:
+                    // 左键：选择上一个点
+                    if (selectedIndex > 0)
+                    {
+                        selectedIndex--;
+                        Redraw();
+                    }
+                    e.Handled = true;
+                    break;
+
+                case Key.Right:
+                    // 右键：选择下一个点
+                    if (selectedIndex < Points.Count - 1)
+                    {
+                        selectedIndex++;
+                        Redraw();
+                    }
+                    e.Handled = true;
+                    break;
+
+                case Key.Home:
+                    // Home键：选择第一个点
+                    selectedIndex = 0;
+                    Redraw();
+                    e.Handled = true;
+                    break;
+
+                case Key.End:
+                    // End键：选择最后一个点
+                    selectedIndex = Points.Count - 1;
+                    Redraw();
+                    e.Handled = true;
+                    break;
+
+                case Key.PageUp:
+                    // PageUp：增加较大数值
+                    UpdatePointValue(selectedIndex, Points[selectedIndex] + step * 10);
+                    e.Handled = true;
+                    break;
+
+                case Key.PageDown:
+                    // PageDown：减少较大数值
+                    UpdatePointValue(selectedIndex, Points[selectedIndex] - step * 10);
+                    e.Handled = true;
+                    break;
+
+                case Key.Delete:
+                    // Delete：重置为基准值
+                    UpdatePointValue(selectedIndex, FieldConfig.BaseValue);
+                    e.Handled = true;
+                    break;
+            }
+        }
+
+        #endregion
+
+       
+    }
+
+    // 事件参数类
+    public class PointValueChangedEventArgs : EventArgs
+    {
+        public int Index { get; }
+        public double NewValue { get; }
+
+        public PointValueChangedEventArgs(int index, double newValue)
+        {
+            Index = index;
+            NewValue = newValue;
         }
     }
 }
+

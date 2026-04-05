@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
 15-1694595985
 
-481207809756
-194-1617825143
+491370330890
+2041124532039
 MainWindow.xaml;Views\Components\Base\BorderText.xaml;Views\Components\Base\StateBrushes.xaml;Views\Components\GridPointEditor.xaml;Views\Components\HeadCrossWind.xaml;Views\Components\RunwayStatus.xaml;Views\Components\RvrVis.xaml;Views\Components\WeatherCondition.xaml;Views\Components\WindPanel.xaml;Views\Light.xaml;Views\Metar.xaml;Views\Qnh.xaml;Views\RunwayView.xaml;Views\TopBar.xaml;Views\WeatherEditor.xaml;
 
-True
+False
 
