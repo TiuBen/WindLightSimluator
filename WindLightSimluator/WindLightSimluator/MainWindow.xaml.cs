@@ -12,6 +12,7 @@ using System.Diagnostics;
 using WindLightSimluator.ViewModels;
 using WindLightSimluator.Views.Components.Base;
 using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace WindLightSimluator
 {
@@ -61,9 +62,7 @@ namespace WindLightSimluator
         }
 
 
-        private TimeSpan exerciseDuration;
-
-
+     
 
     }
 }

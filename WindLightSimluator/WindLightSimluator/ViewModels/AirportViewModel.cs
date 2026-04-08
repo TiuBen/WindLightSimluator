@@ -12,13 +12,10 @@ using WindLightSimluator.Service;
 using System.Windows.Threading;
 using WindLightSimluator.Model;
 using System.Reflection;
+using WindLightSimluator.ViewModels;
 
 namespace WindLightSimluator.ViewModels
 {
-
-
-
-
     public class AirportViewModel : ViewModelBase
     {
         private float _qnh = 1013.2f; // 默认值
@@ -27,8 +24,6 @@ namespace WindLightSimluator.ViewModels
         private int _lightIntensity = 60;
         private string _mainPV = "8000";
         private string _mainPW = "///";
-
-
 
         public float Qnh
         {
@@ -42,31 +37,26 @@ namespace WindLightSimluator.ViewModels
                 }
             }
         }
-
         public string Metar
         {
             get => _metar;
             set => SetProperty(ref _metar, value);
         }
-
         public string Light
         {
             get => _light;
             set => SetProperty(ref _light, value);
         }
-
         public int LightIntensity
         {
             get => _lightIntensity;
             set => SetProperty(ref _lightIntensity, value);
         }
-
         public string MainPV
         {
             get => _mainPV;
             set => SetProperty(ref _mainPV, value);
         }
-
         public string MainPW
         {
             get => _mainPW;
@@ -75,21 +65,19 @@ namespace WindLightSimluator.ViewModels
 
 
         public ObservableCollection<RunwayViewModel> Runways { get; set; }
-        // 提供快捷属性供 UI 绑定
         public RunwayViewModel FirstRunway => Runways.Count > 0 ? Runways[0] : null;
         public RunwayViewModel SecondRunway => Runways.Count > 1 ? Runways[1] : null;
 
 
-        private readonly List<WTQR>? _fakeWindData;
-        private readonly DispatcherTimer _timer;
-        private DateTime _simulationTime;
-
-        public DateTime SimulationTime
+        private Dictionary<string, List<double>> RawData { get; } = new()
         {
-            get => _simulationTime;
-            private set => SetProperty(ref _simulationTime, value);
-        }
-
+            ["WindDirection"] = Enumerable.Repeat(180.0, 120).ToList(),
+            ["WindSpeed"] = Enumerable.Repeat(2.0, 120).ToList(),
+            ["Temperature"] = Enumerable.Repeat(15.0, 120).ToList(),
+            ["QNH"] = Enumerable.Repeat(1013.0, 120).ToList(),
+            ["RVR"] = Enumerable.Repeat(2000.0, 120).ToList(),
+            ["VIS"] = Enumerable.Repeat(5000.0, 120).ToList()
+        };
         public AirportViewModel()
         {
             Runways = new ObservableCollection<RunwayViewModel>();
@@ -101,251 +89,108 @@ namespace WindLightSimluator.ViewModels
             OnPropertyChanged(nameof(FirstRunway));
             OnPropertyChanged(nameof(SecondRunway));
 
-            //SimulationTime = DateTime.Now;
-
-            //_timer = new DispatcherTimer
-            //{
-            //    Interval = TimeSpan.FromSeconds(20)
-            //};
-            //_timer.Tick += OnTick;
-            //_timer.Start();
-
+            StartSimulation(2);
         }
-        private void OnTick(object? sender, EventArgs e)
+
+        private DispatcherTimer? _timer;
+        private int _counter = 0;
+
+        public void StartSimulation(double intervalSeconds = 60)
         {
-            SimulationTime = SimulationTime.AddSeconds(20);
+            if (_timer == null)
+            {
+                _timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(intervalSeconds)
+                };
+                _timer.Tick += Timer_Tick;
+            }
+            _timer.Start();
+        }
+
+        public void PauseSimulation() => _timer?.Stop();
+
+        public void RestartSimulation()
+        {
+            _counter = 0;
+            StartSimulation();
+        }
+
+
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            _counter++;
+            //var _realTimeWindDirection = RawData["WindDirection"][_counter];
+            //var _realTimeWindSpeed = RawData["WindSpeed"][_counter];
+            //var _realTimeTemperature = RawData["Temperature"][_counter];
+            //var _realTimeQNH = RawData["QNH"][_counter];
+            //var _realTimeRVR = RawData["RVR"][_counter];
+            //var _realTimeVIS = RawData["VIS"][_counter];
+
+            var _realTimeWindDirection = new Random().Next(0, 361); // 0到360度
+            var _realTimeWindSpeed = new Random().Next(0, 21); // 0到20 m/s
+            var _realTimeTemperature = new Random().Next(-20, 51); // -20到50 ℃
+            var _realTimeQNH = new Random().Next(980, 1041); // 980到1040 hPa
+            var _realTimeRVR = new Random().Next(0, 2501); // 0到2500 m
+            var _realTimeVIS = new Random().Next(0, 15001); // 0到15000 m
+            
+            Qnh= new Random().Next(980, 1041);
+
 
             foreach (var runway in Runways)
             {
-                runway.Update(SimulationTime);
+                
+                runway.StartPartWeatherConditionViewModel.Temperature = _realTimeTemperature;
+                runway.MiddlePartWeatherConditionViewModel.Temperature = _realTimeTemperature;
+                runway.EndPartWeatherConditionViewModel.Temperature = _realTimeTemperature;
+
+                runway.StartPartRvrVisViewModel.RvrValue =     _realTimeRVR.ToString();
+                runway.MiddlePartRvrVisViewModel.RvrValue = _realTimeRVR.ToString();
+                runway.EndPartRvrVisViewModel.RvrValue = _realTimeRVR.ToString();
+
+                runway.StartPartRvrVisViewModel.VisValue = (int)_realTimeVIS;
+                runway.MiddlePartRvrVisViewModel.VisValue = (int)_realTimeVIS;
+                runway.EndPartRvrVisViewModel.VisValue = (int)_realTimeVIS;
+
+
+                runway.StartPartWindViewModel.WindSpeed =_realTimeWindSpeed;
+                runway.MiddlePartWindViewModel.WindSpeed =_realTimeWindSpeed;
+                runway.EndPartWindViewModel.WindSpeed =_realTimeWindSpeed;
+
+                runway.StartPartWindViewModel.WindDir = _realTimeWindDirection;
+                runway.MiddlePartWindViewModel.WindDir = _realTimeWindDirection;
+                runway.EndPartWindViewModel.WindDir = _realTimeWindDirection;
+
+
+             
             }
         }
     }
 
-
-
-    //public class RunwayViewModel : ViewModelBase
-    //{
-
-    //    public short Id { get; set; }
-    //    public short SmallRunwayDir { get; set; }
-    //    public string SmallDirName { get; set; }
-    //    public short LargeRunwayDir { get; set; }
-    //    public string LargeDirName { get; set; }
-    //    public RunwayPartViewModel RunwayStart { get; }
-    //    public RunwayPartViewModel RunwayMiddle { get; }
-    //    public RunwayPartViewModel RunwayEnd { get; }
-
-    //    private readonly List<WTQR> _fakeWindData;
-
-
-    //    public RunwayViewModel(short id, short smalllRwyDir, string smallRwyName, short largeRwyDir, string largeRwyName, List<WTQR> fakeWindData)
-    //    {
-
-    //        Id = id;
-    //        SmallRunwayDir = smalllRwyDir;
-    //        SmallDirName = smallRwyName;
-    //        LargeRunwayDir = largeRwyDir;
-    //        LargeDirName = largeRwyName;
-
-    //        // 初始值
-    //        _fakeWindData = fakeWindData;
-    //        var firstWQTR = _fakeWindData.First();
-
-    //        RunwayStart = new RunwayPartViewModel(this, RunwayPartEnum.Start);
-    //        RunwayStart.HeadCrossWind = new HeadCrossWindViewModel(this);
-    //        RunwayStart.Wind.RangeArcIndex = new HashSet<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-    //        RunwayStart.Wind.DirectedArcIndex = 2;
-    //        RunwayStart.Wind.IsActive = true;
-    //        HeadCrossWindViewModel _testHeadCrossWind = new HeadCrossWindViewModel();
-    //        RunwayStart.HeadCrossWind = _testHeadCrossWind;
-    //        RunwayStart.RvrVis = new RvrVisViewModel(RunwayStart);
-
-
-    //        RunwayMiddle = new RunwayPartViewModel(this, RunwayPartEnum.Middle);
-    //        RunwayMiddle.HeadCrossWind = new HeadCrossWindViewModel(this);
-    //        RunwayMiddle.Wind.RangeArcIndex = new HashSet<int>() { 0, 1, 2, 3, 10, 11, 12, 13, 14, 15 };
-    //        RunwayMiddle.Wind.DirectedArcIndex = 2;
-    //        RunwayMiddle.Wind.IsActive = false;
-    //        HeadCrossWindViewModel _testHeadCrossWind2 = new HeadCrossWindViewModel();
-    //        _testHeadCrossWind2.Avg2HeadWindSpeed = 2;
-    //        RunwayMiddle.HeadCrossWind = _testHeadCrossWind2;
-
-
-    //        RunwayEnd = new RunwayPartViewModel(this, RunwayPartEnum.End);
-    //        RunwayEnd.HeadCrossWind = new HeadCrossWindViewModel(this);
-    //        RunwayEnd.Wind.RangeArcIndex = new HashSet<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15 };
-    //        RunwayEnd.Wind.DirectedArcIndex = 2;
-    //        RunwayEnd.Wind.IsActive = false;
-    //        HeadCrossWindViewModel _testHeadCrossWind3 = new HeadCrossWindViewModel();
-    //        _testHeadCrossWind3.Max2WindSpeed = 4;
-    //        RunwayEnd.HeadCrossWind = _testHeadCrossWind3;
-
-
-    //        RunwayStart.IsActive = true;
-    //        RunwayMiddle.IsActive = null;
-    //        RunwayEnd.IsActive = false;
-    //        Id = id;
-    //        RunwayDir = runwayDir;
-
-
-
-
-    //        //// 中间列固定 Normal
-    //        //RunwayMiddle.State = RunwayColumnState.Normal;
-    //        ////Columns[1].IsSelectable = false;
-    //        //RunwayStart.State = RunwayColumnState.Selected;
-    //        //RunwayEnd.State = RunwayColumnState.Disabled;
-    //    }
-
-
-    //    public void ChangeRunwayDirection(RunwayPartViewModel selected)
-    //    {
-    //        if (selected == RunwayStart)
-    //        {
-    //            RunwayStart.IsActive = true;
-    //            RunwayEnd.IsActive = false;
-    //        }
-    //        if (selected == RunwayEnd)
-    //        {
-    //            RunwayEnd.IsActive = true;
-    //            RunwayStart.IsActive = false;
-    //        }
-
-    //        /// 这里还要更新 Head/Cross WindViewModel 的计算
-    //    }
-
-    //    public void Update(DateTime simulationTime)
-    //    {
-    //        var sample = GetNearest(simulationTime);
-
-    //        /// tianchong filll
-    //    }
-
-    //    private WTQR GetNearest(DateTime time)
-    //    {
-    //    //在 Tick × 跑道 × 段数 多了以后会慢。
-    //    //正确工程做法是：
-    //    //FakeData 已排序
-    //    //维护一个 currentIndex
-    //    //时间只往前 → index 只递增
-    //        return _fakeWindData
-    //            .OrderBy(x => Math.Abs((x.Time - time).TotalSeconds))
-    //            .First();
-    //    }
-
-    //}
-
-
-    //public class RunwayPartViewModel : ViewModelBase
-    //{
-    //    public RunwayPartEnum RunwayPart { get; set; }
-
-    //    public RunwayStatusViewModel Status { get; set; }
-    //    public WindPanelViewModel Wind { get; set; }
-    //    public HeadCrossWindViewModel HeadCrossWind { get; set; }
-    //    public RvrVisViewModel RvrVis { get; set; }
-    //    public WeatherConditionViewModel Weather { get; set; }
-
-    //    //public ICommand SelectCommand { get; }
-
-    //    //private RunwayColumnState _state;
-    //    //public RunwayColumnState State
-    //    //{
-    //    //    get { return _state; }
-    //    //    set { _state = value; 
-    //    //        OnPropertyChanged();
-    //    //        OnPropertyChanged(nameof(IsActive));
-    //    //        Status.IsActive = IsActive; // ⭐ 关键
-    //    //    }
-
-    //    //}
-
-    //    //public bool IsActive => State == RunwayColumnState.Selected;
-
-
-
-    //    //private readonly RunwayViewModel _parent;
-    //    //public bool IsSelectable { get; }
-
-    //    //public string RunwayNumber
-    //    //{
-    //    //    get => Status.RunwayNumber;
-    //    //    set => Status.RunwayNumber = value;
-    //    //}
-
-    //    private bool? _isActive;
-    //    public bool? IsActive
-    //    {
-    //        get => _isActive;
-    //        set
-    //        {
-    //            _isActive = value;
-    //            OnPropertyChanged();
-    //        }
-    //    }
-
-    //    private RunwayViewModel _runway;
-    //    public RunwayViewModel Runway
-    //    {
-    //        get { return _runway; }
-    //        set
-    //        {
-    //            _runway = value;
-    //        }
-    //    }
-
-
-    //    public RunwayPartViewModel(RunwayViewModel runway, RunwayPartEnum part)
-    //    {
-    //        _runway = runway;
-    //        RunwayPart = part;
-
-
-    //        Status = new RunwayStatusViewModel(this, "rets");
-    //        Wind = new WindPanelViewModel(this);
-    //        HeadCrossWind = new HeadCrossWindViewModel(runway);
-    //        RvrVis = new RvrVisViewModel(this);
-    //        Weather = new WeatherConditionViewModel(this);
-
-
-    //        //IsSelectable = part != RunwayPart.Middle;
-    //        //State = RunwayColumnState.Normal;
-
-    //        //SelectCommand = new RelayCommand(
-    //        //    () => _parent.OnColumnSelected(this),
-    //        //    () => IsSelectable);
-    //    }
-    //    public static void ChangeRunwayHeading()
-    //    {
-
-    //    }
-
-    //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+//RunwayViewModel
+//    3*WeatherConditionViewModel
+//        CloudFirstLayer
+//        Temperature********************
+//        Duepoint
+//        VVIS
+//        Rain1h
+//        RelativeHumidity
+//        SurfaceTemperature
+//        Rain24h
+//        QFE
+//        Status
+//    3*RvrVisViewModel
+//        RvrValue***********************                  
+//        VisValue***********************
+//    3*WindViewModel
+//        WindSpeed**********************
+//        WindDir************************
+//    3*WindStatisticsViewModel
+//        Avg2WindSpeed
+//        Avg2WindDir
+//        Max2WindSpeed
+//        Min2WindSpeed
+//        Avg2HeadWindSpeed
+//        Avg2CrossWindSpeed

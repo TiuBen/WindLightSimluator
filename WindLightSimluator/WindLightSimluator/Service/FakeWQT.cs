@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using WindLightSimluator.Model;
 using WindLightSimluator.ViewModels;
 
@@ -12,8 +13,22 @@ namespace WindLightSimluator.Service
 {
 
 
-    public static  class FakeWQTProvider
+    public class FakeWQTProvider
     {
+        private void FakeWeather()
+        {
+            DispatcherTimer _fakeTimer;
+            int _counter = 0;
+            bool _isRunning = false;
+
+
+        }
+
+
+
+
+
+
         public static ObservableCollection<WTQR> Generate(DateTime startTime, TimeSpan duration, int intervalSeconds)
         {
             var list = new ObservableCollection<WTQR>();
@@ -113,7 +128,7 @@ namespace WindLightSimluator.Service
                     Qnh = qnh,
                     Qfe = qfe,
 
-                  
+
                 });
             }
 
@@ -134,13 +149,13 @@ namespace WindLightSimluator.Service
         }
 
 
-        public static List<WTQR> Generate( )
+        public static List<WTQR> Generate()
         {
-           
+
             return new List<WTQR> { };
 
         }
-      
+
     }
 }
 

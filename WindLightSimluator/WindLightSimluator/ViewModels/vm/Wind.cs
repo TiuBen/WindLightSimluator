@@ -10,14 +10,14 @@ namespace WindLightSimluator.ViewModels.vm
     public class WindViewModel : ViewModelBase
     {
         private double _windSpeed;
-        private short _windDir;
+        private double   _windDir;
         private int _runwayDir;
         // 记录时间，用于后续统计过滤
         public DateTime Timestamp { get; private set; }
 
         public double WindSpeed
         {
-            get => (float)Math.Round(_windSpeed, 1);
+            get => Math.Round(_windSpeed, 1);
             set {
                 if (value < 0) throw new ArgumentException("风速不能为负数");
                 if (SetProperty(ref _windSpeed, value))
@@ -25,11 +25,23 @@ namespace WindLightSimluator.ViewModels.vm
                     // 当风速改变，必须通知 UI 重新读取计算属性
                     OnPropertyChanged(nameof(HeadWindSpeed));
                     OnPropertyChanged(nameof(CrossWindSpeed));
+
+                    AddWindSpeed(value);
                 }
             }
         }
 
-        public short WindDir
+        private void AddWindSpeed(double value)
+        {
+            _windSpeedQueue.Enqueue(value);
+
+            if (_windSpeedQueue.Count > _maxSize)
+                _windSpeedQueue.Dequeue();
+
+            UpdateMaxMinAvgWindSpeed();
+        }
+
+        public double WindDir
         {
             get => (short)(Math.Round(_windDir / 5.0) * 5);
             set {
@@ -42,7 +54,118 @@ namespace WindLightSimluator.ViewModels.vm
             }
         }
 
-        public WindViewModel(double speed, short dir, int rwyDir)
+        private void AddWindDir(double value)
+        {
+            _windDirQueue.Enqueue(value);
+
+            if (_windDirQueue.Count > _maxSize)
+                _windDirQueue.Dequeue();
+
+            UpdateMaxMinAvgWindSpeed();
+        }
+
+
+        // ========= 统计属性（可绑定）=========
+
+        private double _minWind;
+        public double MinWind
+        {
+            get => _minWind;
+            private set => SetProperty(ref _minWind, value);
+        }
+
+        private double _maxWind;
+        public double MaxWind
+        {
+            get => _maxWind;
+            private set => SetProperty(ref _maxWind, value);
+        }
+
+        private double _avgWind;
+        public double AvgWind
+        {
+            get => _avgWind;
+            private set => SetProperty(ref _avgWind, value);
+        }
+
+
+
+        private void UpdateMaxMinAvgWindSpeed()
+        {
+            if (_windSpeedQueue.Count == 0) return ;
+
+            MinWind = Math.Round(_windSpeedQueue.Min(), 1);
+            MaxWind = Math.Round(_windSpeedQueue.Max(), 1);
+            AvgWind = Math.Round(_windSpeedQueue.Average(), 1);
+        }
+
+
+        private readonly Queue<double> _windSpeedQueue = new();
+        private readonly Queue<double> _windDirQueue = new();
+        private readonly Queue<int> _dirIndexQueue = new();
+        private readonly int _maxSize;
+
+
+        private HashSet<int> _dirRangeSet = new();
+
+        public HashSet<int> DirRangeSet
+        {
+            get => _dirRangeSet;
+            private set {
+                _dirRangeSet = value;
+                OnPropertyChanged(nameof(DirRangeSet));
+            }
+        }
+
+        private void UpdateDirRange()
+        {
+            if (_dirIndexQueue.Count == 0) return;
+
+            var sorted = _dirIndexQueue.OrderBy(x => x).ToList();
+
+            int maxGap = 0;
+            int gapStartIndex = 0;
+
+            for (int i = 0; i < sorted.Count; i++)
+            {
+                int current = sorted[i];
+                int next = sorted[(i + 1) % sorted.Count];
+
+                int gap = (i == sorted.Count - 1)
+                    ? (sorted[0] + 36 - current)
+                    : (next - current);
+
+                if (gap > maxGap)
+                {
+                    maxGap = gap;
+                    gapStartIndex = i;
+                }
+            }
+
+            // 最小覆盖区间起点和终点
+            int start = sorted[(gapStartIndex + 1) % sorted.Count];
+            int end = sorted[gapStartIndex];
+
+            var result = new HashSet<int>();
+
+            int iIndex = start;
+            while (true)
+            {
+                result.Add(iIndex);
+
+                if (iIndex == end)
+                    break;
+
+                iIndex = (iIndex + 1) % 36;
+            }
+
+            DirRangeSet = result;
+        }
+
+
+
+
+        public WindViewModel(double speed, double dir, int rwyDir,int size=5)
         {
             _runwayDir = rwyDir;
             WindSpeed = speed;
