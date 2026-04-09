@@ -8,7 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800">
     <UserControl.Resources>
-        <conv:WindSectorStateToBrushConverter x:Key="WindPanelSegmentColorConverter"/>
+        <conv:WindPanelSegmentColorConverter x:Key="WindPanelSegmentColorConverterOuter" 
+                                              ActiveBrush="{StaticResource  WindPanelArcRangeColor.Active}"
+                                              InactiveBrush="{StaticResource WindPanelArcColor.InActive}"/>
+        <conv:WindPanelSegmentColorConverter x:Key="WindPanelSegmentColorConverterInner" 
+                                        ActiveBrush="{StaticResource  WindPanelArcRangeColor.Active}"
+                                        InactiveBrush="{StaticResource WindPanelArcColor.InActive}"/>
+
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{Binding WindPanelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Style>
@@ -18,15 +24,17 @@
         <Style TargetType="Ellipse">
             <Setter Property="Fill" Value="{Binding WindPanelBackground,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Style>
+        
+        
         <Style x:Key="OuterStyle" TargetType="Path" >
             <Setter Property="StrokeThickness" Value="28"/>
             <Setter Property="Stroke">
                 <Setter.Value>
-                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
-                        <Binding Path="DataContext.IsActive" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterOuter}">
+                        <!-- 当前 Path 的 Tag -->
                         <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="DataContext.RangeArcIndex" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
-                        <Binding Path="DataContext.DirectedArcIndex" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                        <!-- VM 里的集合 -->
+                        <Binding Path="DataContext.Statistics.DirRangeSet" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
                     </MultiBinding>
                 </Setter.Value>
             </Setter>
@@ -35,11 +43,11 @@
             <Setter Property="StrokeThickness" Value="22"/>
             <Setter Property="Stroke">
                 <Setter.Value>
-                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
-                        <Binding Path="DataContext.IsActive" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterInner}">
+                        <!-- 当前 Path 的 Tag -->
                         <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="DataContext.RangeArcIndex" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
-                        <Binding Path="DataContext.DirectedArcIndex" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                        <!-- VM 里的集合 -->
+                        <Binding Path="DataContext.Statistics.DirRangeSet" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
                     </MultiBinding>
                 </Setter.Value>
             </Setter>
@@ -812,8 +820,8 @@
 
                 <Ellipse Width="240" Height="240" StrokeThickness="4" Stroke="#FF188AE2" Canvas.Left="280" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
                 <Line  StrokeThickness="4"  X1="284"  Y1="400" X2="516" Y2="400" Stroke="#FF188AE2"     />
-                <TextBlock Text="{Binding WindDir, StringFormat={}{0:000}}"  Background="Red" FontSize="80" Width="130" FontWeight="DemiBold" FontFamily="Monospace" TextAlignment="Justify"  VerticalAlignment="Bottom" Canvas.Left="332.54" Canvas.Top="302.721"  />
-                <TextBlock Text="{Binding WindSpeed, StringFormat={}{0:.0}}" Background="AliceBlue"  FontFamily="Monospace" FontWeight="DemiBold"  FontSize="70" Width="130" Canvas.Left="342.59" Canvas.Top="410" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding Wind.WindDir, StringFormat={}{0:000}}"   FontSize="80" Width="130" FontWeight="DemiBold" FontFamily="Monospace" TextAlignment="Right"  VerticalAlignment="Bottom" Canvas.Left="332.54" Canvas.Top="310"  />
+                <TextBlock Text="{Binding Wind.WindSpeed, StringFormat={}{0:.0}}"  FontFamily="Monospace" FontWeight="DemiBold"  FontSize="65" Width="130" Canvas.Left="320" Canvas.Top="410" HorizontalAlignment="Center" VerticalAlignment="Bottom"  TextAlignment="Right"/>
                 <TextBlock Text="mps" FontSize="20" FontFamily="Segoe UI Semibold" Canvas.Left="453.509" Canvas.Top="454.455" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBlock Text="。" FontSize="40" FontFamily="Segoe UI Bold" Canvas.Left="472.459" Canvas.Top="290.52" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"  />
                 <Polygon Points="0,0 40,0 20,100" Fill="#FFFF5D00" StrokeThickness="2" Canvas.Left="380" Canvas.Top="130" RenderTransformOrigin="0.5,2.7">

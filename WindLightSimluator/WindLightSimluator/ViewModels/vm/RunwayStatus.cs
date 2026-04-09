@@ -10,48 +10,44 @@ namespace WindLightSimluator.ViewModels.vm
 {
   
 
-    public class RunwayStatusViewModel : ViewModelBase
+    public class RunwayStatusVM : ViewModelBase
     {
-        //private readonly RunwayPartViewModel _part;
 
-        //private string _runwayNumber;
-        //public string RunwayNumber
-        //{
-        //    get => _runwayNumber;
-        //    set {
-        //        _runwayNumber = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        private string _runwayNumber;
+        public string RunwayNumber
+        {
+            get => _runwayNumber;
+            set => SetProperty(ref _runwayNumber, value);
+        }
 
-        //public bool? IsActive
-        //{
-        //    get {
-        //        return _part.IsActive;
-        //    }
-        
-        //}
-       
+        private bool _IsActive;
+        public bool IsActive
+        {
+            get => _IsActive;
+            set => SetProperty(ref _IsActive, value);
 
-        //public string RunwayStatusText
-        //{
-        //    get {
-        //        if (_part.IsActive == true)
-        //            return "LANDING/TAKE OFF";
+        }
 
-        //        if (_part.IsActive == false)
-        //            return "NOT IN USE";
 
-        //        return string.Empty; // null
-        //    }
+        public string RunwayStatusText
+        {
+            get {
+                if (IsActive == true)
+                    return "LANDING/TAKE OFF";
 
-        //}
+                if (IsActive == false)
+                    return "NOT IN USE";
 
-        //public RunwayStatusViewModel(RunwayPartViewModel part, String rwyNumber)
-        //{
-        //    _part = part;
-        //    _runwayNumber = rwyNumber;
-        //}
+                return string.Empty; // null
+            }
+
+        }
+
+        public RunwayStatusVM(bool isActive, String rwyNumber)
+        {
+            _IsActive = isActive;
+            _runwayNumber = rwyNumber;
+        }
 
     }
 }

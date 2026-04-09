@@ -12,7 +12,7 @@
         Width="1920" Height="1080"
         Title="MainWindow" >
     <Window.DataContext>
-        <vm:AirportViewModel/>
+        <vm:AirportVM/>
     </Window.DataContext>
     <Window.Resources>
         <Style TargetType="FrameworkElement" >
@@ -26,7 +26,7 @@
 
 
         <TabControl>
-            <TabItem Header="气象自观模拟">
+            <TabItem Header="气象自观模拟" IsSelected="True">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -119,7 +119,7 @@
 
             </TabItem>
 
-            <TabItem Header="灯光ADB系统模拟">
+            <TabItem Header="灯光ADB系统模拟" >
                 <StackPanel Margin="10">
                     <TextBlock Text="设置页面" FontSize="20"/>
                     <Button Content="保存" Width="100" Margin="5"/>
@@ -131,7 +131,7 @@
             <TabItem Header="关于">
                 <TextBlock Text="版本 1.0" Margin="10"/>
             </TabItem>
-            <TabItem Header="气象数据编辑器" IsSelected="True">
+            <TabItem Header="气象数据编辑器" >
                 <view:WeatherEditor />
             </TabItem>
         </TabControl>

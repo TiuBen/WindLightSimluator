@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\model\\wtqr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\model\\wtqr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\components\\windpanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\components\\windpanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\vm\\metar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\vm\\metar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\vm\\light.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\vm\\light.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\vm\\headcrosswind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\vm\\headcrosswind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\converters\\windpanelsegmentcolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\converters\\windpanelsegmentcolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\windpanelvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\windpanelvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,59 +29,69 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 229,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DarkTheme.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\DarkTheme.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\DarkTheme.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\DarkTheme.xaml",
+              "RelativeToolTip": "WindLightSimluator\\DarkTheme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-09T15:16:29.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WTQR.cs",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Model\\WTQR.cs",
-              "RelativeDocumentMoniker": "WindLightSimluator\\Model\\WTQR.cs",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Model\\WTQR.cs",
-              "RelativeToolTip": "WindLightSimluator\\Model\\WTQR.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAgwKAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T08:26:51.837Z",
+              "Title": "WindPanel.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\Components\\WindPanel.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\Components\\WindPanel.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\Components\\WindPanel.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Views\\Components\\WindPanel.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-09T15:08:37.347Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Metar.cs",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\vm\\Metar.cs",
-              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\vm\\Metar.cs",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\vm\\Metar.cs",
-              "RelativeToolTip": "WindLightSimluator\\ViewModels\\vm\\Metar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T08:26:45.659Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Light.cs",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\vm\\Light.cs",
-              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\vm\\Light.cs",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\vm\\Light.cs",
-              "RelativeToolTip": "WindLightSimluator\\ViewModels\\vm\\Light.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T08:26:39.695Z",
+              "Title": "LightTheme.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\LightTheme.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\LightTheme.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\LightTheme.xaml",
+              "RelativeToolTip": "WindLightSimluator\\LightTheme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-09T15:15:56.216Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "HeadCrossWind.cs",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\vm\\HeadCrossWind.cs",
-              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\vm\\HeadCrossWind.cs",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\vm\\HeadCrossWind.cs",
-              "RelativeToolTip": "WindLightSimluator\\ViewModels\\vm\\HeadCrossWind.cs",
+              "Title": "WindPanelSegmentColorConverter.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Converters\\WindPanelSegmentColorConverter.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Converters\\WindPanelSegmentColorConverter.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Converters\\WindPanelSegmentColorConverter.cs",
+              "RelativeToolTip": "WindLightSimluator\\Converters\\WindPanelSegmentColorConverter.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T08:26:40.337Z",
+              "WhenOpened": "2026-04-09T15:12:56.49Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WindPanelVM.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\WindPanelVM.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\WindPanelVM.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\WindPanelVM.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\WindPanelVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T15:08:35.175Z",
               "EditorCaption": ""
             }
           ]

@@ -16,7 +16,7 @@ using WindLightSimluator.ViewModels;
 
 namespace WindLightSimluator.ViewModels
 {
-    public class AirportViewModel : ViewModelBase
+    public class AirportVM : ViewModelBase
     {
         private float _qnh = 1013.2f; // 默认值
         private string _metar = "METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG=";
@@ -64,9 +64,9 @@ namespace WindLightSimluator.ViewModels
         }
 
 
-        public ObservableCollection<RunwayViewModel> Runways { get; set; }
-        public RunwayViewModel FirstRunway => Runways.Count > 0 ? Runways[0] : null;
-        public RunwayViewModel SecondRunway => Runways.Count > 1 ? Runways[1] : null;
+        public ObservableCollection<RunwayVM> Runways { get; set; }
+        public RunwayVM FirstRunway => Runways.Count > 0 ? Runways[0] : null;
+        public RunwayVM SecondRunway => Runways.Count > 1 ? Runways[1] : null;
 
 
         private Dictionary<string, List<double>> RawData { get; } = new()
@@ -78,12 +78,12 @@ namespace WindLightSimluator.ViewModels
             ["RVR"] = Enumerable.Repeat(2000.0, 120).ToList(),
             ["VIS"] = Enumerable.Repeat(5000.0, 120).ToList()
         };
-        public AirportViewModel()
+        public AirportVM()
         {
-            Runways = new ObservableCollection<RunwayViewModel>();
+            Runways = new ObservableCollection<RunwayVM>();
             // 默认添加两条跑道
-            Runways.Add(new RunwayViewModel(1, 15, "01L", 195, "19R"));
-            Runways.Add(new RunwayViewModel(2, 15, "01R", 195, "19L"));
+            Runways.Add(new RunwayVM(1, 15, "01L", 195, "19R"));
+            Runways.Add(new RunwayVM(2, 15, "01R", 195, "19L"));
 
             // 通知 UI 快捷属性已就绪
             OnPropertyChanged(nameof(FirstRunway));
@@ -129,6 +129,19 @@ namespace WindLightSimluator.ViewModels
 
             var _realTimeWindDirection = new Random().Next(0, 361); // 0到360度
             var _realTimeWindSpeed = new Random().Next(0, 21); // 0到20 m/s
+
+            var _realTimeWindDirection1 = new Random().Next(0, 361); // 0到360度
+            var _realTimeWindSpeed1 = new Random().Next(0, 21); // 0到20 m/s
+
+            var _realTimeWindDirection2 = new Random().Next(0, 361); // 0到360度
+            var _realTimeWindSpeed2 = new Random().Next(0, 21); // 0到20 m/s
+
+            var _realTimeWindDirection3 = new Random().Next(0, 361); // 0到360度
+            var _realTimeWindSpeed3 = new Random().Next(0, 21); // 0到20 m/s
+
+            var _realTimeWindDirection4 = new Random().Next(0, 361); // 0到360度
+            var _realTimeWindSpeed4 = new Random().Next(0, 21); // 0到20 m/s
+
             var _realTimeTemperature = new Random().Next(-20, 51); // -20到50 ℃
             var _realTimeQNH = new Random().Next(980, 1041); // 980到1040 hPa
             var _realTimeRVR = new Random().Next(0, 2501); // 0到2500 m
@@ -161,16 +174,36 @@ namespace WindLightSimluator.ViewModels
                 runway.MiddlePartWindViewModel.WindDir = _realTimeWindDirection;
                 runway.EndPartWindViewModel.WindDir = _realTimeWindDirection;
 
+                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
+                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
+                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
+                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
+                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
 
-             
+
+                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
+                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
+                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
+                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
+                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
+
+                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
+                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
+                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
+                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
+                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
+
+
+
+
             }
         }
     }
 
 }
 
-//RunwayViewModel
-//    3*WeatherConditionViewModel
+//RunwayVM
+//    3*WeatherConditionVM
 //        CloudFirstLayer
 //        Temperature********************
 //        Duepoint
@@ -181,13 +214,13 @@ namespace WindLightSimluator.ViewModels
 //        Rain24h
 //        QFE
 //        Status
-//    3*RvrVisViewModel
+//    3*RvrVisVM
 //        RvrValue***********************                  
 //        VisValue***********************
-//    3*WindViewModel
+//    3*WindVM
 //        WindSpeed**********************
 //        WindDir************************
-//    3*WindStatisticsViewModel
+//    3*WindStatisticsVM
 //        Avg2WindSpeed
 //        Avg2WindDir
 //        Max2WindSpeed

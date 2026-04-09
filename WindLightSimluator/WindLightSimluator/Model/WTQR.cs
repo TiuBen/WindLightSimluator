@@ -83,9 +83,9 @@ namespace WindLightSimluator.Model
 //    /// <summary>实时 QNH 温度 风向风速</summary>
 //    public WTQR CurrentWQT { get; set; }
 
-//    public WindViewModel Avg2Wind { get; set; }
-//    public WindViewModel Min2Wind { get; set; }
-//    public WindViewModel Max2Wind { get; set; }
+//    public WindVM Avg2Wind { get; set; }
+//    public WindVM Min2Wind { get; set; }
+//    public WindVM Max2Wind { get; set; }
 
 //    public DateTime Time { get; set; }
 //}

@@ -7,12 +7,21 @@ using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels.vm
 {
-    public class WindViewModel : ViewModelBase
+    public class WindVM : ViewModelBase
     {
         private double _windSpeed;
         private double   _windDir;
         private int _runwayDir;
-        // 记录时间，用于后续统计过滤
+        public WindVM(double speed, double dir, int rwyDir)
+        {
+            _runwayDir = rwyDir;
+
+            WindSpeed = speed;
+            WindDir = dir;
+            Timestamp = DateTime.Now;
+        }
+
+
         public DateTime Timestamp { get; private set; }
 
         public double WindSpeed
@@ -26,19 +35,8 @@ namespace WindLightSimluator.ViewModels.vm
                     OnPropertyChanged(nameof(HeadWindSpeed));
                     OnPropertyChanged(nameof(CrossWindSpeed));
 
-                    AddWindSpeed(value);
                 }
             }
-        }
-
-        private void AddWindSpeed(double value)
-        {
-            _windSpeedQueue.Enqueue(value);
-
-            if (_windSpeedQueue.Count > _maxSize)
-                _windSpeedQueue.Dequeue();
-
-            UpdateMaxMinAvgWindSpeed();
         }
 
         public double WindDir
@@ -54,124 +52,9 @@ namespace WindLightSimluator.ViewModels.vm
             }
         }
 
-        private void AddWindDir(double value)
-        {
-            _windDirQueue.Enqueue(value);
+    
+      
 
-            if (_windDirQueue.Count > _maxSize)
-                _windDirQueue.Dequeue();
-
-            UpdateMaxMinAvgWindSpeed();
-        }
-
-
-        // ========= 统计属性（可绑定）=========
-
-        private double _minWind;
-        public double MinWind
-        {
-            get => _minWind;
-            private set => SetProperty(ref _minWind, value);
-        }
-
-        private double _maxWind;
-        public double MaxWind
-        {
-            get => _maxWind;
-            private set => SetProperty(ref _maxWind, value);
-        }
-
-        private double _avgWind;
-        public double AvgWind
-        {
-            get => _avgWind;
-            private set => SetProperty(ref _avgWind, value);
-        }
-
-
-
-        private void UpdateMaxMinAvgWindSpeed()
-        {
-            if (_windSpeedQueue.Count == 0) return ;
-
-            MinWind = Math.Round(_windSpeedQueue.Min(), 1);
-            MaxWind = Math.Round(_windSpeedQueue.Max(), 1);
-            AvgWind = Math.Round(_windSpeedQueue.Average(), 1);
-        }
-
-
-        private readonly Queue<double> _windSpeedQueue = new();
-        private readonly Queue<double> _windDirQueue = new();
-        private readonly Queue<int> _dirIndexQueue = new();
-        private readonly int _maxSize;
-
-
-        private HashSet<int> _dirRangeSet = new();
-
-        public HashSet<int> DirRangeSet
-        {
-            get => _dirRangeSet;
-            private set {
-                _dirRangeSet = value;
-                OnPropertyChanged(nameof(DirRangeSet));
-            }
-        }
-
-        private void UpdateDirRange()
-        {
-            if (_dirIndexQueue.Count == 0) return;
-
-            var sorted = _dirIndexQueue.OrderBy(x => x).ToList();
-
-            int maxGap = 0;
-            int gapStartIndex = 0;
-
-            for (int i = 0; i < sorted.Count; i++)
-            {
-                int current = sorted[i];
-                int next = sorted[(i + 1) % sorted.Count];
-
-                int gap = (i == sorted.Count - 1)
-                    ? (sorted[0] + 36 - current)
-                    : (next - current);
-
-                if (gap > maxGap)
-                {
-                    maxGap = gap;
-                    gapStartIndex = i;
-                }
-            }
-
-            // 最小覆盖区间起点和终点
-            int start = sorted[(gapStartIndex + 1) % sorted.Count];
-            int end = sorted[gapStartIndex];
-
-            var result = new HashSet<int>();
-
-            int iIndex = start;
-            while (true)
-            {
-                result.Add(iIndex);
-
-                if (iIndex == end)
-                    break;
-
-                iIndex = (iIndex + 1) % 36;
-            }
-
-            DirRangeSet = result;
-        }
-
-
-
-
-        public WindViewModel(double speed, double dir, int rwyDir,int size=5)
-        {
-            _runwayDir = rwyDir;
-            WindSpeed = speed;
-            WindDir = dir;
-            Timestamp = DateTime.Now;
-        }
 
         // ... 保留你原有的 NormalizeAngle, HeadWindSpeed, CrossWindSpeed 逻辑 ...
         // 注意：HeadWindSpeed 和 CrossWindSpeed 只有 get，不需要 SetProperty，
@@ -179,6 +62,7 @@ namespace WindLightSimluator.ViewModels.vm
 
         private static double NormalizeAngle(double angle)
         {
+            if (angle < 0) return 0.0;
             angle %= 360;
             if (angle > 180) angle -= 360;
             if (angle < -180) angle += 360;
@@ -190,15 +74,13 @@ namespace WindLightSimluator.ViewModels.vm
         {
             get {
                 double delta = NormalizeAngle(WindDir - _runwayDir);
+                double hw = WindSpeed * Math.Cos(delta * Math.PI / 180.0);
 
-                // 顶风分量 = V * cos(θ)
-                // 正：顶风，负：顺风
-                if (delta < 0)
-                {
+                double value = Math.Round(Math.Abs(hw), 1);
 
-                    return $"-{Math.Round(WindSpeed * Math.Cos(delta * Math.PI / 180.0), 1)}";
-                }
-                return $"{Math.Round(WindSpeed * Math.Cos(delta * Math.PI / 180.0), 1)}";
+                return hw >= 0
+                    ? $"+{value}"   // 逆风
+                    : $"-{value}";  // 顺风
             }
         }
 
@@ -207,26 +89,18 @@ namespace WindLightSimluator.ViewModels.vm
         {
             get {
                 double delta = NormalizeAngle(WindDir - _runwayDir);
-
-                // 侧风分量 = V * sin(θ)
-                // 正：右侧风，负：左侧风
                 double cw = WindSpeed * Math.Sin(delta * Math.PI / 180.0);
-                string side = cw switch
-                {
-                    > 0 => "R", // Right
-                    < 0 => "L", // Left
-                    _ => "CALM"
-                };
 
-                return $"{side}{Math.Abs(cw).ToString()}";
+                double value = Math.Round(Math.Abs(cw), 1);
+
+                if (value == 0)
+                    return "CALM";
+
+                string side = cw > 0 ? "R" : "L";
+
+                return $"{side}{value}";
             }
 
-        }
-
-        private void ValidateRunwayDir(short runwayDir)
-        {
-            if (runwayDir < 0 || runwayDir > 360)
-                throw new ArgumentException("跑道方向必须在0-360度之间");
         }
 
     }

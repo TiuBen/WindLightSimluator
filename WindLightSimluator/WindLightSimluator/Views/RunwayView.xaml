@@ -147,10 +147,10 @@
             </Grid.RowDefinitions>
             <comp:RunwayStatus   />
             <!--DataContext="{Binding Status}" IsActive="{Binding IsActive,Converter={StaticResource TrueOnlyToBool} }"  />-->
-            <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3"  DataContext="{Binding StartPartWindViewModel}"/>
-            <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding StartPartWindStatistic}" IsActive="True"/>
+            <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3"  DataContext="{Binding StartPartWindPanelViewModel}"/>
+            <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding StartPartWindStatisticViewModel}" IsActive="True"/>
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding StartPartRvrVisViewModel}"   IsActive="True"/>
-            <comp:WeatherCondition Grid.Row="6" DataContext="{Binding StartPartWeatherCosnditionViewModel}"  IsActive="True"/>
+            <comp:WeatherCondition Grid.Row="6" DataContext="{Binding StartPartWeatherConditionViewModel}"  IsActive="True"/>
 
         </Grid>
         <!--第二列-->
@@ -165,8 +165,8 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <comp:RunwayStatus     DataContext="{Binding Status}" />
-            <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding MiddlePartWindViewModel}" IsActive="False"/>
-            <comp:HeadCrossWind  Grid.Row="3" DataContext="{Binding MiddlePartWindStatistic}"  IsActive="False"/>
+            <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding MiddlePartWindPanelViewModel}" IsActive="False"/>
+            <comp:HeadCrossWind  Grid.Row="3" DataContext="{Binding MiddlePartWindStatisticViewModel}"  IsActive="False"/>
             <local:Qnh  Grid.Row="4" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}" />
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding MiddlePartRvrVisViewModel}" IsActive="False"/>
             <local:Light Grid.Row="6" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
@@ -184,8 +184,8 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <comp:RunwayStatus    DataContext="{Binding Status}" IsActive="False"/>
-            <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="3" DataContext="{Binding EndPartWindViewModel}"  IsActive="False"/>
-            <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" DataContext="{Binding EndPartPartWindStatistic}" IsActive="False"/>
+            <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="3" DataContext="{Binding EndPartWindPanelViewModel}"  IsActive="False"/>
+            <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" DataContext="{Binding EndPartWindPanelViewModel.Statistics}" IsActive="False"/>
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding EndPartRvrVisViewModel}"   IsActive="False"/>
             <comp:WeatherCondition Grid.Row="6" DataContext="{Binding StartPartWeatherConditionViewModel}"  IsActive="False"/>
 

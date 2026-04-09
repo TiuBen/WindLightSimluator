@@ -20,7 +20,7 @@ namespace WindLightSimluator.ViewModels
         End
     }
 
-    public class RunwayViewModel : ViewModelBase
+    public class RunwayVM : ViewModelBase
     {
 
         public int Id { get; set; }
@@ -55,31 +55,76 @@ namespace WindLightSimluator.ViewModels
 
         private InUseRunwayPartEnum inUsePart { set; get; } = InUseRunwayPartEnum.Start;
 
+
+        // 三段runway part vm 
+        public RunwayPartVM startPart { get; set; }
+        public RunwayPartVM middlePart { get; set; }
+        public RunwayPartVM endPart { get; set; }
+
+
+        public RunwayVM(RunwayPartVM start, RunwayPartVM middle, RunwayPartVM end)
+        {
+            startPart = start;
+            middlePart = middle;
+            endPart = end;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // --- 气象条件子模块 ---
-        public WeatherConditionViewModel StartPartWeatherConditionViewModel { get; set; } = new();
-        public WeatherConditionViewModel MiddlePartWeatherConditionViewModel { get; set; } = new();
-        public WeatherConditionViewModel EndPartWeatherConditionViewModel { get; set; } = new();
+        public WeatherConditionVM StartPartWeatherConditionViewModel { get; set; } = new();
+        public WeatherConditionVM MiddlePartWeatherConditionViewModel { get; set; } = new();
+        public WeatherConditionVM EndPartWeatherConditionViewModel { get; set; } = new();
 
         // --- RvrVis子模块 ---
-        public RvrVisViewModel StartPartRvrVisViewModel { get; set; } = new();
-        public RvrVisViewModel MiddlePartRvrVisViewModel { get; set; } = new();
-        public RvrVisViewModel EndPartRvrVisViewModel { get; set; } = new();
+        public RvrVisVM StartPartRvrVisViewModel { get; set; } = new();
+        public RvrVisVM MiddlePartRvrVisViewModel { get; set; } = new();
+        public RvrVisVM EndPartRvrVisViewModel { get; set; } = new();
+
+
+
+
+
 
         // --- 实时风子模块 ---
-        public WindViewModel  StartPartWindViewModel{ get; set; }
-        public WindViewModel MiddlePartWindViewModel { get; set; }
-        public WindViewModel EndPartWindViewModel { get; set; }
+        public WindVM StartPartWindViewModel { get; set; } 
+        public WindVM MiddlePartWindViewModel { get; set; }
+        public WindVM EndPartWindViewModel { get; set; }
 
         // --- 风统计子模块 ---
         // 注意：统计模块需要传入跑道航向，此处在构造函数或初始化时赋值
-        public WindStatisticsViewModel StartPartWindStatistic { get; set; }
-        public WindStatisticsViewModel MiddlePartWindStatistic { get; set; }
-        public WindStatisticsViewModel EndPartPartWindStatistic { get; set; }
+        public WindStatisticsVM StartPartWindStatisticViewModel { get; set; }
+        public WindStatisticsVM MiddlePartWindStatisticViewModel { get; set; }
+        public WindStatisticsVM EndPartPartWindStatisticViewModel { get; set; }
+
+
+        public WindPanelVM StartPartWindPanelViewModel { get; set; }
+        public WindPanelVM MiddlePartWindPanelViewModel { get; set; }
+        public WindPanelVM EndPartWindPanelViewModel { get; set; }
+
+
 
         // 这里存放模拟数据源（假设每个跑道有自己的原始数据流）
         private readonly List<Wind> _dataSource;
 
-        public RunwayViewModel(int id, int startHeading, string startNum, int endHeading, string endNum)
+        public RunwayVM(int id, int startHeading, string startNum, int endHeading, string endNum)
         {
             Id = id;
             StartPartRunwayHeading = startHeading;
@@ -94,30 +139,19 @@ namespace WindLightSimluator.ViewModels
             EndPartWindViewModel = new(1.4F, 110, startHeading);
 
             // 初始化Wind 统计器，传入对应的跑道磁航向
-            StartPartWindStatistic = new WindStatisticsViewModel((short)startHeading);
-            MiddlePartWindStatistic = new WindStatisticsViewModel((short)startHeading);
-            EndPartPartWindStatistic = new WindStatisticsViewModel((short)endHeading);
+            StartPartWindStatisticViewModel = new WindStatisticsVM(startHeading,5);
+            MiddlePartWindStatisticViewModel = new WindStatisticsVM(startHeading,5);
+            EndPartPartWindStatisticViewModel = new WindStatisticsVM(endHeading,5);
 
             // 初始化 天气现象数据
-          
-
-        }
 
 
-        public void Update(DateTime currentTime)
-        {
-            // 模拟从数据源中找出当前时间点的数据
-            var data = _dataSource.FirstOrDefault(x => x.time <= currentTime);
-            if (data != null)
-            {
-                // 将新数据喂给统计器，统计器会自动触发 OnPropertyChanged
-                StartPartWindStatistic.AddWindSample(data.WindSpeed, (short)data.WindDir);
-                MiddlePartWindStatistic.AddWindSample(data.WindSpeed, (short)data.WindDir);
-                EndPartPartWindStatistic.AddWindSample(data.WindSpeed, (short)data.WindDir);
-            }
+            StartPartWindPanelViewModel = new WindPanelVM(StartPartWindViewModel, StartPartWindStatisticViewModel);
+            MiddlePartWindPanelViewModel = new WindPanelVM(StartPartWindViewModel, StartPartWindStatisticViewModel);
+            EndPartWindPanelViewModel = new WindPanelVM(StartPartWindViewModel, StartPartWindStatisticViewModel);
+
+
+
         }
     }
-
-
-
 }

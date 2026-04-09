@@ -85,6 +85,11 @@
     <SolidColorBrush x:Key="WindPanelArcColor.Active" Color="#D1D2D3"/>
     <SolidColorBrush x:Key="WindPanelArcColor.InActive" Color="#DCE0E9"/>
 
+    <SolidColorBrush x:Key="WindPanelOuterTagColor.InRange.Active" Color="{StaticResource Blue_DarkPrimary}"/>
+    <SolidColorBrush x:Key="WindPanelOuterTagColor.InRange.InActive" Color="{StaticResource Blue_DarkPrimary}"/>
+    <SolidColorBrush x:Key="WindPanelOuterTagColor.OutRange.Active" Color="{StaticResource Blue_DarkPrimary}"/>
+    <SolidColorBrush x:Key="WindPanelOuterTagColor.OutRange.InActive" Color="{StaticResource Blue_Alt1}"/>
+
 
 
     <SolidColorBrush x:Key="WindPanelBg.Active"  Color="{StaticResource White_Main}"/>

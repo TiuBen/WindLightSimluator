@@ -136,16 +136,16 @@ namespace WindLightSimluator.Service
         }
 
 
-        public static RunwayViewModel BuildRunwayViewModel(short runwaydir)
+        public static RunwayVM BuildRunwayViewModel(short runwaydir)
         {
-            return new RunwayViewModel(1, 015, "01L", 195, "19R");
+            return new RunwayVM(1, 015, "01L", 195, "19R");
         }
 
-        public static void FakeRunwayData(RunwayViewModel runway)
+        public static void FakeRunwayData(RunwayVM runway)
         {
             //runway.RunwayStart = new RunwayPartViewModel(runway, RunwayPartEnum.Start);
             //runway.RunwayStart.HeadCrossWind = new HeadCrossWindViewModel(runway);
-            //runway.RunwayStart.WindViewModel.RangeArcIndex = new HashSet<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+            //runway.RunwayStart.WindVM.RangeArcIndex = new HashSet<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
         }
 
 

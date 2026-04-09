@@ -8,7 +8,7 @@ using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels.vm
 {
-    public class RvrVisViewModel : ViewModelBase
+    public class RvrVisVM : ViewModelBase
     {
        
 
@@ -60,7 +60,7 @@ namespace WindLightSimluator.ViewModels.vm
             set => SetProperty(ref _vis, value);
         }
 
-        public RvrVisViewModel(string initialRvr = "P2000", int initialVis = 2000)
+        public RvrVisVM(string initialRvr = "P2000", int initialVis = 2000)
         {
             // 直接走属性赋值，触发解析逻辑
             RvrValue = initialRvr;

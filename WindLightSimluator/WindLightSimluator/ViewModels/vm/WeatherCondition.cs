@@ -8,7 +8,7 @@ using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels.vm
 {
-    public class WeatherConditionViewModel : ViewModelBase
+    public class WeatherConditionVM : ViewModelBase
     {
         private string _cloudFirstLayer = "NCD";
         public string CloudFirstLayer

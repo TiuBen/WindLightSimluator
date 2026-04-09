@@ -76,9 +76,9 @@
             <TextBlock  Text="AVG2" />
         </Border>
         <base:BorderText Grid.Column="1" Grid.Row="1"
-                         MainText="{Binding Avg2HeadWindSpeed}" SubText="mps"/>
+                         MainText="{Binding AvgHeadWind}" SubText="mps"/>
         <base:BorderText  Grid.Column="1" Grid.Row="2" Margin="0 0 2 0" 
-                       MainText="{Binding Avg2CrossWindSpeed}" SubText="mps"/>
+                       MainText="{Binding AvgCrossWind}" SubText="mps"/>
 
          <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬--> 
         <Border Background="Transparent" Grid.Row="0" Grid.Column="2"  />
@@ -100,25 +100,25 @@
             <TextBlock   Text="MNM2" />
         </Border>
         <base:BorderText  Grid.Column="4" Grid.Row="1" 
-                       MainText="{Binding Min2WindDir}" SubText="°" />
+                       MainText="{Binding MinWindDir}" SubText="°" />
         <base:BorderText   Grid.Column="4" Grid.Row="2" Margin="0 0 2 0"
-                       MainText="{Binding Min2WindSpeed}" SubText="mps" />
+                       MainText="{Binding MinWindSpeed}" SubText="mps" />
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border    Grid.Column="5" Grid.Row="0"  >
             <TextBlock   Text="AVG2" />
         </Border>
         <base:BorderText  Grid.Column="5" Grid.Row="1"
-                       MainText="{Binding Avg2WindDir}" SubText="°" />
+                       MainText="{Binding AvgWindDir}" SubText="°" />
         <base:BorderText  Grid.Column="5" Grid.Row="2" Margin="0 0 2 0"
-                       MainText="{Binding Avg2WindSpeed}" SubText="mps" />
+                       MainText="{Binding AvgWindSpeed}" SubText="mps" />
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border    Grid.Column="6" Grid.Row="0" Margin="0 0 0 2" >
             <TextBlock   Text="MAX2"  Padding=" 9 2 9 6"/>
         </Border>
         <base:BorderText  Grid.Column="6" Grid.Row="1" Margin="0 0 0 2"
-                       MainText="{Binding Max2WindDir}" SubText="°" />
+                       MainText="{Binding MaxWindDir}" SubText="°" />
         <base:BorderText  Grid.Column="6" Grid.Row="2"  Margin="0 0 0 0"
-                       MainText="{Binding Max2WindSpeed}" SubText="mps" />
+                       MainText="{Binding MaxWindSpeed}" SubText="mps" />
 
 
     </Grid>
