@@ -69,21 +69,23 @@ namespace WindLightSimluator.ViewModels
         public RunwayVM SecondRunway => Runways.Count > 1 ? Runways[1] : null;
 
 
-        private Dictionary<string, List<double>> RawData { get; } = new()
-        {
-            ["WindDirection"] = Enumerable.Repeat(180.0, 120).ToList(),
-            ["WindSpeed"] = Enumerable.Repeat(2.0, 120).ToList(),
-            ["Temperature"] = Enumerable.Repeat(15.0, 120).ToList(),
-            ["QNH"] = Enumerable.Repeat(1013.0, 120).ToList(),
-            ["RVR"] = Enumerable.Repeat(2000.0, 120).ToList(),
-            ["VIS"] = Enumerable.Repeat(5000.0, 120).ToList()
-        };
+    
         public AirportVM()
         {
             Runways = new ObservableCollection<RunwayVM>();
             // 默认添加两条跑道
-            Runways.Add(new RunwayVM(1, 15, "01L", 195, "19R"));
-            Runways.Add(new RunwayVM(2, 15, "01R", 195, "19L"));
+           var _1=new RunwayVM();
+            _1.startPart.status.IsActive= true;
+            _1.startPart.status.RunwayNumber = "01L";
+
+            _1.middlePart.status.IsActive= false;
+            _1.middlePart.status.RunwayNumber = "MID1";
+
+            _1.endPart.status.IsActive = false;
+            _1.endPart.status.RunwayNumber = "19R";
+
+            Runways.Add(new RunwayVM());
+            Runways.Add(new RunwayVM());
 
             // 通知 UI 快捷属性已就绪
             OnPropertyChanged(nameof(FirstRunway));
@@ -107,6 +109,16 @@ namespace WindLightSimluator.ViewModels
             }
             _timer.Start();
         }
+
+        private Dictionary<string, List<double>> RawData { get; } = new()
+        {
+            ["WindDirection"] = Enumerable.Repeat(180.0, 120).ToList(),
+            ["WindSpeed"] = Enumerable.Repeat(2.0, 120).ToList(),
+            ["Temperature"] = Enumerable.Repeat(15.0, 120).ToList(),
+            ["QNH"] = Enumerable.Repeat(1013.0, 120).ToList(),
+            ["RVR"] = Enumerable.Repeat(2000.0, 120).ToList(),
+            ["VIS"] = Enumerable.Repeat(5000.0, 120).ToList()
+        };
 
         public void PauseSimulation() => _timer?.Stop();
 
@@ -153,50 +165,54 @@ namespace WindLightSimluator.ViewModels
             foreach (var runway in Runways)
             {
                 
-                runway.StartPartWeatherConditionViewModel.Temperature = _realTimeTemperature;
-                runway.MiddlePartWeatherConditionViewModel.Temperature = _realTimeTemperature;
-                runway.EndPartWeatherConditionViewModel.Temperature = _realTimeTemperature;
+                runway.startPart.weather.Temperature = _realTimeTemperature;
+                runway.middlePart.weather.Temperature = _realTimeTemperature;
+                runway.endPart.weather.Temperature = _realTimeTemperature;
 
-                runway.StartPartRvrVisViewModel.RvrValue =     _realTimeRVR.ToString();
-                runway.MiddlePartRvrVisViewModel.RvrValue = _realTimeRVR.ToString();
-                runway.EndPartRvrVisViewModel.RvrValue = _realTimeRVR.ToString();
+                runway.startPart.rvrVis.RvrValue =     _realTimeRVR.ToString();
+                runway.middlePart.rvrVis.RvrValue = _realTimeRVR.ToString();
+                runway.endPart.rvrVis.RvrValue = _realTimeRVR.ToString();
 
-                runway.StartPartRvrVisViewModel.VisValue = (int)_realTimeVIS;
-                runway.MiddlePartRvrVisViewModel.VisValue = (int)_realTimeVIS;
-                runway.EndPartRvrVisViewModel.VisValue = (int)_realTimeVIS;
-
-
-                runway.StartPartWindViewModel.WindSpeed =_realTimeWindSpeed;
-                runway.MiddlePartWindViewModel.WindSpeed =_realTimeWindSpeed;
-                runway.EndPartWindViewModel.WindSpeed =_realTimeWindSpeed;
-
-                runway.StartPartWindViewModel.WindDir = _realTimeWindDirection;
-                runway.MiddlePartWindViewModel.WindDir = _realTimeWindDirection;
-                runway.EndPartWindViewModel.WindDir = _realTimeWindDirection;
-
-                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
-                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
-                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
-                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
-                runway.StartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
+                runway.startPart.rvrVis.VisValue = (int)_realTimeVIS;
+                runway.middlePart.rvrVis.VisValue = (int)_realTimeVIS;
+                runway.endPart.rvrVis.VisValue = (int)_realTimeVIS;
 
 
-                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
-                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
-                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
-                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
-                runway.MiddlePartWindStatisticViewModel.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
+                runway.startPart.wind.WindSpeed =_realTimeWindSpeed;
+                runway.middlePart.wind.WindSpeed =_realTimeWindSpeed;
+                runway.endPart.wind.WindSpeed =_realTimeWindSpeed;
 
-                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
-                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
-                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
-                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
-                runway.EndPartPartWindStatisticViewModel.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
+                runway.startPart.wind.WindDir = _realTimeWindDirection;
+                runway.middlePart.wind.WindDir = _realTimeWindDirection;
+                runway.endPart.wind.WindDir = _realTimeWindDirection;
+
+                runway.startPart.statistics.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
+                runway.startPart.statistics.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
+                runway.startPart.statistics.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
+                runway.startPart.statistics.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
+                runway.startPart.statistics.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
+
+
+                runway.middlePart.statistics.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
+                runway.middlePart.statistics.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
+                runway.middlePart.statistics.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
+                runway.middlePart.statistics.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
+                runway.middlePart.statistics.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
+
+                runway.endPart.statistics.AddSample(_realTimeWindSpeed, _realTimeWindDirection);
+                runway.endPart.statistics.AddSample(_realTimeWindSpeed1, _realTimeWindDirection1);
+                runway.endPart.statistics.AddSample(_realTimeWindSpeed2, _realTimeWindDirection2);
+                runway.endPart.statistics.AddSample(_realTimeWindSpeed3, _realTimeWindDirection3);
+                runway.endPart.statistics.AddSample(_realTimeWindSpeed4, _realTimeWindDirection4);
 
 
 
 
             }
+            
+        
+        
+        
         }
     }
 

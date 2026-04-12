@@ -18,7 +18,13 @@
         
         <Style  TargetType="Border" >
             <Setter Property="Margin" Value="0 0 2 2"/>
-            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}"/>
+            <!--<Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}"/>-->
+            <Setter Property="Background" Value="{StaticResource HeadCrossWind.LableBgColor.Active}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding status.IsActive}" Value="True">
+                    <Setter Property="Background" Value="{StaticResource HeadCrossWind.LableBgColor.Inactive}"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>

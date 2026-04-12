@@ -20,8 +20,8 @@ namespace WindLightSimluator.ViewModels.vm
             set => SetProperty(ref _runwayNumber, value);
         }
 
-        private bool _IsActive;
-        public bool IsActive
+        private bool? _IsActive;
+        public bool? IsActive
         {
             get => _IsActive;
             set => SetProperty(ref _IsActive, value);
@@ -43,10 +43,16 @@ namespace WindLightSimluator.ViewModels.vm
 
         }
 
-        public RunwayStatusVM(bool isActive, String rwyNumber)
+        public RunwayStatusVM(bool? isActive, String rwyNumber)
         {
             _IsActive = isActive;
             _runwayNumber = rwyNumber;
+        }
+
+        public RunwayStatusVM()
+        {
+            _runwayNumber = string.Empty;
+            _IsActive = false;
         }
 
     }

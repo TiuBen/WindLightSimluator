@@ -98,12 +98,19 @@
     <SolidColorBrush x:Key="WindPanelTextColor.InActive"  Color="{StaticResource Bg_Gray_Main}"/>
     <!--HeadCrossWind-->
     <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Active" Color="{StaticResource Bg_Gray_Lighter}"/>
+
+    <SolidColorBrush x:Key="HeadCrossWind.LableBgColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.LableBgColor.Active" Color="{StaticResource Orange_Alert}"/>
+
+
+
     <SolidColorBrush x:Key="HeadCrossWind.LabelBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Light}"/>
     <SolidColorBrush x:Key="HeadCrossWind.LabelTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
     <SolidColorBrush x:Key="HeadCrossWind.ValueTextBackgroundColor.Inactive" Color="{StaticResource White_Main}"/>
     <SolidColorBrush x:Key="HeadCrossWind.ValueTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
 
-    <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Active" Color="{StaticResource White_Main}"/>
+   
     <SolidColorBrush x:Key="HeadCrossWind.LabelBackgroundColor.Active" Color="{StaticResource Blue_Lighter2}"/>
     <SolidColorBrush x:Key="HeadCrossWind.LabelTextColor.Active" Color="{StaticResource Blue_Alt3}"/>
     <SolidColorBrush x:Key="HeadCrossWind.ValueTextBackgroundColor.Active" Color="{StaticResource White_Main}"/>

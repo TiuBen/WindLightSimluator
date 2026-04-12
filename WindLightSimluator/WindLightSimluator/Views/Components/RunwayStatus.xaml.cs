@@ -31,139 +31,139 @@ namespace WindLightSimluator.Views.Components
         }
  
 
-        // ===============================
-        // 状态属性：Active / InActive
-        // 是否激活（外部列选中）
-        // ===============================
-        public bool? IsActive
-        {
-            get => (bool?)GetValue(IsActiveProperty);
-            set => SetValue(IsActiveProperty, value);
-        }
+        //// ===============================
+        //// 状态属性：Active / InActive
+        //// 是否激活（外部列选中）
+        //// ===============================
+        //public bool? IsActive
+        //{
+        //    get => (bool?)GetValue(IsActiveProperty);
+        //    set => SetValue(IsActiveProperty, value);
+        //}
 
-        public static readonly DependencyProperty IsActiveProperty =
-            DependencyProperty.Register(
-                nameof(IsActive),
-                typeof(bool?),
-                typeof(RunwayStatus),
-                new PropertyMetadata(null));
+        //public static readonly DependencyProperty IsActiveProperty =
+        //    DependencyProperty.Register(
+        //        nameof(IsActive),
+        //        typeof(bool?),
+        //        typeof(RunwayStatus),
+        //        new PropertyMetadata(null));
   
 
-        #region
-        // 暴露颜色 
-        // 容器背景
-        public Brush ContainerBackgroundColor
-        {
-            get => (Brush)GetValue(ContainerBackgroundColorProperty);
-            set => SetValue(ContainerBackgroundColorProperty, value);
-        }
+        //#region
+        //// 暴露颜色 
+        //// 容器背景
+        //public Brush ContainerBackgroundColor
+        //{
+        //    get => (Brush)GetValue(ContainerBackgroundColorProperty);
+        //    set => SetValue(ContainerBackgroundColorProperty, value);
+        //}
 
-        public static readonly DependencyProperty ContainerBackgroundColorProperty =
-            DependencyProperty.Register(
-                nameof(ContainerBackgroundColor),
-                typeof(Brush),
-                typeof(RunwayStatus),
-                new PropertyMetadata(Brushes.Red));
-
-
-        // Label 背景
-        public Brush LabelBackgroundColor
-        {
-            get => (Brush)GetValue(LabelBackgroundColorProperty);
-            set => SetValue(LabelBackgroundColorProperty, value);
-        }
-
-        public static readonly DependencyProperty LabelBackgroundColorProperty =
-            DependencyProperty.Register(
-                nameof(LabelBackgroundColor),
-                typeof(Brush),
-                typeof(RunwayStatus),
-                new PropertyMetadata(Brushes.Yellow));
+        //public static readonly DependencyProperty ContainerBackgroundColorProperty =
+        //    DependencyProperty.Register(
+        //        nameof(ContainerBackgroundColor),
+        //        typeof(Brush),
+        //        typeof(RunwayStatus),
+        //        new PropertyMetadata(Brushes.Red));
 
 
-        // Label 文本颜色
-        public Brush LabelTextColor
-        {
-            get => (Brush)GetValue(LabelTextColorProperty);
-            set => SetValue(LabelTextColorProperty, value);
-        }
+        //// Label 背景
+        //public Brush LabelBackgroundColor
+        //{
+        //    get => (Brush)GetValue(LabelBackgroundColorProperty);
+        //    set => SetValue(LabelBackgroundColorProperty, value);
+        //}
 
-        public static readonly DependencyProperty LabelTextColorProperty =
-            DependencyProperty.Register(
-                nameof(LabelTextColor),
-                typeof(Brush),
-                typeof(RunwayStatus),
-                new PropertyMetadata(Brushes.Green));
-
-
-        // Value 文本背景
-        public Brush ValueTextBackgroundColor
-        {
-            get => (Brush)GetValue(ValueTextBackgroundColorProperty);
-            set => SetValue(ValueTextBackgroundColorProperty, value);
-        }
-
-        public static readonly DependencyProperty ValueTextBackgroundColorProperty =
-            DependencyProperty.Register(
-                nameof(ValueTextBackgroundColor),
-                typeof(Brush),
-                typeof(RunwayStatus),
-                new PropertyMetadata(Brushes.Transparent));
+        //public static readonly DependencyProperty LabelBackgroundColorProperty =
+        //    DependencyProperty.Register(
+        //        nameof(LabelBackgroundColor),
+        //        typeof(Brush),
+        //        typeof(RunwayStatus),
+        //        new PropertyMetadata(Brushes.Yellow));
 
 
-        // Value 文本颜色
-        public Brush ValueTextColor
-        {
-            get => (Brush)GetValue(ValueTextColorProperty);
-            set => SetValue(ValueTextColorProperty, value);
-        }
+        //// Label 文本颜色
+        //public Brush LabelTextColor
+        //{
+        //    get => (Brush)GetValue(LabelTextColorProperty);
+        //    set => SetValue(LabelTextColorProperty, value);
+        //}
 
-        public static readonly DependencyProperty ValueTextColorProperty =
-            DependencyProperty.Register(
-                nameof(ValueTextColor),
-                typeof(Brush),
-                typeof(RunwayStatus),
-                new PropertyMetadata(Brushes.Pink));
+        //public static readonly DependencyProperty LabelTextColorProperty =
+        //    DependencyProperty.Register(
+        //        nameof(LabelTextColor),
+        //        typeof(Brush),
+        //        typeof(RunwayStatus),
+        //        new PropertyMetadata(Brushes.Green));
 
 
+        //// Value 文本背景
+        //public Brush ValueTextBackgroundColor
+        //{
+        //    get => (Brush)GetValue(ValueTextBackgroundColorProperty);
+        //    set => SetValue(ValueTextBackgroundColorProperty, value);
+        //}
 
-        #endregion
+        //public static readonly DependencyProperty ValueTextBackgroundColorProperty =
+        //    DependencyProperty.Register(
+        //        nameof(ValueTextBackgroundColor),
+        //        typeof(Brush),
+        //        typeof(RunwayStatus),
+        //        new PropertyMetadata(Brushes.Transparent));
+
+
+        //// Value 文本颜色
+        //public Brush ValueTextColor
+        //{
+        //    get => (Brush)GetValue(ValueTextColorProperty);
+        //    set => SetValue(ValueTextColorProperty, value);
+        //}
+
+        //public static readonly DependencyProperty ValueTextColorProperty =
+        //    DependencyProperty.Register(
+        //        nameof(ValueTextColor),
+        //        typeof(Brush),
+        //        typeof(RunwayStatus),
+        //        new PropertyMetadata(Brushes.Pink));
 
 
 
+        //#endregion
 
-        #region MyRegion
 
-        //变色部分逻辑
+
+
+        //#region MyRegion
+
+        ////变色部分逻辑
      
 
-        public string Theme
-        {
-            get => (string)GetValue(ThemeProperty);
-            set => SetValue(ThemeProperty, value);
-        }
-        public static readonly DependencyProperty ThemeProperty =
-            DependencyProperty.Register(nameof(Theme), typeof(string), typeof(RunwayStatus),
-                new PropertyMetadata("Light", OnStateChanged));
+        //public string Theme
+        //{
+        //    get => (string)GetValue(ThemeProperty);
+        //    set => SetValue(ThemeProperty, value);
+        //}
+        //public static readonly DependencyProperty ThemeProperty =
+        //    DependencyProperty.Register(nameof(Theme), typeof(string), typeof(RunwayStatus),
+        //        new PropertyMetadata("Light", OnStateChanged));
 
-        public string Mode
-        {
-            get => (string)GetValue(ModeProperty);
-            set => SetValue(ModeProperty, value);
-        }
-        public static readonly DependencyProperty ModeProperty =
-            DependencyProperty.Register(nameof(Mode), typeof(string), typeof(RunwayStatus),
-                new PropertyMetadata("Normal", OnStateChanged));
+        //public string Mode
+        //{
+        //    get => (string)GetValue(ModeProperty);
+        //    set => SetValue(ModeProperty, value);
+        //}
+        //public static readonly DependencyProperty ModeProperty =
+        //    DependencyProperty.Register(nameof(Mode), typeof(string), typeof(RunwayStatus),
+        //        new PropertyMetadata("Normal", OnStateChanged));
 
-        private static void OnStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            //if (d is BorderText bt)
-            //{
-            //    bt.ApplyState();
-            //}
-        }
+        //private static void OnStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //{
+        //    //if (d is BorderText bt)
+        //    //{
+        //    //    bt.ApplyState();
+        //    //}
+        //}
 
-        #endregion
+        //#endregion
 
 
 

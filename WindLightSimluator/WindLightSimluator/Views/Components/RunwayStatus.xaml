@@ -12,6 +12,9 @@
     <UserControl.Resources>
         <!--是否显示-->
         <conv:TrueOnlyToVisibilityConverter x:Key="TrueOnlyToVisibility"/>
+        <conv:StatusToBgColorConverter x:Key="StatusToBgColorConverter"/>
+
+
 
         <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
@@ -52,9 +55,29 @@
                     Converter={StaticResource  HeightToFontSizeConverter}, 
                     ConverterParameter=0.3}"/>
         </Style>
+        <Style x:Key="ContainerBackgroundColor" TargetType="Grid" >
+            <Setter Property="Background" Value="{StaticResource RunwayStatus.ContainerBackgroundColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Background" Value="{StaticResource RunwayStatus.ContainerBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--左边倒直角梯形-->
+        <Style x:Key="LabelBackgroundColor" TargetType="Path" >
+            <Setter Property="Fill" Value="{StaticResource RunwayStatus.LabelBackgroundColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Fill" Value="{StaticResource RunwayStatus.LabelBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+
     </UserControl.Resources>
 
-    <Grid Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"   >
+    <Grid Style="{StaticResource ContainerBackgroundColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
@@ -67,9 +90,10 @@
              =============================== -->
             <Viewbox Stretch="Fill">
                 <!-- 标准化成 100x100 的比例路径 -->
-                <Path Style="{DynamicResource PathBgStyle}" >
+                <!--<Path Style="{DynamicResource PathBgStyle}" >-->
+                <Path Style="{StaticResource LabelBackgroundColor}" >
 
-                    <Path.Data>
+                        <Path.Data>
                         <!-- 倒直角梯形：左边直角，右下是钝角 -->
                         <PathGeometry>
                             <PathFigure StartPoint="0,0" IsClosed="True">
@@ -94,7 +118,6 @@
                     x:Name="StatusBorder"
                     Background="{Binding ValueTextBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"
                     VerticalAlignment="Center"
-                    Visibility="{Binding IsActive,Converter={StaticResource TrueOnlyToVisibility} }" 
                     HorizontalAlignment="Stretch"
                     >
                 <!-- 内容区：居中显示状态文字 -->

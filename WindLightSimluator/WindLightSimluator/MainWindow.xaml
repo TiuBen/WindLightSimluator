@@ -104,7 +104,7 @@
                             <view:RunwayView DataContext="{Binding FirstRunway}"/>
 
 
-                            <!--<comp:Metar Grid.Row="7"  Grid.ColumnSpan="3"/>-->
+                            <view:Metar Grid.Row="7"  Grid.ColumnSpan="3"/>
                         </Grid>
 
 

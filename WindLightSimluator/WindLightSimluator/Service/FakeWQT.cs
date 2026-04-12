@@ -138,7 +138,7 @@ namespace WindLightSimluator.Service
 
         public static RunwayVM BuildRunwayViewModel(short runwaydir)
         {
-            return new RunwayVM(1, 015, "01L", 195, "19R");
+            return new RunwayVM();
         }
 
         public static void FakeRunwayData(RunwayVM runway)

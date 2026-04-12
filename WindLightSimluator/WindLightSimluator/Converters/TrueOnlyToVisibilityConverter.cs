@@ -14,10 +14,9 @@ namespace WindLightSimluator.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Debug.WriteLine(value);
             if (value==null)
             {
-                return Visibility.Collapsed;
+                return Visibility.Hidden;
             }
             return Visibility.Visible;
         }

@@ -10,19 +10,36 @@ namespace WindLightSimluator.ViewModels.vm
 {
     public class RvrVisVM : ViewModelBase
     {
-       
+
 
         private int _rvr = 2000;
         public string RvrValue
         {
             get {
-                if (_rvr >= 2000)
+                int roundedRvr;
+                if (_rvr < 400)
                 {
-                    return $"P2000";
+                    // 400 以下按 25 的倍数四舍五入
+                    roundedRvr = (int)Math.Round(_rvr / 25.0) * 25;
+                }
+                else if (_rvr <= 550)
+                {
+                    // 400-550 按 50 的倍数四舍五入
+                    roundedRvr = (int)Math.Round(_rvr / 50.0) * 50;
                 }
                 else
                 {
-                    return _rvr.ToString();
+                    // 550 以上按 100 的倍数四舍五入
+                    roundedRvr = (int)Math.Round(_rvr / 100.0) * 100;
+                }
+
+                if (roundedRvr >= 2000)
+                {
+                    return "P2000";
+                }
+                else
+                {
+                    return roundedRvr.ToString();
                 }
 
             }
@@ -47,7 +64,8 @@ namespace WindLightSimluator.ViewModels.vm
                 if (_rvr != newValue)
                 {
                     _rvr = newValue;
-                    OnPropertyChanged(); // 自动识别属性名 "RvrValue"
+                    OnPropertyChanged(nameof(RvrValue)); // 自动识别属性名 "RvrValue"
+                    //SetProperty(ref _rvr, newValue);
                 }
             }
         }
@@ -55,7 +73,9 @@ namespace WindLightSimluator.ViewModels.vm
         private int _vis = 2000;
         public int VisValue
         {
-            get { return _vis; }
+            get {  // 对 _vis 按 1000 的倍数进行四舍五入
+                return (int)Math.Round(_vis / 1000.0) * 1000;
+            }
             // 4. 标准属性直接使用 SetProperty，更简洁
             set => SetProperty(ref _vis, value);
         }
