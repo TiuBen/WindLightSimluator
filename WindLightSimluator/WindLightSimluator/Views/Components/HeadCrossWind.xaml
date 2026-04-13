@@ -15,27 +15,33 @@
 
         <!--主题颜色+是否被选中-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
-        
-        <Style  TargetType="Border" >
+
+        <!--<Style  TargetType="Border" >
             <Setter Property="Margin" Value="0 0 2 2"/>
-            <!--<Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}"/>-->
+            --><!--<Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}"/>--><!--
             <Setter Property="Background" Value="{StaticResource HeadCrossWind.LableBgColor.Active}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding status.IsActive}" Value="True">
                     <Setter Property="Background" Value="{StaticResource HeadCrossWind.LableBgColor.Inactive}"/>
                 </DataTrigger>
             </Style.Triggers>
-        </Style>
+        </Style>-->
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="Padding" Value="10 0 10 0"/>
-            <Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />
+            <!--<Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />-->
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                     RelativeSource={RelativeSource AncestorType=Border},
                     Converter={StaticResource  HeightToFontSizeConverter}, 
                     ConverterParameter=0.45}"/>
+            <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="base:BorderText" >
             <Setter Property="Margin" Value="0 0 2 2"/>
@@ -45,14 +51,64 @@
             <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />
             <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />
         </Style>
-     
+        <!--整体背景色-->
+        <Style x:Key="ContainerBackgroundColor" TargetType="Grid" >
+            <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--如标题之类的label的背景色-->
+        <!--<Style x:Key="LabelBackgroundColor" TargetType="Border" >-->
+        <Style TargetType="Border" >
+            <Setter Property="Margin" Value="0 0 2 2"/>
+
+            <Setter Property="Background" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--标题文字的颜色-->
+        <!--<Style TargetType="TextBlock" >
+            <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
+        <!--具体值文字的颜色-->
+        <Style x:Key="ValueTextColor" TargetType="base:BorderText" >
+            <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--具体值文字的背景色-->
+        <!--<Style x:Key="ValueTextBackgroundColor" TargetType="base:CapsuleBorder"  >
+            <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
+
+
 
     </UserControl.Resources>
 
     <!--<Grid Background="#FFDBDFE9">-->
     <!--在这里面 所有的深色 都 被 grid 包裹-->
 
-    <Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=local:HeadCrossWind}}"   >
+    <!--<Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=local:HeadCrossWind}}"   >-->
+    <Grid Style="{DynamicResource ContainerBackgroundColor}"  >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto" />
@@ -68,7 +124,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-         <!--▬▬▬▬▬▬▬▬▬▬▬ 第一列 Label ▬▬▬▬▬▬▬▬▬▬▬--> 
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第一列 Label ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border  Grid.Column="0" Grid.Row="0" />
         <Border  Grid.Column="0" Grid.Row="1"  >
             <TextBlock   Text="Head Wind" />
@@ -77,7 +133,7 @@
             <TextBlock Text="Cross Wind" />
         </Border>
 
-         <!--▬▬▬▬▬▬▬▬▬▬▬ 第2列 AVG2 ▬▬▬▬▬▬▬▬▬▬▬--> 
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第2列 AVG2 ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border  Grid.Column="1" Grid.Row="0"   >
             <TextBlock  Text="AVG2" />
         </Border>
@@ -86,7 +142,7 @@
         <base:BorderText  Grid.Column="1" Grid.Row="2" Margin="0 0 2 0" 
                        MainText="{Binding AvgCrossWind}" SubText="mps"/>
 
-         <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬--> 
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border Background="Transparent" Grid.Row="0" Grid.Column="2"  />
         <Border Background="Transparent" Grid.Row="1" Grid.Column="2"  />
         <Border Background="Transparent" Grid.Row="2" Grid.Column="2"   />

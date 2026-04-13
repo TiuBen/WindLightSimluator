@@ -52,8 +52,15 @@ namespace WindLightSimluator.ViewModels.vm
             }
         }
 
-    
-      
+        private bool? _IsActive;
+        public bool? IsActive
+        {
+            get => _IsActive;
+            set => SetProperty(ref _IsActive, value);
+
+        }
+
+
 
 
         // ... 保留你原有的 NormalizeAngle, HeadWindSpeed, CrossWindSpeed 逻辑 ...

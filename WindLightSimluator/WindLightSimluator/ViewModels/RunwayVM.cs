@@ -32,28 +32,37 @@ namespace WindLightSimluator.ViewModels
             //startPart.status = new RunwayStatusVM();
             startPart.status.RunwayNumber ="01L" ;
             startPart.wind = new WindVM(1, 020, 015);
+            startPart.wind.IsActive = true;
             startPart.statistics = new WindStatisticsVM(015, 5);
+            startPart.statistics.IsActive = true;
             startPart.rvrVis = new RvrVisVM();
+            startPart.rvrVis.IsActive = true;
             startPart.weather = new WeatherConditionVM();
+            startPart.weather.IsActive = true;
 
             middlePart = new();
             middlePart.status = new RunwayStatusVM(null, "MID1");
             //middlePart.status = new RunwayStatusVM();
             middlePart.wind = new WindVM(1, 020, 015);
+            middlePart.wind.IsActive = false;
             middlePart.statistics = new WindStatisticsVM(015, 5);
+            middlePart.statistics.IsActive = false;
             middlePart.rvrVis = new RvrVisVM();
-
+            middlePart.rvrVis.IsActive= false;
             middlePart.weather = new WeatherConditionVM();
+            middlePart.weather.IsActive = false;
 
 
             endPart = new();
             endPart.status = new RunwayStatusVM(false, "19R");
-            //endPart.status = new RunwayStatusVM();
             endPart.wind = new WindVM(1, 020, 015);
+            endPart.wind.IsActive = false;
             endPart.statistics = new WindStatisticsVM(015, 5);
+            endPart.statistics.IsActive = false;
             endPart.rvrVis = new RvrVisVM();
-
+            endPart.rvrVis.IsActive = false;
             endPart.weather = new WeatherConditionVM();
+            endPart.weather.IsActive = false;
 
         }
 

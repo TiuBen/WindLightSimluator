@@ -87,5 +87,14 @@ namespace WindLightSimluator.ViewModels.vm
             VisValue = initialVis;
         }
 
+
+        private bool? _IsActive;
+        public bool? IsActive
+        {
+            get => _IsActive;
+            set => SetProperty(ref _IsActive, value);
+
+        }
+
     }
 }

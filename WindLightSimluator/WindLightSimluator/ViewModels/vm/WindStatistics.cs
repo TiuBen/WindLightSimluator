@@ -37,6 +37,15 @@ namespace WindLightSimluator.ViewModels.vm
             }
         }
 
+        private bool? _IsActive;
+        public bool? IsActive
+        {
+            get => _IsActive;
+            set => SetProperty(ref _IsActive, value);
+
+        }
+
+
         public WindStatisticsVM(int runwayDir, int size = 5)
         {
             RunwayDir = runwayDir;

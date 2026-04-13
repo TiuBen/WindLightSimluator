@@ -56,28 +56,53 @@
                     ConverterParameter=0.3}"/>
         </Style>
         <Style x:Key="ContainerBackgroundColor" TargetType="Grid" >
-            <Setter Property="Background" Value="{StaticResource RunwayStatus.ContainerBackgroundColor.Inactive}" />
+            <Setter Property="Background" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Inactive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Background" Value="{StaticResource RunwayStatus.ContainerBackgroundColor.Active}"/>
+                    <Setter Property="Background" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <!--左边倒直角梯形-->
         <Style x:Key="LabelBackgroundColor" TargetType="Path" >
-            <Setter Property="Fill" Value="{StaticResource RunwayStatus.LabelBackgroundColor.Inactive}" />
+            <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Inactive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Fill" Value="{StaticResource RunwayStatus.LabelBackgroundColor.Active}"/>
+                    <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--跑道文字颜色-->
+        <Style x:Key="LabelTextColor" TargetType="TextBlock"  BasedOn="{StaticResource largeText}">
+            <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.LabelTextColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.LabelTextColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--状态文字颜色-->
+        <Style x:Key="ValueTextColor" TargetType="TextBlock"  BasedOn="{StaticResource smallText}">
+            <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.ValueTextColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.ValueTextColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--状态文字背景颜色-->
+        <Style x:Key="ValueTextBackgroundColor" TargetType="base:CapsuleBorder"  >
+            <Setter Property="Background" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
 
-
-
     </UserControl.Resources>
 
-    <Grid Style="{StaticResource ContainerBackgroundColor}">
+    <Grid Style="{DynamicResource ContainerBackgroundColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
@@ -91,7 +116,7 @@
             <Viewbox Stretch="Fill">
                 <!-- 标准化成 100x100 的比例路径 -->
                 <!--<Path Style="{DynamicResource PathBgStyle}" >-->
-                <Path Style="{StaticResource LabelBackgroundColor}" >
+                <Path Style="{DynamicResource LabelBackgroundColor}" >
 
                         <Path.Data>
                         <!-- 倒直角梯形：左边直角，右下是钝角 -->
@@ -108,20 +133,22 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="{Binding RunwayNumber}"  Style="{DynamicResource largeText}"  />
+            <TextBlock Text="{Binding RunwayNumber}"  Style="{DynamicResource LabelTextColor}"  />
         </Grid>
 
         <!-- 右侧：胶囊形状态条 -->
         <Grid Grid.Column="2"  Margin="0,0,10,0" Visibility="{Binding IsActive,Converter={StaticResource TrueOnlyToVisibility} }" >
             <!-- 我们把 Border 的高度绑定到 UserControl 的 Height（可以用 Padding 调整内缩） -->
+                    <!--Background="{Binding ValueTextBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"-->
+                    <!--Background="{Binding ValueTextBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"-->
             <base:CapsuleBorder 
                     x:Name="StatusBorder"
-                    Background="{Binding ValueTextBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"
+                    Style="{DynamicResource ValueTextBackgroundColor}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch"
                     >
                 <!-- 内容区：居中显示状态文字 -->
-                <TextBlock Text="{Binding RunwayStatusText}" Style="{DynamicResource smallText}" Margin="10 5 10 5"/>
+                <TextBlock Text="{Binding RunwayStatusText}" Style="{DynamicResource ValueTextColor}" Margin="10 5 10 5"/>
                 <!-- 说明：上面状态文字的 FontSize 我设置为 RunwayFontSize 的某个比例（可调），避免状态字太大 -->
             </base:CapsuleBorder>
         </Grid>

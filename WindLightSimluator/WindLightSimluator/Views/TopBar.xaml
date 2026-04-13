@@ -15,7 +15,7 @@
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
 
         <Style x:Key="LabelStyle" TargetType="TextBlock" >
-            <Setter Property="Foreground" Value="{StaticResource TopBarLabelTextColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TopBarLabelTextColor}"/>
             <Setter Property="VerticalAlignment"  Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Medium"/>
@@ -23,7 +23,7 @@
             <Setter Property="Margin" Value="10 0 10 0"/>
         </Style>
         <Style x:Key="TextStyle" TargetType="TextBlock" >
-            <Setter Property="Foreground" Value="{StaticResource TopBarTextColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TopBarTextColor}"/>
             <Setter Property="VerticalAlignment"  Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Medium"/>
@@ -35,11 +35,11 @@
                         Converter={StaticResource  HeightToFontSizeConverter} , ConverterParameter=0.5 }"/>-->
         </Style>
         <Style TargetType="base:CapsuleBorder" >
-            <Setter Property="Background"  Value="{StaticResource TopBarLabelBg}"/>
+            <Setter Property="Background"  Value="{DynamicResource TopBarLabelBg}"/>
         </Style>
     </UserControl.Resources>
 
-    <Grid  Background="{StaticResource TopBarBg}">
+    <Grid  Background="{DynamicResource TopBarBg}">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -200,7 +200,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <base:CapsuleBorder Grid.Column="0">
-                        <TextBlock Text="sunset" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock Text="sunset"  Style="{StaticResource LabelStyle}"/>
                     </base:CapsuleBorder>
                     <TextBlock Grid.Column="1" Text="2025-12-07 17:13:50" Style="{StaticResource TextStyle}" />
                 </Grid>
@@ -209,8 +209,8 @@
             <base:CapsuleBorder Grid.Column="1">
                 <TextBlock Text="sunrise" Style="{StaticResource LabelStyle}"/>
             </base:CapsuleBorder>
-            <base:CapsuleBorder Grid.Column="2">
-                <TextBlock Text="suddddnset" Style="{StaticResource TextStyle}"/>
+            <base:CapsuleBorder Grid.Column="2" >
+                <TextBlock Text="sunset" Style="{StaticResource TextStyle}" Foreground="Red" MouseLeftButtonDown="ChangeTheme_MouseLeftButtonDown" />
             </base:CapsuleBorder>
         </Grid>
     </Grid>

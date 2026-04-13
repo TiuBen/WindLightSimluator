@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -60,6 +61,32 @@ namespace WindLightSimluator.Views
             InitializeComponent();
             DataContext = new TopBarViewModel();
 
+        }
+        private bool isDark = false;
+
+        private void ChangeTheme_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Debug.WriteLine($"Switch theme {isDark}");
+
+            Application.Current.Resources.MergedDictionaries.Clear();
+
+            if (isDark)
+            {
+                Application.Current.Resources.MergedDictionaries.Add(
+                    new ResourceDictionary()
+                    { Source = new Uri("DarkTheme.xaml", UriKind.Relative) }
+                );
+
+            }
+            else
+            {
+                Application.Current.Resources.MergedDictionaries.Add(
+                    new ResourceDictionary()
+                    { Source = new Uri("LightTheme.xaml", UriKind.Relative) }
+                );
+            }
+
+            isDark = !isDark;
         }
     }
 }

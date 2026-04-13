@@ -60,7 +60,6 @@
     <SolidColorBrush x:Key="TopBarLabelBg"   Color="{StaticResource Bg_Gray_Lighter}"/>
     <SolidColorBrush x:Key="TopBarLabelTextColor"  Color="{StaticResource Blue_Primary}"/>
     <SolidColorBrush x:Key="TopBarTextColor"   Color="{StaticResource White_Main}"/>
-    <!--最大的背景-->
     <SolidColorBrush x:Key="MainContainerBg"   Color="{StaticResource Blue_Lighter}"/>
     
     <!--RunwayStatus-->
@@ -78,6 +77,11 @@
 
 
     <!--WindPanel-->
+    <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.Active"  Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.InActive"  Color="{StaticResource Bg_Gray_Lighter}"/>
+
+ 
+
     <SolidColorBrush x:Key="WindPanelArcDirectedHeadColor.Active" Color="#EC7439"/>
     <SolidColorBrush x:Key="WindPanelArcRangeColor.Active" Color="{StaticResource Blue_DarkPrimary}"/>
     <SolidColorBrush x:Key="WindPanelArcDirectedHeadColor.InActive" Color="#ECB397"/>
@@ -96,12 +100,13 @@
     <SolidColorBrush x:Key="WindPanelBg.InActive"  Color="{StaticResource Bg_Gray_Lighter}"/>
     <SolidColorBrush x:Key="WindPanelTextColor.Active"  Color="{StaticResource Text_Darker}"/>
     <SolidColorBrush x:Key="WindPanelTextColor.InActive"  Color="{StaticResource Bg_Gray_Main}"/>
+    
     <!--HeadCrossWind-->
     <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Lighter}"/>
-    <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Active" Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Active" Color="{StaticResource White_Main}"/>
 
     <SolidColorBrush x:Key="HeadCrossWind.LableBgColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
-    <SolidColorBrush x:Key="HeadCrossWind.LableBgColor.Active" Color="{StaticResource Orange_Alert}"/>
+    <SolidColorBrush x:Key="HeadCrossWind.LableBgColor.Active" Color="{StaticResource Bg_Gray_Light}"/>
 
 
 

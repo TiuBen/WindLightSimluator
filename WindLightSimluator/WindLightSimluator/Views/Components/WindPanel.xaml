@@ -52,10 +52,21 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--整个背景色-->
+        <Style x:Key="ContainerBackgroundColor" TargetType="Grid" >
+            <Setter Property="Background" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
 
     </UserControl.Resources>
-    <Grid Background="{Binding WindPanelBackground,RelativeSource={RelativeSource  AncestorType=UserControl}}">
-        <!--<Grid Background="White">-->
+    <!--<Grid Background="{Binding WindPanelBackground,RelativeSource={RelativeSource  AncestorType=UserControl}}">-->
+    <!--<Grid Background="Red">-->
+    <Grid Style="{DynamicResource ContainerBackgroundColor}">
         <Viewbox   Stretch="Uniform" >
             <Canvas Width="800" Height="800" Background="Transparent">
 

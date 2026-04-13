@@ -16,5 +16,5 @@ C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\Wind
 2041124532039
 MainWindow.xaml;Views\Components\Base\BorderText.xaml;Views\Components\Base\StateBrushes.xaml;Views\Components\GridPointEditor.xaml;Views\Components\HeadCrossWind.xaml;Views\Components\RunwayStatus.xaml;Views\Components\RvrVis.xaml;Views\Components\WeatherCondition.xaml;Views\Components\WindPanel.xaml;Views\Light.xaml;Views\Metar.xaml;Views\Qnh.xaml;Views\RunwayView.xaml;Views\TopBar.xaml;Views\WeatherEditor.xaml;
 
-True
+False
 

@@ -2,8 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     
-      <!--顶端栏-->
-    <SolidColorBrush x:Key="TopBarBg"   Color="#002C5C"/>
    <!--侧栏 包括整个 主界面-->
     <SolidColorBrush x:Key="MainBarBg"   Color="#002C5C"/>
     <!--RunwayStatus-->
@@ -59,7 +57,10 @@
     <Color x:Key="Bg_Gray_Dark2">#7F869C</Color>
     <Color x:Key="Bg_Gray_Dark3">#aab8db</Color>
     <Color x:Key="Bg_Blue_Dark1">#1F3B5F</Color>
+    <Color x:Key="Bg_Blue_Dark2">#2c4c85</Color>
+    <Color x:Key="Bg_Blue_Dark3">#233b6b</Color>
 
+    
     <!-- 纯白 / 高亮 -->
     <Color x:Key="White_Main">#FAFAFA</Color>
     <Color x:Key="White_Off">#F9FAFA</Color>
@@ -76,7 +77,9 @@
     <Color x:Key="Blue_Alt1">#7CABD4</Color>
     <Color x:Key="Blue_Alt2">#5A75AB</Color>
     <Color x:Key="Blue_Alt3">#265bc6</Color>
-
+    <Color x:Key="Blue_Alt4">#2c5ac1</Color>
+    <Color x:Key="Blue_Alt5">#1d47a2</Color>
+    
     <!-- 深色文字 / 刻度 -->
     <Color x:Key="Text_Darker">#080408</Color>
     <Color x:Key="Text_Muted">#525B58</Color>
@@ -89,24 +92,50 @@
     <!-- 中性灰 -->
     <Color x:Key="Gray_Neutral">#D1D2D3</Color>
 
-
-
-
+    <!--主界面-->
+    <!--顶端栏-->
+    <SolidColorBrush x:Key="TopBarBg"   Color="#08204c"/>
+    <SolidColorBrush x:Key="TopBarLabelBg"   Color="#3e9ae3"/>
+    <SolidColorBrush x:Key="TopBarLabelTextColor"  Color="#fafafa"/>
+    <SolidColorBrush x:Key="TopBarTextColor"   Color="#fafafa"/>
+    <SolidColorBrush x:Key="MainContainerBg" Color="#080408"/>
 
 
     <!--RunwayStatus-->
     <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Inactive" Color="{StaticResource Bg_Blue_Dark1}"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
-    <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark3}"/>
+    <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Inactive" Color="{StaticResource White_Main}"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Dark3}"/>
-    <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Inactive" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Inactive" Color="{StaticResource Bg_Gray_Light}"/>
 
     <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Active" Color="{StaticResource Bg_Blue_Dark1}"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Active" Color="{StaticResource Blue_Primary}"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Active" Color="{StaticResource White_Main}"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Active" Color="{StaticResource Orange_Alert}"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Active" Color="{StaticResource White_Main}"/>
+    <!--WindPanel-->
+    <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.Active"  Color="#2c4c85"/>
+    <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.InActive"  Color="#233b6b"/>
+    <!--HeadCrossWind-->
+    <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Active" Color="#2c4c85"/>
+    <SolidColorBrush x:Key="HeadCrossWind.ContainerBackgroundColor.Inactive" Color="#233b6b"/>
 
+    <SolidColorBrush x:Key="HeadCrossWind.LabelTextColor.Active" Color="#fafafa"/>
+    <SolidColorBrush x:Key="HeadCrossWind.LabelTextColor.Inactive" Color="#7988b0"/>
+
+    <SolidColorBrush x:Key="HeadCrossWind.LabelBackgroundColor.Active" Color="#18305e"/>
+    <SolidColorBrush x:Key="HeadCrossWind.LabelBackgroundColor.Inactive" Color="#18305e"/>
+
+    <SolidColorBrush x:Key="HeadCrossWind.ValueTextColor.Active" Color="#fafafa"/>
+    <SolidColorBrush x:Key="HeadCrossWind.ValueTextColor.Inactive" Color="#7988b0"/>
+
+    <!--QnhLight Metar-->
+    <SolidColorBrush x:Key="QnhLight.ContainerBackgroundColor" Color="#2c4c85"/>
+    <SolidColorBrush x:Key="QnhLight.LabelBackgroundColor" Color="#18305e"/>
+    <SolidColorBrush x:Key="QnhLight.LabelTextColor" Color="#fafafa"/>
+    <SolidColorBrush x:Key="QnhLight.ValueTextBackgroundColor" Color="#2c4c85"/>
+    
+    <SolidColorBrush x:Key="QnhLight.ValueTextColor" Color="#fafafa"/>
 
 
 

@@ -24,17 +24,26 @@
                     RelativeSource={RelativeSource AncestorType=Border},
                     Converter={StaticResource  HeightToFontSizeConverter}, 
                     ConverterParameter=0.6}"/>
+            <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
-
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="{DynamicResource QnhLight.ContainerBackgroundColor}" />
+        </Style>
+        
     </UserControl.Resources>
-    <Grid Background="{StaticResource QnhLight.ContainerBackgroundColor}" >
+    <Grid Background="{DynamicResource QnhLight.ContainerBackgroundColor}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Background="{StaticResource QnhLight.LabelBackgroundColor}">
+        <Border Background="{DynamicResource QnhLight.LabelBackgroundColor}">
             <TextBlock Text="QNH"   
-                       Foreground="{StaticResource QnhLight.LabelTextColor}"/>
+                       Foreground="{DynamicResource QnhLight.LabelTextColor}"/>
         </Border>
         <base:BorderText Grid.Column="1" 
                          MainText="{Binding Qnh}" 
