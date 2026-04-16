@@ -6,7 +6,7 @@
              xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
              xmlns:local="clr-namespace:WindLightSimluator.Views.Components"
-             
+             xmlns:sys="http://schemas.microsoft.com/winfx/2009/xaml"
              mc:Ignorable="d"
              x:Name="root"
              d:DesignHeight="450" d:DesignWidth="1200"  >
@@ -15,27 +15,11 @@
 
         <!--主题颜色+是否被选中-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
-
-        <!--<Style  TargetType="Border" >
-            <Setter Property="Margin" Value="0 0 2 2"/>
-            --><!--<Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}"/>--><!--
-            <Setter Property="Background" Value="{StaticResource HeadCrossWind.LableBgColor.Active}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding status.IsActive}" Value="True">
-                    <Setter Property="Background" Value="{StaticResource HeadCrossWind.LableBgColor.Inactive}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>-->
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Padding" Value="10 0 10 0"/>
-            <!--<Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />-->
-            <Setter Property="FontSize"  Value="{Binding ActualHeight,
-                    RelativeSource={RelativeSource AncestorType=Border},
-                    Converter={StaticResource  HeightToFontSizeConverter}, 
-                    ConverterParameter=0.45}"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}, Converter={StaticResource  HeightToFontSizeConverter}, ConverterParameter=0.45}"/>
             <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
@@ -43,28 +27,52 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="base:BorderText" >
-            <Setter Property="Margin" Value="0 0 2 2"/>
-            <Setter Property="BorderThicknessValue" Value="2"/>
-            <Setter Property="SubText" Value="mps"/>
+        <Style  TargetType="base:BorderText" >
+            <Setter Property="BorderThicknessValue" Value="3"/>
+            <Setter Property="BorderColor" Value="Transparent"/>
             <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />
-            <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:HeadCrossWind}}" />
-        </Style>
-        <!--整体背景色-->
-        <Style x:Key="ContainerBackgroundColor" TargetType="Grid" >
-            <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}" />
+            <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
+            <Setter Property="SubTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+                    <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="SubTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <!--如标题之类的label的背景色-->
-        <!--<Style x:Key="LabelBackgroundColor" TargetType="Border" >-->
-        <Style TargetType="Border" >
-            <Setter Property="Margin" Value="0 0 2 2"/>
+        <Style x:Key="LargerThan35"  TargetType="base:BorderText"  >
+            <Setter Property="BorderThicknessValue" Value="3"/>
+            <Setter Property="BorderColor" Value="Red"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
+            <Setter Property="SubTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="SubTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+                </DataTrigger>
+                <DataTrigger>
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource GreaterThanConverter}">
+                            <Binding Path="AvgHeadWind" />
+                            <Binding Source="-3.5" />
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <DataTrigger.Value>
+                        <sys:Boolean>true</sys:Boolean>
+                    </DataTrigger.Value>
+                    <Setter Property="BorderColor" Value="Yellow"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
 
+
+        <!--如标题之类的 label的背景色-->
+        <Style TargetType="Border" >
             <Setter Property="Background" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
@@ -72,115 +80,90 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <!--标题文字的颜色-->
-        <!--<Style TargetType="TextBlock" >
-            <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>-->
-        <!--具体值文字的颜色-->
-        <Style x:Key="ValueTextColor" TargetType="base:BorderText" >
-            <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <!--具体值文字的背景色-->
-        <!--<Style x:Key="ValueTextBackgroundColor" TargetType="base:CapsuleBorder"  >
-            <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>-->
-
-
-
     </UserControl.Resources>
 
-    <!--<Grid Background="#FFDBDFE9">-->
-    <!--在这里面 所有的深色 都 被 grid 包裹-->
 
-    <!--<Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=local:HeadCrossWind}}"   >-->
-    <Grid Style="{DynamicResource ContainerBackgroundColor}"  >
+    <Grid  >
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsActive}" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="Auto" MinWidth="110"/>
             <ColumnDefinition Width="*"  />
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="Auto" MinWidth="110"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="2"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="2"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--▬▬▬▬▬▬▬▬▬▬▬ 第一列 Label ▬▬▬▬▬▬▬▬▬▬▬-->
+        <!--▬▬▬▬▬▬▬▬▬▬▬ 第0列 Label ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border  Grid.Column="0" Grid.Row="0" />
-        <Border  Grid.Column="0" Grid.Row="1"  >
-            <TextBlock   Text="Head Wind" />
+        <Border  Grid.Column="0" Grid.Row="2"  >
+            <TextBlock   Text="Head Wind" Padding="6 0 6 0" />
         </Border>
-        <Border  Grid.Column="0" Grid.Row="2" Margin="0 0 2 0" >
+        <Border  Grid.Column="0" Grid.Row="4" >
             <TextBlock Text="Cross Wind" />
         </Border>
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第2列 AVG2 ▬▬▬▬▬▬▬▬▬▬▬-->
-        <Border  Grid.Column="1" Grid.Row="0"   >
+        <Border  Grid.Column="2" Grid.Row="0"   >
             <TextBlock  Text="AVG2" />
         </Border>
-        <base:BorderText Grid.Column="1" Grid.Row="1"
-                         MainText="{Binding AvgHeadWind}" SubText="mps"/>
-        <base:BorderText  Grid.Column="1" Grid.Row="2" Margin="0 0 2 0" 
-                       MainText="{Binding AvgCrossWind}" SubText="mps"/>
+        <base:BorderText Grid.Column="2" Grid.Row="2" Style="{StaticResource LargerThan35}"  MainText="{Binding AvgHeadWind}" SubText="mps" />
+        <base:BorderText   Grid.Column="2" Grid.Row="4"  MainText="{Binding AvgCrossWind}" SubText="mps"/>
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬-->
-        <Border Background="Transparent" Grid.Row="0" Grid.Column="2"  />
-        <Border Background="Transparent" Grid.Row="1" Grid.Column="2"  />
-        <Border Background="Transparent" Grid.Row="2" Grid.Column="2"   />
+        <Border Background="Transparent" Grid.Row="0" Grid.Column="3"/>
+        <Border Background="Transparent" Grid.Row="1" Grid.Column="3"/>
+        <Border Background="Transparent" Grid.Row="2" Grid.Column="3"/>
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第4列 WD / WS ▬▬▬▬▬▬▬▬▬▬▬-->
 
-        <Border  Grid.Column="3" Grid.Row="0" />
-        <Border   Grid.Column="3" Grid.Row="1"  >
-            <TextBlock   Text="WD" />
+        <Border  Grid.Column="4" Grid.Row="0" />
+        <Border   Grid.Column="4" Grid.Row="2"  >
+            <TextBlock   Text="WD" Padding="5 0 5 0"/>
         </Border>
-        <Border    Grid.Column="3" Grid.Row="2"  Margin="0 0 2 0"  >
+        <Border    Grid.Column="4" Grid.Row="4"  >
             <TextBlock Text="WS"/>
         </Border>
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第5列 MNM2  ▬▬▬▬▬▬▬▬▬▬▬-->
-        <Border    Grid.Column="4" Grid.Row="0"  >
+        <Border    Grid.Column="6" Grid.Row="0"  >
             <TextBlock   Text="MNM2" />
         </Border>
-        <base:BorderText  Grid.Column="4" Grid.Row="1" 
-                       MainText="{Binding MinWindDir}" SubText="°" />
-        <base:BorderText   Grid.Column="4" Grid.Row="2" Margin="0 0 2 0"
-                       MainText="{Binding MinWindSpeed}" SubText="mps" />
+        <base:BorderText  Grid.Column="6" Grid.Row="2" MainText="{Binding MinWindDir}" SubText="°" />
+        <base:BorderText   Grid.Column="6" Grid.Row="4" MainText="{Binding MinWindSpeed}" SubText="mps" />
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬-->
-        <Border    Grid.Column="5" Grid.Row="0"  >
+        <Border    Grid.Column="8" Grid.Row="0"  >
             <TextBlock   Text="AVG2" />
         </Border>
-        <base:BorderText  Grid.Column="5" Grid.Row="1"
-                       MainText="{Binding AvgWindDir}" SubText="°" />
-        <base:BorderText  Grid.Column="5" Grid.Row="2" Margin="0 0 2 0"
-                       MainText="{Binding AvgWindSpeed}" SubText="mps" />
+        <base:BorderText  Grid.Column="8" Grid.Row="2" MainText="{Binding AvgWindDir}" SubText="°" />
+        <base:BorderText  Grid.Column="8" Grid.Row="4" MainText="{Binding AvgWindSpeed}" SubText="mps" />
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬-->
-        <Border    Grid.Column="6" Grid.Row="0" Margin="0 0 0 2" >
+        <Border    Grid.Column="10" Grid.Row="0"  >
             <TextBlock   Text="MAX2"  Padding=" 9 2 9 6"/>
         </Border>
-        <base:BorderText  Grid.Column="6" Grid.Row="1" Margin="0 0 0 2"
-                       MainText="{Binding MaxWindDir}" SubText="°" />
-        <base:BorderText  Grid.Column="6" Grid.Row="2"  Margin="0 0 0 0"
-                       MainText="{Binding MaxWindSpeed}" SubText="mps" />
+        <base:BorderText  Grid.Column="10" Grid.Row="2"  MainText="{Binding MaxWindDir}" SubText="°" />
+        <base:BorderText  Grid.Column="10" Grid.Row="4"  MainText="{Binding MaxWindSpeed}" SubText="mps" />
 
 
     </Grid>

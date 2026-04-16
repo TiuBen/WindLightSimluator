@@ -37,13 +37,13 @@
                      ConverterParameter=0.1}"/>
         </Style>
     </UserControl.Resources>
-    <Grid Background="{StaticResource QnhLight.ContainerBackgroundColor}" Margin="0">
+    <Grid Background="{DynamicResource QnhLight.ContainerBackgroundColor}" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Background="{StaticResource QnhLight.LabelBackgroundColor}" Margin="0">
-            <TextBlock Text="METAR"   Foreground="{StaticResource QnhLight.LabelTextColor}"/>
+        <Border Grid.Column="0" Background="{DynamicResource QnhLight.LabelBackgroundColor}" Margin="0">
+            <TextBlock Text="METAR"   Foreground="{DynamicResource QnhLight.LabelTextColor}"/>
         </Border>
         <Label Grid.Column="1"  Margin="0" Foreground="{DynamicResource QnhLight.ValueTextColor }" Content="METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG="/>
     </Grid>

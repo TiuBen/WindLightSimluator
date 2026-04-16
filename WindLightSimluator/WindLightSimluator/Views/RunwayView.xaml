@@ -53,7 +53,7 @@
 
         <!--WindPanelStyle-->
         <Style  TargetType="comp:WindPanel">
-            <Setter Property="Margin" Value="0 0 0 2"/>
+            <Setter Property="Margin" Value="0 0 0 4"/>
             <Setter Property="WindPanelBackground" Value="{DynamicResource WindPanelBg.InActive}"/>
             <Setter Property="WindPanelTextColor" Value="{DynamicResource WindPanelTextColor.InActive}" />
             <Style.Triggers>
@@ -66,8 +66,8 @@
 
         <!--HeadCrossWindStyle-->
         <Style TargetType="comp:HeadCrossWind">
-            <Setter Property="Margin" Value="0 0 0 2"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
+            <Setter Property="Margin" Value="0 0 0 4"/>
+            <!--<Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
             <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
             <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
             <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
@@ -81,7 +81,7 @@
                     <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
 
                 </Trigger>
-            </Style.Triggers>
+            </Style.Triggers>-->
         </Style>
 
         <!--RvrVisStyle-->
@@ -147,7 +147,7 @@
             </Grid.RowDefinitions>
             <comp:RunwayStatus  DataContext="{Binding startPart.status}"  />
             <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3"  DataContext="{Binding startPart.wind}"/>
-            <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding startPart.statistics}" IsActive="True"/>
+            <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding startPart.statistics}" />
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding startPart.rvrVis}"   IsActive="True"/>
             <comp:WeatherCondition Grid.Row="6" DataContext="{Binding startPart.weather}"  IsActive="True"/>
 
@@ -165,7 +165,7 @@
             </Grid.RowDefinitions>
             <comp:RunwayStatus     DataContext="{Binding middlePart.status}" />
             <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding middlePart.wind}" />
-            <comp:HeadCrossWind  Grid.Row="3" DataContext="{Binding middlePart.statistics}"  IsActive="False"/>
+            <comp:HeadCrossWind  Grid.Row="3" DataContext="{Binding middlePart.statistics}"  />
             <local:Qnh  Grid.Row="4" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}" />
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding middlePart.rvrVis}" IsActive="False"/>
             <local:Light Grid.Row="6" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
@@ -185,7 +185,7 @@
             <!--<comp:RunwayStatus    DataContext="{Binding endPart.status}" IsActive="{Binding IsActive}"/>-->
             <comp:RunwayStatus    DataContext="{Binding endPart.status}" />
             <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="3" DataContext="{Binding endPart.wind}"  />
-            <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" DataContext="{Binding endPart.statistics}" IsActive="False"/>
+            <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" DataContext="{Binding endPart.statistics}"/>
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding endPart.rvrVis}"   IsActive="False"/>
             <comp:WeatherCondition Grid.Row="6" DataContext="{Binding endPart.weather}"  IsActive="False"/>
 

@@ -36,15 +36,15 @@
 
         </Style>
     </UserControl.Resources>
-        <Grid Margin="0" >
-            <Grid.ColumnDefinitions>
+    <Grid Margin="0" >
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-     
+
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -89,7 +89,7 @@
 
 
 
-       
+
 
 
 

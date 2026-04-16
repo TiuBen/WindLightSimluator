@@ -22,7 +22,7 @@
             <Setter Property="Margin" Value="0 0 0 0"/>
         </Style>
         <Style  TargetType="Border" >
-            <Setter Property="Margin" Value="0 0 2 2"/>
+            <Setter Property="Margin" Value="0 "/>
             <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"/>
         </Style>
         <Style x:Key="PathBgStyle" TargetType="Path" >
@@ -102,7 +102,7 @@
 
     </UserControl.Resources>
 
-    <Grid Style="{DynamicResource ContainerBackgroundColor}">
+    <Grid Style="{DynamicResource ContainerBackgroundColor}" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
@@ -136,6 +136,7 @@
             <TextBlock Text="{Binding RunwayNumber}"  Style="{DynamicResource LabelTextColor}"  />
         </Grid>
 
+            
         <!-- 右侧：胶囊形状态条 -->
         <Grid Grid.Column="2"  Margin="0,0,10,0" Visibility="{Binding IsActive,Converter={StaticResource TrueOnlyToVisibility} }" >
             <!-- 我们把 Border 的高度绑定到 UserControl 的 Height（可以用 Padding 调整内缩） -->
