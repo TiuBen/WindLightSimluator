@@ -23,7 +23,7 @@ namespace WindLightSimluator.ViewModels
         private string _light = "3";
         private int _lightIntensity = 60;
         private string _mainPV = "8000";
-        private string _mainPW = "///";
+        private string _mainPW = "";
 
         public float Qnh
         {

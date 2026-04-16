@@ -5,32 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using System.Windows.Media;
-using System.Windows;
 
 namespace WindLightSimluator.Converters
 {
-    public class RvrColorConverter : IValueConverter
+    public class LessThanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null) return Brushes.Transparent;
+            if (value == null) return false;
 
-            if (!int.TryParse(value.ToString(), out int v))
-                return Brushes.Transparent;
+            double number;
+            if (!double.TryParse(value.ToString(), out number))
+                return false;
 
-            if (v < 350)
-                return Brushes.Purple;
+            double threshold;
+            if (!double.TryParse(parameter?.ToString(), out threshold))
+                return false;
 
-            if (v <= 550)
-                return Brushes.Red;
-
-            if (v <= 2000)
-                return Brushes.Yellow;
-
-            return Brushes.Transparent;
+            // 小于阈值返回 true
+            return number < threshold;
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

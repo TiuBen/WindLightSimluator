@@ -65,7 +65,7 @@
             <TextBlock Text="VIS1A" />
         </Border>
         <base:BorderText    MainText="{Binding VisValue}"
-                            BorderColor="{Binding VisValue, Converter={StaticResource VisConverter}}"
+                            BorderColor="Transparent"
                             SubText="m" 
                             Grid.Column="1" Grid.Row="2"  />
     </Grid>

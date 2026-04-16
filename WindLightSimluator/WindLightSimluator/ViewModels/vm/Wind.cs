@@ -41,24 +41,47 @@ namespace WindLightSimluator.ViewModels.vm
 
         public double WindDir
         {
-            get => (short)(Math.Round(_windDir / 5.0) * 5);
+            get => (short)(Math.Round(_windDir / 10.0) * 10);
             set {
                 if (value < 0 || value > 360) throw new ArgumentException("风向必须在0-360度之间");
                 if (SetProperty(ref _windDir, value))
                 {
                     OnPropertyChanged(nameof(HeadWindSpeed));
                     OnPropertyChanged(nameof(CrossWindSpeed));
+                    OnPropertyChanged(nameof(AngleIndex));
                 }
             }
         }
 
-        private bool? _IsActive;
-        public bool? IsActive
+        // --- 新增：角度索引 (0-35) ---
+        public int AngleIndex
         {
-            get => _IsActive;
-            set => SetProperty(ref _IsActive, value);
+            //get {
+            //    double roundedDir = Math.Round(_windDir / 10.0) * 10;
+            //    int index = (int)((roundedDir + 5) / 10);
+            //    return index >= 36 ? 0 : index;
+            //}
 
+            get {
+                // 1. 获取四舍五入后的风向 (0, 10, 20... 360)
+                double roundedDir = Math.Round(_windDir / 10.0) * 10;
+
+                // 2. 计算索引 (0-35)
+                int index = (int)((roundedDir + 5) / 10);
+                if (index >= 36) index = 0;
+
+                // 3. 返回 索引 * 10
+                return index * 10;
+            }
         }
+
+        //private bool? _IsActive;
+        //public bool? IsActive
+        //{
+        //    get => _IsActive;
+        //    set => SetProperty(ref _IsActive, value);
+
+        //}
 
 
 

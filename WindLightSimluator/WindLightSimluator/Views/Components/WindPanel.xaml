@@ -840,7 +840,7 @@
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
-                            <RotateTransform Angle="270"/>
+                            <RotateTransform Angle="{Binding AngleIndex}"/>
                             <TranslateTransform/>
                         </TransformGroup>
                     </Polygon.RenderTransform>
