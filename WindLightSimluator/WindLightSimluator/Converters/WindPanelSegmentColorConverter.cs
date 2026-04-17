@@ -11,27 +11,29 @@ namespace WindLightSimluator.Converters
 {
     public class WindPanelSegmentColorConverter : IMultiValueConverter
     {
-        public Brush ActiveBrush { get; set; }
-        public Brush InactiveBrush { get; set; }
+        public Brush ActiveBrush { get; set; } = Brushes.Green;
+        public Brush InactiveBrush { get; set; } = Brushes.Gray;
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length < 2)
-                return InactiveBrush;
+                return Brushes.Gray;
 
             if (values[0] is not string tagStr || !int.TryParse(tagStr, out int tag))
-                return InactiveBrush;
+                return Brushes.Yellow;
 
             if (values[1] is not HashSet<int> set)
-                return InactiveBrush;
+                return Brushes.Green;
 
-            return set.Contains(tag) ? ActiveBrush : InactiveBrush;
+            return set.Contains(tag) ? Brushes.Red : Brushes.Gray;
+
+
         }
 
 
-      
 
-       public  object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

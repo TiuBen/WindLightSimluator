@@ -77,8 +77,8 @@
 
 
     <!--WindPanel-->
-    <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.Active"  Color="{StaticResource White_Main}"/>
-    <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.InActive"  Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.Active"  Color="#FAFAFA"/>
+    <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.InActive"  Color="#f1f2f6"/>
 
  
 

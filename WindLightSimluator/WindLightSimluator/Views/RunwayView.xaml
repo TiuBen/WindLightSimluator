@@ -18,91 +18,23 @@
             <Setter Property="UseLayoutRounding" Value="True"/>
         </Style>
 
-        <!-- 默认背景（未激活） -->
-        <!--
-        <Style x:Key="ActiveGridStyle" TargetType="Grid">
-            <Setter Property="Background" Value="{StaticResource MainContainerBg}"/>
-            <Style.Triggers>
-                <Trigger
-                        Property="IsActive"
-                        Value="True">
-                    <Setter Property="Background" Value="#f7f7f7"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        -->
+    
         <!--RunwayStatusStyle-->
         <Style  TargetType="comp:RunwayStatus">
             <Setter Property="Margin" Value="0 0 0 4"/>
-            <!--<Setter Property="ContainerBackgroundColor" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource RunwayStatus.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource RunwayStatus.ValueTextColor.Inactive}"/>
-            <Style.Triggers>
-                <Trigger Property="IsActive" Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource RunwayStatus.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource RunwayStatus.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>-->
         </Style>
 
         <!--WindPanelStyle-->
         <Style  TargetType="comp:WindPanel">
             <Setter Property="Margin" Value="0 0 0 4"/>
-            <Setter Property="WindPanelBackground" Value="{DynamicResource WindPanelBg.InActive}"/>
-            <Setter Property="WindPanelTextColor" Value="{DynamicResource WindPanelTextColor.InActive}" />
-            <Style.Triggers>
-                <Trigger Property="IsActive" Value="True">
-                    <Setter Property="WindPanelBackground" Value="{DynamicResource WindPanelBg.Active}"/>
-                    <Setter Property="WindPanelTextColor" Value="{DynamicResource WindPanelTextColor.Active}"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
         <!--HeadCrossWindStyle-->
         <Style TargetType="comp:HeadCrossWind">
             <Setter Property="Margin" Value="0 0 0 4"/>
-            <!--<Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
-            <Style.Triggers>
-                <Trigger Property="IsActive"  Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-
-                </Trigger>
-            </Style.Triggers>-->
         </Style>
 
         <!--RvrVisStyle-->
-        
-        <Style TargetType="comp:RvrVis">
-            <Setter Property="Margin" Value="0 0 0 4"/>
-            <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}"/>
-            <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}"/>
-            <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}"/>
-            <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Inactive}"/>
-            <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}"/>
-            <Style.Triggers>
-                <Trigger Property="IsActive" Value="True">
-                    <Setter Property="ContainerBackgroundColor" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
-                    <Setter Property="LabelBackgroundColor" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
-                    <Setter Property="LabelTextColor" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                    <Setter Property="ValueTextBackgroundColor" Value="{DynamicResource HeadCrossWind.ValueTextBackgroundColor.Active}"/>
-                    <Setter Property="ValueTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         
         <!--WeatherConditionStyle-->
         
@@ -146,7 +78,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <comp:RunwayStatus  DataContext="{Binding startPart.status}"  />
-            <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3"  DataContext="{Binding startPart.wind}"/>
+            <comp:WindPanel  Grid.Row="1" Grid.RowSpan="3"  DataContext="{Binding startPart}"/>
             <comp:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding startPart.statistics}" />
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding startPart.rvrVis}"   />
             <comp:WeatherCondition Grid.Row="6" DataContext="{Binding startPart.weather}" />
@@ -164,7 +96,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <comp:RunwayStatus     DataContext="{Binding middlePart.status}" />
-            <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding middlePart.wind}" />
+            <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding middlePart}" />
             <comp:HeadCrossWind  Grid.Row="3" DataContext="{Binding middlePart.statistics}"  />
             <local:Qnh  Grid.Row="4" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}" Margin="0 0 0 4" />
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding middlePart.rvrVis}" />
@@ -184,7 +116,7 @@
             </Grid.RowDefinitions>
             <!--<comp:RunwayStatus    DataContext="{Binding endPart.status}" IsActive="{Binding IsActive}"/>-->
             <comp:RunwayStatus    DataContext="{Binding endPart.status}" />
-            <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="3" DataContext="{Binding endPart.wind}"  />
+            <comp:WindPanel  Grid.Row="1"  Grid.RowSpan="3" DataContext="{Binding endPart}"  />
             <comp:HeadCrossWind  Grid.Row="4" Grid.Column="2" DataContext="{Binding endPart.statistics}"/>
             <comp:RvrVis  Grid.Row="5"  DataContext="{Binding endPart.rvrVis}"  />
             <comp:WeatherCondition Grid.Row="6" DataContext="{Binding endPart.weather}" />

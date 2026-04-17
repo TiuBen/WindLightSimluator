@@ -75,13 +75,13 @@ namespace WindLightSimluator.ViewModels.vm
             }
         }
 
-        //private bool? _IsActive;
-        //public bool? IsActive
-        //{
-        //    get => _IsActive;
-        //    set => SetProperty(ref _IsActive, value);
+        private bool? _isactive;
+        public bool? IsActive
+        {
+            get => _isactive;
+            set => SetProperty(ref _isactive, value);
 
-        //}
+        }
 
 
 

@@ -28,12 +28,14 @@ namespace WindLightSimluator.ViewModels
         public RunwayVM()
         {
             startPart = new();
+            startPart.Part = RunwayPartType.Start;
             startPart.status = new RunwayStatusVM(true, "01L");
             //startPart.status = new RunwayStatusVM();
             startPart.status.RunwayNumber ="01L" ;
             startPart.wind = new WindVM(1, 020, 015);
             startPart.wind.IsActive = true;
             startPart.statistics = new WindStatisticsVM(015, 5);
+            startPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
             startPart.statistics.IsActive = true;
             startPart.rvrVis = new RvrVisVM();
             startPart.rvrVis.IsActive = true;
@@ -41,11 +43,14 @@ namespace WindLightSimluator.ViewModels
             startPart.weather.IsActive = true;
 
             middlePart = new();
+            middlePart.Part = RunwayPartType.Middle;
             middlePart.status = new RunwayStatusVM(null, "MID1");
             //middlePart.status = new RunwayStatusVM();
             middlePart.wind = new WindVM(1, 020, 015);
             middlePart.wind.IsActive = false;
             middlePart.statistics = new WindStatisticsVM(015, 5);
+            middlePart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+
             middlePart.statistics.IsActive = false;
             middlePart.rvrVis = new RvrVisVM();
             middlePart.rvrVis.IsActive= false;
@@ -54,10 +59,13 @@ namespace WindLightSimluator.ViewModels
 
 
             endPart = new();
+            endPart.Part = RunwayPartType.End;
             endPart.status = new RunwayStatusVM(false, "19R");
             endPart.wind = new WindVM(1, 020, 015);
             endPart.wind.IsActive = false;
             endPart.statistics = new WindStatisticsVM(015, 5);
+            endPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+
             endPart.statistics.IsActive = false;
             endPart.rvrVis = new RvrVisVM();
             endPart.rvrVis.IsActive = false;

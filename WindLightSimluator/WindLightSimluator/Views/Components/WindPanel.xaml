@@ -8,6 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800">
     <UserControl.Resources>
+        <!--是否显示-->
+        <conv:TrueOnlyToVisibilityConverter x:Key="TrueOnlyToVisibility"/>
+        <conv:RunwayPartVisibiltyConverter x:Key="RunwayPartVisibiltyConverter"/>
+        
         <conv:WindPanelSegmentColorConverter x:Key="WindPanelSegmentColorConverterOuter" 
                                               ActiveBrush="{StaticResource  WindPanelArcRangeColor.Active}"
                                               InactiveBrush="{StaticResource WindPanelArcColor.InActive}"/>
@@ -24,8 +28,8 @@
         <Style TargetType="Ellipse">
             <Setter Property="Fill" Value="{Binding WindPanelBackground,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Style>
-        
-        
+
+
         <Style x:Key="OuterStyle" TargetType="Path" >
             <Setter Property="StrokeThickness" Value="28"/>
             <Setter Property="Stroke">
@@ -34,42 +38,53 @@
                         <!-- 当前 Path 的 Tag -->
                         <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
                         <!-- VM 里的集合 -->
-                        <Binding Path="DataContext.Statistics.DirRangeSet" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                        <Binding Path="statistics.DirRangeSet" />
                     </MultiBinding>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="InnerStyle" TargetType="Path" >
             <Setter Property="StrokeThickness" Value="22"/>
-            <Setter Property="Stroke">
+            <Setter Property="Stroke" >
                 <Setter.Value>
                     <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterInner}">
-                        <!-- 当前 Path 的 Tag -->
+                        <!--当前 Path 的 Tag-->
                         <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                        <!-- VM 里的集合 -->
-                        <Binding Path="DataContext.Statistics.DirRangeSet" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                        <!--VM 里的集合-->
+                        <Binding Path="statistics.DirRangeSet"/>
                     </MultiBinding>
                 </Setter.Value>
             </Setter>
+            <!--<Setter Property="Stroke">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterInner}">
+                         -->
+            <!--当前 Path 的 Tag-->
+            <!-- 
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                         -->
+            <!--VM 里的集合-->
+            <!-- 
+                        <Binding Path="DataContext.Statistics.DirRangeSet" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>-->
         </Style>
-        <!--整个背景色-->
-        <Style x:Key="ContainerBackgroundColor" TargetType="Grid" >
-            <Setter Property="Background" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-
     </UserControl.Resources>
-    <!--<Grid Background="{Binding WindPanelBackground,RelativeSource={RelativeSource  AncestorType=UserControl}}">-->
-    <!--<Grid Background="Red">-->
-    <Grid Style="{DynamicResource ContainerBackgroundColor}">
+    <Grid >
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Background" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding wind.IsActive}" Value="True" >
+                        <Setter Property="Background" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
         <Viewbox   Stretch="Uniform" >
             <Canvas Width="800" Height="800" Background="Transparent">
-
+                
                 <!-- Outer Arc Segments -->
                 <Path Tag="0" Style="{StaticResource  OuterStyle}" >
                     <Path.Data>
@@ -807,7 +822,7 @@
 
                     </Rectangle>
 
-                    <Path Fill="White" Canvas.Left="373" Canvas.Top="130" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,2.8" Panel.ZIndex="100" >
+                    <Path Fill="White" Canvas.Left="373" Canvas.Top="130" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,2.8" Panel.ZIndex="100" Visibility="{Binding Part,Converter={StaticResource RunwayPartVisibiltyConverter}, ConverterParameter=Start }" >
                         <Path.Data>
                             <GeometryGroup>
                                 <RectangleGeometry Rect="7.5,0,8,100" />
@@ -817,7 +832,7 @@
                         </Path.Data>
 
                     </Path>
-                    <Path Fill="White" Canvas.Left="373" Canvas.Top="570" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,-1.7" Panel.ZIndex="100" >
+                    <Path Fill="White" Canvas.Left="373" Canvas.Top="570" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,-1.7" Panel.ZIndex="100" Visibility="{Binding Part,Converter={StaticResource RunwayPartVisibiltyConverter}, ConverterParameter=End }" >
                         <Path.Data>
                             <GeometryGroup>
                                 <RectangleGeometry Rect="7.5,0,8,100" />
@@ -829,10 +844,23 @@
                     </Path>
                 </Canvas>
 
-                <Ellipse Width="240" Height="240" StrokeThickness="4" Stroke="#FF188AE2" Canvas.Left="280" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
-                <Line  StrokeThickness="4"  X1="284"  Y1="400" X2="516" Y2="400" Stroke="#FF188AE2"     />
-                <TextBlock Text="{Binding WindDir, StringFormat={}{0:000}}"   FontSize="80" Width="130" FontWeight="DemiBold" FontFamily="Monospace" TextAlignment="Right"  VerticalAlignment="Bottom" Canvas.Left="332.54" Canvas.Top="310"  />
-                <TextBlock Text="{Binding WindSpeed, StringFormat={}{0:.0}}"  FontFamily="Monospace" FontWeight="DemiBold"  FontSize="65" Width="130" Canvas.Left="320" Canvas.Top="410" HorizontalAlignment="Center" VerticalAlignment="Bottom"  TextAlignment="Right"/>
+                <Ellipse Width="240" Height="240" StrokeThickness="4" Stroke="#FF188AE2"  Canvas.Left="280" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                    <Ellipse.Style>
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding wind.IsActive}" Value="true">
+                                    <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                    
+                </Ellipse>
+
+                    <Line  StrokeThickness="4"  X1="284"  Y1="400" X2="516" Y2="400" Stroke="#FF188AE2"     />
+                <TextBlock Text="{Binding wind.WindDir, StringFormat={}{0:000}}"   FontSize="80" Width="130" FontWeight="DemiBold" FontFamily="Monospace" TextAlignment="Right"  VerticalAlignment="Bottom" Canvas.Left="332.54" Canvas.Top="310"  />
+                <TextBlock Text="{Binding wind.WindSpeed, StringFormat={}{0:.0}}"  FontFamily="Monospace" FontWeight="DemiBold"  FontSize="65" Width="130" Canvas.Left="320" Canvas.Top="410" HorizontalAlignment="Center" VerticalAlignment="Bottom"  TextAlignment="Right"/>
                 <TextBlock Text="mps" FontSize="20" FontFamily="Segoe UI Semibold" Canvas.Left="453.509" Canvas.Top="454.455" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBlock Text="。" FontSize="40" FontFamily="Segoe UI Bold" Canvas.Left="472.459" Canvas.Top="290.52" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"  />
                 <Polygon Points="0,0 40,0 20,100" Fill="#FFFF5D00" StrokeThickness="2" Canvas.Left="380" Canvas.Top="130" RenderTransformOrigin="0.5,2.7">
@@ -840,7 +868,7 @@
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
-                            <RotateTransform Angle="{Binding AngleIndex}"/>
+                            <RotateTransform Angle="{Binding wind.AngleIndex}"/>
                             <TranslateTransform/>
                         </TransformGroup>
                     </Polygon.RenderTransform>

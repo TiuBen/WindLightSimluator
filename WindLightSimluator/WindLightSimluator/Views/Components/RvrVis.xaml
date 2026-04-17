@@ -38,7 +38,18 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=local:RvrVis}}">
+    <!--<Grid  Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=local:RvrVis}}">-->
+    <Grid >
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsActive}" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

@@ -130,7 +130,7 @@
                 </MultiBinding>
             </base:BorderText.BorderColor>-->
         </base:BorderText>
-        <base:BorderText   Grid.Column="2" Grid.Row="4"  MainText="{Binding AvgCrossWind}" SubText="mps"/>
+        <base:BorderText   Grid.Column="2" Grid.Row="4"  MainText="{Binding AvgCrossWindText}" SubText="mps"/>
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬-->
         <Border Background="Transparent" Grid.Row="0" Grid.Column="3"/>
