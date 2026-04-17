@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         xmlns:comp="clr-namespace:WindLightSimluator.Views.Components"
+        xmlns:Awos="clr-namespace:WindLightSimluator.Views.AWOS"
         xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
         xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
         xmlns:view="clr-namespace:WindLightSimluator.Views"
@@ -39,62 +40,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Background="{DynamicResource MainBarBg}">
-
-                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
-                                <Border.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
-                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <TextBlock Text="圆角示例" />
-
-                                    <TextBlock Text="圆角示例" />
-                                </StackPanel>
-                            </Border>
-                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
-                                <Border.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
-                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <TextBlock Text="圆角示例" />
-
-                                    <TextBlock Text="圆角示例" />
-                                </StackPanel>
-                            </Border>
-                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
-                                <Border.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
-                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <TextBlock Text="圆角示例" />
-
-                                    <TextBlock Text="圆角示例" />
-                                </StackPanel>
-                            </Border>
-                            <Border CornerRadius="10" Width="60" Height="60" Margin="2">
-                                <Border.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFBCD5EC" Offset="0.005"/>
-                                        <GradientStop Color="#FFEBF9FD" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <TextBlock Text="圆角示例" />
-
-                                    <TextBlock Text="圆角示例" />
-                                </StackPanel>
-                            </Border>
-                            <Button Content="换色" x:Name="SwitchThemeButtton" Click="SwitchThemeButtton_Click"/>
-                        </StackPanel>
+                        <Awos:SwitchesMuneBar Grid.Column="0"/>
                         <!--一条跑道 的 三段-->
                         <Grid Grid.Column="1"  Margin="4" >
                             <Grid.RowDefinitions>

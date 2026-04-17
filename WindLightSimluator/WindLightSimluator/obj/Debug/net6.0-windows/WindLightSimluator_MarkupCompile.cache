@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
-15-1694595985
+18-102398054
 
-551825121079
+581761867457
 2041070972151
-MainWindow.xaml;Views\Components\Base\BorderText.xaml;Views\Components\Base\StateBrushes.xaml;Views\Components\GridPointEditor.xaml;Views\Components\HeadCrossWind.xaml;Views\Components\RunwayStatus.xaml;Views\Components\RvrVis.xaml;Views\Components\WeatherCondition.xaml;Views\Components\WindPanel.xaml;Views\Light.xaml;Views\Metar.xaml;Views\Qnh.xaml;Views\RunwayView.xaml;Views\TopBar.xaml;Views\WeatherEditor.xaml;
+MainWindow.xaml;Views\AWOS\SwitchesMuneBar.xaml;Views\Components\Base\BorderText.xaml;Views\Components\Base\StateBrushes.xaml;Views\Components\GridPointEditor.xaml;Views\Components\HeadCrossWind.xaml;Views\Components\RunwayStatus.xaml;Views\Components\RvrVis.xaml;Views\Components\WeatherCondition.xaml;Views\Components\WindPanel.xaml;Views\Light.xaml;Views\Lights\LightsPartButton.xaml;Views\Lights\LightsSetting.xaml;Views\Metar.xaml;Views\Qnh.xaml;Views\RunwayView.xaml;Views\TopBar.xaml;Views\WeatherEditor.xaml;
 
 False
 

@@ -1,6 +1,7 @@
 ﻿
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\MainWindow.xaml;;
+FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\AWOS\SwitchesMuneBar.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Components\Base\BorderText.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Components\GridPointEditor.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Components\HeadCrossWind.xaml;;
@@ -9,6 +10,8 @@ FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Compon
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Components\WeatherCondition.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Components\WindPanel.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Light.xaml;;
+FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Lights\LightsPartButton.xaml;;
+FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Lights\LightsSetting.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Metar.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\Qnh.xaml;;
 FD:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\Views\RunwayView.xaml;;
