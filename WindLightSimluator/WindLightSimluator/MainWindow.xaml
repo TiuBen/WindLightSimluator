@@ -9,6 +9,7 @@
         xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
         xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
         xmlns:view="clr-namespace:WindLightSimluator.Views"
+        xmlns:ADB="clr-namespace:WindLightSimluator.Views.Lights"
         d:Width="1920" d:Height="1080"
         Width="1920" Height="1080"
         Title="MainWindow" >
@@ -27,7 +28,7 @@
 
 
         <TabControl>
-            <TabItem Header="气象自观模拟" IsSelected="True">
+            <TabItem Header="气象自观模拟" >
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -63,11 +64,8 @@
 
             </TabItem>
 
-            <TabItem Header="灯光ADB系统模拟" >
-                <StackPanel Margin="10">
-                    <TextBlock Text="设置页面" FontSize="20"/>
-                    <Button Content="保存" Width="100" Margin="5"/>
-                </StackPanel>
+            <TabItem Header="灯光ADB系统模拟" IsSelected="True">
+                <ADB:LightsSetting />
             </TabItem>
             <TabItem Header="RVR旋钮模拟">
                 <TextBlock Text="版本 1.0" Margin="10"/>

@@ -7,27 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="140" d:DesignWidth="140">
     <UserControl.Resources>
-        <Style TargetType="TextBox" >
+        <Style TargetType="TextBlock" >
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
 
         </Style>
     </UserControl.Resources>
-    <Border   BorderThickness="4" BorderBrush="White" Padding="3">
+    <Border   BorderThickness="2" BorderBrush="White" Padding="3" CornerRadius="5">
         <Grid Width="120" Height="120" Background="Transparent"   >
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-          
-            <TextBox Grid.Row="0" Text="{Binding Text1, ElementName=parent}" />
-            <TextBox Grid.Row="1" Text="{Binding Text2, ElementName=parent}" />
-            <TextBox Grid.Row="2" Text="{Binding Text3, ElementName=parent}" />
+
+            <TextBlock Grid.Row="0" Text="{Binding Text1,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <TextBlock Grid.Row="1" Text="{Binding Text2,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <TextBlock Grid.Row="2" Text="{Binding Text3, RelativeSource={RelativeSource AncestorType=UserControl}}" />
         </Grid>
     </Border>
 </UserControl>
