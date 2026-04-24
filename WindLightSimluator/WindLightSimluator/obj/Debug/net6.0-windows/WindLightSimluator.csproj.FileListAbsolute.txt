@@ -220,3 +220,9 @@ D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\WindLightSimluator.pdb
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\WindLightSimluator.genruntimeconfig.cache
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\ref\WindLightSimluator.dll
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsPartButton.g.cs
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsSetting.g.cs
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\AWOS\SwitchesMuneBar.g.cs
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsPartButton.baml
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsSetting.baml
+C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\AWOS\SwitchesMuneBar.baml

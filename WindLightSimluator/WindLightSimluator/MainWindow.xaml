@@ -21,12 +21,8 @@
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="UseLayoutRounding" Value="True"/>
         </Style>
-  
     </Window.Resources>
-
     <Grid>
-
-
         <TabControl>
             <TabItem Header="气象自观模拟" >
 
@@ -51,19 +47,9 @@
                             <view:RunwayView DataContext="{Binding FirstRunway}"/>
                             <view:Metar Grid.Row="7"  Grid.ColumnSpan="3"/>
                         </Grid>
-
-
-
-
-
-
                     </Grid>
-
                 </Grid>
-
-
             </TabItem>
-
             <TabItem Header="灯光ADB系统模拟" IsSelected="True">
                 <ADB:LightsSetting />
             </TabItem>

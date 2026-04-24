@@ -15,10 +15,10 @@
     <Compile Update="Views\Components\GridPointEditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Lights\LightsPartButton.xaml.cs">
+    <Compile Update="Views\ADBLights\LightsPartButton.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Lights\LightsSetting.xaml.cs">
+    <Compile Update="Views\ADBLights\LightsSetting.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\RunwayView.xaml.cs">
