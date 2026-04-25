@@ -18,7 +18,7 @@ namespace WindLightSimluator.Views.Components.Base
     /// <summary>
     /// BorderText.xaml 的交互逻辑
     /// </summary>
-    public  class BorderText : UserControl
+    public partial class BorderText : UserControl
     {
         public BorderText()
         {

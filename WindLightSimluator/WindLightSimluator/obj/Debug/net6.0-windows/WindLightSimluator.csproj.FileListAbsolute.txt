@@ -179,8 +179,6 @@ D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Components\WeatherCondition.g.cs
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Components\WindPanel.g.cs
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Light.g.cs
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Lights\LightsPartButton.g.cs
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Lights\LightsSetting.g.cs
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Metar.g.cs
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Qnh.g.cs
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\RunwayView.g.cs
@@ -201,8 +199,6 @@ D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Components\WeatherCondition.baml
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Components\WindPanel.baml
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Light.baml
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Lights\LightsPartButton.baml
-D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Lights\LightsSetting.baml
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Metar.baml
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\Qnh.baml
 D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\RunwayView.baml
@@ -226,3 +222,7 @@ C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\Wind
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsPartButton.baml
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsSetting.baml
 C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\AWOS\SwitchesMuneBar.baml
+D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsPartButton.g.cs
+D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsSetting.g.cs
+D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsPartButton.baml
+D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\Views\ADBLights\LightsSetting.baml

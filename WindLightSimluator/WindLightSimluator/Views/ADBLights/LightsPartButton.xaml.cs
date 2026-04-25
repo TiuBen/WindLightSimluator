@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,10 +21,6 @@ namespace WindLightSimluator.Views.Lights
     /// </summary>
     public partial class LightsPartButton : UserControl
     {
-        public LightsPartButton()
-        {
-            InitializeComponent();
-        }
 
         // 对应 text1
         public string Text1
@@ -51,5 +48,52 @@ namespace WindLightSimluator.Views.Lights
         }
         public static readonly DependencyProperty Text3Property =
             DependencyProperty.Register("Text3", typeof(string), typeof(LightsPartButton), new PropertyMetadata("2档"));
+
+        public bool IsOn
+        {
+            get => (bool)GetValue(IsOnProperty);
+            set => SetValue(IsOnProperty, value);
+        }
+        public static readonly DependencyProperty IsOnProperty =
+            DependencyProperty.Register(nameof(IsOn), typeof(bool), typeof(LightsPartButton),
+                new PropertyMetadata(false));
+
+        public object Tag
+        {
+            get { return GetValue(TagProperty); }
+            set { SetValue(TagProperty, value); }
+        }
+
+
+
+        // 定义 Click 事件
+        public static readonly RoutedEvent ClickEvent =
+            EventManager.RegisterRoutedEvent("Click", RoutingStrategy.Bubble,
+                typeof(RoutedEventHandler), typeof(LightsPartButton));
+
+        public event RoutedEventHandler Click
+        {
+            add { AddHandler(ClickEvent, value); }
+            remove { RemoveHandler(ClickEvent, value); }
+        }
+
+        public LightsPartButton()
+        {
+            InitializeComponent();
+
+            // 给 Border 添加鼠标点击事件
+            var border = this.FindName("MainBorder") as Border;
+            if (border != null)
+            {
+                border.MouseLeftButtonUp += (s, e) => RaiseClickEvent();
+            }
+        }
+
+        private void RaiseClickEvent()
+        {
+            RoutedEventArgs args = new RoutedEventArgs(ClickEvent, this);
+            RaiseEvent(args);
+        }
+
     }
 }

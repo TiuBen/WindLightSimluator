@@ -25,8 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="关闭.png" />
     <None Remove="屏幕截图 2025-11-24 214001.png" />
     <None Remove="灯光系统.png" />
+    <None Remove="落地.png" />
+    <None Remove="起飞.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,10 +48,13 @@
   <ItemGroup>
     <Resource Include="DarkTheme.xaml" />
     <Resource Include="LightTheme.xaml" />
+    <Resource Include="关闭.png" />
     <Resource Include="屏幕截图 2025-11-24 214001.png" />
     <Resource Include="灯光系统.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="落地.png" />
+    <Resource Include="起飞.png" />
   </ItemGroup>
 
 </Project>

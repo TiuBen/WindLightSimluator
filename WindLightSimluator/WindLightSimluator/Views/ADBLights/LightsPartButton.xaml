@@ -13,11 +13,32 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="2"/>
-
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsOn,RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsOn,RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
+                    <Setter Property="Background" Value="#e2dc1b"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="white"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsOn,RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
+                    <Setter Property="BorderBrush" Value="#e2dc1b"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Border   BorderThickness="2" BorderBrush="White" Padding="3" CornerRadius="5">
-        <Grid Width="120" Height="120" Background="Transparent"   >
+    <Border x:Name="MainBorder"  BorderThickness="2" >
+        <Grid Width="120" Height="120"    >
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />

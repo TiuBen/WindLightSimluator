@@ -24,6 +24,18 @@
     <Compile Update="Views\RunwayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\RVRSwitch\KnobControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RVRSwitch\LevelIndicator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RVRSwitch\RoundIndicator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RVRSwitch\ToggleSwitch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\WeatherEditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
