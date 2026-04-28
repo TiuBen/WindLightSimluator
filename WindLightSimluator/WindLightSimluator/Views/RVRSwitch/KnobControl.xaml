@@ -4,66 +4,101 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindLightSimluator.Views.RVRSwitch"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Width="220" Height="260">
+  Width="300" Height="300">
+    <Viewbox>
+        <Grid Width="200" Height="200">
+            <Ellipse Fill="#FF222222">
+                <Ellipse.Effect>
+                    <DropShadowEffect BlurRadius="12" Direction="270" ShadowDepth="4" Opacity="0.5"/>
+                </Ellipse.Effect>
+            </Ellipse>
 
-        <!-- 背景 -->
-        <Ellipse Width="120" Height="120"
-                 Fill="#CFCFCF"
-                 VerticalAlignment="Top" Margin="50,45,50,0"/>
+            <Canvas IsHitTestVisible="False">
+                <StackPanel Canvas.Left="94" Canvas.Top="30" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Text="0" Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,2" FontWeight="Bold"/>
+                    <Rectangle Width="2" Height="8" Fill="White" HorizontalAlignment="Center"/>
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="-90" CenterX="0" CenterY="90"/>
+                    </StackPanel.RenderTransform>
+                </StackPanel>
 
-        <!-- 凹陷金属环 -->
-        <Ellipse Width="90" Height="90"
-                 Fill="#888"
-                 VerticalAlignment="Top" Margin="65,60,65,0">
-            <Ellipse.Effect>
-                <DropShadowEffect BlurRadius="8" ShadowDepth="2" Color="#444"/>
-            </Ellipse.Effect>
-        </Ellipse>
+                <StackPanel Canvas.Left="82" Canvas.Top="23" Width="40" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40">
+                    <TextBlock Text="1" Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,2" FontWeight="Bold"/>
+                    <Rectangle Width="2" Height="8" Fill="White" HorizontalAlignment="Center"/>
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="-54" CenterX="0" CenterY="90"/>
+                    </StackPanel.RenderTransform>
+                </StackPanel>
 
-        <!-- 内圈 -->
-        <Ellipse Width="70" Height="70"
-                 Fill="#555"
-                 VerticalAlignment="Top" Margin="75,70,75,0"/>
+                <StackPanel Canvas.Left="77" Canvas.Top="12" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" Height="34">
+                    <TextBlock Text="2" Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,2" FontWeight="Bold"/>
+                    <Rectangle Width="2" Height="8" Fill="White" HorizontalAlignment="Center"/>
+                    <StackPanel.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.99999999999999989" ScaleY="0.99999999999999989"/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-23.336"/>
+                            <TranslateTransform X="-27.811529493745265" Y="4.404913533436182"/>
+                        </TransformGroup>
+                    </StackPanel.RenderTransform>
+                </StackPanel>
 
-        <!-- 刻度文字 -->
-        <Canvas Height="120" VerticalAlignment="Top">
+                <StackPanel Canvas.Left="94" Width="40" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="-3">
+                    <TextBlock Text="3" Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,2" FontWeight="Bold"/>
+                    <Rectangle Width="2" Height="8" Fill="White" HorizontalAlignment="Center"/>
+                    <StackPanel.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.99999999999999989" ScaleY="0.99999999999999989"/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="29.138"/>
+                            <TranslateTransform X="27.811529493745265" Y="4.404913533436182"/>
+                        </TransformGroup>
+                    </StackPanel.RenderTransform>
+                </StackPanel>
 
-            <TextBlock Text="0" Canvas.Left="20" Canvas.Top="70"/>
-            <TextBlock Text="1" Canvas.Left="45" Canvas.Top="40"/>
-            <TextBlock Text="2" Canvas.Left="80" Canvas.Top="20"/>
-            <TextBlock Text="3" Canvas.Left="115" Canvas.Top="20"/>
-            <TextBlock Text="4" Canvas.Left="150" Canvas.Top="40"/>
-            <TextBlock Text="5" Canvas.Left="175" Canvas.Top="70"/>
+                <StackPanel Canvas.Left="97" Canvas.Top="-7" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Text="4" Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,2" FontWeight="Bold"/>
+                    <Rectangle Width="2" Height="8" Fill="White" HorizontalAlignment="Center"/>
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="54" CenterX="0" CenterY="90"/>
+                    </StackPanel.RenderTransform>
+                </StackPanel>
 
-        </Canvas>
+                <StackPanel Canvas.Left="106" Canvas.Top="-9" Width="40" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock Text="5" Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,2" FontWeight="Bold"/>
+                    <Rectangle Width="2" Height="8" Fill="White" HorizontalAlignment="Center"/>
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="90" CenterX="0" CenterY="90"/>
+                    </StackPanel.RenderTransform>
+                </StackPanel>
+            </Canvas>
 
-        <!-- 旋钮本体 -->
-        <Grid RenderTransformOrigin="0.5,0.8" Margin="0,-20,0,20">
-            <Grid.RenderTransform>
-                <RotateTransform x:Name="Rotate"/>
-            </Grid.RenderTransform>
+            <Grid Margin="45">
+                <Ellipse Fill="#FF151515">
+                    <Ellipse.Effect>
+                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="Black" Opacity="0.8"/>
+                    </Ellipse.Effect>
+                </Ellipse>
 
-            <!-- 主体 -->
-            <Path Fill="#222" Stroke="#111" StrokeThickness="1" Margin="-10,0,10,0">
-                <Path.Data>
-                    M 110,120 
-                    C 140,110 180,110 200,120
-                    L 180,145
-                    C 150,155 130,155 110,145
-                    Z
-                </Path.Data>
-            </Path>
+                <Ellipse Margin="2">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FF454545" Offset="0"/>
+                            <GradientStop Color="#FF181818" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
 
-            <!-- 高光 -->
-            <Path Fill="#FFFFFF" Opacity="0.2" Margin="-10,0,10,0">
-                <Path.Data>
-                    M 120,122 C150,115 175,115 190,122
-                </Path.Data>
-            </Path>
-
+                <Rectangle Width="4" Height="18" Fill="White" 
+                           VerticalAlignment="Top" HorizontalAlignment="Center" 
+                           Margin="0,8,0,0" RadiusX="2" RadiusY="2">
+                    <Rectangle.RenderTransform>
+                        <RotateTransform x:Name="KnobRotation" Angle="-90" CenterX="2" CenterY="47"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Grid>
         </Grid>
-
-    </Grid>
+    </Viewbox>
 </UserControl>

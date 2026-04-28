@@ -33,6 +33,12 @@
     <Compile Update="Views\RVRSwitch\RoundIndicator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\RVRSwitch\RunwayLamp.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RVRSwitch\RVRSwitch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\RVRSwitch\ToggleSwitch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -72,6 +78,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\RunwayView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\RVRSwitch\RunwayLamp.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\RVRSwitch\RVRSwitch.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\TopBar.xaml">

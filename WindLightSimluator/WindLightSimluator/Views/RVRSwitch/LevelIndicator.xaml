@@ -40,38 +40,6 @@
             <Setter Property="Height" Value="14"/>
             <Setter Property="Fill" Value="#222"/>
 
-            <Style.Triggers>
-
-                <!-- 点亮 -->
-                <DataTrigger>
-                    <DataTrigger.Binding>
-                        <MultiBinding Converter="{StaticResource LevelCompareConverter}">
-                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
-                            <Binding RelativeSource="{RelativeSource AncestorType=UserControl}" Path="Level"/>
-                        </MultiBinding>
-                    </DataTrigger.Binding>
-
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <RadialGradientBrush>
-                                <GradientStop Color="#00FF88" Offset="0"/>
-                                <GradientStop Color="#1afa4c" Offset="1"/>
-                            </RadialGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-
-                    <!-- 发光 -->
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="#00FF88"
-                                              BlurRadius="15"
-                                              ShadowDepth="0"/>
-                        </Setter.Value>
-                    </Setter>
-
-                </DataTrigger>
-
-            </Style.Triggers>
         </Style>
 
     </UserControl.Resources>

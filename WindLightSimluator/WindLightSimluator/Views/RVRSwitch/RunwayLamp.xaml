@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="WindLightSimluator.Views.RVRSwitch.RunwayLamp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WindLightSimluator.Views.RVRSwitch"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="80">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <Grid Width="50" Height="50" Margin="0,0,0,8">
+
+            <Ellipse StrokeThickness="4">
+                <Ellipse.Stroke>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#FFFFFF" Offset="0.0"/>
+                        <GradientStop Color="#B0B0B0" Offset="0.5"/>
+                        <GradientStop Color="#808080" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Ellipse.Stroke>
+                <Ellipse.Fill>
+                    <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <GradientStop Color="#A0A0A0" Offset="0.9"/>
+                        <GradientStop Color="#D0D0D0" Offset="1.0"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <Ellipse x:Name="LampBead" Width="26" Height="26" Fill="#2A3F3A" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Ellipse.Stroke>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#55FFFFFF" Offset="0"/>
+                        <GradientStop Color="#00FFFFFF" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Ellipse.Stroke>
+            </Ellipse>
+
+            <Ellipse x:Name="ActiveGlow" Width="22" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                <Ellipse.Fill>
+                    <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <GradientStop Color="#FFFFFF" Offset="0.0"/>
+                        <GradientStop Color="#00FF44" Offset="0.6"/>
+                        <GradientStop Color="#00CC33" Offset="1.0"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+                <Ellipse.Effect>
+                    <DropShadowEffect Color="#00FF66" BlurRadius="25" ShadowDepth="0" Opacity="0.9"/>
+                </Ellipse.Effect>
+            </Ellipse>
+
+        </Grid>
+        <TextBlock Text="{Binding LampText,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                       FontSize="28" 
+                                       FontFamily="Times New Roman" 
+                                       FontWeight="Normal" 
+                                       Foreground="#333333" 
+                                       HorizontalAlignment="Center" 
+                                       Margin="0,0,0,0"/>
+    </StackPanel>
+
+
+</UserControl>
