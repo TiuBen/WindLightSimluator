@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WindLightSimluator.Views
+namespace WindLightSimluator.Views.AWOS.Components
 {
     /// <summary>
-    /// Metar.xaml 的交互逻辑
+    /// RunwayStatus.xaml 的交互逻辑
     /// </summary>
-    public partial class Metar : UserControl
+    public partial class RunwayStatus : UserControl
     {
-        public Metar()
+        public RunwayStatus()
         {
             InitializeComponent();
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WindLightSimluator.Views
+namespace WindLightSimluator.Views.AWOS.Components
 {
     /// <summary>
-    /// Qnh.xaml 的交互逻辑
+    /// WeatherCondition.xaml 的交互逻辑
     /// </summary>
-    public partial class Qnh : UserControl
+    public partial class WeatherCondition : UserControl
     {
-        public Qnh()
+        public WeatherCondition()
         {
             InitializeComponent();
         }
     }
-  
 }

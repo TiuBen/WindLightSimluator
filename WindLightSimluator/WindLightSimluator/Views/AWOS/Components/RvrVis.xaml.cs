@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WindLightSimluator.Views.AWOS
+namespace WindLightSimluator.Views.AWOS.Components
 {
     /// <summary>
-    /// SwitchesMuneBar.xaml 的交互逻辑
+    /// RvrVis.xaml 的交互逻辑
     /// </summary>
-    public partial class SwitchesMuneBar : UserControl
+    public partial class RvrVis : UserControl
     {
-        public SwitchesMuneBar()
+        public RvrVis()
         {
             InitializeComponent();
-        }
-
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void SwitchThemeButtton_Click(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }

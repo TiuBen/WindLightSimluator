@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WindLightSimluator.Views
+namespace WindLightSimluator.Views.AWOS
 {
-    /// <summary>
-    /// Light.xaml 的交互逻辑
+   /// <summary>
+    /// RunwayView.xaml 的交互逻辑
     /// </summary>
-    public partial class Light : UserControl
+    public partial class RunwayView : UserControl
     {
-        public Light()
+        public RunwayView()
         {
             InitializeComponent();
         }

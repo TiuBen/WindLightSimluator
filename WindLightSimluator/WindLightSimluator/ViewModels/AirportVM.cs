@@ -20,10 +20,7 @@ namespace WindLightSimluator.ViewModels
     {
         private float _qnh = 1013.2f; // 默认值
         private string _metar = "METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG=";
-        private string _light = "3";
-        private int _lightIntensity = 60;
-        private string _mainPV = "8000";
-        private string _mainPW = "";
+       
 
         public float Qnh
         {
@@ -42,25 +39,13 @@ namespace WindLightSimluator.ViewModels
             get => _metar;
             set => SetProperty(ref _metar, value);
         }
-        public string Light
+     
+        private Light _light;
+        public Light Light
         {
             get => _light;
             set => SetProperty(ref _light, value);
-        }
-        public int LightIntensity
-        {
-            get => _lightIntensity;
-            set => SetProperty(ref _lightIntensity, value);
-        }
-        public string MainPV
-        {
-            get => _mainPV;
-            set => SetProperty(ref _mainPV, value);
-        }
-        public string MainPW
-        {
-            get => _mainPW;
-            set => SetProperty(ref _mainPW, value);
+
         }
 
 
@@ -68,24 +53,76 @@ namespace WindLightSimluator.ViewModels
         public RunwayVM FirstRunway => Runways.Count > 0 ? Runways[0] : null;
         public RunwayVM SecondRunway => Runways.Count > 1 ? Runways[1] : null;
 
+        public RunwayVM SelectedRunwayVM=> Runways.Count > 0 ? Runways[0] : null;
 
-    
+
+
         public AirportVM()
         {
             Runways = new ObservableCollection<RunwayVM>();
             // 默认添加两条跑道
            var _1=new RunwayVM();
-            _1.startPart.status.IsActive= true;
-            _1.startPart.status.RunwayNumber = "01L";
 
-            _1.middlePart.status.IsActive= false;
-            _1.middlePart.status.RunwayNumber = "MID1";
+            _1.startPart = new();
+            _1.startPart.Part = RunwayPartType.Start;
+            _1.startPart.IsActive = true;
+            _1.startPart.PartName = "01L";
 
-            _1.endPart.status.IsActive = false;
-            _1.endPart.status.RunwayNumber = "19R";
+
+            _1.startPart.wind = new WindVM(1, 020, 015);
+            _1.startPart.wind.IsActive = true;
+            _1.startPart.statistics = new WindStatisticsVM(015, 5);
+            _1.startPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+            _1.startPart.statistics.IsActive = true;
+            _1.startPart.rvrVis = new RvrVisVM();
+            _1.startPart.rvrVis.IsActive = true;
+            _1.startPart.weather = new WeatherConditionVM();
+            _1.startPart.weather.IsActive = true;
+
+
+
+            _1.middlePart = new();
+            _1.middlePart.Part = RunwayPartType.Middle;
+            _1.middlePart.IsActive = null;
+            _1.middlePart.PartName = "MID1";
+
+            _1.middlePart.wind = new WindVM(1, 020, 015);
+            _1.middlePart.wind.IsActive = false;
+            _1.middlePart.statistics = new WindStatisticsVM(015, 5);
+            _1.middlePart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+
+            _1.middlePart.statistics.IsActive = false;
+            _1.middlePart.rvrVis = new RvrVisVM();
+            _1.middlePart.rvrVis.IsActive = false;
+            _1.middlePart.weather = new WeatherConditionVM();
+            _1.middlePart.weather.IsActive = false;
+           
+            _1.endPart = new();
+            _1.endPart.Part = RunwayPartType.End;
+            _1.endPart.IsActive = false;
+            _1.endPart.PartName = "19R";
+            
+            _1.endPart.wind = new WindVM(1, 020, 015);
+            _1.endPart.wind.IsActive = false;
+            _1.endPart.statistics = new WindStatisticsVM(015, 5);
+            _1.endPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+             
+            _1.endPart.statistics.IsActive = false;
+            _1.endPart.rvrVis = new RvrVisVM();
+            _1.endPart.rvrVis.IsActive = false;
+            _1.endPart.weather = new WeatherConditionVM();
+            _1.endPart.weather.IsActive = false;
+
+
 
             Runways.Add(new RunwayVM());
             Runways.Add(new RunwayVM());
+
+
+            Qnh = 1013;
+            Light = new Light();
+            Light.MainPV = "5000";
+            Light.LightDegree = "3";
 
             // 通知 UI 快捷属性已就绪
             OnPropertyChanged(nameof(FirstRunway));

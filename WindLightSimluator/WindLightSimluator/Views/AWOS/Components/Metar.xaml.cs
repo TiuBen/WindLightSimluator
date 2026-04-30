@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WindLightSimluator.Views
+namespace WindLightSimluator.Views.AWOS.Components
 {
     /// <summary>
-    /// RunwayView.xaml 的交互逻辑
+    /// Metar.xaml 的交互逻辑
     /// </summary>
-    public partial class RunwayView : UserControl
+    public partial class Metar : UserControl
     {
-        public RunwayView()
+        public Metar()
         {
             InitializeComponent();
         }

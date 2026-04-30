@@ -15,22 +15,47 @@ namespace WindLightSimluator.ViewModels
         End     // 末端 (例如 19R)
     }
 
-    public class RunwayPartVM:ViewModelBase
+    public class RunwayPartVM : ViewModelBase
     {
 
-        public RunwayStatusVM status { get; set; } = new();
-        public WindVM wind { get; set; } 
+
+        private string _partName;
+        public string PartName
+        {
+            get => _partName;
+            set => SetProperty(ref _partName, value);
+        }
+
+        private bool? _isActive;
+        public bool? IsActive
+        {
+            get => _isActive;
+            set => SetProperty(ref _isActive, value);
+
+        }
+
+
+        public string PartStatusText
+        {
+            get {
+                if (_isActive == true)
+                    return "LANDING/TAKE OFF";
+
+                if (_isActive == false)
+                    return "NOT IN USE";
+
+                return string.Empty; // null
+            }
+
+        }
+
+
+        public WindVM wind { get; set; }
         public WindStatisticsVM statistics { get; set; }
         public RvrVisVM rvrVis { get; set; }
         public WeatherConditionVM weather { get; set; }
 
-        private bool? _IsActive;
-        public bool? IsActive
-        {
-            get => _IsActive;
-            set => SetProperty(ref _IsActive, value);
-
-        }
+       
 
         private RunwayPartType _part;
         /// <summary>
@@ -41,6 +66,20 @@ namespace WindLightSimluator.ViewModels
             get => _part;
             set => SetProperty(ref _part, value);
         }
+
+
+        public RunwayPartVM(bool? isActive, String partNaame)
+        {
+            _isActive = isActive;
+            _partName = partNaame;
+        }
+
+        public RunwayPartVM()
+        {
+            _isActive = false;
+            _partName = string.Empty;
+        }
+
 
     }
 }

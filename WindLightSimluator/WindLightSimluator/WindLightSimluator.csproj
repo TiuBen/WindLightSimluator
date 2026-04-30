@@ -26,8 +26,10 @@
 
   <ItemGroup>
     <None Remove="关闭.png" />
+    <None Remove="夜晚.png" />
     <None Remove="屏幕截图 2025-11-24 214001.png" />
     <None Remove="灯光系统.png" />
+    <None Remove="白天.png" />
     <None Remove="落地.png" />
     <None Remove="起飞.png" />
   </ItemGroup>
@@ -47,6 +49,9 @@
 
   <ItemGroup>
     <Resource Include="DarkTheme.xaml" />
+    <Resource Include="夜晚.png" />
+    <Resource Include="白天.png" />
+    <Resource Include="软件图标.png" />
     <Resource Include="LightTheme.xaml" />
     <Resource Include="关闭.png" />
     <Resource Include="屏幕截图 2025-11-24 214001.png" />

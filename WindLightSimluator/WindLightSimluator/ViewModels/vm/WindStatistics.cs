@@ -9,11 +9,9 @@ using WindLightSimluator.Model;
 using WindLightSimluator.ViewModels;
 using WindLightSimluator.ViewModels.Base;
 using WindLightSimluator.ViewModels.vm;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
 
 namespace WindLightSimluator.ViewModels.vm
 {
-
 
     public class WindStatisticsVM : ViewModelBase
     {

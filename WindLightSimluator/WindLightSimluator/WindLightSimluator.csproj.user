@@ -9,7 +9,40 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\AWOS\Awos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\Components\HeadCrossWind.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\Components\Light.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\Components\Metar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\Components\Qnh.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\Components\RunwayStatus.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\Components\RvrVis.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\Components\WeatherCondition.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\Components\WindPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\RunwayView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\AWOS\SwitchesMuneBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AWOS\TopBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Components\GridPointEditor.xaml.cs">
@@ -19,9 +52,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ADBLights\LightsSetting.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\RunwayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\RVRSwitch\KnobControl.xaml.cs">
@@ -53,40 +83,10 @@
     <Page Update="Views\Components\GridPointEditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Components\HeadCrossWind.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Components\RunwayStatus.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Components\RvrVis.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Components\WeatherCondition.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Components\WindPanel.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Light.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Metar.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Qnh.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\RunwayView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\RVRSwitch\RunwayLamp.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\RVRSwitch\RVRSwitch.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\TopBar.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\WeatherEditor.xaml">

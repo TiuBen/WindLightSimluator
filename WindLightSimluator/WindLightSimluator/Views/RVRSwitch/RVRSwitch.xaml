@@ -4,8 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WindLightSimluator.Views.RVRSwitch"
+      xmlns:conv="clr-namespace:WindLightSimluator.Converters"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+             
   >
 
     <Grid>
@@ -19,14 +21,20 @@
         </Grid.RowDefinitions>
         <Grid>
             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                <local:RunwayLamp LampText="01L"  Margin="15"/>
-                <local:RunwayLamp LampText="19R"  Margin="15"/>
+                <local:RunwayLamp LampText="{Binding StartPartRunwayNumber,RelativeSource={RelativeSource AncestorType=UserControl}}" Margin="15"/>
+                <local:RunwayLamp  LampText="{Binding EndPartRunwayNumber,RelativeSource={RelativeSource AncestorType=UserControl}}"  Margin="15"/>
             </StackPanel>
 
         </Grid>
-        <local:LevelIndicator  Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"/>
-        <local:ToggleSwitch Grid.Column="0" Grid.Row="1"  VerticalAlignment="Top"/>
-        <local:KnobControl Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"/>
+        <local:LevelIndicator Level="{Binding SelectedLightDegree,RelativeSource={RelativeSource AncestorType=UserControl} }"  
+                              Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"/>
+        <local:ToggleSwitch IsOn="{Binding SelectedRunwayPartName,RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                            OffValue="{Binding StartPartRunwayNumber,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            OnValue="{Binding EndPartRunwayNumber,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            Grid.Column="0" Grid.Row="1"  VerticalAlignment="Top"/>
+        <!--<local:KnobControl Degree="{Binding SelectedLightDegree,RelativeSource={RelativeSource AncestorType=UserControl}}"-->  
+        <local:KnobControl  
+                           Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"/>
 
 
     </Grid>

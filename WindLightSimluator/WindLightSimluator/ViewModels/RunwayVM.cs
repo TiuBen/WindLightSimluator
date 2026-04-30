@@ -25,13 +25,17 @@ namespace WindLightSimluator.ViewModels
         public RunwayPartVM endPart { get; set; } = new();
 
 
+        public RunwayPartVM selectedPart { get; set; } = new();
+
+
         public RunwayVM()
         {
             startPart = new();
             startPart.Part = RunwayPartType.Start;
-            startPart.status = new RunwayStatusVM(true, "01L");
-            //startPart.status = new RunwayStatusVM();
-            startPart.status.RunwayNumber ="01L" ;
+            startPart.IsActive =true;
+            startPart.PartName = "01L";
+
+
             startPart.wind = new WindVM(1, 020, 015);
             startPart.wind.IsActive = true;
             startPart.statistics = new WindStatisticsVM(015, 5);
@@ -42,10 +46,13 @@ namespace WindLightSimluator.ViewModels
             startPart.weather = new WeatherConditionVM();
             startPart.weather.IsActive = true;
 
+
+
             middlePart = new();
             middlePart.Part = RunwayPartType.Middle;
-            middlePart.status = new RunwayStatusVM(null, "MID1");
-            //middlePart.status = new RunwayStatusVM();
+            middlePart.IsActive =null;
+            middlePart.PartName = "MID1";
+
             middlePart.wind = new WindVM(1, 020, 015);
             middlePart.wind.IsActive = false;
             middlePart.statistics = new WindStatisticsVM(015, 5);
@@ -58,9 +65,15 @@ namespace WindLightSimluator.ViewModels
             middlePart.weather.IsActive = false;
 
 
+
+
+
+
             endPart = new();
             endPart.Part = RunwayPartType.End;
-            endPart.status = new RunwayStatusVM(false, "19R");
+            endPart.IsActive = false;
+            endPart.PartName = "19R";
+
             endPart.wind = new WindVM(1, 020, 015);
             endPart.wind.IsActive = false;
             endPart.statistics = new WindStatisticsVM(015, 5);
@@ -71,6 +84,8 @@ namespace WindLightSimluator.ViewModels
             endPart.rvrVis.IsActive = false;
             endPart.weather = new WeatherConditionVM();
             endPart.weather.IsActive = false;
+
+            selectedPart = selectedPart;
 
         }
 

@@ -4,9 +4,15 @@
   "Documents": [],
   "DocumentGroupContainers": [
     {
-      "Orientation": 1,
+      "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 346,
+          "SelectedChildIndex": -1,
+          "Children": []
+        }
+      ]
     }
   ]
 }

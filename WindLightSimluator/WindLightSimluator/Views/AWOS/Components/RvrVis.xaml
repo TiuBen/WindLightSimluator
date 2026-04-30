@@ -1,14 +1,14 @@
-﻿<UserControl x:Class="WindLightSimluator.Views.Components.RvrVis"
+﻿<UserControl x:Class="WindLightSimluator.Views.AWOS.Components.RvrVis"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WindLightSimluator.Views.Components"
+             xmlns:local="clr-namespace:WindLightSimluator.Views.AWOS.Components"
              xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              mc:Ignorable="d" 
-             >
+             d:DesignHeight="50" d:DesignWidth="250">
     <UserControl.Resources>
         <conv:RvrColorConverter x:Key="RvrColorConverter"/>
         <conv:VisConverter x:Key="VisConverter"/>

@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WindLightSimluator.Views.Components.Base;
 
-namespace WindLightSimluator.Views.Components
+namespace WindLightSimluator.Views.AWOS.Components
 {
     /// <summary>
-    /// RvrVis.xaml 的交互逻辑
+    /// HeadCrossWind.xaml 的交互逻辑
     /// </summary>
-    public partial class RvrVis : UserControl
+    public partial class HeadCrossWind : UserControl
     {
-        public RvrVis()
+        public HeadCrossWind()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -22,15 +22,15 @@ namespace WindLightSimluator
     public partial class MainWindow : Window
     {
 
-        private AirportVM _vm;
+        public AirportVM AwosVM;
         public MainWindow()
         {
             InitializeComponent();
             //DrawArc(100, 100, 50, -20, 20); // 圆心(100,100)，半径50，从0度到180度
             //DrawArc(100, 100, 50, -20, 20); // 圆心(100,100)，半径50，从0度到180度
             Debug.WriteLine("dddddddddddddddddddddddddddddddddddddddddddddddddd");
-            _vm = new WindLightSimluator.ViewModels.AirportVM();
-            this.DataContext = _vm;
+            //AwosVM = new WindLightSimluator.ViewModels.AirportVM();
+            //this.DataContext = _vm;
         }
 
 

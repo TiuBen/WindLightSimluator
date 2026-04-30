@@ -17,12 +17,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace WindLightSimluator.Views
+namespace WindLightSimluator.Views.AWOS
 {
-    /// <summary>
-    /// TopBar.xaml 的交互逻辑
-    /// </summary>
-    /// 
 
     public class TopBarViewModel : INotifyPropertyChanged
     {
@@ -52,8 +48,9 @@ namespace WindLightSimluator.Views
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 
-
-
+    /// <summary>
+    /// TopBar.xaml 的交互逻辑
+    /// </summary>
     public partial class TopBar : UserControl
     {
         public TopBar()

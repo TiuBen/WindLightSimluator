@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="WindLightSimluator.Views.AWOS.Awos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WindLightSimluator.Views.AWOS"
+        xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
+        mc:Ignorable="d"
+        d:Width="1980"
+        >
+    <!--<UserControl.DataContext>
+        <vm:AirportVM />
+    </UserControl.DataContext>-->
+    <Grid Background="{DynamicResource MainContainerBg}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" MinHeight="60" />
+            <RowDefinition Height="13*" />
+        </Grid.RowDefinitions>
+        <local:TopBar Grid.Row="0"  />
+        <Grid  Grid.Row="1"  Margin="4" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="4"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <local:SwitchesMuneBar Grid.Column="0"/>
+            <!--一条跑道 的 三段-->
+            <Grid Grid.Column="2"   >
+                <local:RunwayView />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\
+D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\obj\Debug\net6.0-windows\
 WindLightSimluator
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\HJW-AMD-PRP\Documents\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
-241529808479
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+D:\GitHub\WindLightSimluator\WindLightSimluator\WindLightSimluator\App.xaml
+25-781571765
 
-66-2001264306
-2041124532039
-MainWindow.xaml;Views\ADBLights\LightsPartButton.xaml;Views\ADBLights\LightsSetting.xaml;Views\AWOS\SwitchesMuneBar.xaml;Views\Components\Base\BorderText.xaml;Views\Components\Base\StateBrushes.xaml;Views\Components\GridPointEditor.xaml;Views\Components\HeadCrossWind.xaml;Views\Components\RunwayStatus.xaml;Views\Components\RvrVis.xaml;Views\Components\WeatherCondition.xaml;Views\Components\WindPanel.xaml;Views\Light.xaml;Views\Metar.xaml;Views\Qnh.xaml;Views\RunwayView.xaml;Views\RVRSwitch\KnobControl.xaml;Views\RVRSwitch\LevelIndicator.xaml;Views\RVRSwitch\RoundIndicator.xaml;Views\RVRSwitch\RunwayLamp.xaml;Views\RVRSwitch\RVRSwitch.xaml;Views\RVRSwitch\ToggleSwitch.xaml;Views\TopBar.xaml;Views\WeatherEditor.xaml;
+691842684103
+2041070972151
+MainWindow.xaml;Views\ADBLights\LightsPartButton.xaml;Views\ADBLights\LightsSetting.xaml;Views\AWOS\Awos.xaml;Views\AWOS\Components\HeadCrossWind.xaml;Views\AWOS\Components\Light.xaml;Views\AWOS\Components\Metar.xaml;Views\AWOS\Components\Qnh.xaml;Views\AWOS\Components\RunwayStatus.xaml;Views\AWOS\Components\RvrVis.xaml;Views\AWOS\Components\WeatherCondition.xaml;Views\AWOS\Components\WindPanel.xaml;Views\AWOS\RunwayView.xaml;Views\AWOS\SwitchesMuneBar.xaml;Views\AWOS\TopBar.xaml;Views\Components\Base\BorderText.xaml;Views\Components\Base\StateBrushes.xaml;Views\Components\GridPointEditor.xaml;Views\RVRSwitch\KnobControl.xaml;Views\RVRSwitch\LevelIndicator.xaml;Views\RVRSwitch\RoundIndicator.xaml;Views\RVRSwitch\RunwayLamp.xaml;Views\RVRSwitch\RVRSwitch.xaml;Views\RVRSwitch\ToggleSwitch.xaml;Views\WeatherEditor.xaml;
 
 False
 

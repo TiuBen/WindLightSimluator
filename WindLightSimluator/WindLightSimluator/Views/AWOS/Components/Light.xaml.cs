@@ -12,16 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WindLightSimluator.Views.Components.Base;
 
-namespace WindLightSimluator.Views.Components
+namespace WindLightSimluator.Views.AWOS.Components
 {
-    public partial class HeadCrossWind : UserControl
+    /// <summary>
+    /// Light.xaml 的交互逻辑
+    /// </summary>
+    public partial class Light : UserControl
     {
-        public HeadCrossWind()
+        public Light()
         {
             InitializeComponent();
         }
-
     }
 }

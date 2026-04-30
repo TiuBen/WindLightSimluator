@@ -1,0 +1,274 @@
+﻿<UserControl x:Class="WindLightSimluator.Views.AWOS.TopBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WindLightSimluator.Views.AWOS"
+             xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
+             mc:Ignorable="d" 
+           >
+    <UserControl.Resources>
+        <conv:DateTimeFormatConverter x:Key="DateTimeFormatConverter"/>
+        <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <Style x:Key="LabelStyle" TargetType="TextBlock" >
+            <Setter Property="Foreground" Value="{DynamicResource TopBarLabelTextColor}"/>
+            <Setter Property="VerticalAlignment"  Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+            <Setter Property="Margin" Value="10 0 10 0"/>
+        </Style>
+        <Style x:Key="TextStyle" TargetType="TextBlock" >
+            <Setter Property="Foreground" Value="{DynamicResource TopBarTextColor}"/>
+            <Setter Property="VerticalAlignment"  Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style TargetType="base:CapsuleBorder" >
+            <Setter Property="Background"  Value="{DynamicResource TopBarLabelBg}"/>
+        </Style>
+        <Style x:Key="HoverBorderStyle" TargetType="Border">
+            <!-- 默认 -->
+            <Setter Property="BorderBrush" Value="{DynamicResource TopBarTextColor}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Style.Triggers>
+                <!-- 鼠标移入 -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#FF4FC3F7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="HoverRectangleStyle" TargetType="Rectangle">
+            <Setter Property="Fill" Value="{DynamicResource TopBarTextColor}"/>
+
+            <Style.Triggers>
+                <!-- 跟随父 Border -->
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                    <Setter Property="Fill" Value="#FF4FC3F7"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid x:Name="Container" Background="{DynamicResource TopBarBg}">
+        <Grid.Resources>
+            <Style TargetType="Border">
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition  Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--0 商标-->
+        <Border>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Width="40" Height="40"  Grid.Column="0" Fill="White" Margin="2">
+                    <Rectangle.OpacityMask>
+                        <ImageBrush ImageSource="/软件图标.png"/>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <TextBlock Grid.Column="1" Text="OBMAN" Style="{StaticResource TextStyle}" >
+                    <TextBlock.FontSize>
+                        <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.3" />
+                    </TextBlock.FontSize>
+                </TextBlock>
+            </Grid>
+        </Border>
+
+
+        <!--1 磁差 -->
+        <Border Grid.Column="1">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <base:CapsuleBorder Grid.Row="0" >
+                    <TextBlock Text="Declination" Style="{StaticResource LabelStyle}"  >
+                        <TextBlock.FontSize>
+                            <Binding    Path="ActualHeight"
+                               ElementName="Container"
+                              Converter="{StaticResource HeightToFontSizeConverter}"
+                              ConverterParameter="0.2" />
+                        </TextBlock.FontSize>
+                    </TextBlock>
+                </base:CapsuleBorder>
+                <TextBlock  Grid.Row="1" Text="-4.49" Style="{StaticResource TextStyle}">
+                    <TextBlock.FontSize>
+                        <Binding    Path="ActualHeight"
+                             ElementName="Container"
+                         Converter="{StaticResource HeightToFontSizeConverter}"
+                         ConverterParameter="0.2" />
+                    </TextBlock.FontSize>
+                </TextBlock>
+            </Grid>
+        </Border>
+        <!--2 BJT -->
+        <Border Grid.Column="2">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <base:CapsuleBorder Grid.Row="0" VerticalAlignment="Center">
+                    <TextBlock Text="BJT" Style="{StaticResource LabelStyle}"  >
+                        <TextBlock.FontSize>
+                            <Binding 
+                          Path="ActualHeight"
+                         ElementName="Container"
+                          Converter="{StaticResource HeightToFontSizeConverter}"
+                     ConverterParameter="0.3" />
+                        </TextBlock.FontSize>
+                    </TextBlock>
+                </base:CapsuleBorder>
+                <Border Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock  Style="{StaticResource TextStyle}" >
+                        <TextBlock.Text>
+                            <Binding Path="BjtTime"
+                              Converter="{StaticResource DateTimeFormatConverter}"
+                              ConverterParameter="yyyy-MM-dd HH:mm:ss"/>
+                        </TextBlock.Text>
+
+                        <TextBlock.FontSize>
+                            <Binding   Path="ActualHeight"
+                             ElementName="Container"
+                             Converter="{StaticResource HeightToFontSizeConverter}"
+                             ConverterParameter="0.3" />
+                        </TextBlock.FontSize>
+                    </TextBlock>
+                </Border>
+            </Grid>
+        </Border>
+        <!--3 UTC -->
+        <Border Grid.Column="3">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <base:CapsuleBorder Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock Text="UTC"  Style="{StaticResource LabelStyle}">
+                        <TextBlock.FontSize>
+                            <Binding    Path="ActualHeight"
+                    ElementName="Container"
+                      Converter="{StaticResource HeightToFontSizeConverter}"
+                      ConverterParameter="0.4" />
+                        </TextBlock.FontSize>
+                    </TextBlock>
+                </base:CapsuleBorder>
+                <Border Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock  FontWeight="Regular" Style="{StaticResource TextStyle}" >
+                        <TextBlock.Text>
+                            <Binding Path="UtcTime"
+                               Converter="{StaticResource DateTimeFormatConverter}"
+                                   ConverterParameter="yyyy-MM-dd HH:mm:ss"/>
+                        </TextBlock.Text>
+                        <TextBlock.FontSize>
+                            <Binding    Path="ActualHeight"
+                                 ElementName="Container"
+                                  Converter="{StaticResource HeightToFontSizeConverter}"
+                                  ConverterParameter="0.4" />
+                        </TextBlock.FontSize>
+
+                    </TextBlock>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- 4 sunrise / sunset 右侧 -->
+        <Border Grid.Column="4">
+            <Grid HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <!-- sunrise / sunset -->
+                <Grid Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- sunrise -->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <base:CapsuleBorder Grid.Column="0">
+                            <TextBlock Text="sunrise" Style="{StaticResource LabelStyle}">
+                                <TextBlock.FontSize>
+                                    <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.2" />
+                                </TextBlock.FontSize>
+                            </TextBlock>
+                        </base:CapsuleBorder>
+                        <TextBlock Grid.Column="1" Text="2025-12-07 17:13:50" Style="{StaticResource TextStyle}" >
+                            <TextBlock.FontSize>
+                                <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.2" />
+                            </TextBlock.FontSize>
+                        </TextBlock>
+                    </Grid>
+
+                    <!-- sunset -->
+                    <Grid Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <base:CapsuleBorder Grid.Column="0">
+                            <TextBlock Text="sunset"  Style="{StaticResource LabelStyle}">
+                                <TextBlock.FontSize>
+                                    <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.2" />
+                                </TextBlock.FontSize>
+                            </TextBlock>
+                        </base:CapsuleBorder>
+                        <TextBlock Grid.Column="1" Text="2025-12-07 17:13:50" Style="{StaticResource TextStyle}" >
+                            <TextBlock.FontSize>
+                                <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.2" />
+                            </TextBlock.FontSize>
+                        </TextBlock>
+                    </Grid>
+                </Grid>
+
+                <Border  Grid.Column="2" Style="{StaticResource HoverBorderStyle}" Padding="3" VerticalAlignment="Center" CornerRadius="6">
+                    <Rectangle Width="30" Height="30"  Style="{StaticResource HoverRectangleStyle}" Margin="2" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="/夜晚.png"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Border>
+                <Border  Grid.Column="4" BorderBrush="{DynamicResource TopBarTextColor}" BorderThickness="2" Padding="3" VerticalAlignment="Center" CornerRadius="6" MouseLeftButtonDown="ChangeTheme_MouseLeftButtonDown">
+                    <Rectangle Width="30" Height="30"  Fill="{DynamicResource TopBarTextColor}" Margin="2" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="/白天.png"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Border>
+             
+
+            </Grid>
+        </Border>
+
+
+    </Grid>
+
+</UserControl>

@@ -26,7 +26,7 @@ namespace WindLightSimluator.Converters
 
                 // 限制最大最小
                 if (fontSize < 12) fontSize = 6;
-                //if (fontSize > 48) fontSize = 120;
+                if (fontSize > 48) fontSize = 60;
 
                 // 四舍五入整数
                 return Math.Round(fontSize);

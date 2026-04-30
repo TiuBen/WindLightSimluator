@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WindLightSimluator.Views.RVRSwitch"
              mc:Ignorable="d" 
           >
-    <Grid Width="120" Height="120">
+    <Grid Width="120" Height="120" x:Name="root"  > 
 
         <TextBlock Text="01L" FontSize="40" Margin="-90,29,90,-29"/>
         <TextBlock Text="19R" FontSize="40" Margin="135,29,-135,-29"/>
@@ -30,9 +30,7 @@
                 </LinearGradientBrush>
             </Path.Fill>
         </Path>
-        <Ellipse Width="70" Height="70"
-HorizontalAlignment="Center"
-VerticalAlignment="Center">
+        <Ellipse Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Ellipse.Fill>
                 <RadialGradientBrush>
                     <GradientStop Color="#FF6F6F6F" Offset="1"/>
@@ -42,9 +40,7 @@ VerticalAlignment="Center">
             </Ellipse.Fill>
         </Ellipse>
         <!-- 中心固定点 -->
-        <Ellipse Width="50" Height="50"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center">
+        <Ellipse Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Ellipse.Fill>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="0"/>
@@ -58,32 +54,28 @@ VerticalAlignment="Center">
 
 
         <!-- 拨杆 -->
-        <Path x:Name="Lever"
-          Fill="#DDD"
-          Stroke="#444"
-          StrokeThickness="1"
-          RenderTransformOrigin="0.5,0.7"
-          Cursor="Hand" Margin="44,-11,41,61">
-
-            <!-- 这个就是“头大尾小”的形状 -->
-            <Path.Data>
-                <PathGeometry Figures=""/>
-            </Path.Data>
-
+        <Path  HorizontalAlignment="Center" Height="61" Margin="0,3,0,0"  Stretch="Fill" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.5,1"
+               MouseLeftButtonUp="OnMouseLeftButtonUp"
+               MouseRightButtonUp="OnMouseRightButtonUp"
+               >
             <Path.RenderTransform>
-                <RotateTransform x:Name="Rotate" Angle="0"/>
+                <RotateTransform x:Name="leverRotate" Angle="-35"/>
             </Path.RenderTransform>
+            <Path.Style>
+                <Style TargetType="Path">
+                    <!-- 默认 -->
+                    <Setter Property="Stroke" Value="#FFA7A7A7"/>
+                    <Setter Property="StrokeThickness" Value="1"/>
 
-        </Path>
-        <Path  HorizontalAlignment="Center" Height="61" Margin="0,3,0,0"  Stretch="Fill" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.5,1">
-            <Path.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="32.471"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Path.RenderTransform>
+                    <Style.Triggers>
+                        <!-- ✅ 鼠标移入高亮 -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Stroke" Value="#00C8FF"/>
+                            <Setter Property="StrokeThickness" Value="4"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Path.Style>
             <Path.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="60,68" IsClosed="True">
@@ -110,9 +102,7 @@ VerticalAlignment="Center">
                     <GradientStop Color="#FFABABAB" Offset="0.364"/>
                 </LinearGradientBrush>
             </Path.Fill>
-            <Path.Stroke>
-                <SolidColorBrush Color="#FFA7A7A7"/>
-            </Path.Stroke>
+           
         </Path>
 
     </Grid>

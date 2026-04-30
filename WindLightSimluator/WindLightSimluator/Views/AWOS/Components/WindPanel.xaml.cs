@@ -12,31 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WindLightSimluator.Views.Components.Base;
 
-namespace WindLightSimluator.Views.Components
+namespace WindLightSimluator.Views.AWOS.Components
 {
     /// <summary>
     /// WindPanel.xaml 的交互逻辑
     /// </summary>
-    /// 
-
-    public enum RunwayDisplayMode
-    {
-        None,           // 都不显示
-        Both,           // 两头都显示
-        Head,           // 只显示头（跑道起点）
-        Tail            // 只显示尾（跑道终点）
-    }
-
     public partial class WindPanel : UserControl
     {
         public WindPanel()
         {
             InitializeComponent();
         }
-
-
-
     }
 }
