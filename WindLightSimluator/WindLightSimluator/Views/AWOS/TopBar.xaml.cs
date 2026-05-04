@@ -61,29 +61,34 @@ namespace WindLightSimluator.Views.AWOS
         }
         private bool isDark = false;
 
-        private void ChangeTheme_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ChangeThemeToDay_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Debug.WriteLine($"Switch theme {isDark}");
+            ApplyTheme("LightTheme.xaml");
+        }
 
-            Application.Current.Resources.MergedDictionaries.Clear();
+        private void ChangeThemeToNight_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ApplyTheme("DarkTheme.xaml");
+        }
 
-            if (isDark)
+
+        private void ApplyTheme(string themeFile)
+        {
+            var dict = new ResourceDictionary
             {
-                Application.Current.Resources.MergedDictionaries.Add(
-                    new ResourceDictionary()
-                    { Source = new Uri("DarkTheme.xaml", UriKind.Relative) }
-                );
+                Source = new Uri(themeFile, UriKind.Relative)
+            };
 
+            var merged = Application.Current.Resources.MergedDictionaries;
+
+            if (merged.Count > 0)
+            {
+                merged[0] = dict;   // ⭐核心：替换，不清空
             }
             else
             {
-                Application.Current.Resources.MergedDictionaries.Add(
-                    new ResourceDictionary()
-                    { Source = new Uri("LightTheme.xaml", UriKind.Relative) }
-                );
+                merged.Add(dict);
             }
-
-            isDark = !isDark;
         }
     }
 }

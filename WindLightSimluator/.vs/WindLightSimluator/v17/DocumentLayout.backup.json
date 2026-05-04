@@ -3,12 +3,76 @@
   "WorkspaceRootPath": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\awos\\components\\windpanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\awos\\components\\windpanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\awos\\components\\runwaystatus.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\awos\\components\\runwaystatus.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\awos\\topbar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\awos\\topbar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\adblights\\lightssetting.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\adblights\\lightssetting.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\awos\\components\\runwaystatus.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\awos\\components\\runwaystatus.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\adblightsvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\adblightsvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\adblights\\lightssetting.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\adblights\\lightssetting.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\adblights\\lightspartbutton.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\adblights\\lightspartbutton.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\airportvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\airportvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\rvrswitch\\rvrswitch.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\rvrswitch\\rvrswitch.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\awos\\awos.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\awos\\awos.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\awos\\runwayview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\awos\\runwayview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\runwayvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\runwayvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\runwaypartvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\runwaypartvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\base\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\base\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\rvrswitch\\knobcontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\rvrswitch\\knobcontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\rvrswitch\\knobcontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\rvrswitch\\knobcontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\rvrswitch\\toggleswitch.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\rvrswitch\\toggleswitch.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +82,251 @@
       "DocumentGroups": [
         {
           "DockedWidth": 346,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TopBar.xaml",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\TopBar.xaml",
-              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\AWOS\\TopBar.xaml",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\TopBar.xaml",
-              "RelativeToolTip": "WindLightSimluator\\Views\\AWOS\\TopBar.xaml",
+              "Title": "LightTheme.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\LightTheme.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\LightTheme.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\LightTheme.xaml",
+              "RelativeToolTip": "WindLightSimluator\\LightTheme.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-30T03:22:20.823Z",
+              "WhenOpened": "2026-05-04T05:26:44.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ADBLightsVM.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\ADBLightsVM.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\ADBLightsVM.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\ADBLightsVM.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\ADBLightsVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T04:48:43.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LightsPartButton.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\ADBLights\\LightsPartButton.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\ADBLights\\LightsPartButton.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\ADBLights\\LightsPartButton.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Views\\ADBLights\\LightsPartButton.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-04T04:12:24.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\MainWindow.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\MainWindow.xaml",
+              "RelativeToolTip": "WindLightSimluator\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-04T02:35:37.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AirportVM.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\AirportVM.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\AirportVM.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\AirportVM.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\AirportVM.cs",
+              "ViewState": "AgIAALoAAAAAAAAAAAAAAKQAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T18:47:55.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RunwayVM.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\RunwayVM.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\RunwayVM.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\RunwayVM.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\RunwayVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T18:47:33.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Awos.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\Awos.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\AWOS\\Awos.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\Awos.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Views\\AWOS\\Awos.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-03T18:47:07.697Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WindPanel.xaml",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\Components\\WindPanel.xaml",
-              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\AWOS\\Components\\WindPanel.xaml",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\Components\\WindPanel.xaml",
-              "RelativeToolTip": "WindLightSimluator\\Views\\AWOS\\Components\\WindPanel.xaml",
+              "Title": "RunwayStatus.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\Components\\RunwayStatus.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\AWOS\\Components\\RunwayStatus.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\Components\\RunwayStatus.xaml*",
+              "RelativeToolTip": "WindLightSimluator\\Views\\AWOS\\Components\\RunwayStatus.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-30T03:06:46.111Z",
+              "WhenOpened": "2026-05-03T18:08:45.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RunwayView.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\RunwayView.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\AWOS\\RunwayView.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\RunwayView.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Views\\AWOS\\RunwayView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-03T18:04:51.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "KnobControl.xaml.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\RVRSwitch\\KnobControl.xaml.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\RVRSwitch\\KnobControl.xaml.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\RVRSwitch\\KnobControl.xaml.cs",
+              "RelativeToolTip": "WindLightSimluator\\Views\\RVRSwitch\\KnobControl.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T18:03:01.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RunwayStatus.xaml.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\Components\\RunwayStatus.xaml.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\AWOS\\Components\\RunwayStatus.xaml.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\Components\\RunwayStatus.xaml.cs",
+              "RelativeToolTip": "WindLightSimluator\\Views\\AWOS\\Components\\RunwayStatus.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T02:41:37.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LightsSetting.xaml.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\ADBLights\\LightsSetting.xaml.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\ADBLights\\LightsSetting.xaml.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\ADBLights\\LightsSetting.xaml.cs",
+              "RelativeToolTip": "WindLightSimluator\\Views\\ADBLights\\LightsSetting.xaml.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAvwGcAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T04:46:09.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ToggleSwitch.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\RVRSwitch\\ToggleSwitch.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\RVRSwitch\\ToggleSwitch.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\RVRSwitch\\ToggleSwitch.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Views\\RVRSwitch\\ToggleSwitch.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-03T17:53:34.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "KnobControl.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\RVRSwitch\\KnobControl.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\RVRSwitch\\KnobControl.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\RVRSwitch\\KnobControl.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Views\\RVRSwitch\\KnobControl.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-03T17:49:46.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RunwayPartVM.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\RunwayPartVM.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\RunwayPartVM.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\RunwayPartVM.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\RunwayPartVM.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T17:10:02.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ViewModelBase.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\Base\\ViewModelBase.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\Base\\ViewModelBase.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\Base\\ViewModelBase.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\Base\\ViewModelBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T02:42:11.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RVRSwitch.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\RVRSwitch\\RVRSwitch.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\RVRSwitch\\RVRSwitch.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\RVRSwitch\\RVRSwitch.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Views\\RVRSwitch\\RVRSwitch.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-03T17:02:10.461Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "e7836f29-e0f9-497f-baa4-8a3e828398ee",
+        "Display": 2,
+        "X": 1197,
+        "Y": 667,
+        "Width": 1300,
+        "Height": 2047,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LightsSetting.xaml",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\ADBLights\\LightsSetting.xaml",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\ADBLights\\LightsSetting.xaml",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\ADBLights\\LightsSetting.xaml",
+              "RelativeToolTip": "WindLightSimluator\\Views\\ADBLights\\LightsSetting.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-04T04:11:45.358Z",
               "EditorCaption": ""
             }
           ]

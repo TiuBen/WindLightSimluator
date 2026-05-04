@@ -26,57 +26,8 @@ namespace WindLightSimluator.Views.RVRSwitch
             InitializeComponent();
         }
 
-
-
-        // 当前值（绑定 VM）
-        public object IsOn
-        {
-            get => GetValue(IsOnProperty);
-            set => SetValue(IsOnProperty, value);
-        }
-
-        public static readonly DependencyProperty IsOnProperty =
-         DependencyProperty.Register(
-             nameof(IsOn),
-             typeof(object),
-             typeof(ToggleSwitch),
-             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged));
-
-
-
-
-
-        public object OnValue
-        {
-            get => GetValue(OnValueProperty);
-            set => SetValue(OnValueProperty, value);
-        }
-
-        public static readonly DependencyProperty OnValueProperty =
-            DependencyProperty.Register(
-                nameof(OnValue),
-                typeof(object),
-                typeof(ToggleSwitch),
-                new PropertyMetadata(null, OnValueChanged));
-
-
-
-        public object OffValue
-        {
-            get => GetValue(OffValueProperty);
-            set => SetValue(OffValueProperty, value);
-        }
-
-        public static readonly DependencyProperty OffValueProperty =
-            DependencyProperty.Register(
-                nameof(OffValue),
-                typeof(object),
-                typeof(ToggleSwitch),
-                new PropertyMetadata(null, OnValueChanged));
-
-
-
-        // 👉 内部状态（bool）
+        // IsChecked（UI状态）
+        // =========================
         public bool IsChecked
         {
             get => (bool)GetValue(IsCheckedProperty);
@@ -88,57 +39,77 @@ namespace WindLightSimluator.Views.RVRSwitch
                 nameof(IsChecked),
                 typeof(bool),
                 typeof(ToggleSwitch),
-                new PropertyMetadata(false));
+                new PropertyMetadata(false, OnVisualChanged));
 
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        // =========================
+        // Command（MVVM核心）
+        // =========================
+        public ICommand ToggleCommand
+        {
+            get => (ICommand)GetValue(ToggleCommandProperty);
+            set => SetValue(ToggleCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty ToggleCommandProperty =
+            DependencyProperty.Register(
+                nameof(ToggleCommand),
+                typeof(ICommand),
+                typeof(ToggleSwitch),
+                new PropertyMetadata(null));
+
+        // =========================
+        // ON / OFF Value（只用于显示）
+        // =========================
+        public string OnValue
+        {
+            get =>(string)GetValue(OnValueProperty);
+            set => SetValue(OnValueProperty, value);
+        }
+
+        public static readonly DependencyProperty OnValueProperty =
+            DependencyProperty.Register(nameof(OnValue), typeof(string), typeof(ToggleSwitch));
+
+        public string OffValue
+        {
+            get => (string)GetValue(OffValueProperty);
+            set => SetValue(OffValueProperty, value);
+        }
+
+        public static readonly DependencyProperty OffValueProperty =
+            DependencyProperty.Register(nameof(OffValue), typeof(string), typeof(ToggleSwitch));
+
+
+
+        // =========================
+        // UI动画刷新
+        // =========================
+        private static void OnVisualChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var ctrl = (ToggleSwitch)d;
 
-            // 自动判断当前状态
-            ctrl.IsChecked = Equals(ctrl.IsOn, ctrl.OnValue);
+            double target = ctrl.IsChecked ? 35 : -35;
 
-            if (Equals(ctrl.IsOn, ctrl.OnValue))
+            var anim = new DoubleAnimation
             {
-                ctrl.leverRotate.Angle = 35;   // ON
-            }
-            else
-            {
-                ctrl.leverRotate.Angle = -35;  // OFF
-            }
+                To = target,
+                Duration = TimeSpan.FromMilliseconds(150),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+            };
 
+            ctrl.leverRotate.BeginAnimation(RotateTransform.AngleProperty, anim);
         }
-
 
         private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
 
-            IsOn = OnValue; // 强制 ON
-            double target = 35;
-            var anim = new DoubleAnimation
-            {
-                To = target,
-                Duration = TimeSpan.FromMilliseconds(150),
-                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-            };
-
-            leverRotate.BeginAnimation(RotateTransform.AngleProperty, anim);
+            ToggleCommand?.Execute(true);
         }
 
         private void OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-
-            IsOn = OffValue; // 强制 OFF
-            double target = -35;
-            var anim = new DoubleAnimation
-            {
-                To = target,
-                Duration = TimeSpan.FromMilliseconds(150),
-                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-            };
-
-            leverRotate.BeginAnimation(RotateTransform.AngleProperty, anim);
+            ToggleCommand?.Execute(false);
         }
     }
 }

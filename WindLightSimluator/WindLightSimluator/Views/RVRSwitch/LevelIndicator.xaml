@@ -53,7 +53,7 @@
             <StackPanel Margin="6" HorizontalAlignment="Center">
                 <Grid Width="30" Height="30">
                     <Ellipse Style="{StaticResource MetalRingStyle}"/>
-                    <Ellipse Style="{StaticResource LampStyle}" Tag="1"
+                    <Ellipse Style="{StaticResource LampStyle}" x:Name="Lamp1"
                              HorizontalAlignment="Center"
                              VerticalAlignment="Center"/>
                 </Grid>
@@ -64,7 +64,7 @@
             <StackPanel Margin="6" HorizontalAlignment="Center">
                 <Grid Width="30" Height="30">
                     <Ellipse Style="{StaticResource MetalRingStyle}"/>
-                    <Ellipse Style="{StaticResource LampStyle}" Tag="2"
+                    <Ellipse Style="{StaticResource LampStyle}" x:Name="Lamp2"
                              HorizontalAlignment="Center"
                              VerticalAlignment="Center"/>
                 </Grid>
@@ -75,7 +75,7 @@
             <StackPanel Margin="6" HorizontalAlignment="Center">
                 <Grid Width="30" Height="30">
                     <Ellipse Style="{StaticResource MetalRingStyle}"/>
-                    <Ellipse Style="{StaticResource LampStyle}" Tag="3"
+                    <Ellipse Style="{StaticResource LampStyle}" x:Name="Lamp3"
                              HorizontalAlignment="Center"
                              VerticalAlignment="Center"/>
                 </Grid>
@@ -86,7 +86,7 @@
             <StackPanel Margin="6" HorizontalAlignment="Center">
                 <Grid Width="30" Height="30">
                     <Ellipse Style="{StaticResource MetalRingStyle}"/>
-                    <Ellipse Style="{StaticResource LampStyle}" Tag="4"
+                    <Ellipse Style="{StaticResource LampStyle}" x:Name="Lamp4"
                              HorizontalAlignment="Center"
                              VerticalAlignment="Center"/>
                 </Grid>
@@ -97,7 +97,7 @@
             <StackPanel Margin="6" HorizontalAlignment="Center">
                 <Grid Width="30" Height="30">
                     <Ellipse Style="{StaticResource MetalRingStyle}"/>
-                    <Ellipse Style="{StaticResource LampStyle}" Tag="5"
+                    <Ellipse Style="{StaticResource LampStyle}" x:Name="Lamp5"
                              HorizontalAlignment="Center"
                              VerticalAlignment="Center"/>
                 </Grid>

@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:WindLightSimluator.Views.RVRSwitch"
              mc:Ignorable="d" 
           >
-    <Grid Width="120" Height="120" x:Name="root"  > 
+    <Grid Width="120" Height="120" x:Name="root"  >
 
-        <TextBlock Text="01L" FontSize="40" Margin="-90,29,90,-29"/>
-        <TextBlock Text="19R" FontSize="40" Margin="135,29,-135,-29"/>
+        <TextBlock Text="{Binding OnValue,RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="40" Margin="-90,29,90,-29"/>
+        <TextBlock Text="{Binding OffValue,RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="40" Margin="135,29,-135,-29"/>
         <!-- 六边形底座 -->
         <Path x:Name="BaseHex"
           StrokeThickness="1"

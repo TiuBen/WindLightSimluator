@@ -63,13 +63,13 @@
     <SolidColorBrush x:Key="MainContainerBg"   Color="{StaticResource Blue_Lighter}"/>
     
     <!--RunwayStatus-->
-    <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Lighter}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Inactive" Color="#f1f2f6"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Dark3}"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Inactive" Color="{StaticResource Bg_Gray_Dark1}"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Inactive" Color="{StaticResource Bg_Gray_Dark3}"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Inactive" Color="{StaticResource White_Main}"/>
 
-    <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Active" Color="{StaticResource White_Main}"/>
+    <SolidColorBrush x:Key="RunwayStatus.ContainerBackgroundColor.Active" Color="#eff3ff"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Active" Color="{StaticResource Blue_Primary}"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Active" Color="{StaticResource White_Main}"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextBackgroundColor.Active" Color="{StaticResource Orange_Alert}"/>

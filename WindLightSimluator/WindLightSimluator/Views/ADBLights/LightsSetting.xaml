@@ -185,9 +185,43 @@
                     <TextBlock Text="01R - 19L"/>
                 </Border>
             </StackPanel>
-            <Border HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="20,505,0,0" Height="140" Width="200" Padding="20" BorderThickness="2" BorderBrush="LightGray">
+            <Border HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="20,505,0,0" Height="140" Width="200" Padding="20" BorderThickness="2" MouseLeftButtonUp="ChangeCat2">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter  Property="BorderBrush" Value="LightGray"/>
+                        <Style.Triggers>
+                            <!-- 鼠标移入 -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
                 <TextBlock Text="二类运行" FontSize="40" FontWeight="Bold" Foreground="LightGray" VerticalAlignment="Center"/>
             </Border>
+            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,50,0,0"  
+                       Text="二类运行" FontSize="80" FontWeight="Bold" Foreground="Red" >
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+
+                        <!-- 默认隐藏 -->
+                        <Setter Property="Visibility" Value="Collapsed"/>
+
+                        <Style.Triggers>
+
+                            <!-- VM 控制显示 -->
+                            <DataTrigger Binding="{Binding IsCat2Enabled}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+
+                        </Style.Triggers>
+                    </Style>
+
+
+                </TextBlock.Style>
+
+            </TextBlock>
         </Grid>
 
         <Border x:Name="DialogPopup" Background="#207d807f"  Visibility="Collapsed">

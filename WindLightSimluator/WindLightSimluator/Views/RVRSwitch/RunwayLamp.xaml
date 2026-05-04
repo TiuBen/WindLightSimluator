@@ -27,6 +27,7 @@
             </Ellipse>
 
             <Ellipse x:Name="LampBead" Width="26" Height="26" Fill="#2A3F3A" HorizontalAlignment="Center" VerticalAlignment="Center">
+               
                 <Ellipse.Stroke>
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                         <GradientStop Color="#55FFFFFF" Offset="0"/>
@@ -35,7 +36,51 @@
                 </Ellipse.Stroke>
             </Ellipse>
 
-            <Ellipse x:Name="ActiveGlow" Width="22" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <Ellipse x:Name="ActiveGlow" Width="22" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Ellipse.Style>
+                    <Style TargetType="Ellipse">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Setter Property="Opacity" Value="0"/>
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+
+                            <!-- ON 状态 -->
+                            <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
+
+                                <!-- 显示 -->
+                                <Setter Property="Visibility" Value="Visible"/>
+
+                                <!-- 动画 -->
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <!-- 淡入 -->
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1"/>
+
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+
+                                <!-- OFF 时淡出 -->
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1"  To="0"   Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+
+                            </DataTrigger>
+
+                        </Style.Triggers>
+                     
+
+
+                    </Style>
+                </Ellipse.Style>
                 <Ellipse.Fill>
                     <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
                         <GradientStop Color="#FFFFFF" Offset="0.0"/>

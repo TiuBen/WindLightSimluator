@@ -5,15 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WindLightSimluator.Views.RVRSwitch"
       xmlns:conv="clr-namespace:WindLightSimluator.Converters"
+      xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-             
   >
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -21,21 +22,34 @@
         </Grid.RowDefinitions>
         <Grid>
             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                <local:RunwayLamp LampText="{Binding StartPartRunwayNumber,RelativeSource={RelativeSource AncestorType=UserControl}}" Margin="15"/>
-                <local:RunwayLamp  LampText="{Binding EndPartRunwayNumber,RelativeSource={RelativeSource AncestorType=UserControl}}"  Margin="15"/>
+                <local:RunwayLamp LampText="{Binding SelectedRunwayVM.startPart.PartName}" IsActive="{Binding SelectedRunwayVM.startPart.IsActive}" Margin="15"/>
+                <local:RunwayLamp  LampText="{Binding SelectedRunwayVM.endPart.PartName}" IsActive="{Binding SelectedRunwayVM.endPart.IsActive}"  Margin="15"/>
             </StackPanel>
 
         </Grid>
-        <local:LevelIndicator Level="{Binding SelectedLightDegree,RelativeSource={RelativeSource AncestorType=UserControl} }"  
+        <local:LevelIndicator Level="{Binding SelectedRunwayVM.selectedPart.RvrLightDegree}"  
                               Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"/>
-        <local:ToggleSwitch IsOn="{Binding SelectedRunwayPartName,RelativeSource={RelativeSource AncestorType=UserControl}}" 
-                            OffValue="{Binding StartPartRunwayNumber,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                            OnValue="{Binding EndPartRunwayNumber,RelativeSource={RelativeSource AncestorType=UserControl}}"
+        <local:ToggleSwitch  
+                            OnValue="{Binding SelectedRunwayVM.startPart.PartName}"
+                            OffValue="{Binding SelectedRunwayVM.endPart.PartName}"
+                            IsChecked="{Binding SelectedRunwayVM.endPart.IsActive}"
+                            ToggleCommand="{Binding SelectedRunwayVM.ToggleRunwayCommand}"
                             Grid.Column="0" Grid.Row="1"  VerticalAlignment="Top"/>
-        <!--<local:KnobControl Degree="{Binding SelectedLightDegree,RelativeSource={RelativeSource AncestorType=UserControl}}"-->  
+        <!--<local:KnobControl Degree="{Binding SelectedLightDegree,RelativeSource={RelativeSource AncestorType=UserControl}}"-->
         <local:KnobControl  
-                           Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"/>
+                           Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" 
+                           Level="{Binding SelectedRunwayVM.selectedPart.RvrLightDegree}" 
+                            ChangeLevelCommand="{Binding SelectedRunwayVM.selectedPart.SetRvrLevelCommand}"/>
 
+        <Canvas Grid.Column="2">
 
+            <TextBlock Text="{Binding  SelectedRunwayVM.startPart.PartName}" Canvas.Left="100" Canvas.Top="100" />
+            <TextBlock Text="{Binding  SelectedRunwayVM.startPart.PartStatusText}" Canvas.Left="200" Canvas.Top="100" />
+            <TextBlock Text="{Binding SelectedRunwayVM.endPart.PartName}" Canvas.Left="100" Canvas.Top="201" />
+            <TextBlock Text="{Binding SelectedRunwayVM.endPart.PartStatusText}" Canvas.Left="200" Canvas.Top="201" />
+            <TextBlock Text="{Binding SelectedRunwayVM.selectedPart.PartName}" Canvas.Left="100" Canvas.Top="301" />
+            <TextBlock Text="{Binding SelectedRunwayVM.selectedPart.RvrLightDegree}" Canvas.Left="200" Canvas.Top="301" />
+
+        </Canvas>
     </Grid>
 </UserControl>

@@ -8,29 +8,13 @@
              xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-   
+           >
     <UserControl.Resources>
         <!--是否显示-->
         <conv:TrueOnlyToVisibilityConverter x:Key="TrueOnlyToVisibility"/>
         <conv:StatusToBgColorConverter x:Key="StatusToBgColorConverter"/>
-
-
-
         <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
-        <Style  TargetType="Grid" >
-            <Setter Property="Margin" Value="0 0 0 0"/>
-        </Style>
-        <Style  TargetType="Border" >
-            <Setter Property="Margin" Value="0 "/>
-            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"/>
-        </Style>
-        <Style x:Key="PathBgStyle" TargetType="Path" >
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Fill" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"/>
-        </Style>
-
 
         <Style x:Key="baseTextStyle" TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -45,7 +29,7 @@
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                     RelativeSource={RelativeSource AncestorType=Grid},
                     Converter={StaticResource  HeightToFontSizeConverter}, 
-                    ConverterParameter=0.5}"/>
+                    ConverterParameter=0.6}"/>
         </Style>
         <Style x:Key="smallText" TargetType="TextBlock" BasedOn="{StaticResource baseTextStyle}" >
             <Setter Property="FontWeight" Value="Bold"/>
@@ -64,15 +48,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <!--左边倒直角梯形-->
-        <Style x:Key="LabelBackgroundColor" TargetType="Path" >
-            <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Inactive}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+    
         <!--跑道文字颜色-->
         <Style x:Key="LabelTextColor" TargetType="TextBlock"  BasedOn="{StaticResource largeText}">
             <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.LabelTextColor.Inactive}" />
@@ -103,7 +79,7 @@
 
     </UserControl.Resources>
 
-    <Grid Style="{DynamicResource ContainerBackgroundColor}" Margin="0">
+    <Grid Style="{DynamicResource ContainerBackgroundColor}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
@@ -117,7 +93,17 @@
             <Viewbox Stretch="Fill">
                 <!-- 标准化成 100x100 的比例路径 -->
                 <!--<Path Style="{DynamicResource PathBgStyle}" >-->
-                <Path Style="{DynamicResource LabelBackgroundColor}" >
+                <Path  >
+                    <Path.Style>
+                        <Style TargetType="Path" >
+                            <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Inactive}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                                    <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Path.Style>
 
                     <Path.Data>
                         <!-- 倒直角梯形：左边直角，右下是钝角 -->

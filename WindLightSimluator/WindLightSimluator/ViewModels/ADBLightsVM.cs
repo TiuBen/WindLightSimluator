@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml.Linq;
+using WindLightSimluator.utils;
 using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels
@@ -164,6 +165,8 @@ namespace WindLightSimluator.ViewModels
             set => SetProperty(ref _isCat2Enabled, value);
         }
 
+      
+
         public int SelectedLightIndex
         {
             get => _selectedLightIndex;
@@ -197,6 +200,8 @@ namespace WindLightSimluator.ViewModels
             // 可选：默认选中第一个灯光
             SelectedLightIndex = 0;
             SelectedLightVM = Lights[SelectedLightIndex].Clone();
+
+         
         }
 
 

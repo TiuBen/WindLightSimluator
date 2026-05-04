@@ -92,5 +92,16 @@ namespace WindLightSimluator.Views.Lights
             DialogPopup.Visibility = Visibility.Collapsed;
 
         }
+
+        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ChangeCat2(object sender, MouseButtonEventArgs e)
+        {
+            var vm = this.DataContext as ADBLightsVM;
+            vm.IsCat2Enabled = !vm.IsCat2Enabled;
+        }
     }
 }

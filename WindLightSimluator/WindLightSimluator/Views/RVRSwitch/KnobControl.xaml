@@ -75,7 +75,9 @@
                 </StackPanel>
             </Canvas>
 
-            <Grid Margin="45">
+            <Grid Margin="45"  MouseLeftButtonUp="Grid_MouseLeftButtonUp"
+                         MouseRightButtonUp="Grid_MouseRightButtonUp"  x:Name="RootGrid" >
+               
                 <Ellipse Fill="#FF151515">
                     <Ellipse.Effect>
                         <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="Black" Opacity="0.8"/>
@@ -91,9 +93,24 @@
                     </Ellipse.Fill>
                 </Ellipse>
 
-                <Rectangle Width="4" Height="18" Fill="White" 
+                <Rectangle Width="4" Height="18" 
                            VerticalAlignment="Top" HorizontalAlignment="Center" 
                            Margin="0,8,0,0" RadiusX="2" RadiusY="2">
+                    <Rectangle.Style>
+                        <Style TargetType="Rectangle">
+                            <!-- 默认 -->
+                            <Setter Property="Fill" Value="White"/>
+
+                            <Style.Triggers>
+                                <!-- ✅ 鼠标移入高亮 -->
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=RootGrid}" Value="True">
+                                    <Setter Property="Fill" Value="#00C8FF"/>
+                                </DataTrigger>
+
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+
                     <Rectangle.RenderTransform>
                         <RotateTransform x:Name="KnobRotation" Angle="-90" CenterX="2" CenterY="47"/>
                     </Rectangle.RenderTransform>

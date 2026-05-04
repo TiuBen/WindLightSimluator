@@ -20,10 +20,13 @@
             <Setter Property="UseLayoutRounding" Value="True"/>
         </Style>
     </Window.Resources>
+    <Window.DataContext>
+        <vm:AirportVM/>
+    </Window.DataContext>
     <Grid>
         <TabControl>
             <TabItem Header="气象自观模拟"  IsSelected="True">
-                <Awos:Awos DataContext="{Binding AwosVM}"/>
+                <Awos:Awos />
             </TabItem>
             <TabItem Header="灯光ADB系统模拟" >
                 <ADB:LightsSetting />

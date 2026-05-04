@@ -33,25 +33,18 @@
             <!-- 默认 -->
             <Setter Property="BorderBrush" Value="{DynamicResource TopBarTextColor}"/>
             <Setter Property="Cursor" Value="Hand"/>
-
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="2"/>
             <Style.Triggers>
                 <!-- 鼠标移入 -->
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderBrush" Value="#FF4FC3F7"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource TopBarBg}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="HoverRectangleStyle" TargetType="Rectangle">
-            <Setter Property="Fill" Value="{DynamicResource TopBarTextColor}"/>
-
-            <Style.Triggers>
-                <!-- 跟随父 Border -->
-                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
-                    <Setter Property="Fill" Value="#FF4FC3F7"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
 
     </UserControl.Resources>
 
@@ -249,15 +242,18 @@
                     </Grid>
                 </Grid>
 
-                <Border  Grid.Column="2" Style="{StaticResource HoverBorderStyle}" Padding="3" VerticalAlignment="Center" CornerRadius="6">
-                    <Rectangle Width="30" Height="30"  Style="{StaticResource HoverRectangleStyle}" Margin="2" >
+                <Border  Grid.Column="2" Style="{DynamicResource HoverBorderStyle}" 
+                         MouseLeftButtonDown="ChangeThemeToDay_MouseLeftButtonDown"
+                         >
+                    <Rectangle Width="30" Height="30" Fill="{DynamicResource TopBarTextColor}"  Margin="2" >
                         <Rectangle.OpacityMask>
                             <ImageBrush ImageSource="/夜晚.png"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
                 </Border>
-                <Border  Grid.Column="4" BorderBrush="{DynamicResource TopBarTextColor}" BorderThickness="2" Padding="3" VerticalAlignment="Center" CornerRadius="6" MouseLeftButtonDown="ChangeTheme_MouseLeftButtonDown">
-                    <Rectangle Width="30" Height="30"  Fill="{DynamicResource TopBarTextColor}" Margin="2" >
+                <Border  Grid.Column="4" Style="{DynamicResource HoverBorderStyle}"  
+                         MouseLeftButtonDown="ChangeThemeToNight_MouseLeftButtonDown">
+                    <Rectangle Width="30" Height="30"  Fill="{DynamicResource TopBarTextColor}"   Margin="2" >
                         <Rectangle.OpacityMask>
                             <ImageBrush ImageSource="/白天.png"/>
                         </Rectangle.OpacityMask>

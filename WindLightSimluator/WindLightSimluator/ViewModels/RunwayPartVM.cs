@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using WindLightSimluator.utils;
 using WindLightSimluator.ViewModels.Base;
 using WindLightSimluator.ViewModels.vm;
 
@@ -30,7 +33,14 @@ namespace WindLightSimluator.ViewModels
         public bool? IsActive
         {
             get => _isActive;
-            set => SetProperty(ref _isActive, value);
+            set {
+                if (SetProperty(ref _isActive, value))
+                {
+                    Debug.WriteLine("_isActive_isActive_isActive_isActive_isActive");
+
+                    OnPropertyChanged(nameof(PartStatusText));
+                }
+            }
 
         }
 
@@ -50,12 +60,26 @@ namespace WindLightSimluator.ViewModels
         }
 
 
+        // =========================
+        // ✈️ RVR 灯光等级（新增）
+        // =========================
+        private int _rvrLightDegree;
+        public int RvrLightDegree
+        {
+            get => _rvrLightDegree;
+            set => SetProperty(ref _rvrLightDegree, value);
+        }
+
         public WindVM wind { get; set; }
         public WindStatisticsVM statistics { get; set; }
         public RvrVisVM rvrVis { get; set; }
         public WeatherConditionVM weather { get; set; }
 
-       
+        // =========================
+        // 🎯 Command：修改 RVR 等级
+        // =========================
+        public ICommand SetRvrLevelCommand { get; }
+
 
         private RunwayPartType _part;
         /// <summary>
@@ -72,12 +96,34 @@ namespace WindLightSimluator.ViewModels
         {
             _isActive = isActive;
             _partName = partNaame;
+
+            SetRvrLevelCommand = new RelayCommand<int>(param =>
+            {
+                if (param == null) return;
+
+                if (int.TryParse(param.ToString(), out int level))
+                {
+                    RvrLightDegree = level;
+                    OnPropertyChanged(nameof(RvrLightDegree));
+                }
+            });
         }
 
         public RunwayPartVM()
         {
             _isActive = false;
             _partName = string.Empty;
+
+            SetRvrLevelCommand = new RelayCommand<int>(param =>
+            {
+                if (param == null) return;
+
+                if (int.TryParse(param.ToString(), out int level))
+                {
+                    RvrLightDegree = level;
+                    OnPropertyChanged(nameof(RvrLightDegree));
+                }
+            });
         }
 
 

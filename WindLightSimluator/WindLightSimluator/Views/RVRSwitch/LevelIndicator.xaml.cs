@@ -20,9 +20,10 @@ namespace WindLightSimluator.Views.RVRSwitch
     /// </summary>
     public partial class LevelIndicator : UserControl
     {
-        public static readonly DependencyProperty LevelProperty =
-           DependencyProperty.Register(nameof(Level), typeof(int), typeof(LevelIndicator),
-               new PropertyMetadata(0));
+        public LevelIndicator()
+        {
+            InitializeComponent();
+        }
 
         public int Level
         {
@@ -30,9 +31,54 @@ namespace WindLightSimluator.Views.RVRSwitch
             set => SetValue(LevelProperty, value);
         }
 
-        public LevelIndicator()
+        public static readonly DependencyProperty LevelProperty =
+                DependencyProperty.Register(
+                    nameof(Level),
+                    typeof(int),
+                    typeof(LevelIndicator),
+                    new PropertyMetadata(0, OnLevelChanged));
+
+        // =========================
+        // Level变化回调
+        // =========================
+        private static void OnLevelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            InitializeComponent();
+            var ctrl = (LevelIndicator)d;
+            int level = (int)e.NewValue;
+
+            ctrl.UpdateLamps(level);
+        }
+
+        // =========================
+        // 核心：控制灯亮
+        // =========================
+        private void UpdateLamps(int level)
+        {
+            SetLamp(Lamp1, level == 1);
+            SetLamp(Lamp2, level == 2);
+            SetLamp(Lamp3, level == 3);
+            SetLamp(Lamp4, level == 4);
+            SetLamp(Lamp5, level == 5);
+        }
+
+        // =========================
+        // 灯状态统一控制
+        // =========================
+        private void SetLamp(UIElement lamp, bool isOn)
+        {
+            if (lamp is System.Windows.Shapes.Ellipse el)
+            {
+                if (isOn)
+                {
+                    el.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 80)); // 亮绿
+                    el.Opacity = 1.0;
+                }
+                else
+                {
+                    el.Fill = new SolidColorBrush(Color.FromRgb(34, 34, 34)); // 灰
+                    el.Opacity = 0.4;
+                }
+            }
         }
     }
 }

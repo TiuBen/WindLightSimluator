@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WindLightSimluator"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+    >
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,7 +21,7 @@
             <SolidColorBrush x:Key="VisColor_Mid" Color="#FF0000"/>
             <!-- 红色 -->
             <SolidColorBrush x:Key="VisColor_High" Color="#000000"/>
-        <local:App x:Key="AppInstace"/>
+            <local:App x:Key="AppInstace"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

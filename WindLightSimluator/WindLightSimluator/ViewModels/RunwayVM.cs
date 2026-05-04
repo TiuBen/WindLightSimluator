@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using WindLightSimluator.Views.Components;
-using WindLightSimluator.ViewModels.vm;
-using System.Data;
-using WindLightSimluator.ViewModels.Base;
 using WindLightSimluator.Model;
+using WindLightSimluator.utils;
+using WindLightSimluator.ViewModels.Base;
+using WindLightSimluator.ViewModels.vm;
 
 namespace WindLightSimluator.ViewModels
 {
@@ -27,66 +28,85 @@ namespace WindLightSimluator.ViewModels
 
         public RunwayPartVM selectedPart { get; set; } = new();
 
+        public ICommand ToggleRunwayCommand { get; }
 
         public RunwayVM()
         {
-            startPart = new();
-            startPart.Part = RunwayPartType.Start;
-            startPart.IsActive =true;
-            startPart.PartName = "01L";
+            //startPart = new();
+            //startPart.Part = RunwayPartType.Start;
+            //startPart.IsActive =true;
+            //startPart.PartName = "01L";
 
 
-            startPart.wind = new WindVM(1, 020, 015);
-            startPart.wind.IsActive = true;
-            startPart.statistics = new WindStatisticsVM(015, 5);
-            startPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
-            startPart.statistics.IsActive = true;
-            startPart.rvrVis = new RvrVisVM();
-            startPart.rvrVis.IsActive = true;
-            startPart.weather = new WeatherConditionVM();
-            startPart.weather.IsActive = true;
-
-
-
-            middlePart = new();
-            middlePart.Part = RunwayPartType.Middle;
-            middlePart.IsActive =null;
-            middlePart.PartName = "MID1";
-
-            middlePart.wind = new WindVM(1, 020, 015);
-            middlePart.wind.IsActive = false;
-            middlePart.statistics = new WindStatisticsVM(015, 5);
-            middlePart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
-
-            middlePart.statistics.IsActive = false;
-            middlePart.rvrVis = new RvrVisVM();
-            middlePart.rvrVis.IsActive= false;
-            middlePart.weather = new WeatherConditionVM();
-            middlePart.weather.IsActive = false;
+            //startPart.wind = new WindVM(1, 020, 015);
+            //startPart.wind.IsActive = true;
+            //startPart.statistics = new WindStatisticsVM(015, 5);
+            //startPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+            //startPart.statistics.IsActive = true;
+            //startPart.rvrVis = new RvrVisVM();
+            //startPart.rvrVis.IsActive = true;
+            //startPart.weather = new WeatherConditionVM();
+            //startPart.weather.IsActive = true;
 
 
 
+            //middlePart = new();
+            //middlePart.Part = RunwayPartType.Middle;
+            //middlePart.IsActive =null;
+            //middlePart.PartName = "MID1";
+
+            //middlePart.wind = new WindVM(1, 020, 015);
+            //middlePart.wind.IsActive = false;
+            //middlePart.statistics = new WindStatisticsVM(015, 5);
+            //middlePart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+
+            //middlePart.statistics.IsActive = false;
+            //middlePart.rvrVis = new RvrVisVM();
+            //middlePart.rvrVis.IsActive= false;
+            //middlePart.weather = new WeatherConditionVM();
+            //middlePart.weather.IsActive = false;
 
 
 
-            endPart = new();
-            endPart.Part = RunwayPartType.End;
-            endPart.IsActive = false;
-            endPart.PartName = "19R";
 
-            endPart.wind = new WindVM(1, 020, 015);
-            endPart.wind.IsActive = false;
-            endPart.statistics = new WindStatisticsVM(015, 5);
-            endPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
 
-            endPart.statistics.IsActive = false;
-            endPart.rvrVis = new RvrVisVM();
-            endPart.rvrVis.IsActive = false;
-            endPart.weather = new WeatherConditionVM();
-            endPart.weather.IsActive = false;
 
-            selectedPart = selectedPart;
+            //endPart = new();
+            //endPart.Part = RunwayPartType.End;
+            //endPart.IsActive = false;
+            //endPart.PartName = "19R";
 
+            //endPart.wind = new WindVM(1, 020, 015);
+            //endPart.wind.IsActive = false;
+            //endPart.statistics = new WindStatisticsVM(015, 5);
+            //endPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+
+            //endPart.statistics.IsActive = false;
+            //endPart.rvrVis = new RvrVisVM();
+            //endPart.rvrVis.IsActive = false;
+            //endPart.weather = new WeatherConditionVM();
+            //endPart.weather.IsActive = false;
+
+            //selectedPart = startPart;
+            ToggleRunwayCommand = new RelayCommand<bool>(isOn =>
+            {
+                Debug.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+                startPart.IsActive = !startPart.IsActive;
+                endPart.IsActive = !endPart.IsActive;
+
+                if ((bool)startPart.IsActive)
+                {
+                    selectedPart = startPart;
+
+                }
+                else
+                {
+                    selectedPart = endPart;
+
+                }
+                OnPropertyChanged(nameof(selectedPart));
+            });
         }
 
         // 这里存放模拟数据源（假设每个跑道有自己的原始数据流）

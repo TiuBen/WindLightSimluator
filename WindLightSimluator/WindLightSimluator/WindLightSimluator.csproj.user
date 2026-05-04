@@ -60,9 +60,6 @@
     <Compile Update="Views\RVRSwitch\LevelIndicator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\RVRSwitch\RoundIndicator.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\RVRSwitch\RunwayLamp.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
