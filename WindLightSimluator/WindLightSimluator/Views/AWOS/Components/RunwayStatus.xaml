@@ -41,7 +41,7 @@
                     ConverterParameter=0.3}"/>
         </Style>
         <Style x:Key="ContainerBackgroundColor" TargetType="Grid" >
-            <Setter Property="Background" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Inactive}" />
+            <Setter Property="Background" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="Background" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.Active}"/>
@@ -51,7 +51,7 @@
     
         <!--跑道文字颜色-->
         <Style x:Key="LabelTextColor" TargetType="TextBlock"  BasedOn="{StaticResource largeText}">
-            <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.LabelTextColor.Inactive}" />
+            <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.LabelTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.LabelTextColor.Active}"/>
@@ -60,7 +60,7 @@
         </Style>
         <!--状态文字颜色-->
         <Style x:Key="ValueTextColor" TargetType="TextBlock"  BasedOn="{StaticResource smallText}">
-            <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.ValueTextColor.Inactive}" />
+            <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.ValueTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.ValueTextColor.Active}"/>
@@ -69,7 +69,7 @@
         </Style>
         <!--状态文字背景颜色-->
         <Style x:Key="ValueTextBackgroundColor" TargetType="base:CapsuleBorder"  >
-            <Setter Property="Background" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Inactive}" />
+            <Setter Property="Background" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="Background" Value="{DynamicResource RunwayStatus.ValueTextBackgroundColor.Active}"/>
@@ -96,7 +96,7 @@
                 <Path  >
                     <Path.Style>
                         <Style TargetType="Path" >
-                            <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Inactive}" />
+                            <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.InActive}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                                     <Setter Property="Fill" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>

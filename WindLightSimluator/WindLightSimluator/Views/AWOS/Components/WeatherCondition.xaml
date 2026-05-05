@@ -16,28 +16,56 @@
 
         <Style  TargetType="Border" >
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="Background" Value="{Binding LabelBackgroundColor,RelativeSource={RelativeSource AncestorType=local:WeatherCondition}}"/>
+            <Setter Property="Background" Value="{DynamicResource RvrVis.LabelBackgroundColor.InActive}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Background"  Value="{DynamicResource RvrVis.LabelBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="Padding" Value="10 0 10 0"/>
-            <Setter Property="Foreground" Value="{Binding LabelTextColor,RelativeSource={RelativeSource AncestorType=local:WeatherCondition}}" />
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                RelativeSource={RelativeSource AncestorType=Border},
                Converter={StaticResource  HeightToFontSizeConverter}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource RvrVis.LabelTextColor.InActive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource RvrVis.LabelTextColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="base:BorderText" >
             <Setter Property="Margin" Value="0"/>
             <Setter Property="BorderThicknessValue" Value="0"/>
             <Setter Property="SubText" Value="mps"/>
             <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="MainTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:WeatherCondition}}" />
-            <Setter Property="SubTextColor" Value="{Binding ValueTextColor,RelativeSource={RelativeSource AncestorType=local:WeatherCondition}}" />
+            <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
+            <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid Background="{Binding ContainerBackgroundColor,RelativeSource={RelativeSource  AncestorType=local:WeatherCondition}}"   >
+    <Grid>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Background" Value="{DynamicResource RvrVis.ContainerBackgroundColor.InActive}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsActive}" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource RvrVis.ContainerBackgroundColor.Active}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3"/>

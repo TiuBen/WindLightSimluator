@@ -21,10 +21,10 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="FontSize"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}, Converter={StaticResource  HeightToFontSizeConverter}, ConverterParameter=0.45}"/>
-            <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}" />
+            <Setter Property="Foreground" Value="{DynamicResource RvrVis.LabelTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource RvrVis.LabelTextColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -32,14 +32,14 @@
             <Setter Property="BorderThicknessValue" Value="3"/>
             <Setter Property="BorderColor" Value="Transparent"/>
             <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
-            <Setter Property="SubTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
+            <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
+            <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+                    <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="SubTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+                    <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -47,14 +47,14 @@
             <Setter Property="BorderThicknessValue" Value="3"/>
             <Setter Property="BorderColor" Value="Transparent"/>
             <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
-            <Setter Property="SubTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Inactive}" />
+            <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
+            <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="MainTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+                    <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="SubTextColor" Value="{DynamicResource HeadCrossWind.ValueTextColor.Active}"/>
+                    <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding AvgHeadWind, Converter={StaticResource LessThanConverter}, ConverterParameter=-3.5}" Value="True">
                     <Setter Property="BorderColor" Value="Red"/>
@@ -65,10 +65,10 @@
 
         <!--如标题之类的 label的背景色-->
         <Style TargetType="Border" >
-            <Setter Property="Background" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Inactive}" />
+            <Setter Property="Background" Value="{DynamicResource RvrVis.LabelBackgroundColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource HeadCrossWind.LabelBackgroundColor.Active}"/>
+                    <Setter Property="Background" Value="{DynamicResource RvrVis.LabelBackgroundColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -78,10 +78,10 @@
     <Grid  >
         <Grid.Style>
             <Style TargetType="Grid">
-                <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Inactive}" />
+                <Setter Property="Background" Value="{DynamicResource RvrVis.ContainerBackgroundColor.InActive}" />
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsActive}" Value="True">
-                        <Setter Property="Background" Value="{DynamicResource HeadCrossWind.ContainerBackgroundColor.Active}"/>
+                        <Setter Property="Background" Value="{DynamicResource RvrVis.ContainerBackgroundColor.Active}"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
