@@ -54,8 +54,19 @@
     <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.Active"  Color="#2c4c85"/>
     <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.InActive"  Color="#233b6b"/>
 
+    <SolidColorBrush x:Key="WindPanel.OuterArcColor.JustAhead.Active" Color="#EC7439"/>
+    <SolidColorBrush x:Key="WindPanel.OuterArcColor.JustAhead.InActive" Color="#ECB397"/>
+    <SolidColorBrush x:Key="WindPanel.OuterArcColor.InRange.Active" Color="#0074ba"/>
+    <SolidColorBrush x:Key="WindPanel.OuterArcColor.InRange.InActive" Color="#145797"/>
+    <SolidColorBrush x:Key="WindPanel.OuterArcColor.OutRange.Active" Color="#4c6fa7"/>
+    <SolidColorBrush x:Key="WindPanel.OuterArcColor.OutRange.InActive" Color="#395789"/>
 
-
+    <SolidColorBrush x:Key="WindPanel.InnerArcColor.JustAhead.Active" Color="#f46d21"/>
+    <SolidColorBrush x:Key="WindPanel.InnerArcColor.JustAhead.InActive" Color="#934f45"/>
+    <SolidColorBrush x:Key="WindPanel.InnerArcColor.InRange.Active" Color="#57b4f8"/>
+    <SolidColorBrush x:Key="WindPanel.InnerArcColor.InRange.InActive" Color="#3977b4"/>
+    <SolidColorBrush x:Key="WindPanel.InnerArcColor.OutRange.Active" Color="#4c6fa7"/>
+    <SolidColorBrush x:Key="WindPanel.InnerArcColor.OutRange.InActive" Color="#395789"/>
 
 </ResourceDictionary>
 

@@ -63,12 +63,23 @@ namespace WindLightSimluator.Views.AWOS
 
         private void ChangeThemeToDay_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ApplyTheme("LightTheme.xaml");
+            //ApplyTheme("LightTheme.xaml");
+
+            var dict = new ResourceDictionary()
+            {
+                Source = new Uri("LightTheme.xaml", UriKind.Relative)
+            };
+            Application.Current.Resources.MergedDictionaries[0] = dict;
         }
 
         private void ChangeThemeToNight_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ApplyTheme("DarkTheme.xaml");
+            //ApplyTheme("DarkTheme.xaml");
+            var dict = new ResourceDictionary()
+            {
+                Source = new Uri("DarkTheme.xaml", UriKind.Relative)
+            };
+            Application.Current.Resources.MergedDictionaries[0] = dict;
         }
 
 

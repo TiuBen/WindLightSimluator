@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindLightSimluator.Views.AWOS.Components"
-                          xmlns:conv="clr-namespace:WindLightSimluator.Converters"
-
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
     <UserControl.Resources>
@@ -13,13 +12,7 @@
         <conv:TrueOnlyToVisibilityConverter x:Key="TrueOnlyToVisibility"/>
         <conv:RunwayPartVisibiltyConverter x:Key="RunwayPartVisibiltyConverter"/>
 
-        <conv:WindPanelSegmentColorConverter x:Key="WindPanelSegmentColorConverterOuter" 
-                                              ActiveBrush="{StaticResource  WindPanelArcRangeColor.Active}"
-                                              InactiveBrush="{StaticResource WindPanelArcColor.InActive}"/>
-        <conv:WindPanelSegmentColorConverter x:Key="WindPanelSegmentColorConverterInner" 
-                                        ActiveBrush="{StaticResource  WindPanelArcRangeColor.Active}"
-                                        InactiveBrush="{StaticResource WindPanelArcColor.InActive}"/>
-
+        <conv:WindPanelSegmentColorConverter x:Key="WindPanelSegmentColorConverter" />
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource WindPanelTextColor.InActive }"/>
             <Style.Triggers>
@@ -28,9 +21,7 @@
                 </DataTrigger>
             </Style.Triggers> 
         </Style>
-        <Style TargetType="Label">
-            <Setter Property="Foreground" Value="{Binding WindPanelTextColor,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-        </Style>
+     
         <Style TargetType="Ellipse">
             <Setter Property="Fill" Value="{Binding WindPanelBackground,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Style>
@@ -38,43 +29,222 @@
 
         <Style x:Key="OuterStyle" TargetType="Path" >
             <Setter Property="StrokeThickness" Value="28"/>
-            <Setter Property="Stroke">
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterOuter}">
-                        <!-- 当前 Path 的 Tag -->
-                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                        <!-- VM 里的集合 -->
-                        <Binding Path="statistics.DirRangeSet" />
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="InnerStyle" TargetType="Path" >
-            <Setter Property="StrokeThickness" Value="22"/>
-            <Setter Property="Stroke" >
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterInner}">
-                        <!--当前 Path 的 Tag-->
-                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                        <!--VM 里的集合-->
-                        <Binding Path="statistics.DirRangeSet"/>
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
             <!--<Setter Property="Stroke">
                 <Setter.Value>
-                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterInner}">
-                         -->
-            <!--当前 Path 的 Tag-->
-            <!-- 
-                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                         -->
-            <!--VM 里的集合-->
-            <!-- 
-                        <Binding Path="DataContext.Statistics.DirRangeSet" RelativeSource="{RelativeSource AncestorType=local:WindPanel}"/>
+                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterOuter}">
+                        --><!-- 当前 Path 的 Tag --><!--
+                        <Binding Path="(FrameworkElement.Tag)" RelativeSource="{RelativeSource Self}"/>
+                        --><!-- VM 里的集合 --><!--
+                        <Binding Path="statistics.DirRangeSet" />
+                        <Binding Path="IsActive" />
+                        <Binding Path="AngleIndex" />
                     </MultiBinding>
                 </Setter.Value>
             </Setter>-->
+            <Setter Property="Stroke" Value="{DynamicResource WindPanel.OuterArcColor.OutRange.InActive}"/>
+            <Style.Triggers>
+
+                <!-- JustAhead Active -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.JustAheadActive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.OuterArcColor.JustAhead.Active}"/>
+                </DataTrigger>
+
+                <!-- JustAhead Inactive -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.JustAheadInactive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.OuterArcColor.JustAhead.InActive}"/>
+                </DataTrigger>
+
+                <!-- InRange Active -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.InRangeActive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.OuterArcColor.InRange.Active}"/>
+                </DataTrigger>
+
+                <!-- InRange Inactive -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.InRangeInactive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.OuterArcColor.InRange.InActive}"/>
+                </DataTrigger>
+
+                <!-- OutRange Active -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.OutRangeActive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.OuterArcColor.OutRange.Active}"/>
+                </DataTrigger>
+
+                <!-- OutRange Inactive -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.OutRangeInactive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.OuterArcColor.OutRange.InActive}"/>
+                </DataTrigger>
+
+                <!-- Error -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.Error}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke" Value="Red"/>
+                </DataTrigger>
+
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="InnerStyle" TargetType="Path" >
+            <Setter Property="StrokeThickness" Value="22"/>
+            <Setter Property="Stroke" Value="{DynamicResource WindPanel.InnerArcColor.OutRange.InActive}"/>
+            <Style.Triggers>
+
+                <!-- JustAhead Active -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.JustAheadActive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.OuterArcColor.JustAhead.Active}"/>
+                </DataTrigger>
+
+                <!-- JustAhead Inactive -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.JustAheadInactive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.InnerArcColor.JustAhead.InActive}"/>
+                </DataTrigger>
+
+                <!-- InRange Active -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.InRangeActive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.InnerArcColor.InRange.Active}"/>
+                </DataTrigger>
+
+                <!-- InRange Inactive -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.InRangeInactive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.InnerArcColor.InRange.InActive}"/>
+                </DataTrigger>
+
+                <!-- OutRange Active -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.OutRangeActive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.InnerArcColor.OutRange.Active}"/>
+                </DataTrigger>
+
+                <!-- OutRange Inactive -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.OutRangeInactive}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke"
+                    Value="{DynamicResource WindPanel.InnerArcColor.OutRange.InActive}"/>
+                </DataTrigger>
+
+                <!-- Error -->
+                <DataTrigger Value="{x:Static conv:WindSegmentState.Error}">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="IsActive"/>
+                            <Binding Path="wind.AngleIndex"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Stroke" Value="Red"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid >
@@ -851,7 +1021,7 @@
                     </Path>
                 </Canvas>
 
-                <Ellipse Width="240" Height="240" StrokeThickness="4" Stroke="#FF188AE2"  Canvas.Left="280" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                <Ellipse Width="240" Height="240" StrokeThickness="4" Stroke="#537792"  Canvas.Left="280" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
                     <Ellipse.Style>
                         <Style TargetType="Ellipse">
                             <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}"/>
@@ -865,7 +1035,7 @@
 
                 </Ellipse>
 
-                <Line  StrokeThickness="4"  X1="284"  Y1="400" X2="516" Y2="400" Stroke="#FF188AE2"     />
+                <Line  StrokeThickness="4"  X1="284"  Y1="400" X2="516" Y2="400" Stroke="#537792"     />
                 <TextBlock Text="{Binding wind.WindDir, StringFormat={}{0:000}}"   
                            FontSize="80" Width="130" FontWeight="DemiBold" FontFamily="Monospace" 
                            TextAlignment="Right"  VerticalAlignment="Bottom" Canvas.Left="332.54" Canvas.Top="310"  />
@@ -889,19 +1059,19 @@
                 </Polygon>
                 <!--角度标记-->
                 <Canvas>
-                    <Label Content="36" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="375.014" Canvas.Top="-0.621" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <Label Content="03" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="567.499" Canvas.Top="49.555" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <Label Content="06" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="699.998" Canvas.Top="180.705" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <Label Content="09" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="749.327" Canvas.Top="366.796" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <Label Content="12" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="700" Canvas.Top="556.796" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <Label Content="15" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="567.499" Canvas.Top="690.653" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    <Label Content="18" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="375.12" Canvas.Top="742.281" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    <Label Content="21" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="181.7" Canvas.Top="691.836" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <Label Content="24" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="35" Canvas.Top="556.796" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    <Label Content="27" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Top="366.796" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.639,4.53" Canvas.Left="0.165" />
-                    <Label Content="30" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="35" Canvas.Top="180.705" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <Label Content="33" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="179.278" Canvas.Top="49.555" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    <Label Content="MAG" FontSize="34" FontFamily="Segoe UI Semibold" Canvas.Left="680.773" Canvas.Top="-0.621" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <TextBlock Text="36" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="375.014" Canvas.Top="-0.621" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="03" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="567.499" Canvas.Top="49.555" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <TextBlock Text="06" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="699.998" Canvas.Top="180.705" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="09" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="749.327" Canvas.Top="366.796" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="12" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="700" Canvas.Top="556.796" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <TextBlock Text="15" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="567.499" Canvas.Top="690.653" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="18" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="375.12" Canvas.Top="742.281" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="21" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="181.7" Canvas.Top="691.836" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <TextBlock Text="24" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="35" Canvas.Top="556.796" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock Text="27" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Top="366.796" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.639,4.53" Canvas.Left="0.165" />
+                    <TextBlock Text="30" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="35" Canvas.Top="180.705" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <TextBlock Text="33" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="179.278" Canvas.Top="49.555" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="MAG" FontSize="34" FontFamily="Segoe UI Semibold" Canvas.Left="680.773" Canvas.Top="-0.621" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 </Canvas>
             </Canvas>
         </Viewbox>

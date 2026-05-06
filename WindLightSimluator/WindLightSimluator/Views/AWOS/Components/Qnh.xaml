@@ -20,13 +20,12 @@
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border},  Converter={StaticResource  HeightToFontSizeConverter},   ConverterParameter=0.7}"/>
-            <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Inactive}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Foreground" Value="{DynamicResource HeadCrossWind.LabelTextColor.Active}"/>
-                </DataTrigger>
-            </Style.Triggers>
+            <Setter Property="FontSize"  
+                    Value="{Binding ActualHeight, 
+                    RelativeSource={RelativeSource AncestorType=Border},  
+                    Converter={StaticResource  HeightToFontSizeConverter},   
+                    ConverterParameter=0.7}"/>
+            <Setter Property="Foreground" Value="{DynamicResource QnhLight.LabelTextColor}" />
         </Style>
         <Style TargetType="Grid">
             <Setter Property="Background" Value="{DynamicResource QnhLight.ContainerBackgroundColor}" />

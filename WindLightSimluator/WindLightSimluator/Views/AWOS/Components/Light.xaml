@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindLightSimluator.Views.AWOS.Components"
-               xmlns:conv="clr-namespace:WindLightSimluator.Converters"
+             xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              xmlns:base="clr-namespace:WindLightSimluator.Views.Components.Base"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="800">
@@ -25,7 +25,7 @@
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                RelativeSource={RelativeSource AncestorType=Border},
               Converter={StaticResource  HeightToFontSizeConverter}, 
-              ConverterParameter=0.5}"/>
+              ConverterParameter=0.4}"/>
         </Style>
         <Style TargetType="base:BorderText" >
             <Setter Property="Margin" Value="0"/>
@@ -33,10 +33,9 @@
             <Setter Property="BackgroundColor" Value="{DynamicResource QnhLight.ValueTextBackgroundColor}"/>
             <Setter Property="MainTextColor" Value="{DynamicResource QnhLight.ValueTextColor}" />
             <Setter Property="SubTextColor" Value="{DynamicResource QnhLight.ValueTextColor}" />
-
         </Style>
     </UserControl.Resources>
-    <Grid Margin="0" >
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4"/>
