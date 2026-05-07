@@ -20,7 +20,7 @@ namespace WindLightSimluator.ViewModels
     {
         private float _qnh = 1013.2f; // 默认值
         private string _metar = "METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG=";
-       
+
 
         public float Qnh
         {
@@ -39,7 +39,7 @@ namespace WindLightSimluator.ViewModels
             get => _metar;
             set => SetProperty(ref _metar, value);
         }
-     
+
         private Light _light;
         public Light Light
         {
@@ -53,16 +53,28 @@ namespace WindLightSimluator.ViewModels
         public RunwayVM FirstRunway => Runways.Count > 0 ? Runways[0] : null;
         public RunwayVM SecondRunway => Runways.Count > 1 ? Runways[1] : null;
 
-        //public RunwayVM SelectedRunwayVM=> Runways.Count > 0 ? Runways[0] : null;
-        public RunwayVM SelectedRunwayVM { get; set; }
+        private RunwayVM _selectedRunwayVM;
 
-
-
-        public AirportVM()
+        public RunwayVM SelectedRunwayVM
         {
+            get => _selectedRunwayVM;
+            set {
+                if (_selectedRunwayVM != value)
+                {
+                    _selectedRunwayVM = value;
+                    OnPropertyChanged(nameof(SelectedRunwayVM));
+                }
+            }
+        }
+
+
+
+        public AirportVM(DatabaseService db)
+        {
+            _db = db;
             Runways = new ObservableCollection<RunwayVM>();
             // 默认添加两条跑道
-           var _1=new RunwayVM();
+            var _1 = new RunwayVM();
 
             // start-Part
             _1.startPart = new();
@@ -98,19 +110,19 @@ namespace WindLightSimluator.ViewModels
             _1.middlePart.rvrVis.IsActive = false;
             _1.middlePart.weather = new WeatherConditionVM();
             _1.middlePart.weather.IsActive = false;
-           
+
 
             // end-part
             _1.endPart = new();
             _1.endPart.Part = RunwayPartType.End;
             _1.endPart.IsActive = false;
             _1.endPart.PartName = "19R";
-            
+
             _1.endPart.wind = new WindVM(1, 020, 015);
             _1.endPart.wind.IsActive = false;
             _1.endPart.statistics = new WindStatisticsVM(015, 5);
             _1.endPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
-             
+
             _1.endPart.statistics.IsActive = false;
             _1.endPart.rvrVis = new RvrVisVM();
             _1.endPart.rvrVis.IsActive = false;
@@ -123,7 +135,7 @@ namespace WindLightSimluator.ViewModels
 
             Runways.Add(_1);
 
-            var _2= new RunwayVM();
+            var _2 = new RunwayVM();
             _2.startPart = new();
             _2.startPart.Part = RunwayPartType.Start;
             _2.startPart.IsActive = true;
@@ -179,7 +191,7 @@ namespace WindLightSimluator.ViewModels
 
 
             Runways.Add(_2);
-            SelectedRunwayVM=Runways[0];
+            SelectedRunwayVM = Runways[0];
 
 
             Qnh = 1013;
@@ -190,6 +202,10 @@ namespace WindLightSimluator.ViewModels
             // 通知 UI 快捷属性已就绪
             OnPropertyChanged(nameof(FirstRunway));
             OnPropertyChanged(nameof(SecondRunway));
+
+
+
+
 
             StartSimulation(2);
         }
@@ -210,15 +226,7 @@ namespace WindLightSimluator.ViewModels
             _timer.Start();
         }
 
-        private Dictionary<string, List<double>> RawData { get; } = new()
-        {
-            ["WindDirection"] = Enumerable.Repeat(180.0, 120).ToList(),
-            ["WindSpeed"] = Enumerable.Repeat(2.0, 120).ToList(),
-            ["Temperature"] = Enumerable.Repeat(15.0, 120).ToList(),
-            ["QNH"] = Enumerable.Repeat(1013.0, 120).ToList(),
-            ["RVR"] = Enumerable.Repeat(2000.0, 120).ToList(),
-            ["VIS"] = Enumerable.Repeat(5000.0, 120).ToList()
-        };
+
 
         public void PauseSimulation() => _timer?.Stop();
 
@@ -232,12 +240,6 @@ namespace WindLightSimluator.ViewModels
         private void Timer_Tick(object? sender, EventArgs e)
         {
             _counter++;
-            //var _realTimeWindDirection = RawData["WindDirection"][_counter];
-            //var _realTimeWindSpeed = RawData["WindSpeed"][_counter];
-            //var _realTimeTemperature = RawData["Temperature"][_counter];
-            //var _realTimeQNH = RawData["QNH"][_counter];
-            //var _realTimeRVR = RawData["RVR"][_counter];
-            //var _realTimeVIS = RawData["VIS"][_counter];
 
             var _realTimeWindDirection = new Random().Next(0, 361); // 0到360度
             var _realTimeWindSpeed = new Random().Next(0, 21); // 0到20 m/s
@@ -258,18 +260,18 @@ namespace WindLightSimluator.ViewModels
             var _realTimeQNH = new Random().Next(980, 1041); // 980到1040 hPa
             var _realTimeRVR = new Random().Next(0, 2501); // 0到2500 m
             var _realTimeVIS = new Random().Next(0, 15001); // 0到15000 m
-            
-            Qnh= new Random().Next(980, 1041);
+
+            Qnh = new Random().Next(980, 1041);
 
 
             foreach (var runway in Runways)
             {
-                
+
                 runway.startPart.weather.Temperature = _realTimeTemperature;
                 runway.middlePart.weather.Temperature = _realTimeTemperature;
                 runway.endPart.weather.Temperature = _realTimeTemperature;
 
-                runway.startPart.rvrVis.RvrValue =     _realTimeRVR.ToString();
+                runway.startPart.rvrVis.RvrValue = _realTimeRVR.ToString();
                 runway.middlePart.rvrVis.RvrValue = _realTimeRVR.ToString();
                 runway.endPart.rvrVis.RvrValue = _realTimeRVR.ToString();
 
@@ -278,9 +280,9 @@ namespace WindLightSimluator.ViewModels
                 runway.endPart.rvrVis.VisValue = (int)_realTimeVIS;
 
 
-                runway.startPart.wind.WindSpeed =_realTimeWindSpeed;
-                runway.middlePart.wind.WindSpeed =_realTimeWindSpeed;
-                runway.endPart.wind.WindSpeed =_realTimeWindSpeed;
+                runway.startPart.wind.WindSpeed = _realTimeWindSpeed;
+                runway.middlePart.wind.WindSpeed = _realTimeWindSpeed;
+                runway.endPart.wind.WindSpeed = _realTimeWindSpeed;
 
                 runway.startPart.wind.WindDir = _realTimeWindDirection;
                 runway.middlePart.wind.WindDir = _realTimeWindDirection;
@@ -309,11 +311,41 @@ namespace WindLightSimluator.ViewModels
 
 
             }
-            
-        
-        
-        
+
+
+
+
         }
+
+
+        // 数据库相关的东西
+        private readonly DatabaseService _db;
+
+        public ObservableCollection<string> Tables { get; set; } = new ObservableCollection<string>();
+
+        private string _selectedTableName;
+        public string SelectedTableName
+        {
+            get => _selectedTableName;
+            set { 
+                SetProperty(ref _selectedTableName, value); 
+                OnPropertyChanged(nameof(CanStart)); 
+            }
+        }
+
+        public bool CanStart => !string.IsNullOrEmpty(SelectedTableName);
+        public void RefreshTables()
+        {
+
+
+            Tables.Clear();
+
+            foreach (var table in _db.GetTableNames())
+            {
+                Tables.Add(table);
+            }
+        }
+
     }
 
 }

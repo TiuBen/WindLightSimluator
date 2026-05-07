@@ -69,7 +69,7 @@
     <Compile Update="Views\RVRSwitch\ToggleSwitch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\WeatherEditor.xaml.cs">
+    <Compile Update="Views\WeatherEditor\WeatherEditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -86,7 +86,7 @@
     <Page Update="Views\RVRSwitch\RVRSwitch.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\WeatherEditor.xaml">
+    <Page Update="Views\WeatherEditor\WeatherEditor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Resource Update="DarkTheme.xaml">

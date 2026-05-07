@@ -42,8 +42,9 @@ namespace WindLightSimluator.Converters
                 return WindSegmentState.Error;
 
             // IsActive
-            if (values[2] is not bool isActive)
-                return WindSegmentState.Error;
+            bool isActive = false;
+            if (values[2] is bool b)
+                isActive = b;
 
             // AngleIndex
             if (values[3] is not int angleIndex)

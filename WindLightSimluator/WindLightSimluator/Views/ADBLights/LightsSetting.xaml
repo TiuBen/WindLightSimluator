@@ -10,9 +10,9 @@
              xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <vm:ADBLightsVM/>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     <UserControl.Resources>
         <conv:EnumToBoolConverter x:Key="EnumToBoolConverter"/>
         <Style TargetType="TextBlock" >

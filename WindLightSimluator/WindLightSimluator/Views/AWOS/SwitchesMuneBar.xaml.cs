@@ -20,19 +20,26 @@ namespace WindLightSimluator.Views.AWOS
     /// </summary>
     public partial class SwitchesMuneBar : UserControl
     {
+
         public SwitchesMuneBar()
         {
             InitializeComponent();
         }
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        public event Action<RunwayCommandType> CommandRequested;
 
+        private void SwapWestEastButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            CommandRequested?.Invoke(RunwayCommandType.SwapWestEast);
         }
 
-        private void SwitchThemeButtton_Click(object sender, MouseButtonEventArgs e)
+        private void ChangeRunwayIndex0(object sender, MouseButtonEventArgs e)
         {
-
+            CommandRequested?.Invoke(RunwayCommandType.SetIndex0);
+        }
+        private void ChangeRunwayIndex1(object sender, MouseButtonEventArgs e)
+        {
+            CommandRequested?.Invoke(RunwayCommandType.SetIndex1);
         }
     }
 }

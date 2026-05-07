@@ -11,20 +11,17 @@
     <Grid Background="{DynamicResource MainContainerBg}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" MinHeight="60" />
+            <RowDefinition Height="4"  />
             <RowDefinition Height="13*" />
         </Grid.RowDefinitions>
-        <local:TopBar Grid.Row="0"  />
-        <Grid  Grid.Row="1"  Margin="4" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="4"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <local:SwitchesMuneBar Grid.Column="0"/>
-            <!--一条跑道 的 三段-->
-            <Grid Grid.Column="2"   >
-                <local:RunwayView />
-            </Grid>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <local:TopBar Grid.Row="0" Grid.ColumnSpan="3"  />
+        <local:SwitchesMuneBar Grid.Row="2" Grid.Column="0"  x:Name="Switch_Menu_Bar" Margin="4 0 0 4"/>
+        <local:RunwayView Grid.Row="2" Grid.Column="2"  x:Name="Runway_View" Margin="0 0 4 4"/>
     </Grid>
 </UserControl>

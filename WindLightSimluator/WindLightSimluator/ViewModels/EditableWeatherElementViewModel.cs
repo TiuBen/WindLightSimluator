@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using WindLightSimluator.Model;
-using WindLightSimluator.ViewModels.Base;
-using System.Windows;
-using WindLightSimluator.Views.Components;
-using System.Printing.IndexedProperties;
-using WindLightSimluator.Views;
-using System.IO;
-using WindLightSimluator.utils;
-using System.Windows.Markup;
-using WindLightSimluator.Service;
-using System.Diagnostics;
 using System.Data;
-using System.Windows.Shapes;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Printing.IndexedProperties;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Markup;
+using System.Windows.Shapes;
+using System.Xml.Linq;
+using WindLightSimluator.Model;
+using WindLightSimluator.Service;
+using WindLightSimluator.utils;
+using WindLightSimluator.ViewModels.Base;
+using WindLightSimluator.Views;
+using WindLightSimluator.Views.Components;
 
 namespace WindLightSimluator.ViewModels
 {
@@ -34,6 +35,7 @@ namespace WindLightSimluator.ViewModels
 
     public class EditableWeatherElementViewModel : ViewModelBase
     {
+        #region 天气元素配置
         public List<string> FieldList { get; } = new()
         {
             "WindDirection",
@@ -55,7 +57,10 @@ namespace WindLightSimluator.ViewModels
             ["RVR"] = new FieldConfig { Min = 0, Max = 2500, BaseValue = 2000, Step = 100, SubStep = 25, Unit = "m" },
             ["VIS"] = new FieldConfig { Min = 0, Max = 15000, BaseValue = 5000, Step = 1000, SubStep = 500, Unit = "m" },
         };
+        #endregion
 
+        #region 字段数据
+        private Dictionary<string, ObservableCollection<double>> RawData { get; } = new();
         private string _selectedField = "QNH";
         public string SelectedField
         {
@@ -64,8 +69,10 @@ namespace WindLightSimluator.ViewModels
                 if (SetProperty(ref _selectedField, value))
                 {
                     // ✅ 切换 Points 数据源
-                    SelectedFieldPoints = RawData[value];
+
                     OnPropertyChanged(nameof(SelectedFieldConfig));
+                    // ✅ 切换 Points 数据源
+                    SelectedFieldPoints = RawData[value];
                 }
             }
         }
@@ -77,296 +84,424 @@ namespace WindLightSimluator.ViewModels
             set => SetProperty(ref _selectedFieldPoints, value);
         }
 
+
         public FieldConfig SelectedFieldConfig => FieldConfigs[SelectedField];
+        #endregion
 
-        private Dictionary<string, ObservableCollection<double>> RawData { get; } = new();
+        #region 状态相关
 
-
-        public EditableWeatherElementViewModel()
-        {
-            // 初始化 RawData（120分钟）
-            foreach (var key in FieldList)
-            {
-                var config = FieldConfigs[key];
-
-                RawData[key] = new ObservableCollection<double>(Enumerable.Repeat(config.BaseValue, 120));
-            }
-
-            // 被选中项目的
-            SelectedFieldPoints = RawData[SelectedField];
-
-            // 初始化数据库
-            var _path = _db.CurrentPath;
-            if (string.IsNullOrWhiteSpace(_path))
-                return;
-            _databaseFilePath = _path;
-            GetAllTableNames();
-
-        }
         private bool _isModified;
         public bool IsModified
         {
             get => _isModified;
-            set => SetProperty(ref _isModified, value);
-        }
-
-        public void UpdatePointValue(int index, double newValue)
-        {
-            // 更新当前选中的字段数据
-            if (RawData.ContainsKey(SelectedField) && index >= 0 && index < SelectedFieldPoints.Count)
-            {
-                SelectedFieldPoints[index] = newValue;
-
-                // 可选：标记为已修改，用于保存提示
-                IsModified = true;
+            set {
+                if (SetProperty(ref _isModified, value))
+                {
+                    OnPropertyChanged(nameof(CanSave));
+                }
             }
         }
 
+        // 是否已连接数据库
+        public bool IsDatabaseConnected =>
+            !string.IsNullOrWhiteSpace(DatabaseFilePath)
+            && File.Exists(DatabaseFilePath);
+
+        // 是否已选中表
+        public bool IsTableSelected =>
+            IsDatabaseConnected
+            && !string.IsNullOrWhiteSpace(SelectedTableName);
+
+        // 新建
+        public bool CanNew =>
+            IsDatabaseConnected;
+
+        // 复制 / 删除
+        public bool CanCopyDelete =>
+            IsTableSelected;
+
+        // 保存
+        public bool CanSave =>
+            IsTableSelected
+            && IsModified;
+
+        // 重命名
+        public bool CanRename
+        {
+            get {
+                if (!IsTableSelected)
+                    return false;
+
+                if (string.IsNullOrWhiteSpace(NewTableName))
+                    return false;
+
+                // ✅ 新增：必须与原名称不同
+                if (NewTableName == SelectedTableName)
+                    return false;
 
 
-        #region 数据库相关部分
-        private readonly DatabaseService _db = DatabaseService.Instance;
+                if (NewTableName.Length > 15)
+                    return false;
 
-        private string _databaseFilePath;
+                // 只允许字母数字下划线
+                if (!Regex.IsMatch(NewTableName, @"^[a-zA-Z0-9_]+$"))
+                    return false;
+
+                // 禁止 sqlite_ 开头
+                if (NewTableName.StartsWith("sqlite_", StringComparison.OrdinalIgnoreCase))
+                    return false;
+
+                // 已存在重名
+                if (Tables.Contains(NewTableName)
+                    && NewTableName != SelectedTableName)
+                    return false;
+
+                return true;
+            }
+        }
+
+        #endregion
+
+
+        #region 数据库相关
+
+        //private readonly DatabaseService _db = DatabaseService.Instance;
+        private readonly DatabaseService _db;
+        private readonly AirportVM _airport;
+
+        private string _databaseFilePath = string.Empty;
         public string DatabaseFilePath
         {
             get => _databaseFilePath;
             set {
                 if (SetProperty(ref _databaseFilePath, value))
                 {
-                    OnDatabaseChanged();
+                    OpenDatabase(value);
+
+                    NotifyCanStates();
                 }
             }
         }
-        private void OnDatabaseChanged()
-        {
-            if (string.IsNullOrWhiteSpace(DatabaseFilePath))
-                return;
 
-            if (!_db.Connect(DatabaseFilePath))
-                return;
-            GetAllTableNames();
-        }
-
-
-        // 所有表名称 也就是 所有练习的名称
-        private ObservableCollection<string> _tables = new ObservableCollection<string>();
+        private ObservableCollection<string> _tables = new();
         public ObservableCollection<string> Tables
         {
             get => _tables;
             set => SetProperty(ref _tables, value);
         }
 
-
-        private string _selectedTable;
-        public string SelectedTable
+        private string _selectedTableName = string.Empty;
+        public string SelectedTableName
         {
-            get => _selectedTable;
+            get => _selectedTableName;
             set {
-                // 1. 先更新旧表名
-                if (SetProperty(ref _selectedTable, value))
+                if (SetProperty(ref _selectedTableName, value))
                 {
-                    // 2. 当旧表名改变时，自动把新表名重置为旧表名的值
-                    // 这样用户一选中表，输入框里默认就是这个名字
+                    // 默认同步到输入框
                     NewTableName = value;
 
-                    // 👉 可以在这里加载数据
+                    // 加载数据
                     _ = LoadTableAsync(value);
-                    //LoadDataFromTable(value);
-                    //SelectedFieldPoints = RawData[SelectedField];
-                    //OnPropertyChanged(nameof(SelectedFieldPoints));
 
+                    NotifyCanStates();
                 }
             }
         }
 
-        public string _newTableName;
+        private string _newTableName;
         public string NewTableName
         {
             get => _newTableName;
             set {
                 if (SetProperty(ref _newTableName, value))
                 {
-                    ValidateName();
+                    OnPropertyChanged(nameof(CanRename));
                 }
             }
         }
 
-        private bool _canRename;
-        public bool CanRename
+        #endregion
+
+
+        #region 构造函数
+
+        public EditableWeatherElementViewModel(DatabaseService db,AirportVM airport)
         {
-            get => _canRename;
-            set => SetProperty(ref _canRename, value);
+            _db = db;
+
+            _airport = airport;
+            // 初始化数据
+            foreach (var key in FieldList)
+            {
+                var config = FieldConfigs[key];
+
+                RawData[key] =
+                    new ObservableCollection<double>(
+                        Enumerable.Repeat(config.BaseValue, 120));
+            }
+            // 被选中项目的
+            SelectedFieldPoints = RawData[SelectedField];
         }
 
-        private void ValidateName()
+        #endregion
+
+
+        #region 数据修改
+
+        public void UpdatePointValue(int index, double newValue)
         {
-            if (string.IsNullOrWhiteSpace(NewTableName))
+            if (RawData.ContainsKey(SelectedField)
+                && index >= 0
+                && index < SelectedFieldPoints.Count)
             {
-                CanRename = false;
-                return;
-            }
+                SelectedFieldPoints[index] = newValue;
 
-            if (NewTableName.Length > 15)
-            {
-                CanRename = false;
-                return;
+                IsModified = true;
             }
-
-            // ❗ 只允许字母 + 数字 + 下划线
-            if (!Regex.IsMatch(NewTableName, @"^[a-zA-Z0-9]+$"))
-            {
-                CanRename = false;
-                return;
-            }
-
-            CanRename = true;
         }
 
+        #endregion
 
-        // 2. 连接数据库的方法 (对应你之前的 GetAllTableNames)
+        #region 数据库操作
+
+        public void OpenDatabase(string path)
+        {
+            if (_db.Connect(path))
+            {
+                GetAllTableNames();
+            }
+            _airport.RefreshTables();
+
+        }
+
         public void GetAllTableNames()
         {
-            // 连接成功后，自动刷新表名列表
-            Tables.Clear();
             var tableNames = _db.GetTableNames();
+
+            Tables.Clear();
+
             foreach (var name in tableNames)
             {
                 Tables.Add(name);
             }
-            SelectedTable = Tables.FirstOrDefault();
-        }
-        public void CreateNewTable()
-        {
-            var path = DatabaseFilePath;
-            _db.CreateCurrentTimeTable();
-            if (_db.Connect(path))
-            {
-                // 连接成功后，自动刷新表名列表
-                Tables.Clear();
-                var tableNames = _db.GetTableNames();
-                foreach (var name in tableNames)
-                {
-                    Tables.Add(name);
-                }
 
-            }
-        }
-        public void RenameTable()
-        {
-            if (string.IsNullOrWhiteSpace(SelectedTable) ||
-                string.IsNullOrWhiteSpace(NewTableName))
-                return;
-
-            _db.ReNameSelectedTable(SelectedTable, NewTableName);
-
-            GetAllTableNames();
-
-            SelectedTable = NewTableName;
+            NotifyCanStates();
         }
 
-
-        // 3. 查询数据的方法 (对应你未来的 LoadData)
         private async Task LoadTableAsync(string tableName)
         {
+            if (string.IsNullOrWhiteSpace(tableName))
+                return;
 
-            // 用 Task.Run 异步读取数据，不阻塞 UI
             var data = await Task.Run(() => LoadDataFromTable(tableName));
 
-            // 切换回 UI 线程更新绑定
-            SelectedFieldPoints = new ObservableCollection<double>(data[SelectedField]);
-        }
+            if (data == null)
+            {
+                Debug.WriteLine("data == null");
+                return;
+            }
 
+
+
+            // 🔥 回到UI线程后再更新 ObservableCollection
+            foreach (var key in FieldList)
+            {
+                RawData[key].Clear();
+
+                foreach (var val in data[key])
+                {
+                    RawData[key].Add(val);
+                }
+            }
+            // 切换回 UI 线程更新绑定
+            SelectedFieldPoints = RawData[SelectedField];
+            Debug.WriteLine(SelectedFieldPoints);
+
+            IsModified = false;
+        }
 
         public Dictionary<string, ObservableCollection<double>> LoadDataFromTable(string tableName)
         {
-            if (string.IsNullOrEmpty(tableName)) return null;
-            var data = _db.Query($"SELECT * FROM \"{tableName}\"");
-            var rawData = new Dictionary<string, ObservableCollection<double>>();
+            if (string.IsNullOrWhiteSpace(tableName))
+                return null;
 
-            // 初始化字典，给每个字段创建一个空的列表
-            // 假设 FieldList 是你的字段名列表，如 ["WindSpeed", "Temperature"...]
+            var data =
+                _db.Query($"SELECT * FROM \"{tableName}\"");
+
+            // 检查是否有数据
+            if (data == null || data.Rows.Count == 0)
+                return null;
+
+            var rawData =
+                new Dictionary<string, ObservableCollection<double>>();
+
             foreach (var key in FieldList)
             {
                 rawData[key] = new ObservableCollection<double>();
             }
 
-            // 遍历每一行
             foreach (DataRow row in data.Rows)
             {
                 foreach (string key in FieldList)
                 {
-                    // ✅ 修正逻辑：先尝试解析，如果成功，把 val 加入列表
                     if (double.TryParse(row[key].ToString(), out double val))
                     {
                         rawData[key].Add(val);
                     }
                     else
                     {
-                        rawData[key].Add(FieldConfigs[key].BaseValue); // 如果解析失败，存个默认值 0
+                        rawData[key].Add(FieldConfigs[key].BaseValue);
                     }
                 }
             }
+
             return rawData;
         }
 
+        public void CreateNewTable()
+        {
+            string newTableName =
+                DateTime.Now.ToString("yyyyMMddHHmmss");
 
+            if (_db.CreateCurrentTimeTable(newTableName))
+            {
+                GetAllTableNames();
 
-        //public void LoadDataFromTable(string tableName)
-        //{
-        //    if (string.IsNullOrEmpty(tableName)) return;
-        //    Debug.WriteLine("LoadDataFromTable");
-        //    // 查询数据
-        //    var data = _db.Query($"SELECT * FROM \"{tableName}\"");
+                SelectedTableName = newTableName;
+            }
+        }
 
-        //    // 初始化字典，给每个字段创建一个空的列表
-        //    // 假设 FieldList 是你的字段名列表，如 ["WindSpeed", "Temperature"...]
-        //    foreach (var key in FieldList)
-        //    {
-        //        // 先清空原有数据
-        //        if (!RawData.ContainsKey(key))
-        //        {
-        //            RawData[key] = new ObservableCollection<double>();
-        //        }
-        //        else
-        //        {
-        //            RawData[key].Clear();
-        //        }
-        //    }
+        public void CopyTable()
+        {
+            if (!CanCopyDelete)
+                return;
 
-        //    // 遍历每一行
-        //    foreach (DataRow row in data.Rows)
-        //    {
-        //        foreach (string key in FieldList)
-        //        {
-        //            // ✅ 修正逻辑：先尝试解析，如果成功，把 val 加入列表
-        //            if (double.TryParse(row[key].ToString(), out double val))
-        //            {
-        //                RawData[key].Add(val);
-        //            }
-        //            else
-        //            {
-        //                RawData[key].Add(FieldConfigs[key].BaseValue); // 如果解析失败，存个默认值 0
-        //            }
-        //        }
-        //    }
-        //    // ✅ 更新 SelectedFieldPoints
-        //    if (RawData.ContainsKey(SelectedField))
-        //    {
-        //        SelectedFieldPoints = RawData[SelectedField];
-        //    }
-        //    OnPropertyChanged(nameof(SelectedFieldPoints));
+            string newTableName =
+                DateTime.Now.ToString("yyyyMMddHHmmss");
 
-        //    Debug.WriteLine("LoadDataFromTable");
-        //}
+            if (_db.CopySelectTable(
+                SelectedTableName,
+                newTableName))
+            {
+                GetAllTableNames();
 
+                SelectedTableName = newTableName;
+            }
+        }
+
+        public void RenameTable()
+        {
+            if (!CanRename)
+                return;
+
+            if (_db.ReNameSelectedTable(
+                SelectedTableName,
+                NewTableName))
+            {
+                GetAllTableNames();
+
+                SelectedTableName = NewTableName;
+            }
+        }
 
         public void SaveToDatabase()
         {
-            _db.SavePointsToSelectedTable(SelectedTable, SelectedField, SelectedFieldPoints);
+            if (!CanSave)
+                return;
+
+            _db.SavePointsToSelectedTable(
+                SelectedTableName,
+                SelectedField,
+                SelectedFieldPoints);
+
+            IsModified = false;
+        }
+
+        public void DeleteSelectedTable()
+        {
+            if (!CanCopyDelete)
+                return;
+
+            if (_db.DeleteSelectedTable(SelectedTableName))
+            {
+                GetAllTableNames();
+
+                SelectedTableName = string.Empty;
+            }
         }
 
         #endregion
+
+        #region 通知刷新
+
+        private void NotifyCanStates()
+        {
+            OnPropertyChanged(nameof(IsDatabaseConnected));
+            OnPropertyChanged(nameof(IsTableSelected));
+
+            OnPropertyChanged(nameof(CanNew));
+            OnPropertyChanged(nameof(CanCopyDelete));
+            OnPropertyChanged(nameof(CanRename));
+            OnPropertyChanged(nameof(CanSave));
+
+            _airport.RefreshTables();
+        }
+
+        #endregion
+
+
+
     }
 
 }
+
+
+
+
+//public void LoadDataFromTable(string tableName)
+//{
+//    if (string.IsNullOrEmpty(tableName)) return;
+//    Debug.WriteLine("LoadDataFromTable");
+//    // 查询数据
+//    var data = _db.Query($"SELECT * FROM \"{tableName}\"");
+
+//    // 初始化字典，给每个字段创建一个空的列表
+//    // 假设 FieldList 是你的字段名列表，如 ["WindSpeed", "Temperature"...]
+//    foreach (var key in FieldList)
+//    {
+//        // 先清空原有数据
+//        if (!RawData.ContainsKey(key))
+//        {
+//            RawData[key] = new ObservableCollection<double>();
+//        }
+//        else
+//        {
+//            RawData[key].Clear();
+//        }
+//    }
+
+//    // 遍历每一行
+//    foreach (DataRow row in data.Rows)
+//    {
+//        foreach (string key in FieldList)
+//        {
+//            // ✅ 修正逻辑：先尝试解析，如果成功，把 val 加入列表
+//            if (double.TryParse(row[key].ToString(), out double val))
+//            {
+//                RawData[key].Add(val);
+//            }
+//            else
+//            {
+//                RawData[key].Add(FieldConfigs[key].BaseValue); // 如果解析失败，存个默认值 0
+//            }
+//        }
+//    }
+//    // ✅ 更新 SelectedFieldPoints
+//    if (RawData.ContainsKey(SelectedField))
+//    {
+//        SelectedFieldPoints = RawData[SelectedField];
+//    }
+//    OnPropertyChanged(nameof(SelectedFieldPoints));
+
+//    Debug.WriteLine("LoadDataFromTable");
+//}

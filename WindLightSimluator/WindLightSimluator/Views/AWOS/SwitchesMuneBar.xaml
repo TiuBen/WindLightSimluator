@@ -6,35 +6,22 @@
              xmlns:local="clr-namespace:WindLightSimluator.Views.AWOS"
              mc:Ignorable="d" 
             >
-    <StackPanel  Background="{DynamicResource MainBarBg}">
+    <StackPanel  Background="{DynamicResource MainBarBg}" >
         <StackPanel.Resources>
 
             <!-- ✅ 可复用的 Hover 样式 -->
             <Style x:Key="HoverBorderStyle" TargetType="Border">
-
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Width" Value="60"/>
+                <Setter Property="Height" Value="60"/>
+                <Setter Property="Margin" Value="5"/>
                 <!-- 默认背景 -->
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#b1adad" Offset="0.005"/>
-                            <GradientStop Color="#d7d2d2" Offset="1"/>
-                        </LinearGradientBrush>
-
-                    </Setter.Value>
-                </Setter>
-
+                <Setter Property="Background" Value="{DynamicResource RectButtonBackgroundBrush}" />
                 <Style.Triggers>
 
                     <!-- 👇 鼠标移入 -->
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background">
-                            <Setter.Value>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#036dad" Offset="0.005"/>
-                                    <GradientStop Color="#bdd6ec" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Setter.Value>
-                        </Setter>
+                        <Setter Property="Background" Value="{DynamicResource RectButtonBackgroundBrushHovor}"/>
                     </Trigger>
 
                 </Style.Triggers>
@@ -44,17 +31,15 @@
         </StackPanel.Resources>
 
 
-        <Border Style="{StaticResource HoverBorderStyle}" CornerRadius="10" Width="60" Height="60" Margin="2" MouseLeftButtonDown="Border_MouseLeftButtonDown" >
+        <Border Style="{StaticResource HoverBorderStyle}"     MouseLeftButtonDown="ChangeRunwayIndex0" >
             <TextBlock Text="01L_19R" Foreground="White" FontWeight="ExtraBold" FontSize="14"  VerticalAlignment="Center" HorizontalAlignment="Center" />
         </Border>
-        <Border Style="{StaticResource HoverBorderStyle}" CornerRadius="10" Width="60" Height="60" Margin="2">
+        <Border Style="{StaticResource HoverBorderStyle}"    MouseLeftButtonDown="ChangeRunwayIndex1">
             <TextBlock Text="01R_19L" Foreground="White" FontWeight="ExtraBold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"  />
         </Border>
-        <Border Style="{StaticResource HoverBorderStyle}" CornerRadius="10" Width="60" Height="60" Margin="2">
+        <Border Style="{StaticResource HoverBorderStyle}" x:Name="SwapWestEastButton" MouseLeftButtonUp="SwapWestEastButton_MouseLeftButtonUp">
             <TextBlock Text="东  西" Foreground="White" FontWeight="ExtraBold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"  />
         </Border>
-        <Border Style="{StaticResource HoverBorderStyle}" CornerRadius="10" Width="60" Height="60" Margin="2" MouseLeftButtonDown="SwitchThemeButtton_Click" >
-            <TextBlock Text="白  夜" Foreground="White" FontWeight="ExtraBold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"  />
-        </Border>
+       
     </StackPanel>
 </UserControl>

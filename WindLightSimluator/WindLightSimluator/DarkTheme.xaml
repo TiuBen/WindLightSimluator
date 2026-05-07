@@ -1,7 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-   <!--侧栏 包括整个 主界面-->
+    <!--侧栏 包括整个 主界面-->
     <SolidColorBrush x:Key="MainBarBg"   Color="#002C5C"/>
+    <LinearGradientBrush x:Key="RectButtonBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF2367B3" Offset="0.573"/>
+        <GradientStop Color="#FF002C5C" Offset="0"/>
+        <GradientStop Color="#FF2567AF" Offset="0.36"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="RectButtonBackgroundBrushHovor" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF2367B3" Offset="0.427"/>
+        <GradientStop Color="#FF002C5C" Offset="1"/>
+        <GradientStop Color="#FF2567AF" Offset="0.64"/>
+    </LinearGradientBrush>
     <!--顶端栏-->
     <SolidColorBrush x:Key="TopBarBg"   Color="#08204c"/>
     <SolidColorBrush x:Key="TopBarLabelBg"   Color="#3e9ae3"/>
@@ -15,7 +25,7 @@
 
     <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.InActive" Color="#7b83a5"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelBackgroundColor.Active" Color="#3e9ae3"/>
-    
+
     <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.InActive" Color="#FAFAFA"/>
     <SolidColorBrush x:Key="RunwayStatus.LabelTextColor.Active" Color="#FAFAFA"/>
 
@@ -24,7 +34,7 @@
 
     <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.InActive" Color="#DCE0E9"/>
     <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Active" Color="#FAFAFA"/>
-    
+
     <!--HeadCrossWind RrvVis WeatherCondition-->
     <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.InActive" Color="#2c4c85"/>
     <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.Active" Color="#2c4c85"/>
@@ -55,13 +65,13 @@
     <SolidColorBrush x:Key="WindPanel.ContainerBackgroundColor.InActive"  Color="#233b6b"/>
 
     <SolidColorBrush x:Key="WindPanel.OuterArcColor.JustAhead.Active" Color="#EC7439"/>
-    <SolidColorBrush x:Key="WindPanel.OuterArcColor.JustAhead.InActive" Color="#ECB397"/>
+    <SolidColorBrush x:Key="WindPanel.OuterArcColor.JustAhead.InActive" Color="#934f45"/>
     <SolidColorBrush x:Key="WindPanel.OuterArcColor.InRange.Active" Color="#0074ba"/>
     <SolidColorBrush x:Key="WindPanel.OuterArcColor.InRange.InActive" Color="#145797"/>
     <SolidColorBrush x:Key="WindPanel.OuterArcColor.OutRange.Active" Color="#4c6fa7"/>
     <SolidColorBrush x:Key="WindPanel.OuterArcColor.OutRange.InActive" Color="#395789"/>
 
-    <SolidColorBrush x:Key="WindPanel.InnerArcColor.JustAhead.Active" Color="#f46d21"/>
+    <SolidColorBrush x:Key="WindPanel.InnerArcColor.JustAhead.Active" Color="#EC7439"/>
     <SolidColorBrush x:Key="WindPanel.InnerArcColor.JustAhead.InActive" Color="#934f45"/>
     <SolidColorBrush x:Key="WindPanel.InnerArcColor.InRange.Active" Color="#57b4f8"/>
     <SolidColorBrush x:Key="WindPanel.InnerArcColor.InRange.InActive" Color="#3977b4"/>
@@ -72,36 +82,57 @@
 
 
 
-<!--===== 字体颜色 =====--><!--
+<!--===== 字体颜色 =====-->
+<!--
 <SolidColorBrush x:Key="PrimaryFontBrush"   Color="#FFFFFF"/>
---><!--主文字：白--><!--
+-->
+<!--主文字：白-->
+<!--
 <SolidColorBrush x:Key="SecondaryFontBrush" Color="#AFC8FF"/>
---><!--次文字：淡蓝--><!--
+-->
+<!--次文字：淡蓝-->
+<!--
 <SolidColorBrush x:Key="TertiaryFontBrush"  Color="#6F8EBB"/>
---><!--弱提示：暗蓝灰--><!--
+-->
+<!--弱提示：暗蓝灰-->
+<!--
 <SolidColorBrush x:Key="DisabledFontBrush"  Color="#4A5B7A"/>
 
---><!--===== 背景色 =====--><!--
+-->
+<!--===== 背景色 =====-->
+<!--
 <SolidColorBrush x:Key="PrimaryBackgroundBrush" Color="#001224"/>
---><!--整体屏幕深蓝--><!--
+-->
+<!--整体屏幕深蓝-->
+<!--
 <SolidColorBrush x:Key="CardBackgroundBrush"    Color="#002C5C"/>
---><!--单个 runways block-->
+-->
+<!--单个 runways block-->
 <!--<SolidColorBrush x:Key="SectionBackgroundBrush" Color="#003A6F"/>-->
 <!--METAR 区 / 信息区-->
 
-<!-- ===== 分割 / 边线 ===== --><!--
+<!-- ===== 分割 / 边线 ===== -->
+<!--
 <SolidColorBrush x:Key="BorderBrush"  Color="#1F3B5F"/>
 <SolidColorBrush x:Key="DividerBrush" Color="#224873"/>
 
---><!-- ===== 强调色 ===== --><!--
+-->
+<!-- ===== 强调色 ===== -->
+<!--
 <SolidColorBrush x:Key="AccentBrush"   Color="#3FA8F4"/>
---><!-- 蓝色点击 / 高亮 --><!--
+-->
+<!-- 蓝色点击 / 高亮 -->
+<!--
 <SolidColorBrush x:Key="WarningBrush"  Color="#FF8A38"/>
---><!-- 橙色 Landing/Takeoff --><!--
+-->
+<!-- 橙色 Landing/Takeoff -->
+<!--
 <SolidColorBrush x:Key="HighlightBrush" Color="#3F8CFA"/>
---><!-- 按钮 hover  -->
+-->
+<!-- 按钮 hover  -->
 
-<!-- 主背景 / 面板灰 --><!--
+<!-- 主背景 / 面板灰 -->
+<!--
 <Color x:Key="Bg_Gray_Main">#A3A7B1</Color>
 <Color x:Key="DCE0E9">#DCE0E9</Color>
 <Color x:Key="DCE0E9er">#F1F2F6</Color>
@@ -114,11 +145,15 @@
 <Color x:Key="Bg_Blue_Dark3">#233b6b</Color>
 
 
---><!-- 纯白 / 高亮 --><!--
+-->
+<!-- 纯白 / 高亮 -->
+<!--
 <Color x:Key="FAFAFA">#FAFAFA</Color>
 <Color x:Key="White_Off">#F9FAFA</Color>
 
---><!-- 蓝色系（主界面核心色） --><!--
+-->
+<!-- 蓝色系（主界面核心色） -->
+<!--
 <Color x:Key="Blue_DarkPrimary">#0061a7</Color>
 <Color x:Key="3e9ae3">#3e9ae3</Color>
 <Color x:Key="Blue_Deep">#166096</Color>
@@ -133,14 +168,20 @@
 <Color x:Key="Blue_Alt4">#2c5ac1</Color>
 <Color x:Key="Blue_Alt5">#1d47a2</Color>
 
---><!-- 深色文字 / 刻度 --><!--
+-->
+<!-- 深色文字 / 刻度 -->
+<!--
 <Color x:Key="Text_Darker">#080408</Color>
 <Color x:Key="Text_Muted">#525B58</Color>
 
---><!-- 橙色 / 警示 / 风向箭头 --><!--
+-->
+<!-- 橙色 / 警示 / 风向箭头 -->
+<!--
 <Color x:Key="EC7439">#EC7439</Color>
 <Color x:Key="Orange_Light">#ECB397</Color>
 <Color x:Key="Orange_XXXXX">#FF9800</Color>
 
---><!-- 中性灰 --><!--
+-->
+<!-- 中性灰 -->
+<!--
 <Color x:Key="Gray_Neutral">#D1D2D3</Color>-->

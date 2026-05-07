@@ -21,22 +21,22 @@
         </Style>
     </Window.Resources>
     <Window.DataContext>
-        <vm:AirportVM/>
+        <vm:MainWindowVM/>
     </Window.DataContext>
     <Grid>
         <TabControl>
             <TabItem Header="气象自观模拟"  IsSelected="True">
-                <Awos:Awos />
+                <Awos:Awos DataContext="{Binding Airport}"/>
             </TabItem>
-            <TabItem Header="灯光ADB系统模拟" >
-                <ADB:LightsSetting />
+            <TabItem Header="灯光ADB系统模拟"  >
+                <ADB:LightsSetting DataContext="{Binding Lights}"/>
             </TabItem>
             <TabItem Header="RVR旋钮模拟">
-                <RVR:RVRSwitch  />
+                <RVR:RVRSwitch DataContext="{Binding Airport}" />
             </TabItem>
-         
-            <TabItem Header="气象数据编辑器" >
-                <view:WeatherEditor />
+
+            <TabItem Header="气象数据编辑器"  >
+                <view:WeatherEditor DataContext="{Binding WeatherEditor}" />
             </TabItem>
             <TabItem Header="关于">
                 <TextBlock Text="版本 1.0" Margin="10"/>

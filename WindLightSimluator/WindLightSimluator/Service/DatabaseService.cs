@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Xml.Linq;
 using WindLightSimluator.ViewModels;
 
@@ -17,7 +18,8 @@ namespace WindLightSimluator.Service
     {
         private static readonly DatabaseService _instance = new DatabaseService();
         public static DatabaseService Instance => _instance;
-        private SqliteConnection _connection;
+
+        private string _connectionString = "";
         private string _currentPath = "";
 
         // 1. 定义默认路径：当前用户的 "文档" 目录 + 数据库文件名
@@ -52,28 +54,10 @@ namespace WindLightSimluator.Service
         {
             try
             {
-                // 如果已经在连接同一个文件，直接返回
-                if (_currentPath == path && _connection != null && _connection.State == ConnectionState.Open)
-                {
-                    return true;
-                }
+                if (!File.Exists(path))
+                    return false;
 
-                // 关闭旧的连接
-                if (_connection != null)
-                {
-                    _connection.Close();
-                }
-
-                // 确保目录存在
-                string? directory = Path.GetDirectoryName(path);
-                if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
-                {
-                    Directory.CreateDirectory(directory);
-                }
-
-                // 建立新连接
-                _connection = new SqliteConnection($"Data Source={path}");
-                _connection.Open();
+                _connectionString = $"Data Source={path}";
                 _currentPath = path;
 
                 Debug.WriteLine($"✅ 数据库已连接: {path}");
@@ -93,60 +77,73 @@ namespace WindLightSimluator.Service
         public DataTable Query(string sql)
         {
             Debug.WriteLine($"Query: {sql}");
-            if (_connection == null || _connection.State != ConnectionState.Open) return new DataTable();
 
             var table = new DataTable();
+
             try
             {
-                using (var command = new SqliteCommand(sql, _connection))
-                using (var reader = command.ExecuteReader())
-                {
-                    table.Load(reader);
-                }
+                using var connection = new SqliteConnection(_connectionString);
+
+                connection.Open();
+
+                using var command = connection.CreateCommand();
+
+                command.CommandText = sql;
+
+                using var reader = command.ExecuteReader();
+
+                table.Load(reader);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"查询错误: {ex.Message}");
+                Debug.WriteLine(ex);
             }
+
             return table;
+
         }
 
         // 3. 获取所有表名
         public List<string> GetTableNames()
         {
-            var tables = new List<string>();
-            if (_connection == null || _connection.State != ConnectionState.Open) return tables;
+            var list = new List<string>();
 
-            var command = _connection.CreateCommand();
-            command.CommandText = "SELECT name FROM sqlite_master WHERE type='table';";
-
-            using (var reader = command.ExecuteReader())
+            try
             {
+                using var connection = new SqliteConnection(_connectionString);
+                connection.Open();
+
+                using var cmd = connection.CreateCommand();
+                cmd.CommandText =
+                    "SELECT name FROM sqlite_master WHERE type='table';";
+
+                using var reader = cmd.ExecuteReader();
+
                 while (reader.Read())
                 {
                     string name = reader.GetString(0);
                     if (!name.StartsWith("sqlite_"))
-                    {
-                        tables.Add(name);
-                    }
+                        list.Add(name);
                 }
             }
-            return tables;
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ GetTableNames: {ex}");
+            }
+
+            return list;
         }
 
-        public void CopySelectTable()
+        public bool CreateCurrentTimeTable(string tableName)
         {
+            try
+            {
+                using var connection = new SqliteConnection(_connectionString);
+                connection.Open();
 
-        }
+                using var tx = connection.BeginTransaction();
 
-        public void CreateCurrentTimeTable()
-        {
-            // 1. 生成表名：例如 20260402210741
-            string tableName = DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            // 2. 构建 SQL 语句
-            // 注意：表名通常不需要加单引号，但为了安全起见（防止关键字冲突），可以用双引号或方括号括起来
-            string createSql = $@"
+                string createSql = $@"
                         CREATE TABLE ""{tableName}"" (
                             ""WindDirection"" TEXT,
                             ""WindSpeed""     TEXT,
@@ -155,122 +152,160 @@ namespace WindLightSimluator.Service
                             ""RVR""           TEXT,
                             ""VIS""           TEXT
                         );";
-            // 2. 开启连接
-            using (var connection = _connection) // 复用之前的连接
-            {
-                if (connection.State != ConnectionState.Open) connection.Open();
 
-                using (var transaction = connection.BeginTransaction()) // ✅ 开启事务
+                using (var cmd = connection.CreateCommand())
                 {
-                    try
-                    {
-                        // --- 第一步：建表 ---
-                        using (var cmdCreate = connection.CreateCommand())
-                        {
-                            cmdCreate.CommandText = createSql;
-                            cmdCreate.Transaction = transaction; // 将命令加入事务
-                            cmdCreate.ExecuteNonQuery();
-                        }
+                    cmd.CommandText = createSql;
+                    cmd.Transaction = tx;
+                    cmd.ExecuteNonQuery();
+                }
 
-                        // --- 第二步：准备插入语句 ---
-                        // 使用参数化查询防止 SQL 注入，且效率更高
-                        string insertSql = $@"INSERT INTO ""{tableName}"" (""WindDirection"", ""WindSpeed"", ""Temperature"", ""QNH"", ""RVR"", ""VIS"")
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.Transaction = tx;
+                    cmd.CommandText = $@"INSERT INTO ""{tableName}"" (""WindDirection"", ""WindSpeed"", ""Temperature"", ""QNH"", ""RVR"", ""VIS"")
                                             VALUES ('180', '2', '15', '1013', '2500', '5000');";
 
-                        using (var cmdInsert = connection.CreateCommand())
-                        {
-                            cmdInsert.CommandText = insertSql;
-                            cmdInsert.Transaction = transaction; // 将命令加入事务
-
-                            for (int i = 0; i < 120; i++)
-                            {
-                                cmdInsert.ExecuteNonQuery();
-                            }
-                        }
-
-                        // ✅ 提交事务：一次性写入磁盘
-                        transaction.Commit();
-                        Debug.WriteLine($"✅ 成功创建表 '{tableName}' 并插入 120 行数据！");
-                    }
-                    catch (Exception ex)
-                    {
-                        // ❌ 出错回滚：如果中间断了，表也不会创建成功，数据不会脏
-                        transaction.Rollback();
-                        Debug.WriteLine($"❌ 批量插入失败，已回滚: {ex.Message}");
-                    }
+                    for (int i = 0; i < 120; i++)
+                        cmd.ExecuteNonQuery();
                 }
 
-
-                Debug.WriteLine($"✅ 表 '{tableName}' 创建成功！");
+                tx.Commit();
+                return true;
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ CreateTable: {ex}");
+                return false;
+            }
+
         }
 
-        public void ReNameSelectedTable(string oldTableName, string newTableName)
+        public bool ReNameSelectedTable(string oldTableName, string newTableName)
         {
-
-
-            // 2. 开启连接
-            using (var connection = _connection) // 复用之前的连接
+            try
             {
-                if (connection.State != ConnectionState.Open) connection.Open();
-                try
-                {
-                    var reNameCommand = _connection.CreateCommand();
-                    reNameCommand.CommandText = $@"ALTER TABLE ""{oldTableName}"" RENAME TO ""{newTableName}"";";
-                    reNameCommand.ExecuteNonQuery();
+                using var connection = new SqliteConnection(_connectionString);
+                connection.Open();
 
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
+                using var cmd = connection.CreateCommand();
+                cmd.CommandText = $@"ALTER TABLE ""{oldTableName}"" RENAME TO ""{newTableName}"";";
 
-
-
-                Debug.WriteLine($"改表 '{newTableName}' 成功！");
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Rename: {ex}");
+                return false;
             }
         }
 
-        public void SavePointsToSelectedTable(string tableName, string columnName, ObservableCollection<double> pointsValue)
-        {   // 1. 开启事务（一次性写入，速度快）
-            using (var transaction = _connection.BeginTransaction())
+        public void SavePointsToSelectedTable(string tableName, string columnName, ObservableCollection<double> points)
+        {
+            Debug.WriteLine(points);
+
+            try
             {
-                try
-                {
-                    string sql = $@"UPDATE ""{tableName}"" 
+                using var connection = new SqliteConnection(_connectionString);
+                connection.Open();
+
+                using var tx = connection.BeginTransaction();
+
+                using var cmd = connection.CreateCommand();
+                cmd.Transaction = tx;
+
+                cmd.CommandText = $@"UPDATE ""{tableName}"" 
                                     SET ""{columnName}"" = @val 
-                                    WHERE ROWID = @rowid"; // ROWID 是 SQLite 自带的隐藏主键，从 1 开始
+                                    WHERE ROWID = @rowid";
 
-                    using (var cmd = _connection.CreateCommand())
-                    {
-                        cmd.CommandText = sql;
-                        cmd.Transaction = transaction;
+                var pVal = cmd.Parameters.Add("@val", SqliteType.Text);
+                var pId = cmd.Parameters.Add("@rowid", SqliteType.Integer);
 
-                        var pVal = cmd.Parameters.Add("@val", SqliteType.Text);
-                        var pRowId = cmd.Parameters.Add("@rowid", SqliteType.Integer);
-
-                        // 2. 循环 120 次
-                        for (int i = 0; i < pointsValue.Count; i++)
-                        {
-                            pVal.Value = pointsValue[i].ToString();
-                            pRowId.Value = i + 1; // 数据库 ROWID 从 1 开始，列表索引从 0 开始
-
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    transaction.Commit();
-                    Debug.WriteLine($"✅ 更新 {columnName} 列完成");
-                }
-                catch (Exception ex)
+                for (int i = 0; i < points.Count; i++)
                 {
-                    transaction.Rollback();
-                    Debug.WriteLine($"❌ 更新失败: {ex.Message}");
+                    pVal.Value = points[i].ToString();
+                    pId.Value = i + 1;
+                    cmd.ExecuteNonQuery();
                 }
+
+                tx.Commit();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Save: {ex}");
+            }
+        }
+
+        public bool DeleteSelectedTable(string tableName)
+        {
+            // 参数验证
+            if (string.IsNullOrWhiteSpace(tableName))
+            {
+                Debug.WriteLine("❌ 删除失败: 表名不能为空");
+                return false;
+            }
+
+            try
+            {
+                using var connection = new SqliteConnection(_connectionString);
+                connection.Open();
+
+                using var tx = connection.BeginTransaction();
+
+                using var cmd = connection.CreateCommand();
+                cmd.CommandText = $"DROP TABLE IF EXISTS \"{tableName}\";";
+                cmd.Transaction = tx;
+
+                cmd.ExecuteNonQuery();
+
+                tx.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Delete: {ex}");
+                return false;
+            }
+        }
+
+        public bool CopySelectTable(string selectedTable, string newTableName)
+        {
+            // 参数验证
+            if (string.IsNullOrWhiteSpace(selectedTable))
+            {
+                Debug.WriteLine("❌  CopySelectTable 失败: 表名不能为空");
+                return false;
+            }
+
+            try
+            {
+                using var connection = new SqliteConnection(_connectionString);
+                connection.Open();
+
+                using var tx = connection.BeginTransaction();
+
+                using var cmd = connection.CreateCommand();
+                cmd.Transaction = tx;
+                cmd.CommandText =
+                    $"CREATE TABLE \"{newTableName}\" AS SELECT * FROM \"{selectedTable}\";";
+
+                cmd.ExecuteNonQuery();
+
+                tx.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Copy: {ex}");
+                return false;
             }
         }
 
 
-     
+
+
+
     }
 }
 

@@ -58,6 +58,7 @@ namespace WindLightSimluator.Views
                     if (vm != null)
                     {
                         vm.DatabaseFilePath = dialog.FileName;
+                        vm.OpenDatabase(dialog.FileName);
                     }
                 }
             }
@@ -88,6 +89,18 @@ namespace WindLightSimluator.Views
         {
             var vm = (EditableWeatherElementViewModel)DataContext;
             vm.RenameTable();
+        }
+
+        private void CopyTableButtton_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (EditableWeatherElementViewModel)DataContext;
+            vm.CopyTable();
+        }
+
+        private void DeleteTableButton_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (EditableWeatherElementViewModel)DataContext;
+            vm.DeleteSelectedTable();
         }
     }
 }

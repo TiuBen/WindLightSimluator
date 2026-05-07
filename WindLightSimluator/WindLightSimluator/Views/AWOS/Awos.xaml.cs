@@ -17,9 +17,13 @@ using System.Windows.Threading;
 
 namespace WindLightSimluator.Views.AWOS
 {
-
-  
-
+    public enum RunwayCommandType
+    {
+        SwapWestEast,
+        SetIndex0,
+        SetIndex1,
+        SetIndex2
+    }
 
     /// <summary>
     /// Awos.xaml 的交互逻辑
@@ -29,6 +33,28 @@ namespace WindLightSimluator.Views.AWOS
         public Awos()
         {
             InitializeComponent();
+
+
+            Switch_Menu_Bar.CommandRequested += OnCommandRequested;
+         }
+
+        private void OnCommandRequested(RunwayCommandType cmd)
+        {
+            switch (cmd)
+            {
+                case RunwayCommandType.SwapWestEast:
+                    Runway_View.SwapWestEast();
+                    break;
+
+                case RunwayCommandType.SetIndex0:
+                    Runway_View.ChangeRunwayIndex(0);
+                    break;
+
+                case RunwayCommandType.SetIndex1:
+                    Runway_View.ChangeRunwayIndex(1);
+                    break;
+               
+            }
         }
     }
 }

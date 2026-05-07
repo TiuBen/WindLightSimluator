@@ -9,8 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="280">
     <UserControl.Resources>
-        <!--主题颜色+是否被选中-->
-        <conv:ThemeActiveColorConverter x:Key="ThemeActiveColorConverter"/>
         <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
 

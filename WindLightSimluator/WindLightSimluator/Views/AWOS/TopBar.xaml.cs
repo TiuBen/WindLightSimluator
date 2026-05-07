@@ -56,15 +56,13 @@ namespace WindLightSimluator.Views.AWOS
         public TopBar()
         {
             InitializeComponent();
-            DataContext = new TopBarViewModel();
+            //DataContext = new TopBarViewModel();
 
         }
         private bool isDark = false;
 
         private void ChangeThemeToDay_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //ApplyTheme("LightTheme.xaml");
-
             var dict = new ResourceDictionary()
             {
                 Source = new Uri("LightTheme.xaml", UriKind.Relative)
@@ -74,7 +72,6 @@ namespace WindLightSimluator.Views.AWOS
 
         private void ChangeThemeToNight_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //ApplyTheme("DarkTheme.xaml");
             var dict = new ResourceDictionary()
             {
                 Source = new Uri("DarkTheme.xaml", UriKind.Relative)
@@ -82,24 +79,6 @@ namespace WindLightSimluator.Views.AWOS
             Application.Current.Resources.MergedDictionaries[0] = dict;
         }
 
-
-        private void ApplyTheme(string themeFile)
-        {
-            var dict = new ResourceDictionary
-            {
-                Source = new Uri(themeFile, UriKind.Relative)
-            };
-
-            var merged = Application.Current.Resources.MergedDictionaries;
-
-            if (merged.Count > 0)
-            {
-                merged[0] = dict;   // ⭐核心：替换，不清空
-            }
-            else
-            {
-                merged.Add(dict);
-            }
-        }
+     
     }
 }
