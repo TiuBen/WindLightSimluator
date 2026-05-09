@@ -1,12 +1,111 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\airportvm.db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\airportvm.db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\airportvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\airportvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\editableweatherelementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\editableweatherelementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\service\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\service\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\adblightsvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\adblightsvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DatabaseService.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Service\\DatabaseService.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\Service\\DatabaseService.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Service\\DatabaseService.cs",
+              "RelativeToolTip": "WindLightSimluator\\Service\\DatabaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T05:29:04.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EditableWeatherElementViewModel.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\EditableWeatherElementViewModel.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\EditableWeatherElementViewModel.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\EditableWeatherElementViewModel.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\EditableWeatherElementViewModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAADsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T05:23:32.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AirportVM.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\AirportVM.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\AirportVM.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\AirportVM.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\AirportVM.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAHUAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T05:21:54.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ADBLightsVM.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\ADBLightsVM.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\ADBLightsVM.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\ADBLightsVM.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\ADBLightsVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T05:21:53.899Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AirportVM.db.cs",
+              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\AirportVM.db.cs",
+              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\AirportVM.db.cs",
+              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\AirportVM.db.cs",
+              "RelativeToolTip": "WindLightSimluator\\ViewModels\\AirportVM.db.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T05:47:00.26Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

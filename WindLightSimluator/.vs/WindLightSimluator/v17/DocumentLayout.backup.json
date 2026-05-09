@@ -1,70 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\views\\awos\\topbar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\views\\awos\\topbar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\airportvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\airportvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|d:\\github\\windlightsimluator\\windlightsimluator\\windlightsimluator\\viewmodels\\editableweatherelementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED240252-8D5C-4142-9868-39C30DBAE533}|WindLightSimluator\\WindLightSimluator.csproj|solutionrelative:windlightsimluator\\viewmodels\\editableweatherelementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 239,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AirportVM.cs",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\AirportVM.cs",
-              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\AirportVM.cs",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\AirportVM.cs",
-              "RelativeToolTip": "WindLightSimluator\\ViewModels\\AirportVM.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAAAEwBAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T16:39:02.626Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EditableWeatherElementViewModel.cs",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\EditableWeatherElementViewModel.cs",
-              "RelativeDocumentMoniker": "WindLightSimluator\\ViewModels\\EditableWeatherElementViewModel.cs",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\ViewModels\\EditableWeatherElementViewModel.cs",
-              "RelativeToolTip": "WindLightSimluator\\ViewModels\\EditableWeatherElementViewModel.cs",
-              "ViewState": "AgIAAN8AAAAAAAAAAAAAAL4BAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T16:33:30.982Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TopBar.xaml",
-              "DocumentMoniker": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\TopBar.xaml",
-              "RelativeDocumentMoniker": "WindLightSimluator\\Views\\AWOS\\TopBar.xaml",
-              "ToolTip": "D:\\GitHub\\WindLightSimluator\\WindLightSimluator\\WindLightSimluator\\Views\\AWOS\\TopBar.xaml",
-              "RelativeToolTip": "WindLightSimluator\\Views\\AWOS\\TopBar.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-07T16:31:53.215Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
