@@ -346,6 +346,14 @@ namespace WindLightSimluator.ViewModels
             }
         }
 
+        public void XXXX()
+        {
+            var data=_db.Query
+
+
+        }
+
+
     }
 
 }
