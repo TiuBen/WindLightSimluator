@@ -16,6 +16,32 @@ namespace WindLightSimluator.Service
     // 这是一个单例类，全局只有一个实例
     public class DatabaseService
     {
+        #region 天气元素配置
+        public List<string> FieldList { get; } = new()
+        {
+            "WindDirection",
+            "WindSpeed",
+            "Temperature",
+            "QNH",
+            "RVR",
+            "VIS"
+
+        };
+
+        // ✅ 每个字段配置
+        public Dictionary<string, FieldConfig> FieldConfigs { get; } = new()
+        {
+            ["WindDirection"] = new FieldConfig { Min = 0, Max = 360, BaseValue = 180, Step = 10, SubStep = 10, Unit = "°" },
+            ["WindSpeed"] = new FieldConfig { Min = 0, Max = 20, BaseValue = 2, Step = 1, SubStep = 0.5, Unit = "m/s" },
+            ["Temperature"] = new FieldConfig { Min = -20, Max = 50, BaseValue = 15, Step = 2, SubStep = 1, Unit = "℃" },
+            ["QNH"] = new FieldConfig { Min = 980, Max = 1040, BaseValue = 1013, Step = 2, SubStep = 1, Unit = "hPa" },
+            ["RVR"] = new FieldConfig { Min = 0, Max = 2500, BaseValue = 2000, Step = 100, SubStep = 25, Unit = "m" },
+            ["VIS"] = new FieldConfig { Min = 0, Max = 15000, BaseValue = 5000, Step = 1000, SubStep = 500, Unit = "m" },
+        };
+        #endregion
+
+
+
         private static readonly DatabaseService _instance = new DatabaseService();
         public static DatabaseService Instance => _instance;
 

@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using WindLightSimluator.ViewModels.vm;
-using System.Collections.ObjectModel;
-using WindLightSimluator.ViewModels.Base;
-using WindLightSimluator.Service;
 using System.Windows.Threading;
 using WindLightSimluator.Model;
-using System.Reflection;
+using WindLightSimluator.Service;
 using WindLightSimluator.ViewModels;
+using WindLightSimluator.ViewModels.Base;
+using WindLightSimluator.ViewModels.vm;
 
 namespace WindLightSimluator.ViewModels
 {
-    public class AirportVM : ViewModelBase
+    public partial class AirportVM : ViewModelBase
     {
         private float _qnh = 1013.2f; // 默认值
         private string _metar = "METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG=";
@@ -327,9 +328,9 @@ namespace WindLightSimluator.ViewModels
         public string SelectedTableName
         {
             get => _selectedTableName;
-            set { 
-                SetProperty(ref _selectedTableName, value); 
-                OnPropertyChanged(nameof(CanStart)); 
+            set {
+                SetProperty(ref _selectedTableName, value);
+                OnPropertyChanged(nameof(CanStart));
             }
         }
 
@@ -346,15 +347,72 @@ namespace WindLightSimluator.ViewModels
             }
         }
 
-        public void XXXX()
+        #region 天气元素配置
+        public List<string> FieldList { get; } = new()
         {
-            var data=_db.Query
+            "WindDirection",
+            "WindSpeed",
+            "Temperature",
+            "QNH",
+            "RVR",
+            "VIS"
+
+        };
+
+        // ✅ 每个字段配置
+        public Dictionary<string, FieldConfig> FieldConfigs { get; } = new()
+        {
+            ["WindDirection"] = new FieldConfig { Min = 0, Max = 360, BaseValue = 180, Step = 10, SubStep = 10, Unit = "°" },
+            ["WindSpeed"] = new FieldConfig { Min = 0, Max = 20, BaseValue = 2, Step = 1, SubStep = 0.5, Unit = "m/s" },
+            ["Temperature"] = new FieldConfig { Min = -20, Max = 50, BaseValue = 15, Step = 2, SubStep = 1, Unit = "℃" },
+            ["QNH"] = new FieldConfig { Min = 980, Max = 1040, BaseValue = 1013, Step = 2, SubStep = 1, Unit = "hPa" },
+            ["RVR"] = new FieldConfig { Min = 0, Max = 2500, BaseValue = 2000, Step = 100, SubStep = 25, Unit = "m" },
+            ["VIS"] = new FieldConfig { Min = 0, Max = 15000, BaseValue = 5000, Step = 1000, SubStep = 500, Unit = "m" },
+        };
+        #endregion
 
 
-        }
+        public void XXXX(string tableName)
+        {
+             public Dictionary<string, ObservableCollection<double>> LoadDataFromTable(string tableName)
+       
+            if (string.IsNullOrWhiteSpace(tableName))
+                return null;
 
+            var data = _db.Query($"SELECT * FROM \"{tableName}\"");
 
+            // 检查是否有数据
+            if (data == null || data.Rows.Count == 0)
+                return null;
+
+            var rawData = new Dictionary<string, ObservableCollection<double>>();
+
+            foreach (var key in FieldList)
+            {
+                rawData[key] = new ObservableCollection<double>();
+            }
+
+            foreach (DataRow row in data.Rows)
+            {
+                foreach (string key in FieldList)
+                {
+                    if (double.TryParse(row[key].ToString(), out double val))
+                    {
+                        rawData[key].Add(val);
+                    }
+                    else
+                    {
+                        rawData[key].Add(FieldConfigs[key].BaseValue);
+                    }
+                }
+            }
+
+            return rawData;
+        
     }
+
+
+}
 
 }
 
