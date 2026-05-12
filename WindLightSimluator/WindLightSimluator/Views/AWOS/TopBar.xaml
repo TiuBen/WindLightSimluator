@@ -175,14 +175,25 @@
 
         <Grid  Grid.Column="4">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="12"/>
                 <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="4"/>
+                <ColumnDefinition Width="12"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="0" ItemsSource="{Binding DataContext.Airport.Tables, RelativeSource={RelativeSource AncestorType=Window}}"
-                                SelectedItem="{Binding DataContext.Airport.SelectedTableName, RelativeSource={RelativeSource AncestorType=Window}}"  
+            <Button Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" 
+                    IsEnabled="{Binding CanStart}"
+                    Command="{Binding StartSimulationCommand}"
+                    >开始练习</Button>
+            <ComboBox Grid.Column="2"
+                      ItemsSource="{Binding Tables}"
+                      SelectedItem="{Binding SelectedTableName}"  
                                 HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-            <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" IsEnabled="{Binding DataContext.Airport.CanStart, RelativeSource={RelativeSource AncestorType=Window}}">开始练习</Button>
+            <Button Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" 
+                    Command="{Binding StopSimulationCommand}"
+                    IsEnabled="{Binding CanStart}"
+                    >结束练习</Button>
+
         </Grid>
 
         <!-- 4 sunrise / sunset 右侧 -->
@@ -261,7 +272,7 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                 </Border>
-             
+
 
             </Grid>
         </Border>

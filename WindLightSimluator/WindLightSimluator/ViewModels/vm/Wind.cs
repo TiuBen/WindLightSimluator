@@ -63,17 +63,26 @@ namespace WindLightSimluator.ViewModels.vm
             //}
 
             get {
-                // 1. 获取四舍五入后的风向 (0, 10, 20... 360)
+                    double dir = _windDir;
+
+                    // 关键：平移5度做区间归属
+                    dir = (dir + 5) % 360;
+
+                    return (int)(dir / 10);
+            }
+        }
+
+        public double AngleHeading
+        {
+            get {
                 double roundedDir = Math.Round(_windDir / 10.0) * 10;
-
-                // 2. 计算索引 (0-35)
-                int index = (int)((roundedDir + 5) / 10);
-                if (index >= 36) index = 0;
-
-                // 3. 返回 索引 * 10
+                int index = (int)((roundedDir + 5) / 10); if (index >= 36) index = 0;
                 return index * 10;
             }
         }
+
+        
+
 
         private bool? _isactive;
         public bool? IsActive

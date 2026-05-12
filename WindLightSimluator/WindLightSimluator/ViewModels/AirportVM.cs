@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Threading;
 using WindLightSimluator.Model;
 using WindLightSimluator.Service;
+using WindLightSimluator.utils;
 using WindLightSimluator.ViewModels;
 using WindLightSimluator.ViewModels.Base;
 using WindLightSimluator.ViewModels.vm;
@@ -84,10 +87,10 @@ namespace WindLightSimluator.ViewModels
             _1.startPart.PartName = "01L";
 
 
-            _1.startPart.wind = new WindVM(1, 020, 015);
+            _1.startPart.wind = new WindVM(1, 090, 015);
             _1.startPart.wind.IsActive = true;
             _1.startPart.statistics = new WindStatisticsVM(015, 5);
-            _1.startPart.statistics.DirRangeSet = new HashSet<int> { 0, 2, 3, 4 };
+            _1.startPart.statistics.DirRangeSet = new HashSet<int> { 0,1, 2, 3, 4 };
             _1.startPart.statistics.IsActive = true;
             _1.startPart.rvrVis = new RvrVisVM();
             _1.startPart.rvrVis.IsActive = true;
@@ -209,6 +212,12 @@ namespace WindLightSimluator.ViewModels
 
 
             StartSimulation(2);
+
+
+            StartSimulationCommand = new RelayCommand2(start);
+
+            StopSimulationCommand = new RelayCommand2(ttt);
+
         }
 
         private DispatcherTimer? _timer;
@@ -371,19 +380,37 @@ namespace WindLightSimluator.ViewModels
         };
         #endregion
 
+        public ICommand StartSimulationCommand { get; }
 
-        public void XXXX(string tableName)
+        public ICommand StopSimulationCommand { get; }
+
+
+        public void start()
         {
-             public Dictionary<string, ObservableCollection<double>> LoadDataFromTable(string tableName)
-       
-            if (string.IsNullOrWhiteSpace(tableName))
-                return null;
+            Debug.WriteLine(" 开始 开始 开始 练习");
+
+            var data= LoadDataFromTable(SelectedTableName);
+            start(data);
+
+
+        }
+        public void ttt()
+        {
+            Debug.WriteLine(" ttttttttttttttttttttttttttd(StartSimulation);");
+        }
+
+        public Dictionary<string, ObservableCollection<double>> LoadDataFromTable(string tableName)
+        {
+
 
             var data = _db.Query($"SELECT * FROM \"{tableName}\"");
 
             // 检查是否有数据
             if (data == null || data.Rows.Count == 0)
-                return null;
+            {
+                Debug.WriteLine("这题模拟数据加载失败!!!");
+
+            }
 
             var rawData = new Dictionary<string, ObservableCollection<double>>();
 
@@ -408,11 +435,11 @@ namespace WindLightSimluator.ViewModels
             }
 
             return rawData;
-        
+
+        }
+
+
     }
-
-
-}
 
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace WindLightSimluator.Converters
                 return WindSegmentState.Error;
 
             // Range
-            if (values[1] is not IEnumerable<int> set)
+            if (values[1] is not IEnumerable<int> range)
                 return WindSegmentState.Error;
 
             // IsActive
@@ -49,30 +50,36 @@ namespace WindLightSimluator.Converters
             // AngleIndex
             if (values[3] is not int angleIndex)
                 return WindSegmentState.Error;
+            //Debug.WriteLine($"AngleIndex={angleIndex}");
 
             // 🎯 JustAhead（优先级最高）
             if (tag == angleIndex)
             {
+                //Debug.WriteLine($" tag=={tag} just angleIndex{angleIndex} ");
                 return isActive
                     ? WindSegmentState.JustAheadActive
                     : WindSegmentState.JustAheadInactive;
             }
 
             // 🎯 InRange / OutRange
-            bool inRange = set.Contains(tag);
+            bool inRange = range.Contains(tag);
 
             if (inRange)
             {
+                //Debug.WriteLine($"tag =={tag} inRange");
                 return isActive
                     ? WindSegmentState.InRangeActive
                     : WindSegmentState.InRangeInactive;
             }
             else
             {
+                //Debug.WriteLine($"tag=={tag} not  inRange");
                 return isActive
                     ? WindSegmentState.OutRangeActive
                     : WindSegmentState.OutRangeInactive;
             }
+
+           
 
         }
 

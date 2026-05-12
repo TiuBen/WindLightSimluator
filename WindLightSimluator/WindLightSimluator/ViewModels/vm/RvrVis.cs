@@ -13,6 +13,16 @@ namespace WindLightSimluator.ViewModels.vm
 
 
         private int _rvr = 2000;
+        public int Rvr
+        {
+            get => _rvr;
+            set {
+                if (SetProperty(ref _rvr, value))
+                {
+                    OnPropertyChanged(nameof(RvrValue));
+                }
+            }
+        }
         public string RvrValue
         {
             get {

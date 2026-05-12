@@ -1051,7 +1051,7 @@
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
-                            <RotateTransform Angle="{Binding wind.AngleIndex}"/>
+                            <RotateTransform Angle="{Binding wind.AngleHeading}"/>
                             <TranslateTransform/>
                         </TransformGroup>
                     </Polygon.RenderTransform>

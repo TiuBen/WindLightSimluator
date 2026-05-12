@@ -50,7 +50,7 @@ namespace WindLightSimluator.ViewModels.vm
             _maxSize = size;
         }
         // 每当传感器有新数据，调用此方法
-        public void AddSample(double speed, double dir)
+        public void AddSample(double speed, int dir)
         {
             _samples.Enqueue(new Wind(speed, dir));
 

@@ -127,5 +127,8 @@ namespace WindLightSimluator.ViewModels
         }
 
 
+        //用来模拟的数据
+
+        public int Offset { get; set; }
     }
 }
