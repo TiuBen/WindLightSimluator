@@ -18,7 +18,7 @@ namespace WindLightSimluator.ViewModels
         End     // 末端 (例如 19R)
     }
 
-    public class RunwayPartVM : ViewModelBase
+    public partial class RunwayPartVM : ViewModelBase
     {
 
 

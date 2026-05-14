@@ -33,8 +33,16 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
+              
                 <comps:RunwayStatus  DataContext="{Binding SelectedRunwayVM.startPart}"  Margin="0 0 0 4"/>
+               
                 <comps:WindPanel  Grid.Row="1" Grid.RowSpan="3"  DataContext="{Binding SelectedRunwayVM.startPart}" Margin="0 0 0 4"/>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="风速"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.startPart.wind.WindSpeed}"/>
+                    <TextBlock Text="风向"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.startPart.wind.WindDir}"/>
+                </StackPanel>
                 <comps:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding SelectedRunwayVM.startPart.statistics}" Margin="0 0 0 4"/>
                 <comps:RvrVis  Grid.Row="5"  DataContext="{Binding SelectedRunwayVM.startPart.rvrVis}" Margin="0 0 0 4"  />
                 <comps:WeatherCondition Grid.Row="6" DataContext="{Binding SelectedRunwayVM.startPart.weather}" />

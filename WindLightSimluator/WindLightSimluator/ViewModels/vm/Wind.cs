@@ -7,7 +7,7 @@ using WindLightSimluator.ViewModels.Base;
 
 namespace WindLightSimluator.ViewModels.vm
 {
-    public class WindVM : ViewModelBase
+    public partial class WindVM : ViewModelBase
     {
         private double _windSpeed;
         private double   _windDir;
@@ -49,6 +49,7 @@ namespace WindLightSimluator.ViewModels.vm
                     OnPropertyChanged(nameof(HeadWindSpeed));
                     OnPropertyChanged(nameof(CrossWindSpeed));
                     OnPropertyChanged(nameof(AngleIndex));
+                    OnPropertyChanged(nameof(AngleHeading));
                 }
             }
         }
@@ -56,12 +57,7 @@ namespace WindLightSimluator.ViewModels.vm
         // --- 新增：角度索引 (0-35) ---
         public int AngleIndex
         {
-            //get {
-            //    double roundedDir = Math.Round(_windDir / 10.0) * 10;
-            //    int index = (int)((roundedDir + 5) / 10);
-            //    return index >= 36 ? 0 : index;
-            //}
-
+           
             get {
                     double dir = _windDir;
 
