@@ -25,64 +25,61 @@
             <!--第一列-->
             <Grid x:Name="Col1"  >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="56*"/>
-                    <RowDefinition Height="346*"/>
-                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="341*"/>
                     <RowDefinition Height="80*"/>
-                    <RowDefinition Height="66*"/>
-                    <RowDefinition Height="134*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="131*"/>
                     <RowDefinition Height="134*"/>
                 </Grid.RowDefinitions>
 
                 <comps:RunwayStatus  DataContext="{Binding SelectedRunwayVM.startPart}"  Margin="0 0 0 4"/>
 
-                <comps:WindPanel  Grid.Row="1" Grid.RowSpan="3"  DataContext="{Binding SelectedRunwayVM.startPart}" Margin="0 0 0 4"/>
-                <StackPanel Grid.Row="1">
+                <comps:WindPanel  Grid.Row="1" Grid.RowSpan="2"  DataContext="{Binding SelectedRunwayVM.startPart}" />
+                <!--<StackPanel Grid.Row="1">
                     <TextBlock Text="风速"/>
                     <TextBlock Text="{Binding SelectedRunwayVM.startPart.wind.WindSpeed}"/>
                     <TextBlock Text="风向"/>
                     <TextBlock Text="{Binding SelectedRunwayVM.startPart.wind.WindDir}"/>
-                </StackPanel>
-                <comps:HeadCrossWind Grid.Row="4" Grid.Column="0" DataContext="{Binding SelectedRunwayVM.startPart.statistics}" Margin="0 0 0 4"/>
-                <comps:RvrVis  Grid.Row="5"  DataContext="{Binding SelectedRunwayVM.startPart.rvrVis}" Margin="0 0 0 4"  />
-                <comps:WeatherCondition Grid.Row="6" DataContext="{Binding SelectedRunwayVM.startPart.weather}" />
+                </StackPanel>-->
+                <comps:HeadCrossWind Grid.Row="3" Grid.Column="0" DataContext="{Binding SelectedRunwayVM.startPart.statistics}" Margin="0 0 0 4"/>
+                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.startPart.rvrVis}" Margin="0 0 0 4"  />
+                <comps:WeatherCondition Grid.Row="5" DataContext="{Binding SelectedRunwayVM.startPart.weather}" />
 
             </Grid>
             <!--第二列-->
             <Grid  x:Name="Col2" Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="53*"/>
-                    <RowDefinition Height="346*"/>
-                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="341*"/>
                     <RowDefinition Height="80*"/>
-                    <RowDefinition Height="66*"/>
-                    <RowDefinition Height="134*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="131*"/>
                     <RowDefinition Height="134*"/>
                 </Grid.RowDefinitions>
                 <comps:RunwayStatus     DataContext="{Binding SelectedRunwayVM.middlePart}" Margin="0 0 0 4"/>
-                <comps:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding SelectedRunwayVM.middlePart}" Margin="0 0 0 4"/>
-                <comps:HeadCrossWind  Grid.Row="3" DataContext="{Binding SelectedRunwayVM.middlePart.statistics}"  Margin="0 0 0 4"/>
-                <comps:Qnh  Grid.Row="4"   Margin="0 0 0 4" />
-                <comps:RvrVis  Grid.Row="5"  DataContext="{Binding SelectedRunwayVM.middlePart.rvrVis}" Margin="0 0 0 4"/>
-                <comps:Light Grid.Row="6" DataContext="{Binding Light}" />
+                <comps:WindPanel  Grid.Row="1"   DataContext="{Binding SelectedRunwayVM.middlePart}" />
+                <comps:HeadCrossWind  Grid.Row="2" DataContext="{Binding SelectedRunwayVM.middlePart.statistics}"  Margin="0 0 0 4"/>
+                <comps:Qnh  Grid.Row="3"   Margin="0 0 0 4" />
+                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.middlePart.rvrVis}" Margin="0 0 0 4"/>
+                <comps:Light Grid.Row="5" DataContext="{Binding Light}" />
 
             </Grid>
             <!--第三列-->
             <Grid x:Name="Col3"  Grid.Column="4" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="53*"/>
-                    <RowDefinition Height="346*"/>
-                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="341*"/>
                     <RowDefinition Height="80*"/>
-                    <RowDefinition Height="66*"/>
-                    <RowDefinition Height="134*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="131*"/>
                     <RowDefinition Height="134*"/>
                 </Grid.RowDefinitions>
                 <comps:RunwayStatus    DataContext="{Binding SelectedRunwayVM.endPart}" Margin="0 0 0 4"/>
-                <comps:WindPanel  Grid.Row="1"  Grid.RowSpan="3" DataContext="{Binding SelectedRunwayVM.endPart}" Margin="0 0 0 4" />
-                <comps:HeadCrossWind  Grid.Row="4" Grid.Column="2" DataContext="{Binding SelectedRunwayVM.endPart.statistics}" Margin="0 0 0 4"/>
-                <comps:RvrVis  Grid.Row="5"  DataContext="{Binding SelectedRunwayVM.endPart.rvrVis}"  Margin="0 0 0 4"  />
-                <comps:WeatherCondition Grid.Row="6" DataContext="{Binding SelectedRunwayVM.endPart.weather}" />
+                <comps:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding SelectedRunwayVM.endPart}" />
+                <comps:HeadCrossWind  Grid.Row="3" Grid.Column="2" DataContext="{Binding SelectedRunwayVM.endPart.statistics}" Margin="0 0 0 4"/>
+                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.endPart.rvrVis}"  Margin="0 0 0 4"  />
+                <comps:WeatherCondition Grid.Row="5" DataContext="{Binding SelectedRunwayVM.endPart.weather}" />
             </Grid>
         </Grid>
         <comps:Metar Grid.Row="2"   />

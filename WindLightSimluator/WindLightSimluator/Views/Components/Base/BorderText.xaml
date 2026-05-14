@@ -30,17 +30,18 @@
              Foreground="{Binding SubTextColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
              HorizontalAlignment="Right"
              VerticalAlignment="Bottom"
-             Margin="0,0,0,0"
+             FontFamily="Segoe UI"
             />
             <TextBlock 
                        x:Name="mainTextBlock"
                        Text="{Binding MainText, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       FontSize="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}, Converter={StaticResource HeightToFontSizeConverter}}"      
+                       FontSize="{Binding MainTextFontSize,RelativeSource={RelativeSource AncestorType=UserControl}}"      
                        Foreground="{Binding MainTextColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        TextAlignment="Center"
-                       Margin="20 0 20 0 "
+                       FontFamily="Segoe UI"
+                
                        />
 
           

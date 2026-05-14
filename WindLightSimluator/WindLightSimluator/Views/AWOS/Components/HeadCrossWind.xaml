@@ -9,7 +9,7 @@
              xmlns:vm="clr-namespace:WindLightSimluator.ViewModels.vm"
              mc:Ignorable="d" 
            >
- 
+
     <UserControl.Resources>
         <conv:LessThanConverter x:Key="LessThanConverter"/>
         <!--阈值变色 风速变色-->
@@ -19,8 +19,9 @@
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="FontSize"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}, Converter={StaticResource  HeightToFontSizeConverter}, ConverterParameter=0.45}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}, Converter={StaticResource  HeightToFontSizeConverter}, ConverterParameter=0.6}"/>
             <Setter Property="Foreground" Value="{DynamicResource RvrVis.LabelTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
@@ -74,8 +75,7 @@
         </Style>
     </UserControl.Resources>
 
-
-    <Grid  >
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.Style>
             <Style TargetType="Grid">
                 <Setter Property="Background" Value="{DynamicResource RvrVis.ContainerBackgroundColor.InActive}" />
@@ -89,15 +89,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="2"/>
-            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*"  />
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="2"/>
-            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2"/>
-            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2"/>
-            <ColumnDefinition Width="Auto" MinWidth="110"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -115,28 +115,24 @@
         <Border  Grid.Column="0" Grid.Row="4" >
             <TextBlock Text="Cross Wind" />
         </Border>
-
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第2列 AVG2 ▬▬▬▬▬▬▬▬▬▬▬-->
+
         <Border  Grid.Column="2" Grid.Row="0"   >
             <TextBlock  Text="AVG2" />
         </Border>
-        <base:BorderText Grid.Column="2" Grid.Row="2" Style="{StaticResource LargerThan35}"  MainText="{Binding AvgHeadWind}" SubText="mps" >
-            <!--<base:BorderText.BorderColor>
-                <MultiBinding Converter="{StaticResource ThresholdColorConverter}">
-                    <Binding Path="AvgHeadWind"/>
-                    <Binding Source="-3.5"/>
-                    <Binding Source="Transparent|Red"/>
-                </MultiBinding>
-            </base:BorderText.BorderColor>-->
-        </base:BorderText>
+        <base:BorderText Grid.Column="2" Grid.Row="2" Style="{StaticResource LargerThan35}"  MainText="{Binding AvgHeadWind}" SubText="mps" />
         <base:BorderText   Grid.Column="2" Grid.Row="4"  MainText="{Binding AvgCrossWindText}" SubText="mps"/>
 
+
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬-->
+
         <Border Background="Transparent" Grid.Row="0" Grid.Column="3"/>
         <Border Background="Transparent" Grid.Row="1" Grid.Column="3"/>
         <Border Background="Transparent" Grid.Row="2" Grid.Column="3"/>
 
+
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第4列 WD / WS ▬▬▬▬▬▬▬▬▬▬▬-->
+
 
         <Border  Grid.Column="4" Grid.Row="0" />
         <Border   Grid.Column="4" Grid.Row="2"  >
@@ -146,19 +142,27 @@
             <TextBlock Text="WS"/>
         </Border>
 
+
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第5列 MNM2  ▬▬▬▬▬▬▬▬▬▬▬-->
+
         <Border    Grid.Column="6" Grid.Row="0"  >
+
+
             <TextBlock   Text="MNM2" />
         </Border>
         <base:BorderText  Grid.Column="6" Grid.Row="2" MainText="{Binding MinWindDir}" SubText="°" />
         <base:BorderText   Grid.Column="6" Grid.Row="4" MainText="{Binding MinWindSpeed}" SubText="mps" />
+
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬-->
+
         <Border    Grid.Column="8" Grid.Row="0"  >
             <TextBlock   Text="AVG2" />
         </Border>
         <base:BorderText  Grid.Column="8" Grid.Row="2" MainText="{Binding AvgWindDir}" SubText="°" />
         <base:BorderText  Grid.Column="8" Grid.Row="4" MainText="{Binding AvgWindSpeed}" SubText="mps" />
+
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬-->
+
         <Border    Grid.Column="10" Grid.Row="0"  >
             <TextBlock   Text="MAX2"  Padding=" 9 2 9 6"/>
         </Border>
@@ -167,5 +171,6 @@
 
 
     </Grid>
+
 </UserControl>
 

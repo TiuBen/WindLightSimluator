@@ -13,11 +13,16 @@
         xmlns:RVR="clr-namespace:WindLightSimluator.Views.RVRSwitch"
         d:Width="1920" d:Height="1080"
         Width="1920" Height="1080"
-        Title="MainWindow" >
+        Title="MainWindow"  >
     <Window.Resources>
         <Style TargetType="FrameworkElement" >
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="UseLayoutRounding" Value="True"/>
+           
+        </Style>
+        <Style TargetType="TextBlock" >
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Medium"/>
         </Style>
     </Window.Resources>
     <Window.DataContext>

@@ -21,28 +21,16 @@
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="Foreground" Value="{DynamicResource WindPanel.TextColor.Active}"/>
                 </DataTrigger>
-            </Style.Triggers> 
+            </Style.Triggers>
         </Style>
-     
+
         <Style TargetType="Ellipse">
             <Setter Property="Fill" Value="{Binding WindPanelBackground,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Style>
 
 
         <Style x:Key="OuterStyle" TargetType="Path" >
-            <Setter Property="StrokeThickness" Value="28"/>
-            <!--<Setter Property="Stroke">
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverterOuter}">
-                        --><!-- 当前 Path 的 Tag --><!--
-                        <Binding Path="(FrameworkElement.Tag)" RelativeSource="{RelativeSource Self}"/>
-                        --><!-- VM 里的集合 --><!--
-                        <Binding Path="statistics.DirRangeSet" />
-                        <Binding Path="IsActive" />
-                        <Binding Path="AngleIndex" />
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>-->
+            <Setter Property="StrokeThickness" Value="38"/>
             <Setter Property="Stroke" Value="{DynamicResource WindPanel.OuterArcColor.OutRange.InActive}"/>
             <Style.Triggers>
 
@@ -146,7 +134,7 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="InnerStyle" TargetType="Path" >
-            <Setter Property="StrokeThickness" Value="22"/>
+            <Setter Property="StrokeThickness" Value="32"/>
             <Setter Property="Stroke" Value="{DynamicResource WindPanel.InnerArcColor.OutRange.InActive}"/>
             <Style.Triggers>
 
@@ -625,7 +613,7 @@
                 </Path>
 
                 <!-- Inner Arc Segments -->
-                <Path Tag="0" Style="{StaticResource  InnerStyle}">
+                <Path Tag="0" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="9.598" VerticalAlignment="Center" Canvas.Left="0.853">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="378.38,90.76">
@@ -635,7 +623,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="1" Style="{StaticResource  InnerStyle}">
+                <Path Tag="1" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="10.637" VerticalAlignment="Top" Canvas.Left="-0.667">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="432.40,91.70">
@@ -645,7 +633,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="2" Style="{StaticResource  InnerStyle}">
+                <Path Tag="2" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="9.597" VerticalAlignment="Center" Canvas.Left="-2.856">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="485.45,102.01">
@@ -655,7 +643,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="3" Style="{StaticResource  InnerStyle}">
+                <Path Tag="3" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="8.929" VerticalAlignment="Top" Canvas.Left="-3.711">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="535.90,121.37">
@@ -665,7 +653,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="4" Style="{StaticResource  InnerStyle}">
+                <Path Tag="4" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="8.452" VerticalAlignment="Center" Canvas.Left="-5.045">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="582.21,149.20">
@@ -675,7 +663,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="5" Style="{StaticResource  InnerStyle}">
+                <Path Tag="5" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Left="-6.382" VerticalAlignment="Center" Canvas.Top="6.931">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="623.00,184.66">
@@ -685,7 +673,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="6" Style="{StaticResource  InnerStyle}">
+                <Path Tag="6" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="5.41" VerticalAlignment="Top" Canvas.Left="-7.425">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="657.00,226.65">
@@ -695,7 +683,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="7" Style="{StaticResource  InnerStyle}">
+                <Path Tag="7" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Left="-8.278" VerticalAlignment="Top" Canvas.Top="4.371">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="683.20,273.91">
@@ -705,7 +693,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="8" Style="{StaticResource  InnerStyle}">
+                <Path Tag="8" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Left="-9.321" VerticalAlignment="Center" Canvas.Top="2.185">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="700.79,325.00">
@@ -715,7 +703,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="9" Style="{StaticResource  InnerStyle}">
+                <Path Tag="9" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Left="-10.842" VerticalAlignment="Top" Canvas.Top="0.662">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="709.24,378.38">
@@ -725,7 +713,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="10" Style="{StaticResource  InnerStyle}">
+                <Path Tag="10" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="-1.527" VerticalAlignment="Center" Canvas.Left="-9.135">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="708.30,432.40">
@@ -735,7 +723,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="11" Style="{StaticResource  InnerStyle}">
+                <Path Tag="11" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="-2.191" VerticalAlignment="Top" Canvas.Left="-9.8">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="697.99,485.45">
@@ -745,7 +733,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="12" Style="{StaticResource  InnerStyle}">
+                <Path Tag="12" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Left="-9.135" VerticalAlignment="Top" Canvas.Top="-5.421">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="678.63,535.90">
@@ -755,7 +743,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="13" Style="{StaticResource  InnerStyle}">
+                <Path Tag="13" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="-7.799" VerticalAlignment="Center" Canvas.Left="-7.611">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="650.80,582.21">
@@ -765,7 +753,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="14" Style="{StaticResource  InnerStyle}">
+                <Path Tag="14" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="-8.089" VerticalAlignment="Center" Canvas.Left="-6.279">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="615.34,623.00">
@@ -775,7 +763,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="15" Style="{StaticResource  InnerStyle}">
+                <Path Tag="15" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="-9.801" VerticalAlignment="Top" Canvas.Left="-3.901">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="573.35,657.00">
@@ -785,7 +773,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="16" Style="{StaticResource  InnerStyle}">
+                <Path Tag="16" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="-10.654" VerticalAlignment="Center" Canvas.Left="-2.565">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="526.09,683.20">
@@ -795,7 +783,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="17" Style="{StaticResource  InnerStyle}">
+                <Path Tag="17" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="-11.509" VerticalAlignment="Top" Canvas.Left="-1.334">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="475.00,700.79">
@@ -805,7 +793,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="18" Style="{StaticResource  InnerStyle}">
+                <Path Tag="18" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="-11.509" VerticalAlignment="Top">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="421.62,709.24">
@@ -815,7 +803,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="19" Style="{StaticResource  InnerStyle}">
+                <Path Tag="19" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="-10.466" VerticalAlignment="Center" Canvas.Left="2.186">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="367.60,708.30">
@@ -825,7 +813,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="20" Style="{StaticResource  InnerStyle}">
+                <Path Tag="20" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="-9.8" VerticalAlignment="Top" Canvas.Left="2.664">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="314.55,697.99">
@@ -835,7 +823,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="21" Style="{StaticResource  InnerStyle}">
+                <Path Tag="21" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="-9.802" VerticalAlignment="Top" Canvas.Left="5.038">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="264.10,678.63">
@@ -845,7 +833,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="22" Style="{StaticResource  InnerStyle}">
+                <Path Tag="22" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="-9.99" VerticalAlignment="Top" Canvas.Left="5.892">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="217.79,650.80">
@@ -855,7 +843,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="23" Style="{StaticResource  InnerStyle}">
+                <Path Tag="23" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="-7.423" VerticalAlignment="Center" Canvas.Left="9.12">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="177.00,615.34">
@@ -865,7 +853,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="24" Style="{StaticResource  InnerStyle}">
+                <Path Tag="24" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="-5.901" VerticalAlignment="Top" Canvas.Left="8.932">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="143.00,573.35">
@@ -875,7 +863,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="25" Style="{StaticResource  InnerStyle}">
+                <Path Tag="25" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="-4.087" VerticalAlignment="Center" Canvas.Left="10.452">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="116.80,526.09">
@@ -885,7 +873,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="26" Style="{StaticResource  InnerStyle}">
+                <Path Tag="26" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="-2.001" VerticalAlignment="Center" Canvas.Left="10.828">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="99.21,475.00">
@@ -895,7 +883,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="27" Style="{StaticResource  InnerStyle}">
+                <Path Tag="27" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Left="11.494" VerticalAlignment="Center">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="90.76,421.62">
@@ -905,7 +893,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="28" Style="{StaticResource  InnerStyle}">
+                <Path Tag="28" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Left="10.64" VerticalAlignment="Top" Canvas.Top="-0.001">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="91.70,367.60">
@@ -915,7 +903,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="29" Style="{StaticResource  InnerStyle}">
+                <Path Tag="29" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Left="10.452" VerticalAlignment="Center" Canvas.Top="2.186">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="102.01,314.55">
@@ -925,7 +913,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="30" Style="{StaticResource  InnerStyle}">
+                <Path Tag="30" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Left="9.598" VerticalAlignment="Top" Canvas.Top="4.082">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="121.37,264.10">
@@ -935,7 +923,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="31" Style="{StaticResource  InnerStyle}">
+                <Path Tag="31" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Left="9.12" VerticalAlignment="Center" Canvas.Top="3.228">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="149.20,217.79">
@@ -945,7 +933,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="32" Style="{StaticResource  InnerStyle}">
+                <Path Tag="32" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Left="6.746" VerticalAlignment="Center" Canvas.Top="7.6">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="184.66,177.00">
@@ -955,7 +943,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="33" Style="{StaticResource  InnerStyle}">
+                <Path Tag="33" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Center" Canvas.Top="7.41" VerticalAlignment="Top" Canvas.Left="5.414">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="226.65,143.00">
@@ -965,7 +953,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="34" Style="{StaticResource  InnerStyle}">
+                <Path Tag="34" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Left="4.747" VerticalAlignment="Center" Canvas.Top="8.266">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="273.91,116.80">
@@ -975,7 +963,7 @@
                     </Path.Data>
                 </Path>
 
-                <Path Tag="35" Style="{StaticResource  InnerStyle}">
+                <Path Tag="35" Style="{StaticResource  InnerStyle}" HorizontalAlignment="Left" Canvas.Top="8.266" VerticalAlignment="Center" Canvas.Left="2.185">
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="325.00,99.21">
@@ -991,16 +979,29 @@
 
                 <!--跑道形状-->
                 <Canvas Width="800" Height="800" Background="Transparent"  RenderTransformOrigin="0.5,0.5"  d:IsLocked="True" >
+                    <Canvas.Resources>
+                        <Style TargetType="Path">
+                            <Setter Property="Fill" Value="{DynamicResource WindPanel.Threshold.InActive}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding wind.IsActive}" Value="true">
+                                    <Setter Property="Fill" Value="{DynamicResource WindPanel.Threshold.Active}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Canvas.Resources>
+
                     <Canvas.RenderTransform>
                         <TransformGroup>
                             <RotateTransform Angle="11.5"/>
                         </TransformGroup>
                     </Canvas.RenderTransform>
                     <!--跑道道面-->
-                    <Rectangle Height="560" Canvas.Left="373" Canvas.Top="120" Width="54" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Fill="#555557" />
+                    <Rectangle Height="560" Canvas.Left="373" Canvas.Top="120" Width="54" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                               RenderTransformOrigin="0.5,0.5" 
+                               Fill="{DynamicResource WindPanel.RunwayRect }" />
 
 
-                    <Path Fill="White" Canvas.Left="373" Canvas.Top="130" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,2.8" Panel.ZIndex="100" 
+                    <Path Canvas.Left="373" Canvas.Top="130" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,2.8" Panel.ZIndex="100" 
                           Visibility="{Binding Part,Converter={StaticResource RunwayPartVisibiltyConverter}, ConverterParameter=Start }" >
                         <Path.Data>
                             <GeometryGroup>
@@ -1011,7 +1012,7 @@
                         </Path.Data>
 
                     </Path>
-                    <Path Fill="White" Canvas.Left="373" Canvas.Top="570" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,-1.7" Panel.ZIndex="100" 
+                    <Path Canvas.Left="373" Canvas.Top="570" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,-1.7" Panel.ZIndex="100" 
                           Visibility="{Binding Part,Converter={StaticResource RunwayPartVisibiltyConverter}, ConverterParameter=End }" >
                         <Path.Data>
                             <GeometryGroup>
@@ -1039,23 +1040,26 @@
                 </Ellipse>
 
                 <Line  StrokeThickness="4"  X1="284"  Y1="400" X2="516" Y2="400" Stroke="#537792"     />
-                <TextBlock Text="{Binding wind.WindDir, StringFormat={}{0:000}}"   
-                           FontSize="80" Width="130" FontWeight="DemiBold" FontFamily="Monospace" 
-                           TextAlignment="Right"  VerticalAlignment="Bottom" Canvas.Left="332.54" Canvas.Top="310"  />
-                <TextBlock Text="{Binding wind.WindSpeed, StringFormat={}{0:.0}}"  
-                           FontFamily="Monospace" FontWeight="DemiBold"  FontSize="65" Width="130" Canvas.Left="320" Canvas.Top="410" 
-                           HorizontalAlignment="Center" VerticalAlignment="Bottom"  TextAlignment="Right"/>
-                <TextBlock Text="mps" FontSize="20" FontFamily="Segoe UI Semibold" 
-                           Canvas.Left="453.509" Canvas.Top="454.455" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+                <TextBlock Text="mps" FontSize="28" FontFamily="Segoe UI"  Background="Transparent" 
+                           Canvas.Left="430.509" Canvas.Top="460.455" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBlock Text="。" FontSize="40" FontFamily="Segoe UI Bold" 
-                           Canvas.Left="472.459" Canvas.Top="290.52" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"  />
-                <Polygon Points="0,0 40,0 20,100" Fill="#FFFF5D00" StrokeThickness="2" Canvas.Left="380" Canvas.Top="130" RenderTransformOrigin="0.5,2.7">
+                           Canvas.Left="472.459" Canvas.Top="290.52" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                <TextBlock Text="{Binding wind.WindDir, StringFormat={}{0:000}}"   
+                             FontSize="72" Width="130"  FontFamily="Segoe UI" FontWeight="Regular" 
+                              TextAlignment="Center"  VerticalAlignment="Bottom" Canvas.Left="335" Canvas.Top="302"  />
+                <TextBlock Text="{Binding wind.WindSpeed, StringFormat={}{0:.0}}"  
+                             FontFamily="Segoe UI" FontWeight="Regular"  
+                                  FontSize="72" Width="288" Canvas.Left="258" Canvas.Top="388"  Background="Transparent"
+                                     HorizontalAlignment="Left" VerticalAlignment="Top"  TextAlignment="Center" Height="80" />
+                <Polygon Points="0,0 40,0 20,100"  StrokeThickness="2" Canvas.Left="380" Canvas.Top="130" RenderTransformOrigin="0.5,2.7">
+
                     <Polygon.Style>
                         <Style TargetType="Polygon">
-                            <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}"/>
+                            <Setter Property="Fill" Value="{DynamicResource WindPanel.Triangle.InActive}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding wind.IsActive}" Value="true">
-                                    <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
+                                    <Setter Property="Fill" Value="{DynamicResource WindPanel.Triangle.Active}"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -1072,18 +1076,18 @@
                 </Polygon>
                 <!--角度标记-->
                 <Canvas>
-                    <TextBlock Text="36" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="375.014" Canvas.Top="-0.621" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <TextBlock Text="03" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="567.499" Canvas.Top="49.555" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="06" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="699.998" Canvas.Top="180.705" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <TextBlock Text="09" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="749.327" Canvas.Top="366.796" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <TextBlock Text="12" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="700" Canvas.Top="556.796" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="15" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="567.499" Canvas.Top="690.653" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    <TextBlock Text="18" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="375.12" Canvas.Top="742.281" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    <TextBlock Text="21" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="181.7" Canvas.Top="691.836" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="24" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="35" Canvas.Top="556.796" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    <TextBlock Text="27" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Top="366.796" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.639,4.53" Canvas.Left="0.165" />
-                    <TextBlock Text="30" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="35" Canvas.Top="180.705" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="33" FontSize="34" FontFamily="Segoe UI Bold" Canvas.Left="179.278" Canvas.Top="49.555" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="36" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="377" Canvas.Top="-2" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="03" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="576" Canvas.Top="49" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="06" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="711" Canvas.Top="182" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="09" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="760" Canvas.Top="373" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="12" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="713" Canvas.Top="567" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="15" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="570" Canvas.Top="705" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="18" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="377" Canvas.Top="756" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="21" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="188" Canvas.Top="699" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="24" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="48" Canvas.Top="561" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="27" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.639,4.53" Canvas.Left="-2" />
+                    <TextBlock Text="30" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="47" Canvas.Top="183" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="33" FontSize="34" FontFamily="Segoe UI Semilight" Canvas.Left="192" Canvas.Top="49" HorizontalAlignment="Center" VerticalAlignment="Top" />
                     <TextBlock Text="MAG" FontSize="34" FontFamily="Segoe UI Semibold" Canvas.Left="680.773" Canvas.Top="-0.621" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 </Canvas>
             </Canvas>
