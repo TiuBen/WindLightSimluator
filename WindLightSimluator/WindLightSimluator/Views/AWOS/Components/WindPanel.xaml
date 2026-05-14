@@ -14,10 +14,12 @@
 
         <conv:WindPanelSegmentColorConverter x:Key="WindPanelSegmentColorConverter" />
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource WindPanelTextColor.InActive }"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontFamily" Value="Cascadia Code"/>
+            <Setter Property="Foreground" Value="{DynamicResource WindPanel.TextColor.InActive }"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Foreground" Value="{DynamicResource WindPanelTextColor.Active}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource WindPanel.TextColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers> 
         </Style>
@@ -994,7 +996,8 @@
                             <RotateTransform Angle="11.5"/>
                         </TransformGroup>
                     </Canvas.RenderTransform>
-                    <Rectangle Height="560" Canvas.Left="373" Canvas.Top="120" Width="54" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Fill="Black" />
+                    <!--跑道道面-->
+                    <Rectangle Height="560" Canvas.Left="373" Canvas.Top="120" Width="54" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Fill="#555557" />
 
 
                     <Path Fill="White" Canvas.Left="373" Canvas.Top="130" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,2.8" Panel.ZIndex="100" 
@@ -1047,6 +1050,16 @@
                 <TextBlock Text="。" FontSize="40" FontFamily="Segoe UI Bold" 
                            Canvas.Left="472.459" Canvas.Top="290.52" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"  />
                 <Polygon Points="0,0 40,0 20,100" Fill="#FFFF5D00" StrokeThickness="2" Canvas.Left="380" Canvas.Top="130" RenderTransformOrigin="0.5,2.7">
+                    <Polygon.Style>
+                        <Style TargetType="Polygon">
+                            <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding wind.IsActive}" Value="true">
+                                    <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Polygon.Style>
                     <Polygon.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>

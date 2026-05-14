@@ -7,35 +7,35 @@
              xmlns:local="clr-namespace:WindLightSimluator.Views.AWOS"
              xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+              d:DesignWidth="1440" d:DesignHeight="750">
     <Grid  Background="{DynamicResource MainContainerBg}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="12*"/>
-            <RowDefinition Height="4"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="840*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="104*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"  >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="510*"/>
                 <ColumnDefinition Width="4"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="410*"/>
                 <ColumnDefinition Width="4"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="510*"/>
             </Grid.ColumnDefinitions>
             <!--第一列-->
             <Grid x:Name="Col1"  >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="56*"/>
+                    <RowDefinition Height="346*"/>
+                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="66*"/>
+                    <RowDefinition Height="134*"/>
+                    <RowDefinition Height="134*"/>
                 </Grid.RowDefinitions>
-              
+
                 <comps:RunwayStatus  DataContext="{Binding SelectedRunwayVM.startPart}"  Margin="0 0 0 4"/>
-               
+
                 <comps:WindPanel  Grid.Row="1" Grid.RowSpan="3"  DataContext="{Binding SelectedRunwayVM.startPart}" Margin="0 0 0 4"/>
                 <StackPanel Grid.Row="1">
                     <TextBlock Text="风速"/>
@@ -51,13 +51,13 @@
             <!--第二列-->
             <Grid  x:Name="Col2" Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/> 
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="53*"/>
+                    <RowDefinition Height="346*"/>
+                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="66*"/>
+                    <RowDefinition Height="134*"/>
+                    <RowDefinition Height="134*"/>
                 </Grid.RowDefinitions>
                 <comps:RunwayStatus     DataContext="{Binding SelectedRunwayVM.middlePart}" Margin="0 0 0 4"/>
                 <comps:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding SelectedRunwayVM.middlePart}" Margin="0 0 0 4"/>
@@ -70,13 +70,13 @@
             <!--第三列-->
             <Grid x:Name="Col3"  Grid.Column="4" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="53*"/>
+                    <RowDefinition Height="346*"/>
+                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="66*"/>
+                    <RowDefinition Height="134*"/>
+                    <RowDefinition Height="134*"/>
                 </Grid.RowDefinitions>
                 <comps:RunwayStatus    DataContext="{Binding SelectedRunwayVM.endPart}" Margin="0 0 0 4"/>
                 <comps:WindPanel  Grid.Row="1"  Grid.RowSpan="3" DataContext="{Binding SelectedRunwayVM.endPart}" Margin="0 0 0 4" />
@@ -90,3 +90,5 @@
 
 
 </UserControl>
+
+

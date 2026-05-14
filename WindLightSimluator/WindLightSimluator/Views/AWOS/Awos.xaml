@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:WindLightSimluator.Views.AWOS"
         xmlns:vm="clr-namespace:WindLightSimluator.ViewModels"
         mc:Ignorable="d"
-        d:Width="1980"
+        d:Width="1920" d:Height="1080"
         >
     <Grid Background="{DynamicResource MainContainerBg}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" MinHeight="60" />
+            <RowDefinition Height="40*" MinHeight="60" />
             <RowDefinition Height="4"  />
-            <RowDefinition Height="13*" />
+            <RowDefinition Height="748*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="67*"/>
             <ColumnDefinition Width="4"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1440*"/>
         </Grid.ColumnDefinitions>
         
         <local:TopBar Grid.Row="0" Grid.ColumnSpan="3"  />

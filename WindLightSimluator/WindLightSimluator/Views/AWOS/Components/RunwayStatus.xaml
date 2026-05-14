@@ -38,7 +38,7 @@
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                     RelativeSource={RelativeSource AncestorType=Grid},
                     Converter={StaticResource  HeightToFontSizeConverter}, 
-                    ConverterParameter=0.3}"/>
+                    ConverterParameter=0.34}"/>
         </Style>
         <Style x:Key="ContainerBackgroundColor" TargetType="Grid" >
             <Setter Property="Background" Value="{DynamicResource RunwayStatus.ContainerBackgroundColor.InActive}" />
@@ -48,7 +48,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-    
+
         <!--跑道文字颜色-->
         <Style x:Key="LabelTextColor" TargetType="TextBlock"  BasedOn="{StaticResource largeText}">
             <Setter Property="Foreground" Value="{DynamicResource RunwayStatus.LabelTextColor.InActive}" />
@@ -82,10 +82,23 @@
     <Grid Style="{DynamicResource ContainerBackgroundColor}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
+        <Grid Grid.ColumnSpan="3" Height="4"  VerticalAlignment="Top" >
+            <Grid.Style>
+                <Style TargetType="Grid" >
+                    <Setter Property="Background" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.InActive}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsActive}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource RunwayStatus.LabelBackgroundColor.Active}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+        </Grid>
         <Grid >
             <!-- ===============================
              左边倒直角梯形（100%自适应）
@@ -109,9 +122,9 @@
                         <!-- 倒直角梯形：左边直角，右下是钝角 -->
                         <PathGeometry>
                             <PathFigure StartPoint="0,0" IsClosed="True">
-                                <LineSegment Point="100,0"/>
+                                <LineSegment Point="185,0"/>
                                 <!-- 右上 -->
-                                <LineSegment Point="80,100"/>
+                                <LineSegment Point="175,100"/>
                                 <!-- 右下（钝角位置） -->
                                 <LineSegment Point="0,100"/>
                                 <!-- 左下 -->
@@ -121,26 +134,23 @@
                 </Path>
             </Viewbox>
 
-            <TextBlock Text="{Binding PartName}"  Style="{DynamicResource LabelTextColor}" />
+            <TextBlock Text="{Binding PartName}"  Style="{DynamicResource LabelTextColor}"  />
         </Grid>
 
 
         <!-- 右侧：胶囊形状态条 -->
-        <Grid Grid.Column="2"  Margin="0,0,10,0" Visibility="{Binding IsActive,Converter={StaticResource TrueOnlyToVisibility} }" >
-            <!-- 我们把 Border 的高度绑定到 UserControl 的 Height（可以用 Padding 调整内缩） -->
-            <!--Background="{Binding ValueTextBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"-->
-            <!--Background="{Binding ValueTextBackgroundColor,RelativeSource={RelativeSource AncestorType=local:RunwayStatus}}"-->
-            <base:CapsuleBorder 
+        <base:CapsuleBorder 
+                    Grid.Column="2" 
+                    Visibility="{Binding IsActive,Converter={StaticResource TrueOnlyToVisibility} }" 
                     x:Name="StatusBorder"
                     Style="{DynamicResource ValueTextBackgroundColor}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch"
+                    Margin="0,4,30,4"
                     >
-                <!-- 内容区：居中显示状态文字 -->
-                <TextBlock Text="{Binding PartStatusText}" Style="{DynamicResource ValueTextColor}" Margin="10 5 10 5"/>
-                <!-- 说明：上面状态文字的 FontSize 我设置为 RunwayFontSize 的某个比例（可调），避免状态字太大 -->
-            </base:CapsuleBorder>
-        </Grid>
+            <!-- 内容区：居中显示状态文字 -->
+            <TextBlock Text="{Binding PartStatusText}" Style="{DynamicResource ValueTextColor}" Margin="20 2 20 2"/>
+        </base:CapsuleBorder>
 
     </Grid>
 </UserControl>
