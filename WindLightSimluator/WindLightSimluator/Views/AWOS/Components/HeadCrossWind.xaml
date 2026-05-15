@@ -16,12 +16,24 @@
         <conv:ThresholdColorConverter  x:Key="ThresholdColorConverter"/>
         <!--主题颜色+是否被选中-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <!--如标题之类的 label的背景色-->
+        <Style TargetType="Border" >
+            <Setter Property="Background" Value="{DynamicResource RvrVis.LabelBackgroundColor.InActive}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource RvrVis.LabelBackgroundColor.Active}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="TextBlock" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontSize"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}, Converter={StaticResource  HeightToFontSizeConverter}, ConverterParameter=0.6}"/>
+            <Setter Property="FontSize"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}, 
+                                                                      Converter={StaticResource  HeightToFontSizeConverter}, 
+                                                                ConverterParameter=0.6}"/>
             <Setter Property="Foreground" Value="{DynamicResource RvrVis.LabelTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
@@ -30,17 +42,16 @@
             </Style.Triggers>
         </Style>
         <Style  TargetType="base:BorderText" >
-            <Setter Property="BorderThicknessValue" Value="3"/>
+            <Setter Property="BorderThicknessValue" Value="0"/>
             <Setter Property="BorderColor" Value="Transparent"/>
-            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource RvrVis.ValueTextBackgroundColor.InActive}"/>
             <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
             <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
+                    <Setter Property="BackgroundColor" Value="{DynamicResource RvrVis.ValueTextBackgroundColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -53,8 +64,6 @@
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding AvgHeadWind, Converter={StaticResource LessThanConverter}, ConverterParameter=-3.5}" Value="True">
@@ -64,15 +73,7 @@
         </Style>
 
 
-        <!--如标题之类的 label的背景色-->
-        <Style TargetType="Border" >
-            <Setter Property="Background" Value="{DynamicResource RvrVis.LabelBackgroundColor.InActive}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource RvrVis.LabelBackgroundColor.Active}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+      
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -90,7 +91,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*"  />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="*"/>
@@ -120,15 +121,25 @@
         <Border  Grid.Column="2" Grid.Row="0"   >
             <TextBlock  Text="AVG2" />
         </Border>
-        <base:BorderText Grid.Column="2" Grid.Row="2" Style="{StaticResource LargerThan35}"  MainText="{Binding AvgHeadWind}" SubText="mps" />
-        <base:BorderText   Grid.Column="2" Grid.Row="4"  MainText="{Binding AvgCrossWindText}" SubText="mps"/>
+        <base:BorderText Grid.Column="2" Grid.Row="2" Style="{StaticResource LargerThan35}"  MainText="{Binding HeadWindSpeedAvg2}" SubText="mps" />
+        <base:BorderText   Grid.Column="2" Grid.Row="4"  MainText="{Binding CrossWindSpeedAvg2}" SubText="mps"/>
 
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬-->
 
-        <Border Background="Transparent" Grid.Row="0" Grid.Column="3"/>
-        <Border Background="Transparent" Grid.Row="1" Grid.Column="3"/>
-        <Border Background="Transparent" Grid.Row="2" Grid.Column="3"/>
+        <Border  Grid.Row="0" Grid.Column="3" Grid.RowSpan="5" >
+            <Border.Style>
+                <Style TargetType="Border" >
+                    <Setter Property="Background" Value="{DynamicResource RvrVis.ContainerBackgroundColor.InActive}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsActive}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource RvrVis.ContainerBackgroundColor.Active}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+
 
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第4列 WD / WS ▬▬▬▬▬▬▬▬▬▬▬-->
@@ -150,24 +161,24 @@
 
             <TextBlock   Text="MNM2" />
         </Border>
-        <base:BorderText  Grid.Column="6" Grid.Row="2" MainText="{Binding MinWindDir}" SubText="°" />
-        <base:BorderText   Grid.Column="6" Grid.Row="4" MainText="{Binding MinWindSpeed}" SubText="mps" />
+        <base:BorderText  Grid.Column="6" Grid.Row="2" MainText="{Binding WindDirMin2}" SubText="°" />
+        <base:BorderText   Grid.Column="6" Grid.Row="4" MainText="{Binding WindSpeedMin2}" SubText="mps" />
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬-->
 
         <Border    Grid.Column="8" Grid.Row="0"  >
             <TextBlock   Text="AVG2" />
         </Border>
-        <base:BorderText  Grid.Column="8" Grid.Row="2" MainText="{Binding AvgWindDir}" SubText="°" />
-        <base:BorderText  Grid.Column="8" Grid.Row="4" MainText="{Binding AvgWindSpeed}" SubText="mps" />
+        <base:BorderText  Grid.Column="8" Grid.Row="2" MainText="{Binding WindDirAvg2}" SubText="°" />
+        <base:BorderText  Grid.Column="8" Grid.Row="4" MainText="{Binding WindSpeedAvg2}" SubText="mps" />
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬-->
 
         <Border    Grid.Column="10" Grid.Row="0"  >
             <TextBlock   Text="MAX2"  Padding=" 9 2 9 6"/>
         </Border>
-        <base:BorderText  Grid.Column="10" Grid.Row="2"  MainText="{Binding MaxWindDir}" SubText="°" />
-        <base:BorderText  Grid.Column="10" Grid.Row="4"  MainText="{Binding MaxWindSpeed}" SubText="mps" />
+        <base:BorderText  Grid.Column="10" Grid.Row="2"  MainText="{Binding WindDirMax2}" SubText="°" />
+        <base:BorderText  Grid.Column="10" Grid.Row="4"  MainText="{Binding WindSpeedMax2}" SubText="mps" />
 
 
     </Grid>

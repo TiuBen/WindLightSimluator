@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,121 +11,104 @@ namespace WindLightSimluator.ViewModels.vm
     public partial class WindVM : ViewModelBase
     {
         private double _windSpeed;
-        private double   _windDir;
-        private int _runwayDir;
-        public WindVM(double speed, double dir, int rwyDir)
+        public double WindSpeedValue => _windSpeed;
+        public string WindSpeed
         {
-            _runwayDir = rwyDir;
+            get {
+                if (_windSpeed == 0)
+                    return "CALM";
+                return Math.Round(_windSpeed, 1).ToString("0.0");
+            }
+        }
 
-            WindSpeed = speed;
-            WindDir = dir;
-            Timestamp = DateTime.Now;
+
+        private double _windDir;
+        public double WindDirValue => _windDir;
+        public int WindDir
+        {
+            get {
+                if (_windDir == 0)
+                    return 360;
+                return (short)(Math.Round(_windDir / 10.0) * 10);
+            }
         }
 
 
         public DateTime Timestamp { get; private set; }
 
-        public double WindSpeed
+
+        private RunwayPartVM? _parent;
+
+        public RunwayPartVM? BelongPart
         {
-            get => Math.Round(_windSpeed, 1);
+            get => _parent;
             set {
-                if (value < 0) throw new ArgumentException("风速不能为负数");
-                if (SetProperty(ref _windSpeed, value))
-                {
-                    // 当风速改变，必须通知 UI 重新读取计算属性
-                    OnPropertyChanged(nameof(HeadWindSpeed));
-                    OnPropertyChanged(nameof(CrossWindSpeed));
-
+                // 取消旧订阅
+                if (_parent != null){
+                    _parent.PropertyChanged -= Parent_PropertyChanged;
                 }
-            }
-        }
 
-        public double WindDir
-        {
-            get => (short)(Math.Round(_windDir / 10.0) * 10);
-            set {
-                if (value < 0 || value > 360) throw new ArgumentException("风向必须在0-360度之间");
-                if (SetProperty(ref _windDir, value))
-                {
-                    OnPropertyChanged(nameof(HeadWindSpeed));
-                    OnPropertyChanged(nameof(CrossWindSpeed));
-                    OnPropertyChanged(nameof(AngleIndex));
-                    OnPropertyChanged(nameof(AngleHeading));
+                _parent = value;
+
+                // 监听新父对象
+                if (_parent != null) {
+                    _parent.PropertyChanged += Parent_PropertyChanged;
                 }
+
+                // 刷新顶风/侧风
+                OnPropertyChanged(nameof(HeadWindSpeed));
+                OnPropertyChanged(nameof(CrossWindSpeed));
             }
         }
+        public double RunwayDirValue => BelongPart?.PartDirection ?? -1;
 
-        // --- 新增：角度索引 (0-35) ---
-        public int AngleIndex
+
+
+
+        public WindVM(double speed, double dir)
         {
-           
-            get {
-                    double dir = _windDir;
+            if (speed < 0)
+                throw new ArgumentException("风速不能为负数");
+            if (dir < 0 || dir > 360)
+                throw new ArgumentException("风向必须在0-360度之间");
 
-                    // 关键：平移5度做区间归属
-                    dir = (dir + 5) % 360;
-
-                    return (int)(dir / 10);
-            }
+            _windSpeed = speed;
+            _windDir = dir;
+            Timestamp = DateTime.Now;
         }
 
-        public double AngleHeading
-        {
-            get {
-                double roundedDir = Math.Round(_windDir / 10.0) * 10;
-                int index = (int)((roundedDir + 5) / 10); if (index >= 36) index = 0;
-                return index * 10;
-            }
-        }
-
-        
-
-
-        private bool? _isactive;
-        public bool? IsActive
-        {
-            get => _isactive;
-            set => SetProperty(ref _isactive, value);
-
-        }
-
-
-
-
-        // ... 保留你原有的 NormalizeAngle, HeadWindSpeed, CrossWindSpeed 逻辑 ...
-        // 注意：HeadWindSpeed 和 CrossWindSpeed 只有 get，不需要 SetProperty，
-        // 只要在 WindSpeed/Dir 的 setter 里调用 OnPropertyChanged(nameof(HeadWindSpeed)) 即可。
-
-        private static double NormalizeAngle(double angle)
-        {
-            if (angle < 0) return 0.0;
-            angle %= 360;
-            if (angle > 180) angle -= 360;
-            if (angle < -180) angle += 360;
-            return angle;
-        }
-
+        public bool? IsActive => BelongPart?.IsActive;
 
         public string HeadWindSpeed
         {
             get {
-                double delta = NormalizeAngle(WindDir - _runwayDir);
-                double hw = WindSpeed * Math.Cos(delta * Math.PI / 180.0);
+                if (RunwayDirValue < 0)
+                    return "ERROR";
+
+                double delta = _windDir - RunwayDirValue;
+                double hw = _windSpeed * Math.Cos(delta * Math.PI / 180.0);
 
                 double value = Math.Round(Math.Abs(hw), 1);
 
+                if (value == 0)
+                    return "CALM";
+
+
                 return hw >= 0
-                    ? $"+{value}"   // 逆风
+                    ? $"{value}"   // 逆风
                     : $"-{value}";  // 顺风
             }
         }
 
-        // 计算侧风分量（需要传入跑道方向）
         public string CrossWindSpeed
         {
             get {
-                double delta = NormalizeAngle(WindDir - _runwayDir);
-                double cw = WindSpeed * Math.Sin(delta * Math.PI / 180.0);
+                if (RunwayDirValue < 0)
+                    return "ERROR";
+
+
+                double delta = _windDir - RunwayDirValue;
+                double cw = _windSpeed * Math.Sin(delta * Math.PI / 180.0);
 
                 double value = Math.Round(Math.Abs(cw), 1);
 
@@ -135,8 +119,69 @@ namespace WindLightSimluator.ViewModels.vm
 
                 return $"{side}{value}";
             }
+        }
+
+        private void Parent_PropertyChanged( object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName ==  nameof(RunwayPartVM.PartDirection)) {
+                OnPropertyChanged(nameof(HeadWindSpeed));
+                OnPropertyChanged(nameof(CrossWindSpeed));
+            }
+            if (e.PropertyName ==nameof(RunwayPartVM.IsActive))
+            {
+                OnPropertyChanged(nameof(IsActive));
+            }
 
         }
 
+
     }
 }
+
+
+
+// 注意：HeadWindSpeed 和 CrossWindSpeed 只有 get，不需要 SetProperty，
+// 只要在 WindSpeed/Dir/RunwayDir 的 setter 里调用
+// OnPropertyChanged(nameof(HeadWindSpeed)) 即可。
+
+//public string HeadWindSpeed
+//{
+//    get {
+//        if (_runwayDir <= 0)
+//            return "ERROR";
+//        double delta = _windDir - _runwayDir;
+//        double hw = _windSpeed * Math.Cos(delta * Math.PI / 180.0);
+
+//        double value = Math.Round(Math.Abs(hw), 1);
+
+//        if (value == 0)
+//            return "CALM";
+
+
+//        return hw >= 0
+//            ? $"{value}"   // 逆风
+//            : $"-{value}";  // 顺风
+//    }
+//}
+
+//// 计算侧风分量（需要传入跑道方向）
+//public string CrossWindSpeed
+//{
+//    get {
+//        if (_runwayDir <= 0)
+//            return "ERROR";
+
+//        double delta = _windDir - _runwayDir;
+//        double cw = _windSpeed * Math.Sin(delta * Math.PI / 180.0);
+
+//        double value = Math.Round(Math.Abs(cw), 1);
+
+//        if (value == 0)
+//            return "CALM";
+
+//        string side = cw > 0 ? "R" : "L";
+
+//        return $"{side}{value}";
+//    }
+
+//}

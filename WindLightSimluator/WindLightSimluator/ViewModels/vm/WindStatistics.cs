@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq;
 using System.Text;
@@ -13,379 +14,296 @@ using WindLightSimluator.ViewModels.vm;
 namespace WindLightSimluator.ViewModels.vm
 {
 
-    public class WindStatisticsVM : ViewModelBase
+    public partial class WindStatisticsVM : ViewModelBase
     {
-        // 存储最近的数据点
-        private Queue<Wind> _samples = new();
-        private int _maxSize;
-        private int _runwayDir;
-
-        public int RunwayDir
-        {
-            get => _runwayDir;
-            set {
-                if (value < 0 || value > 360)
-                    throw new ArgumentException("跑道方向必须在0-360之间");
-
-                if (SetProperty(ref _runwayDir, value))
-                {
-                    // ⭐ 跑道变了，必须重新计算
-                    UpdateRunwayComponent();
-                }
-            }
-        }
 
         private bool? _IsActive;
         public bool? IsActive
         {
             get => _IsActive;
             set => SetProperty(ref _IsActive, value);
-
         }
 
+        private RunwayPartVM? _parent;
 
-        public WindStatisticsVM(int runwayDir, int size = 5)
+        public RunwayPartVM? BelongPart
         {
-            RunwayDir = runwayDir;
-            _maxSize = size;
+            get => _parent;
+            set {
+                // 取消旧订阅
+                if (_parent != null)
+                {
+                    _parent.PropertyChanged -= Parent_PropertyChanged;
+                }
+
+                _parent = value;
+
+                // 监听新父对象
+                if (_parent != null)
+                {
+                    _parent.PropertyChanged += Parent_PropertyChanged;
+                }
+
+                // 刷新顶风/侧风
+                OnPropertyChanged(nameof(HeadWindSpeedAvg2));
+                OnPropertyChanged(nameof(CrossWindSpeedAvg2));
+            }
         }
-        // 每当传感器有新数据，调用此方法
-        public void AddSample(double speed, int dir)
+        private double RunwayDirValue => BelongPart?.PartDirection ?? -1;
+
+
+        /// <summary>
+        /// 有效时间（分钟）
+        /// </summary>
+        public int Duration { get; set; } = 2;
+
+        /// <summary>
+        /// 当前系统时间
+        /// </summary>
+        public DateTime CurrentTime => DateTime.Now;
+
+        /// <summary>
+        /// 所有风数据
+        /// </summary>
+        private readonly Queue<WindVM> _allData = new();
+
+
+
+
+        /// <summary>
+        /// 添加风数据
+        /// </summary>
+        public void AddWindVM(WindVM wind)
         {
-            _samples.Enqueue(new Wind(speed, dir));
 
-            if (_samples.Count > _maxSize)
-                _samples.Dequeue();
+            DateTime limit = DateTime.Now.AddMinutes(-Duration);
 
-            UpdateAll();
+            while (_allData.Count > 0 &&
+               _allData.Peek().Timestamp < limit)
+            {
+                _allData.Dequeue();
+            }
+
+            // 添加新数据
+            _allData.Enqueue(wind);
+
+            // 通知刷新
+            OnPropertyChanged(nameof(WindDirMin2));
+            OnPropertyChanged(nameof(WindDirAvg2));
+            OnPropertyChanged(nameof(WindDirMax2));
+
+            OnPropertyChanged(nameof(WindSpeedMin2));
+            OnPropertyChanged(nameof(WindSpeedAvg2));
+            OnPropertyChanged(nameof(WindSpeedMax2));
+
+            OnPropertyChanged(nameof(HeadWindSpeedAvg2));
+            OnPropertyChanged(nameof(CrossWindSpeedAvg2));
         }
-
-        #region 跑道分量统计（平均顶风 / 侧风）
-
-        private double _avgHeadWind;
-        public double AvgHeadWind
-        {
-            get => _avgHeadWind;
-            private set => SetProperty(ref _avgHeadWind, value);
-        }
-
-        private double _avgCrossWind;
-        public double AvgCrossWind
-        {
-            get => _avgCrossWind;
-            private set => SetProperty(ref _avgCrossWind, value);
-        }
-
-        #endregion
-
-
-        #region 风速统计
-        private double _minWindSpeed;
-        public double MinWindSpeed
-        {
-            get => _minWindSpeed;
-            private set => SetProperty(ref _minWindSpeed, value);
-        }
-        private double _maxWindSpeed;
-        public double MaxWindSpeed
-        {
-            get => _maxWindSpeed;
-            private set => SetProperty(ref _maxWindSpeed, value);
-        }
-        private double _avgWindSpeed;
-        public double AvgWindSpeed
-        {
-            get => _avgWindSpeed;
-            private set => SetProperty(ref _avgWindSpeed, value);
-        }
-
-        #endregion
 
         #region 风向统计
-        private double _minWindDir;
-        public double MinWindDir
+
+        /// <summary>
+        /// 最小风向（显示值：10度取整）
+        /// </summary>
+        public int WindDirMin2
         {
-            get => _minWindDir;
-            private set => SetProperty(ref _minWindDir, value);
-        }
-        private double _maxWindDir;
-        public double MaxWindDir
-        {
-            get => _maxWindDir;
-            private set => SetProperty(ref _maxWindDir, value);
-        }
-        private double _avgWindDir;
-        public double AvgWindDir
-        {
-            get => _avgWindDir;
-            private set => SetProperty(ref _avgWindDir, value);
-        }
+            get {
+                if (_allData.Count == 0)
+                    return 999;
 
+                double dir = _allData.Min(x => x.WindDirValue);
 
+                int result = (int)(Math.Round(dir / 10.0) * 10);
 
-
-        #endregion
-
-        private HashSet<int> _dirRangeSet = new();
-        public HashSet<int> DirRangeSet // { get; set; }  // = new HashSet<int> { 0, 1, 2, 3 };
-        {
-            get => _dirRangeSet;
-            set {
-                _dirRangeSet = value;
-                OnPropertyChanged(nameof(DirRangeSet));
+                return result == 0 ? 360 : result;
             }
         }
 
-        #region Core Calculation
-
-        private void UpdateAll()
+        /// <summary>
+        /// 最大风向（显示值：10度取整）
+        /// </summary>
+        public int WindDirMax2
         {
-            if (_samples.Count == 0) return;
+            get {
+                if (_allData.Count == 0)
+                    return 999;
 
-            UpdateWindSpeed();
-            UpdateWindDir();
-            UpdateDirection();
-            UpdateRunwayComponent();
-            UpdateRunwayComponentText();
+                double dir = _allData.Max(x => x.WindDirValue);
+
+                int result = (int)(Math.Round(dir / 10.0) * 10);
+
+                return result == 0 ? 360 : result;
+            }
         }
 
-        #endregion
-
-        #region 计算 Speed 相关的  
-
-        private void UpdateWindSpeed()
+        /// <summary>
+        /// 平均风向（向量平均 + 10度取整）
+        /// </summary>
+        public int WindDirAvg2
         {
-            MinWindSpeed = Math.Round(_samples.Min(x => x.WindSpeed), 1);
-            MaxWindSpeed = Math.Round(_samples.Max(x => x.WindSpeed), 1);
-            AvgWindSpeed = Math.Round(_samples.Average(x => x.WindSpeed), 1);
-        }
-        private void UpdateWindDir()
-        {
-            //MinWindDir = Math.Round(_samples.Min(x => x.WindDir), 0);
-            //MaxWindDir = Math.Round(_samples.Max(x => x.WindDir), 0);
-            //AvgWindDir = Math.Round(_samples.Average(x => x.WindDir), 0);
+            get {
+                if (_allData.Count == 0)
+                    return 999;
 
-            //MinWindDir = (int)Math.Round(_samples.Min(x => x.WindDir));
-            //MaxWindDir = (int)Math.Round(_samples.Max(x => x.WindDir));
-            //AvgWindDir = (int)Math.Round(_samples.Average(x => x.WindDir));
+                double sinSum = _allData.Sum(x =>
+                    Math.Sin(x.WindDirValue * Math.PI / 180.0));
 
-            // Get raw values first
-            var minRaw = _samples.Min(x => x.WindDir);
-            var maxRaw = _samples.Max(x => x.WindDir);
-            var avgRaw = _samples.Average(x => x.WindDir);
+                double cosSum = _allData.Sum(x =>
+                    Math.Cos(x.WindDirValue * Math.PI / 180.0));
 
-            // Handle the 0° = 360° special case
-            MinWindDir = NormalizeWindDirection((int)Math.Round(minRaw));
-            MaxWindDir = NormalizeWindDirection((int)Math.Round(maxRaw));
-            AvgWindDir = NormalizeWindDirection((int)Math.Round(avgRaw));
+                double avgRad = Math.Atan2(sinSum, cosSum);
 
-        }
+                double avgDeg = avgRad * 180.0 / Math.PI;
 
+                if (avgDeg < 0)
+                    avgDeg += 360;
 
+                int result = (int)(Math.Round(avgDeg / 10.0) * 10);
 
-        #endregion
-
-        #region Direction (矢量平均 + 范围)
-
-        private void UpdateDirection()
-        {
-            // ===== 矢量平均风向 =====
-            double sumSin = 0;
-            double sumCos = 0;
-
-            foreach (var s in _samples)
-            {
-                double rad = s.WindDir * Math.PI / 180.0;
-                sumSin += Math.Sin(rad);
-                sumCos += Math.Cos(rad);
+                return result == 0 ? 360 : result;
             }
-
-            double avgRad = Math.Atan2(sumSin, sumCos);
-            double avgDeg = avgRad * 180.0 / Math.PI;
-
-            //AvgWindDir = Normalize360(avgDeg);
-
-            // ===== 风向范围 =====
-            var indices = _samples
-                .Select(x => (int)Math.Round(x.WindDir / 10.0) % 36)
-                .OrderBy(x => x)
-                .ToList();
-
-            int maxGap = -1;
-            int gapStart = 0;
-            int gapEnd = 0;
-
-            for (int i = 0; i < indices.Count; i++)
-            {
-                int current = indices[i];
-                int next = indices[(i + 1) % indices.Count];
-
-                int gap = (i == indices.Count - 1)
-                    ? (indices[0] + 36 - current)
-                    : (next - current);
-
-                if (gap > maxGap)
-                {
-                    maxGap = gap;
-                    gapStart = current;
-                    gapEnd = next;
-                }
-            }
-
-            int start = gapEnd;
-            int end = gapStart;
-
-            var set = new HashSet<int>();
-
-            int idx = start;
-            while (true)
-            {
-                set.Add(idx);
-                if (idx == end) break;
-                idx = (idx + 1) % 36;
-            }
-
-            DirRangeSet = set;
         }
 
         #endregion
 
-        #region Runway Component（平均顶风/侧风）
+        #region 风速统计
 
-        // 1. 用于显示的侧风属性 (例如: "R15" 或 "L10")
-        private string _avgCrossWindText;
-        public string AvgCrossWindText
+        public string WindSpeedMin2
         {
-            get => _avgCrossWindText;
-            set => SetProperty(ref _avgCrossWindText, value);
-        }
+            get {
+                if (_allData.Count == 0)
+                    return "CALM";
 
-        // 2. 用于显示的顺风/逆风属性 (例如: "+10" 或 "-5")
-        private string _avgHeadWindText;
-        public string AvgHeadWindText
-        {
-            get => _avgHeadWindText;
-            set => SetProperty(ref _avgHeadWindText, value);
-        }
+                double value =
+                    Math.Round(
+                        _allData.Min(x => x.WindSpeedValue),
+                        1);
 
-        private void UpdateRunwayComponentText()
-        {
-            if (_samples == null || _samples.Count == 0)
-            {
-                AvgHeadWindText = "0.0"; // 或者 "--"
-                AvgCrossWindText = "CALM";
-                return;
-            }
-
-            double sumHead = 0;
-            double sumCross = 0;
-
-            foreach (var s in _samples)
-            {
-                // 1. 计算角度差并归一化
-                double delta = NormalizeAngle(s.WindDir - RunwayDir);
-                double rad = delta * Math.PI / 180.0;
-
-                // 2. 分解向量
-                sumHead += s.WindSpeed * Math.Cos(rad);
-                sumCross += s.WindSpeed * Math.Sin(rad);
-            }
-
-            // 3. 计算平均值
-            double avgHeadVal = sumHead / _samples.Count;
-            double avgCrossVal = sumCross / _samples.Count;
-
-            // 4. 格式化 Head Wind (逆风/顺风)
-            // 逻辑：正数是逆风 (+)，负数是顺风 (-)
-            double headAbs = Math.Round(Math.Abs(avgHeadVal), 1);
-            AvgHeadWindText = avgHeadVal >= 0
-                ? $"+{headAbs}"   // 逆风
-                : $"-{headAbs}";  // 顺风
-
-            // 5. 格式化 Cross Wind (左侧风/右侧风)
-            // 逻辑：正数是右侧风 (R)，负数是左侧风 (L)
-            double crossAbs = Math.Round(Math.Abs(avgCrossVal), 1);
-
-            if (crossAbs < 0.1) // 视为无风
-            {
-                AvgCrossWindText = "CALM";
-            }
-            else
-            {
-                // 根据你的需求，这里生成 "R15" 或 "L10" 这种格式
-                string side = avgCrossVal > 0 ? "R" : "L";
-                AvgCrossWindText = $"{side}{crossAbs}";
+                return value == 0
+                    ? "CALM"
+                    : value.ToString("0.0");
             }
         }
 
-        private void UpdateRunwayComponent()
+        public string WindSpeedAvg2
         {
-            double sumHead = 0;
-            double sumCross = 0;
+            get {
+                if (_allData.Count == 0)
+                    return "CALM";
 
-            foreach (var s in _samples)
-            {
-                double delta = Normalize180(s.WindDir - RunwayDir);
-                double rad = delta * Math.PI / 180.0;
+                double value =
+                    Math.Round(
+                        _allData.Average(x => x.WindSpeedValue),
+                        1);
 
-                sumHead += s.WindSpeed * Math.Cos(rad);
-                sumCross += s.WindSpeed * Math.Sin(rad);
+                return value == 0
+                    ? "CALM"
+                    : value.ToString("0.#");
             }
+        }
 
-            AvgHeadWind = Math.Round(sumHead / _samples.Count, 1);
-            AvgCrossWind = Math.Round(sumCross / _samples.Count, 1);
+        public string WindSpeedMax2
+        {
+            get {
+                if (_allData.Count == 0)
+                    return "CALM";
+
+                double value =
+                    Math.Round(
+                        _allData.Max(x => x.WindSpeedValue),
+                        1);
+
+                return value == 0
+                    ? "CALM"
+                    : value.ToString("0.#");
+            }
         }
 
         #endregion
 
-        #region Helpers
+        #region 顶风 / 侧风
 
-        private static double Normalize360(double angle)
+        public string HeadWindSpeedAvg2
         {
-            angle %= 360;
-            if (angle < 0) angle += 360;
-            return angle;
+            get {
+                if (_allData.Count == 0)
+                    return "CALM";
+
+                if (RunwayDirValue < 0)
+                    return "ERROR";
+
+                double hw =
+                    _allData.Average(x =>
+                    {
+                        double delta =
+                            x.WindDirValue
+                            - RunwayDirValue;
+
+                        return x.WindSpeedValue *
+                               Math.Cos(
+                                   delta
+                                   * Math.PI / 180.0);
+                    });
+
+                double value =
+                    Math.Round(Math.Abs(hw), 1);
+
+                if (value == 0)
+                    return "CALM";
+
+                return hw >= 0
+                    ? value.ToString("0.#")
+                    : $"-{value:0.#}";
+            }
         }
 
-        private static double Normalize180(double angle)
+        public string CrossWindSpeedAvg2
         {
-            angle = Normalize360(angle);
-            if (angle > 180) angle -= 360;
-            return angle;
-        }
+            get {
+                if (_allData.Count == 0)
+                    return "CALM";
 
-        private int NormalizeWindDirection(int direction)
-        {
-            // If direction is 0, convert to 360
-            if (direction == 0)
-                return 360;
+                if (RunwayDirValue < 0)
+                    return "ERROR";
 
-            // Ensure direction is a multiple of 10 (rounding to nearest 10 if needed)
-            direction = (int)Math.Round(direction / 10.0) * 10;
+                double cw =
+                    _allData.Average(x =>
+                    {
+                        double delta =
+                            x.WindDirValue
+                            - RunwayDirValue;
 
-            // Handle case where rounding gives 0 (e.g., 5° rounds to 0°)
-            if (direction == 0)
-                return 360;
+                        return x.WindSpeedValue *
+                               Math.Sin(
+                                   delta
+                                   * Math.PI / 180.0);
+                    });
 
-            // Ensure direction stays within 10-360 range
-            if (direction < 10)
-                direction = 10;
-            else if (direction > 360)
-                direction = 360;
+                double value =
+                    Math.Round(Math.Abs(cw), 1);
 
-            return direction;
-        }
+                if (value == 0)
+                    return "CALM";
 
-        private static double NormalizeAngle(double angle)
-        {
-            if (angle < 0) return 0.0;
-            angle %= 360;
-            if (angle > 180) angle -= 360;
-            if (angle < -180) angle += 360;
-            return angle;
+                string side =
+                    cw > 0 ? "R" : "L";
+
+                return $"{side}{value:0.#}";
+            }
         }
 
         #endregion
+
+
+
+        private void Parent_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(RunwayPartVM.PartDirection))
+            {
+                OnPropertyChanged(nameof(HeadWindSpeedAvg2));
+                OnPropertyChanged(nameof(CrossWindSpeedAvg2));
+            }
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--侧栏 包括整个 主界面-->
-    <SolidColorBrush x:Key="MainBarBg"   Color="#5595CA"/>
+    <SolidColorBrush x:Key="MainBarBg"   Color="#fafafa"/>
     <LinearGradientBrush x:Key="RectButtonBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FF7CC1F9" Offset="0.607"/>
         <GradientStop Color="#FF5595CA"/>
@@ -38,7 +38,7 @@
 
     <!--HeadCrossWind RrvVis WeatherCondition-->
     <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.InActive" Color="#F1F2F6"/>
-    <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.Active" Color="#f8ffff"/>
+    <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.Active" Color="#fafafa"/>
 
     <SolidColorBrush x:Key="RvrVis.LabelBackgroundColor.InActive" Color="#DCE0E9"/>
     <SolidColorBrush x:Key="RvrVis.LabelBackgroundColor.Active" Color="#c8e2f8"/>

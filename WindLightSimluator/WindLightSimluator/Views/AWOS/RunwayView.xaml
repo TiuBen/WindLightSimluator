@@ -36,15 +36,19 @@
                 <comps:RunwayStatus  DataContext="{Binding SelectedRunwayVM.startPart}"  Margin="0 0 0 4"/>
 
                 <comps:WindPanel  Grid.Row="1" Grid.RowSpan="2"  DataContext="{Binding SelectedRunwayVM.startPart}" />
-                <!--<StackPanel Grid.Row="1">
+                <StackPanel Grid.Row="1">
                     <TextBlock Text="风速"/>
-                    <TextBlock Text="{Binding SelectedRunwayVM.startPart.wind.WindSpeed}"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.startPart.Wind.WindSpeed}"/>
                     <TextBlock Text="风向"/>
-                    <TextBlock Text="{Binding SelectedRunwayVM.startPart.wind.WindDir}"/>
-                </StackPanel>-->
-                <comps:HeadCrossWind Grid.Row="3" Grid.Column="0" DataContext="{Binding SelectedRunwayVM.startPart.statistics}" Margin="0 0 0 4"/>
-                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.startPart.rvrVis}" Margin="0 0 0 4"  />
-                <comps:WeatherCondition Grid.Row="5" DataContext="{Binding SelectedRunwayVM.startPart.weather}" />
+                    <TextBlock Text="{Binding SelectedRunwayVM.startPart.Wind.WindDir}"/>
+                    <TextBlock Text="顶风"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.startPart.Wind.HeadWindSpeed}"/>
+                    <TextBlock Text="侧风"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.startPart.Wind.CrossWindSpeed}"/>
+                </StackPanel>
+                <comps:HeadCrossWind Grid.Row="3" Grid.Column="0" DataContext="{Binding SelectedRunwayVM.startPart.Statistics}" Margin="0 0 0 4"/>
+                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.startPart.RvrVis}" Margin="0 0 0 4"  />
+                <comps:WeatherCondition Grid.Row="5" DataContext="{Binding SelectedRunwayVM.startPart.Weather}" />
 
             </Grid>
             <!--第二列-->
@@ -59,9 +63,19 @@
                 </Grid.RowDefinitions>
                 <comps:RunwayStatus     DataContext="{Binding SelectedRunwayVM.middlePart}" Margin="0 0 0 4"/>
                 <comps:WindPanel  Grid.Row="1"   DataContext="{Binding SelectedRunwayVM.middlePart}" />
-                <comps:HeadCrossWind  Grid.Row="2" DataContext="{Binding SelectedRunwayVM.middlePart.statistics}"  Margin="0 0 0 4"/>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="风速"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.middlePart.Wind.WindSpeed}"/>
+                    <TextBlock Text="风向"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.middlePart.Wind.WindDir}"/>
+                    <TextBlock Text="顶风"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.middlePart.Wind.HeadWindSpeed}"/>
+                    <TextBlock Text="侧风"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.middlePart.Wind.CrossWindSpeed}"/>
+                </StackPanel>
+                <comps:HeadCrossWind  Grid.Row="2" DataContext="{Binding SelectedRunwayVM.middlePart.Statistics}"  Margin="0 0 0 4"/>
                 <comps:Qnh  Grid.Row="3"   Margin="0 0 0 4" />
-                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.middlePart.rvrVis}" Margin="0 0 0 4"/>
+                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.middlePart.RvrVis}" Margin="0 0 0 4"/>
                 <comps:Light Grid.Row="5" DataContext="{Binding Light}" />
 
             </Grid>
@@ -77,9 +91,19 @@
                 </Grid.RowDefinitions>
                 <comps:RunwayStatus    DataContext="{Binding SelectedRunwayVM.endPart}" Margin="0 0 0 4"/>
                 <comps:WindPanel  Grid.Row="1"  Grid.RowSpan="2" DataContext="{Binding SelectedRunwayVM.endPart}" />
-                <comps:HeadCrossWind  Grid.Row="3" Grid.Column="2" DataContext="{Binding SelectedRunwayVM.endPart.statistics}" Margin="0 0 0 4"/>
-                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.endPart.rvrVis}"  Margin="0 0 0 4"  />
-                <comps:WeatherCondition Grid.Row="5" DataContext="{Binding SelectedRunwayVM.endPart.weather}" />
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="风速"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.endPart.Wind.WindSpeed}"/>
+                    <TextBlock Text="风向"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.endPart.Wind.WindDir}"/>
+                    <TextBlock Text="顶风"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.endPart.Wind.HeadWindSpeed}"/>
+                    <TextBlock Text="侧风"/>
+                    <TextBlock Text="{Binding SelectedRunwayVM.endPart.Wind.CrossWindSpeed}"/>
+                </StackPanel>
+                <comps:HeadCrossWind  Grid.Row="3" Grid.Column="2" DataContext="{Binding SelectedRunwayVM.endPart.Statistics}" Margin="0 0 0 4"/>
+                <comps:RvrVis  Grid.Row="4"  DataContext="{Binding SelectedRunwayVM.endPart.RvrVis}"  Margin="0 0 0 4"  />
+                <comps:WeatherCondition Grid.Row="5" DataContext="{Binding SelectedRunwayVM.endPart.Weather}" />
             </Grid>
         </Grid>
         <comps:Metar Grid.Row="2"   />

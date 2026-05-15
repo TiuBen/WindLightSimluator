@@ -8,13 +8,13 @@
              xmlns:conv="clr-namespace:WindLightSimluator.Converters"
              xmlns:Awos="clr-namespace:WindLightSimluator.Views.AWOS"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" >
     <UserControl.Resources>
         <!-- 定义高度到字体大小的转换器 -->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
 
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="FontSize" Value="60"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
@@ -24,11 +24,8 @@
                     Value="{Binding ActualHeight, 
                     RelativeSource={RelativeSource AncestorType=Border},  
                     Converter={StaticResource  HeightToFontSizeConverter},   
-                    ConverterParameter=0.7}"/>
+                    ConverterParameter=0.5}"/>
             <Setter Property="Foreground" Value="{DynamicResource QnhLight.LabelTextColor}" />
-        </Style>
-        <Style TargetType="Grid">
-            <Setter Property="Background" Value="{DynamicResource QnhLight.ContainerBackgroundColor}" />
         </Style>
 
     </UserControl.Resources>
@@ -39,16 +36,22 @@
         </Grid.ColumnDefinitions>
         <Border Background="{DynamicResource QnhLight.LabelBackgroundColor}">
             <TextBlock Text="QNH"   
-                       Foreground="{DynamicResource QnhLight.LabelTextColor}"/>
+                       Foreground="{DynamicResource QnhLight.LabelTextColor}" FontWeight="Bold"/>
         </Border>
         <base:BorderText Grid.Column="1" 
                          MainText="{Binding Qnh}" 
                          Margin="0"
-                         SubText="hPa  " 
+                         SubText="hPa" 
                          BackgroundColor="Transparent"
                          BorderColor="Transparent"
                          MainTextColor="{DynamicResource QnhLight.ValueTextColor}"
                          SubTextColor="{DynamicResource QnhLight.ValueTextColor}"
+                         MainTextFontSize="{Binding ActualHeight, 
+                                     RelativeSource={RelativeSource AncestorType=Border},  
+                                     Converter={StaticResource  HeightToFontSizeConverter},   
+                                        ConverterParameter=0.8}"
+                          MainTextFontWeight="Bold"
+                         SubTextFontSize="18"
                          />
     </Grid>
 </UserControl>

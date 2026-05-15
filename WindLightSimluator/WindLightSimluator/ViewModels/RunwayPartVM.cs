@@ -29,6 +29,13 @@ namespace WindLightSimluator.ViewModels
             set => SetProperty(ref _partName, value);
         }
 
+        private double _partDirection;
+        public double PartDirection
+        {
+            get => _partDirection;
+            set => SetProperty(ref _partDirection, value);
+        }
+
         private bool? _isActive;
         public bool? IsActive
         {
@@ -43,7 +50,7 @@ namespace WindLightSimluator.ViewModels
             }
 
         }
-
+        
 
         public string PartStatusText
         {
@@ -70,10 +77,59 @@ namespace WindLightSimluator.ViewModels
             set => SetProperty(ref _rvrLightDegree, value);
         }
 
-        public WindVM wind { get; set; }
-        public WindStatisticsVM statistics { get; set; }
-        public RvrVisVM rvrVis { get; set; }
-        public WeatherConditionVM weather { get; set; }
+        private WindVM _wind;
+        public WindVM Wind
+        {
+            get => _wind;
+            set {
+                if (SetProperty(ref _wind, value))
+                {
+                    if (_wind != null)
+                    {
+                        _wind.BelongPart = this;
+                    }
+                }
+            }
+        }
+        private WindStatisticsVM _statistics=new WindStatisticsVM();
+        public WindStatisticsVM Statistics
+        {
+            get => _statistics;
+            //set => SetProperty(ref _statistics, value);
+            set {
+                if (SetProperty(ref _statistics, value))
+                {
+                    if (_statistics != null)
+                    {
+                        _statistics.BelongPart = this;
+                    }
+                }
+            }
+
+        }
+
+        private RvrVisVM _rvrVis=new RvrVisVM();
+        public RvrVisVM RvrVis
+        {
+            get => _rvrVis;
+            //set => SetProperty(ref _rvrVis, value);
+            set {
+                if (SetProperty(ref _rvrVis, value))
+                {
+                    if (_rvrVis != null)
+                    {
+                        _rvrVis.BelongPart = this;
+                    }
+                }
+            }
+        }
+
+        private WeatherConditionVM _weather=new WeatherConditionVM();
+        public WeatherConditionVM Weather
+        {
+            get => _weather;
+            set => SetProperty(ref _weather, value);
+        }
 
         // =========================
         // 🎯 Command：修改 RVR 等级
@@ -92,14 +148,14 @@ namespace WindLightSimluator.ViewModels
         }
 
 
-        public RunwayPartVM(bool? isActive, String partNaame)
+        public RunwayPartVM(bool? isActive, String partName,double partDirection)
         {
             _isActive = isActive;
-            _partName = partNaame;
+            _partName = partName;
+            _partDirection= partDirection;
 
             SetRvrLevelCommand = new RelayCommand<int>(param =>
             {
-                if (param == null) return;
 
                 if (int.TryParse(param.ToString(), out int level))
                 {
@@ -108,27 +164,5 @@ namespace WindLightSimluator.ViewModels
                 }
             });
         }
-
-        public RunwayPartVM()
-        {
-            _isActive = false;
-            _partName = string.Empty;
-
-            SetRvrLevelCommand = new RelayCommand<int>(param =>
-            {
-                if (param == null) return;
-
-                if (int.TryParse(param.ToString(), out int level))
-                {
-                    RvrLightDegree = level;
-                    OnPropertyChanged(nameof(RvrLightDegree));
-                }
-            });
-        }
-
-
-        //用来模拟的数据
-
-        public int Offset { get; set; }
     }
 }

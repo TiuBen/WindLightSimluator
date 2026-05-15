@@ -1030,7 +1030,7 @@
                         <Style TargetType="Ellipse">
                             <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding wind.IsActive}" Value="true">
+                                <DataTrigger Binding="{Binding Wind.IsActive}" Value="true">
                                     <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -1045,10 +1045,10 @@
                            Canvas.Left="430.509" Canvas.Top="460.455" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBlock Text="。" FontSize="40" FontFamily="Segoe UI Bold" 
                            Canvas.Left="472.459" Canvas.Top="290.52" HorizontalAlignment="Left" VerticalAlignment="Center"  />
-                <TextBlock Text="{Binding wind.WindDir, StringFormat={}{0:000}}"   
+                <TextBlock Text="{Binding Wind.WindDir}"   
                              FontSize="72" Width="130"  FontFamily="Segoe UI" FontWeight="Regular" 
                               TextAlignment="Center"  VerticalAlignment="Bottom" Canvas.Left="335" Canvas.Top="302"  />
-                <TextBlock Text="{Binding wind.WindSpeed, StringFormat={}{0:.0}}"  
+                <TextBlock Text="{Binding Wind.WindSpeed}"  
                              FontFamily="Segoe UI" FontWeight="Regular"  
                                   FontSize="72" Width="288" Canvas.Left="258" Canvas.Top="388"  Background="Transparent"
                                      HorizontalAlignment="Left" VerticalAlignment="Top"  TextAlignment="Center" Height="80" />
@@ -1058,7 +1058,7 @@
                         <Style TargetType="Polygon">
                             <Setter Property="Fill" Value="{DynamicResource WindPanel.Triangle.InActive}"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding wind.IsActive}" Value="true">
+                                <DataTrigger Binding="{Binding Wind.IsActive}" Value="true">
                                     <Setter Property="Fill" Value="{DynamicResource WindPanel.Triangle.Active}"/>
                                 </DataTrigger>
                             </Style.Triggers>

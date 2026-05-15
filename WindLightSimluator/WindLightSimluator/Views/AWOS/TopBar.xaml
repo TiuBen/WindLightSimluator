@@ -98,7 +98,7 @@
                             <Binding    Path="ActualHeight"
                                ElementName="Container"
                               Converter="{StaticResource HeightToFontSizeConverter}"
-                              ConverterParameter="0.2" />
+                              ConverterParameter="0.25" />
                         </TextBlock.FontSize>
                     </TextBlock>
                 </base:CapsuleBorder>
@@ -201,16 +201,16 @@
             <Grid HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="6"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="6"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <!-- sunrise / sunset -->
                 <Grid Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="2"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -223,13 +223,13 @@
                         <base:CapsuleBorder Grid.Column="0">
                             <TextBlock Text="sunrise" Style="{StaticResource LabelStyle}">
                                 <TextBlock.FontSize>
-                                    <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.2" />
+                                    <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.25" />
                                 </TextBlock.FontSize>
                             </TextBlock>
                         </base:CapsuleBorder>
                         <TextBlock Grid.Column="1" Text="2025-12-07 17:13:50" Style="{StaticResource TextStyle}" >
                             <TextBlock.FontSize>
-                                <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.2" />
+                                <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.25" />
                             </TextBlock.FontSize>
                         </TextBlock>
                     </Grid>
@@ -243,13 +243,13 @@
                         <base:CapsuleBorder Grid.Column="0">
                             <TextBlock Text="sunset"  Style="{StaticResource LabelStyle}">
                                 <TextBlock.FontSize>
-                                    <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.2" />
+                                    <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.25" />
                                 </TextBlock.FontSize>
                             </TextBlock>
                         </base:CapsuleBorder>
                         <TextBlock Grid.Column="1" Text="2025-12-07 17:13:50" Style="{StaticResource TextStyle}" >
                             <TextBlock.FontSize>
-                                <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.2" />
+                                <Binding    Path="ActualHeight" ElementName="Container" Converter="{StaticResource HeightToFontSizeConverter}" ConverterParameter="0.25" />
                             </TextBlock.FontSize>
                         </TextBlock>
                     </Grid>
@@ -258,7 +258,7 @@
                 <Border  Grid.Column="2" Style="{DynamicResource HoverBorderStyle}" 
                          MouseLeftButtonDown="ChangeThemeToDay_MouseLeftButtonDown"
                          >
-                    <Rectangle Width="30" Height="30" Fill="{DynamicResource TopBarTextColor}"  Margin="2" >
+                    <Rectangle Width="25" Height="25" Fill="{DynamicResource TopBarTextColor}"  Margin="2" >
                         <Rectangle.OpacityMask>
                             <ImageBrush ImageSource="/夜晚.png"/>
                         </Rectangle.OpacityMask>
@@ -266,7 +266,7 @@
                 </Border>
                 <Border  Grid.Column="4" Style="{DynamicResource HoverBorderStyle}"  
                          MouseLeftButtonDown="ChangeThemeToNight_MouseLeftButtonDown">
-                    <Rectangle Width="30" Height="30"  Fill="{DynamicResource TopBarTextColor}"   Margin="2" >
+                    <Rectangle Width="25" Height="25"  Fill="{DynamicResource TopBarTextColor}"   Margin="2" >
                         <Rectangle.OpacityMask>
                             <ImageBrush ImageSource="/白天.png"/>
                         </Rectangle.OpacityMask>

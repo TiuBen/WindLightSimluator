@@ -9,14 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="LightTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <SolidColorBrush x:Key="RvrColor_Low" Color="#AA00FF"/>
-            <SolidColorBrush x:Key="RvrColor_Mid" Color="#FF0000"/>
-            <SolidColorBrush x:Key="RvrColor_High" Color="#000000"/>
-            <SolidColorBrush x:Key="VisColor_Low" Color="#AA00FF"/>
-            <SolidColorBrush x:Key="VisColor_Mid" Color="#FF0000"/>
-            <SolidColorBrush x:Key="VisColor_High" Color="#000000"/>
             <local:App x:Key="AppInstace"/>
-        
         </ResourceDictionary>
       
     </Application.Resources>

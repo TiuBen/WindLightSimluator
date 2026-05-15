@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,11 +83,42 @@ namespace WindLightSimluator.ViewModels.vm
 
 
 
-        private bool? _IsActive;
-        public bool? IsActive
+        /// <summary>
+        ///  关联的属性
+        /// </summary>
+        private RunwayPartVM? _parent;
+
+        public RunwayPartVM? BelongPart
         {
-            get => _IsActive;
-            set => SetProperty(ref _IsActive, value);
+            get => _parent;
+            set {
+                // 取消旧订阅
+                if (_parent != null)
+                {
+                    _parent.PropertyChanged -= Parent_PropertyChanged;
+                }
+
+                _parent = value;
+
+                // 监听新父对象
+                if (_parent != null)
+                {
+                    _parent.PropertyChanged += Parent_PropertyChanged;
+                }
+
+                // 刷新顶风/侧风
+                OnPropertyChanged(nameof(IsActive));
+            }
+        }
+        public bool? IsActive => BelongPart?.IsActive;
+
+        private void Parent_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+
+            if (e.PropertyName == nameof(RunwayPartVM.IsActive))
+            {
+                OnPropertyChanged(nameof(IsActive));
+            }
 
         }
     }

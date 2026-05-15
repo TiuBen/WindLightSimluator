@@ -13,9 +13,9 @@
 
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+            <Setter Property="FontWeight" Value="Regular"/>
             <Setter Property="FontSize" Value="60"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
@@ -27,14 +27,14 @@
 
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="Microsoft Yahei UI"/>
+            <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="FontSize"  Value="{Binding ActualHeight,
                      RelativeSource={RelativeSource AncestorType=Grid},
                      Converter={StaticResource  HeightToFontSizeConverter}, 
-                     ConverterParameter=0.1}"/>
+                     ConverterParameter=0.17}"/>
         </Style>
     </UserControl.Resources>
     <Grid Background="{DynamicResource QnhLight.ContainerBackgroundColor}" Margin="0">
@@ -43,7 +43,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Background="{DynamicResource QnhLight.LabelBackgroundColor}" Margin="0">
-            <TextBlock Text="METAR"   Foreground="{DynamicResource QnhLight.LabelTextColor}"/>
+            <TextBlock Text="METAR"   Foreground="{DynamicResource QnhLight.LabelTextColor}" Margin="30 0 30 0"/>
+
+
         </Border>
         <Label Grid.Column="1"  Margin="0" Foreground="{DynamicResource QnhLight.ValueTextColor }" Content="METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG="/>
     </Grid>

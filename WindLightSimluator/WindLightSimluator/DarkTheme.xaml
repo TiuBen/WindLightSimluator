@@ -1,11 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--侧栏 包括整个 主界面-->
-    <SolidColorBrush x:Key="MainBarBg"   Color="#002C5C"/>
+    <SolidColorBrush x:Key="MainBarBg"   Color="#1b305b"/>
     <LinearGradientBrush x:Key="RectButtonBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FF2367B3" Offset="0.573"/>
-        <GradientStop Color="#FF002C5C" Offset="0"/>
-        <GradientStop Color="#FF2567AF" Offset="0.36"/>
+        <GradientStop Color="#FF125195" Offset="0.895"/>
+        <GradientStop Color="#FF2D6BAE" Offset="0"/>
+        <GradientStop Color="#FF2A68B0" Offset="0.674"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="RectButtonBackgroundBrushHovor" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FF2367B3" Offset="0.427"/>
@@ -36,10 +36,8 @@
     <SolidColorBrush x:Key="RunwayStatus.ValueTextColor.Active" Color="#FAFAFA"/>
 
     <!--HeadCrossWind RrvVis WeatherCondition-->
-    <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.InActive" Color="#122651"/>
-    <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.Active" Color="#122651"/>
-    <!--<SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.InActive" Color="#2c4c85"/>
-    <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.Active" Color="#2c4c85"/>-->
+    <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.InActive" Color="#233b6b"/>
+    <SolidColorBrush x:Key="RvrVis.ContainerBackgroundColor.Active" Color="#2c4c85"/>
 
     <SolidColorBrush x:Key="RvrVis.LabelTextColor.InActive" Color="#7988b0"/>
     <SolidColorBrush x:Key="RvrVis.LabelTextColor.Active" Color="#fafafa"/>

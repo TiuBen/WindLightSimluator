@@ -22,15 +22,16 @@
             </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" >
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Padding" Value="10 0 10 0"/>
             <Setter Property="FontSize"  
                     Value="{Binding ActualHeight,
                     RelativeSource={RelativeSource AncestorType=Border},
                     Converter={StaticResource  HeightToFontSizeConverter},
-                    ConverterParameter=0.8}"/>
+                    ConverterParameter=0.6}"/>
             <Setter Property="Foreground" Value="{DynamicResource RvrVis.LabelTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
@@ -42,15 +43,20 @@
             <Setter Property="Margin" Value="0"/>
             <Setter Property="BorderThicknessValue" Value="0"/>
             <Setter Property="SubText" Value="mps"/>
-            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource RvrVis.ValueTextBackgroundColor.InActive}"/>
+            <Setter Property="SubTextFontSize" Value="12"  />
+            <Setter Property="MainTextFontSize"  
+                      Value="{Binding ActualHeight,
+                      RelativeSource={RelativeSource AncestorType=Grid},
+                      Converter={StaticResource  HeightToFontSizeConverter},
+                      ConverterParameter=0.17}"/>
             <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
             <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
+                    <Setter Property="BackgroundColor" Value="{DynamicResource RvrVis.ValueTextBackgroundColor.Active}"  />
                 </DataTrigger>
             </Style.Triggers>
         </Style>

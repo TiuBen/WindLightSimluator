@@ -15,9 +15,9 @@
     </UserControl.Resources>
 
     <Border x:Name="mainBorder" 
-            BorderBrush="{Binding BorderColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
-            BorderThickness="{Binding BorderThicknessValue,  RelativeSource={RelativeSource AncestorType=UserControl}}"
-            Background="{Binding  BackgroundColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
+            BorderBrush="{Binding BorderColor, ElementName=root}"
+            BorderThickness="{Binding BorderThicknessValue,   ElementName=root}"
+            Background="{Binding  BackgroundColor,  ElementName=root}"
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
             Margin="0"
@@ -25,23 +25,27 @@
       
         <Grid  HorizontalAlignment="Stretch"  VerticalAlignment="Center" >
             <!-- 右下角小字 -->
-            <TextBlock  Text="{Binding SubText, RelativeSource={RelativeSource AncestorType=UserControl}}"
-             FontSize="{Binding SubTextFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
-             Foreground="{Binding SubTextColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
-             HorizontalAlignment="Right"
-             VerticalAlignment="Bottom"
-             FontFamily="Segoe UI"
-            />
+            <TextBlock  
+                         Text="{Binding SubText, ElementName=root}"
+                         FontSize="{Binding SubTextFontSize, ElementName=root}"
+                         Foreground="{Binding SubTextColor,  ElementName=root}"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Bottom"
+                         FontFamily="Segoe UI"
+                        TextAlignment="Right"
+                        FontWeight="Normal"
+                        />
             <TextBlock 
                        x:Name="mainTextBlock"
-                       Text="{Binding MainText, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       FontSize="{Binding MainTextFontSize,RelativeSource={RelativeSource AncestorType=UserControl}}"      
-                       Foreground="{Binding MainTextColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       Text="{Binding MainText,  ElementName=root}"
+                       FontSize="{Binding MainTextFontSize, ElementName=root}" 
+                       Foreground="{Binding MainTextColor,  ElementName=root}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        TextAlignment="Center"
                        FontFamily="Segoe UI"
-                
+                        FontWeight="{Binding MainTextFontWeight,ElementName=root}"
+                        
                        />
 
           
