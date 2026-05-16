@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -87,6 +88,9 @@ namespace WindLightSimluator.ViewModels.vm
             // 添加新数据
             _allData.Enqueue(wind);
 
+            // 更新方向区间集合
+            UpdateDirRangeSets();
+
             // 通知刷新
             OnPropertyChanged(nameof(WindDirMin2));
             OnPropertyChanged(nameof(WindDirAvg2));
@@ -98,6 +102,10 @@ namespace WindLightSimluator.ViewModels.vm
 
             OnPropertyChanged(nameof(HeadWindSpeedAvg2));
             OnPropertyChanged(nameof(CrossWindSpeedAvg2));
+
+            OnPropertyChanged(nameof(OutDirRangeSet));
+            OnPropertyChanged(nameof(InnerRangeSet));
+
         }
 
         #region 风向统计

@@ -51,10 +51,12 @@ namespace WindLightSimluator.ViewModels
             set {
                 if (SetProperty(ref _selectedTableName, value))
                 {
+                    OnPropertyChanged( nameof(CanStartSimulation));
                     OnPropertyChanged(nameof(CanStart));
                     // 选择改变后自动预加载数据
                     PreloadData(value);
-
+                    StartSimulationCommand?.RaiseCanExecuteChanged();
+                    StopRandomSimulation();
                 }
 
             }

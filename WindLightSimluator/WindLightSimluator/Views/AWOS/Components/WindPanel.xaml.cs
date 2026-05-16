@@ -24,5 +24,33 @@ namespace WindLightSimluator.Views.AWOS.Components
         {
             InitializeComponent();
         }
+
+        public Visibility StartPartThresholdVisibility
+        {
+            get => (Visibility)GetValue(StartPartThresholdVisibilityProperty);
+            set => SetValue(StartPartThresholdVisibilityProperty, value);
+        }
+
+        public static readonly DependencyProperty StartPartThresholdVisibilityProperty =
+            DependencyProperty.Register(
+                nameof(StartPartThresholdVisibility),
+                typeof(Visibility),
+                typeof(RunwayStatus),
+                new PropertyMetadata(Visibility.Visible));
+
+        public Visibility EndPartThresholdVisibility
+        {
+            get => (Visibility)GetValue(EndPartThresholdVisibilityProperty);
+            set => SetValue(EndPartThresholdVisibilityProperty, value);
+        }
+
+        public static readonly DependencyProperty EndPartThresholdVisibilityProperty =
+            DependencyProperty.Register(
+                nameof(EndPartThresholdVisibility),
+                typeof(Visibility),
+                typeof(RunwayStatus),
+                new PropertyMetadata(Visibility.Visible));
+
+
     }
 }

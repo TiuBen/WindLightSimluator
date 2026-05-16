@@ -44,13 +44,15 @@
         <Style  TargetType="base:BorderText" >
             <Setter Property="BorderThicknessValue" Value="0"/>
             <Setter Property="BorderColor" Value="Transparent"/>
-            <Setter Property="BackgroundColor" Value="{DynamicResource RvrVis.ValueTextBackgroundColor.InActive}"/>
             <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
             <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.InActive}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource RvrVis.ValueTextBackgroundColor.InActive}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
                     <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
                     <Setter Property="BackgroundColor" Value="{DynamicResource RvrVis.ValueTextBackgroundColor.Active}"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -66,7 +68,7 @@
                     <Setter Property="MainTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
                     <Setter Property="SubTextColor" Value="{DynamicResource RvrVis.ValueTextColor.Active}"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding AvgHeadWind, Converter={StaticResource LessThanConverter}, ConverterParameter=-3.5}" Value="True">
+                <DataTrigger Binding="{Binding HeadWindSpeedAvg2, Converter={StaticResource LessThanConverter}, ConverterParameter=-3.5}" Value="True">
                     <Setter Property="BorderColor" Value="Red"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -122,7 +124,7 @@
             <TextBlock  Text="AVG2" />
         </Border>
         <base:BorderText Grid.Column="2" Grid.Row="2" Style="{StaticResource LargerThan35}"  MainText="{Binding HeadWindSpeedAvg2}" SubText="mps" />
-        <base:BorderText   Grid.Column="2" Grid.Row="4"  MainText="{Binding CrossWindSpeedAvg2}" SubText="mps"/>
+        <base:BorderText Grid.Column="2" Grid.Row="4"  MainText="{Binding CrossWindSpeedAvg2}" SubText="mps" BorderThicknessValue="0"/>
 
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第3列 空白 ▬▬▬▬▬▬▬▬▬▬▬-->
@@ -161,24 +163,24 @@
 
             <TextBlock   Text="MNM2" />
         </Border>
-        <base:BorderText  Grid.Column="6" Grid.Row="2" MainText="{Binding WindDirMin2}" SubText="°" />
-        <base:BorderText   Grid.Column="6" Grid.Row="4" MainText="{Binding WindSpeedMin2}" SubText="mps" />
+        <base:BorderText  Grid.Column="6" Grid.Row="2" MainText="{Binding WindDirMin2}" SubText="°"  BorderThicknessValue="0"/>
+        <base:BorderText   Grid.Column="6" Grid.Row="4" MainText="{Binding WindSpeedMin2}" SubText="mps"  BorderThicknessValue="0"/>
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 AVG2  ▬▬▬▬▬▬▬▬▬▬▬-->
 
         <Border    Grid.Column="8" Grid.Row="0"  >
             <TextBlock   Text="AVG2" />
         </Border>
-        <base:BorderText  Grid.Column="8" Grid.Row="2" MainText="{Binding WindDirAvg2}" SubText="°" />
-        <base:BorderText  Grid.Column="8" Grid.Row="4" MainText="{Binding WindSpeedAvg2}" SubText="mps" />
+        <base:BorderText  Grid.Column="8" Grid.Row="2" MainText="{Binding WindDirAvg2}" SubText="°"  BorderThicknessValue="0"/>
+        <base:BorderText  Grid.Column="8" Grid.Row="4" MainText="{Binding WindSpeedAvg2}" SubText="mps"  BorderThicknessValue="0"/>
 
         <!--▬▬▬▬▬▬▬▬▬▬▬ 第6列 MAX2  ▬▬▬▬▬▬▬▬▬▬▬-->
 
         <Border    Grid.Column="10" Grid.Row="0"  >
             <TextBlock   Text="MAX2"  Padding=" 9 2 9 6"/>
         </Border>
-        <base:BorderText  Grid.Column="10" Grid.Row="2"  MainText="{Binding WindDirMax2}" SubText="°" />
-        <base:BorderText  Grid.Column="10" Grid.Row="4"  MainText="{Binding WindSpeedMax2}" SubText="mps" />
+        <base:BorderText  Grid.Column="10" Grid.Row="2"  MainText="{Binding WindDirMax2}" SubText="°"  BorderThicknessValue="0"/>
+        <base:BorderText  Grid.Column="10" Grid.Row="4"  MainText="{Binding WindSpeedMax2}" SubText="mps"  BorderThicknessValue="0"/>
 
 
     </Grid>

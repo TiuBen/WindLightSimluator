@@ -113,19 +113,7 @@ namespace WindLightSimluator.ViewModels
 
 
             StartRandomSimulation(4);
-
-
-            StartSimulationCommand = new RelayCommand2(start);
-
-            StopSimulationCommand = new RelayCommand2(stop);
-
         }
-
-
-
-       
-
-
     }
 
 }

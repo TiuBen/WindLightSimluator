@@ -7,91 +7,155 @@ using System.Windows.Input;
 
 namespace WindLightSimluator.utils
 {
+    /// <summary>
+    /// 通用 RelayCommand
+    /// </summary>
     public class RelayCommand<T> : ICommand
     {
-        //    private readonly Action _execute;
-        //    private readonly Func<bool> _canExecute;
+        private readonly Action<T?> _execute;
 
-        //    public RelayCommand(Action execute, Func<bool> canExecute = null)
-        //    {
-        //        _execute = execute;
-        //        _canExecute = canExecute;
-        //    }
+        private readonly Predicate<T?>? _canExecute;
 
-        //    public bool CanExecute(object parameter)
-        //    {
-        //        return _canExecute == null || _canExecute();
-        //    }
-
-        //    public void Execute(object parameter)
-        //    {
-        //        _execute();
-        //    }
-
-        //    public event EventHandler CanExecuteChanged;
-
-        //    public void RaiseCanExecuteChanged()
-        //    {
-        //        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        //    }
-        //}
-
-        private readonly Action<T> _execute;
-        private readonly Func<T, bool> _canExecute;
-
-        public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
+        public RelayCommand(
+            Action<T?> execute,
+            Predicate<T?>? canExecute = null)
         {
-            _execute = execute;
+            _execute = execute
+                ?? throw new ArgumentNullException(
+                    nameof(execute));
+
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
+        // =====================================
+        // ICommand
+        // =====================================
+
+        public bool CanExecute(object? parameter)
         {
-            return _canExecute == null || _canExecute((T)parameter);
+            if (_canExecute == null)
+                return true;
+
+            return _canExecute(
+                (T?)parameter);
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
-            _execute((T)parameter);
+            _execute((T?)parameter);
         }
 
-        public event EventHandler CanExecuteChanged
-        {
-            add { }
-            remove { }
-        }
-    }
+        public event EventHandler? CanExecuteChanged;
 
-
-    public class RelayCommand2 : ICommand
-    {
-        private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
-
-        public RelayCommand2(Action execute, Func<bool> canExecute = null)
-        {
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute == null || _canExecute();
-        }
-
-        public void Execute(object parameter)
-        {
-            _execute();
-        }
-
-        public event EventHandler CanExecuteChanged;
+        // =====================================
+        // 手动刷新按钮状态
+        // =====================================
 
         public void RaiseCanExecuteChanged()
         {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            CanExecuteChanged?.Invoke(
+                this,
+                EventArgs.Empty);
+        }
+    }
+
+    /// <summary>
+    /// 无参数版本
+    /// </summary>
+    public class RelayCommand : RelayCommand<object>
+    {
+        public RelayCommand(  Action<object?> execute, Predicate<object?>? canExecute = null) : base(execute, canExecute)
+        {
         }
     }
 
 
 }
 
+
+
+
+//public class RelayCommand<T> : ICommand
+//{
+//    //    private readonly Action _execute;
+//    //    private readonly Func<bool> _canExecute;
+
+//    //    public RelayCommand(Action execute, Func<bool> canExecute = null)
+//    //    {
+//    //        _execute = execute;
+//    //        _canExecute = canExecute;
+//    //    }
+
+//    //    public bool CanExecute(object parameter)
+//    //    {
+//    //        return _canExecute == null || _canExecute();
+//    //    }
+
+//    //    public void Execute(object parameter)
+//    //    {
+//    //        _execute();
+//    //    }
+
+//    //    public event EventHandler CanExecuteChanged;
+
+//    //    public void RaiseCanExecuteChanged()
+//    //    {
+//    //        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+//    //    }
+//    //}
+
+//    private readonly Action<T> _execute;
+//    private readonly Func<T, bool> _canExecute;
+
+//    public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
+//    {
+//        _execute = execute;
+//        _canExecute = canExecute;
+//    }
+
+//    public bool CanExecute(object parameter)
+//    {
+//        return _canExecute == null || _canExecute((T)parameter);
+//    }
+
+//    public void Execute(object parameter)
+//    {
+//        _execute((T)parameter);
+//    }
+
+//    public event EventHandler CanExecuteChanged
+//    {
+//        add { }
+//        remove { }
+//    }
+//}
+
+
+//public class RelayCommand2 : ICommand
+//{
+//    private readonly Action _execute;
+//    private readonly Func<bool> _canExecute;
+
+//    public RelayCommand2(Action execute, Func<bool> canExecute = null)
+//    {
+//        _execute = execute;
+//        _canExecute = canExecute;
+//    }
+
+//    public bool CanExecute(object parameter)
+//    {
+//        return _canExecute == null || _canExecute();
+//    }
+
+//    public void Execute(object parameter)
+//    {
+//        _execute();
+//    }
+
+//    public event EventHandler CanExecuteChanged;
+
+//    public void RaiseCanExecuteChanged()
+//    {
+//        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+//    }
+//}

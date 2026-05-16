@@ -8,9 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
     <UserControl.Resources>
-        <!--是否显示-->
-        <conv:TrueOnlyToVisibilityConverter x:Key="TrueOnlyToVisibility"/>
-        <conv:RunwayPartVisibiltyConverter x:Key="RunwayPartVisibiltyConverter"/>
+   
 
         <conv:WindPanelSegmentColorConverter x:Key="WindPanelSegmentColorConverter" />
         <Style TargetType="TextBlock">
@@ -39,9 +37,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.OutDirRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -53,9 +51,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.OutDirRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -67,9 +65,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.OutDirRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -81,9 +79,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.OutDirRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -95,9 +93,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.OutDirRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -109,9 +107,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.OutDirRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -123,9 +121,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.OutDirRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke" Value="Red"/>
@@ -143,9 +141,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.InnerRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -157,9 +155,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.InnerRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -171,9 +169,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.InnerRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -185,9 +183,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.InnerRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -199,9 +197,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.InnerRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -213,9 +211,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.InnerRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke"
@@ -227,9 +225,9 @@
                     <DataTrigger.Binding>
                         <MultiBinding Converter="{StaticResource WindPanelSegmentColorConverter}">
                             <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                            <Binding Path="statistics.DirRangeSet"/>
+                            <Binding Path="Statistics.InnerRangeSet"/>
                             <Binding Path="IsActive"/>
-                            <Binding Path="wind.AngleIndex"/>
+                            <Binding Path="Wind.AngleIndex"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Stroke" Value="Red"/>
@@ -242,7 +240,7 @@
             <Style TargetType="Grid">
                 <Setter Property="Background" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding wind.IsActive}" Value="True" >
+                    <DataTrigger Binding="{Binding Wind.IsActive}" Value="True" >
                         <Setter Property="Background" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
                     </DataTrigger>
                 </Style.Triggers>
@@ -983,7 +981,7 @@
                         <Style TargetType="Path">
                             <Setter Property="Fill" Value="{DynamicResource WindPanel.Threshold.InActive}"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding wind.IsActive}" Value="true">
+                                <DataTrigger Binding="{Binding IsActive}" Value="true">
                                     <Setter Property="Fill" Value="{DynamicResource WindPanel.Threshold.Active}"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -1000,9 +998,9 @@
                                RenderTransformOrigin="0.5,0.5" 
                                Fill="{DynamicResource WindPanel.RunwayRect }" />
 
-
+                        <!--跑道入口标志-->
                     <Path Canvas.Left="373" Canvas.Top="130" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,2.8" Panel.ZIndex="100" 
-                          Visibility="{Binding Part,Converter={StaticResource RunwayPartVisibiltyConverter}, ConverterParameter=Start }" >
+                           Visibility="{Binding StartPartThresholdVisibility, RelativeSource={RelativeSource AncestorType=UserControl} }"  >
                         <Path.Data>
                             <GeometryGroup>
                                 <RectangleGeometry Rect="7.5,0,8,100" />
@@ -1012,8 +1010,9 @@
                         </Path.Data>
 
                     </Path>
+                    <!--跑道入口标志-->
                     <Path Canvas.Left="373" Canvas.Top="570" Width="54" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,-1.7" Panel.ZIndex="100" 
-                          Visibility="{Binding Part,Converter={StaticResource RunwayPartVisibiltyConverter}, ConverterParameter=End }" >
+                          Visibility="{Binding EndPartThresholdVisibility, RelativeSource={RelativeSource AncestorType=UserControl} }"  >
                         <Path.Data>
                             <GeometryGroup>
                                 <RectangleGeometry Rect="7.5,0,8,100" />
@@ -1030,7 +1029,7 @@
                         <Style TargetType="Ellipse">
                             <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.InActive}"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Wind.IsActive}" Value="true">
+                                <DataTrigger Binding="{Binding IsActive}" Value="true">
                                     <Setter Property="Fill" Value="{DynamicResource WindPanel.ContainerBackgroundColor.Active}"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -1058,7 +1057,7 @@
                         <Style TargetType="Polygon">
                             <Setter Property="Fill" Value="{DynamicResource WindPanel.Triangle.InActive}"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Wind.IsActive}" Value="true">
+                                <DataTrigger Binding="{Binding IsActive}" Value="true">
                                     <Setter Property="Fill" Value="{DynamicResource WindPanel.Triangle.Active}"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -1068,7 +1067,7 @@
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
-                            <RotateTransform Angle="{Binding wind.AngleHeading}"/>
+                            <RotateTransform Angle="{Binding Wind.AngleHeading}"/>
                             <TranslateTransform/>
                         </TransformGroup>
                     </Polygon.RenderTransform>

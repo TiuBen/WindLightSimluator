@@ -58,13 +58,13 @@ namespace WindLightSimluator.ViewModels
                 runway.middlePart.Weather.Temperature = _realTimeTemperature;
                 runway.endPart.Weather.Temperature = _realTimeTemperature;
 
-                runway.startPart.RvrVis.RvrValue = _realTimeRVR.ToString();
-                runway.middlePart.RvrVis.RvrValue = _realTimeRVR.ToString();
-                runway.endPart.RvrVis.RvrValue = _realTimeRVR.ToString();
+                runway.startPart.RvrVis.Rvr = _realTimeRVR;
+                runway.middlePart.RvrVis.Rvr = _realTimeRVR;
+                runway.endPart.RvrVis.Rvr = _realTimeRVR;
 
-                runway.startPart.RvrVis.VisValue = (int)_realTimeVIS;
-                runway.middlePart.RvrVis.VisValue = (int)_realTimeVIS;
-                runway.endPart.RvrVis.VisValue = (int)_realTimeVIS;
+                runway.startPart.RvrVis.Vis = (int)_realTimeVIS;
+                runway.middlePart.RvrVis.Vis = (int)_realTimeVIS;
+                runway.endPart.RvrVis.Vis = (int)_realTimeVIS;
 
 
                 var Wind = new WindVM(_realTimeWindSpeed, _realTimeWindDirection);

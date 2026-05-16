@@ -54,48 +54,36 @@ namespace WindLightSimluator.ViewModels.vm
                 }
 
             }
-            set { // 2. 转换逻辑
-                int newValue;
-                if (int.TryParse(value, out int intValue))
-                {
-                    newValue = intValue >= 0 ? intValue : 0;
-                }
-                else if (value?.StartsWith("P", StringComparison.OrdinalIgnoreCase) == true)
-                {
-                    newValue = 2000;
-                }
-                else
-                {
-                    newValue = 0;
-                }
-
-                // 3. 使用 SetProperty 触发更新
-                // 注意：因为 RvrValue 是 string，而字段是 int，
-                // 我们需要手动判断并调用 OnPropertyChanged
-                if (_rvr != newValue)
-                {
-                    _rvr = newValue;
-                    OnPropertyChanged(nameof(RvrValue)); // 自动识别属性名 "RvrValue"
-                    //SetProperty(ref _rvr, newValue);
-                }
-            }
+          
         }
 
         private int _vis = 2000;
+        public int Vis
+        {
+            get => _vis;
+            set {
+                if (SetProperty(ref _vis, value))
+                {
+                    OnPropertyChanged(nameof(VisValue));
+                }
+            }
+        }
         public int VisValue
         {
-            get {  // 对 _vis 按 1000 的倍数进行四舍五入
-                return (int)Math.Round(_vis / 1000.0) * 1000;
+            get {
+                // 按 1000 四舍五入
+                int result = (int)Math.Round(_vis / 1000.0) * 1000;
+
+                // 最大 10000
+                return Math.Min(result, 10000);
             }
-            // 4. 标准属性直接使用 SetProperty，更简洁
-            set => SetProperty(ref _vis, value);
         }
 
-        public RvrVisVM(string initialRvr = "P2000", int initialVis = 2000)
+        public RvrVisVM(double initialRvr = 2000, double initialVis = 2000)
         {
             // 直接走属性赋值，触发解析逻辑
-            RvrValue = initialRvr;
-            VisValue = initialVis;
+            _rvr =(int)initialRvr;
+            _vis = (int)initialVis;
         }
 
 

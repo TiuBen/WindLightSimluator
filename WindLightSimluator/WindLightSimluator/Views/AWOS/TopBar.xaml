@@ -44,8 +44,16 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-
+        <Style TargetType="Button" >
+            <Setter Property="VerticalAlignment"  Value="Center"/>
+            <Setter Property="HorizontalAlignment"  Value="Center"/>
+            <Setter Property="FontWeight"  Value="SemiBold"/>
+        </Style>
+        <Style TargetType="ComboBox" >
+            <Setter Property="VerticalAlignment"  Value="Center"/>
+            <Setter Property="HorizontalAlignment"  Value="Center"/>
+            <Setter Property="FontWeight"  Value="SemiBold"/>
+        </Style>
     </UserControl.Resources>
 
     <Grid x:Name="Container" Background="{DynamicResource TopBarBg}">
@@ -176,23 +184,16 @@
         <Grid  Grid.Column="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="12"/>
                 <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" 
-                    IsEnabled="{Binding CanStart}"
-                    Command="{Binding StartSimulationCommand}"
-                    >开始练习</Button>
-            <ComboBox Grid.Column="2"
-                      ItemsSource="{Binding Tables}"
-                      SelectedItem="{Binding SelectedTableName}"  
-                                HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-            <Button Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" 
-                    Command="{Binding StopSimulationCommand}"
-                    IsEnabled="{Binding CanStart}"
-                    >结束练习</Button>
+            <Button Grid.Column="0" Content="开始"  Command="{Binding StartSimulationCommand}" />
+            <Button Grid.Column="2" Content="暂停"  Command="{Binding PauseSimulationCommand}" />
+            <Button Grid.Column="3" Content="继续"  Command="{Binding ResumeSimulationCommand}" />
+            <Button Grid.Column="4" Content="结束"  Command="{Binding StopSimulationCommand}" />
+            <ComboBox Grid.Column="1" ItemsSource="{Binding Tables}" SelectedItem="{Binding SelectedTableName}"    HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
         </Grid>
 

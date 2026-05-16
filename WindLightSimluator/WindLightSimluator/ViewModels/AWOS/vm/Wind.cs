@@ -11,7 +11,27 @@ namespace WindLightSimluator.ViewModels.vm
     public partial class WindVM : ViewModelBase
     {
         private double _windSpeed;
-        public double WindSpeedValue => _windSpeed;
+        public double WindSpeedValue
+        {
+            get => _windSpeed;
+            set {
+                if (_windSpeed != value)
+                {
+                    _windSpeed = value;
+
+                    OnPropertyChanged(nameof(WindSpeedValue));
+                    OnPropertyChanged(nameof(WindSpeed));
+
+                    // 联动
+                    OnPropertyChanged(nameof(HeadWindSpeed));
+                    OnPropertyChanged(nameof(CrossWindSpeed));
+
+                    OnPropertyChanged(nameof(AngleIndex));
+                    OnPropertyChanged(nameof(AngleHeading));
+
+                }
+            }
+        }
         public string WindSpeed
         {
             get {
@@ -23,7 +43,26 @@ namespace WindLightSimluator.ViewModels.vm
 
 
         private double _windDir;
-        public double WindDirValue => _windDir;
+        public double WindDirValue
+        {
+            get => _windDir;
+            set {
+                if (_windDir != value)
+                {
+                    _windDir = value;
+
+                    OnPropertyChanged(nameof(WindDirValue));
+                    OnPropertyChanged(nameof(WindDir));
+
+                    // 联动
+                    OnPropertyChanged(nameof(HeadWindSpeed));
+                    OnPropertyChanged(nameof(CrossWindSpeed));
+
+                    OnPropertyChanged(nameof(AngleIndex));
+                    OnPropertyChanged(nameof(AngleHeading));
+                }
+            }
+        }
         public int WindDir
         {
             get {

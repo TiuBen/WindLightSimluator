@@ -10,8 +10,7 @@
              mc:Ignorable="d" 
            >
     <UserControl.Resources>
-        <!--是否显示-->
-        <conv:TrueOnlyToVisibilityConverter x:Key="TrueOnlyToVisibility"/>
+       
         <conv:StatusToBgColorConverter x:Key="StatusToBgColorConverter"/>
         <!--字体大小-->
         <conv:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
@@ -141,7 +140,7 @@
         <!-- 右侧：胶囊形状态条 -->
         <base:CapsuleBorder 
                     Grid.Column="2" 
-                    Visibility="{Binding IsActive,Converter={StaticResource TrueOnlyToVisibility} }" 
+                    Visibility="{Binding CapsuleVisibility, RelativeSource={RelativeSource AncestorType=UserControl} }" 
                     x:Name="StatusBorder"
                     Style="{DynamicResource ValueTextBackgroundColor}"
                     VerticalAlignment="Center"

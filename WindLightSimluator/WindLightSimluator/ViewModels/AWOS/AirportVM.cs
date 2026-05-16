@@ -22,16 +22,16 @@ namespace WindLightSimluator.ViewModels
 {
     public partial class AirportVM : ViewModelBase
     {
-        private float _qnh = 1013.2f; // 默认值
+        private double _qnh = 1013.2f; // 默认值
         private string _metar = "METAR ZHEC 070900Z 32002MPS CAVOK 16/05 Q1023 NOSIG=";
         private Light _light;
         private RunwayVM _selectedRunwayVM;
         private readonly DatabaseService _db;
 
 
-        public float Qnh
+        public double Qnh
         {
-            get => (float)Math.Round(_qnh, 1);
+            get => Math.Round(_qnh, 1);
 
             set {
                 if (_qnh != value)

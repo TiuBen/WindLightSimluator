@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WindLightSimluator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+38ff8446d2fd62edc113358a7018fdda5adc32d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03c7cc47b2f49231cf18c863a4e863ee86044c44")]
 [assembly: System.Reflection.AssemblyProductAttribute("WindLightSimluator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WindLightSimluator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

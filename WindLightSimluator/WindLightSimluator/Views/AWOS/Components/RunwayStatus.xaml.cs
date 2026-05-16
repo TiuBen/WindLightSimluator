@@ -24,5 +24,19 @@ namespace WindLightSimluator.Views.AWOS.Components
         {
             InitializeComponent();
         }
+
+        public Visibility CapsuleVisibility
+        {
+            get => (Visibility)GetValue(CapsuleVisibilityProperty);
+            set => SetValue(CapsuleVisibilityProperty, value);
+        }
+
+        public static readonly DependencyProperty CapsuleVisibilityProperty =
+            DependencyProperty.Register(
+                nameof(CapsuleVisibility),
+                typeof(Visibility),
+                typeof(RunwayStatus),
+                new PropertyMetadata(Visibility.Visible));
+
     }
 }

@@ -46,8 +46,8 @@
     <SolidColorBrush x:Key="RvrVis.LabelTextColor.InActive" Color="#7b83a5"/>
     <SolidColorBrush x:Key="RvrVis.LabelTextColor.Active" Color="#5374bf"/>
 
-    <SolidColorBrush x:Key="RvrVis.ValueTextBackgroundColor.InActive" Color="#ffffff"/>
-    <SolidColorBrush x:Key="RvrVis.ValueTextBackgroundColor.Active" Color="#ffffff"/>
+    <SolidColorBrush x:Key="RvrVis.ValueTextBackgroundColor.InActive" Color="#f1f2f6"/>
+    <SolidColorBrush x:Key="RvrVis.ValueTextBackgroundColor.Active" Color="#fafafa"/>
 
     <SolidColorBrush x:Key="RvrVis.ValueTextColor.InActive" Color="#7b83a5"/>
     <SolidColorBrush x:Key="RvrVis.ValueTextColor.Active" Color="#363939"/>

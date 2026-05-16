@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Converters\RunwayPartVisibiltyConverter.cs" />
     <Compile Remove="Service\FakeWQTRToUIWQTR.cs" />
     <Compile Remove="ViewModels\WindPanelVM.cs" />
     <Compile Remove="Views\Components\Base\CapsuleBorder.xaml.cs" />
